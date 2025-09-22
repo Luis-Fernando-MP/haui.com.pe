@@ -1,0 +1,149 @@
+@import 'tailwindcss';
+
+:root {
+  --bg1: oklch(100% 0 0);
+  --bg2: oklch(90% 0.00002 271.152);
+  --bg3: oklch(85% 0.00002 271.152);
+  --fn1: oklch(10% 0.00011 271.152);
+  --fn2: oklch(30% 0.00008 271.152);
+  --fnA: oklch(0% 0.00011 271.152);
+  --bg1: oklch(71.387% 0.15557 31.622);
+  --tn2: oklch(84.509% 0.17407 141.84);
+
+  /* Gradient */
+  --gr-from: #f47963;
+  --gr-via: #fdf56c;
+  --gr-to: #85e87a;
+}
+
+[data-theme='dark'],
+html.dark {
+  --bg1: oklch(0% 0 0);
+  --bg2: oklch(14.479% 0.00002 271.152);
+  --bg3: oklch(20.904% 0.00002 271.152);
+  --fn1: oklch(94.611% 0.00011 271.152);
+  --fn2: oklch(70.9% 0.00008 271.152);
+  --fnA: oklch(100% 0.00011 271.152);
+  --tn1: oklch(71.387% 0.15557 31.622);
+  --tn2: oklch(84.509% 0.17407 141.84);
+
+  /* Gradient */
+  --gr-from: #f47963;
+  --gr-via: #fdf56c;
+  --gr-to: #85e87a;
+}
+
+@theme {
+  --color-bg1: var(--bg1);
+  --color-bg2: var(--bg2);
+  --color-bg3: var(--bg3);
+  --color-fn1: var(--fn1);
+  --color-fn2: var(--fn2);
+  --color-fnA: var(--fnA);
+  --color-tn1: var(--tn1);
+  --color-tn2: var(--tn2);
+  --font-geist: var(--font-geist), sans-serif;
+  --font-paragraph: var(--font-geist-mono), monospace;
+  --font-flowers: var(--font-send-flowers), cursive;
+  --font-emoji: var(--font-emoji), 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  --font-rubik: var(--font-rubik-lines), sans-serif;
+  --text-h1: 2rem; /* 32px */
+  --text-h2: 1.5rem; /* 24px */
+  --text-h3: 1.25rem; /* 20px */
+  --text-h4: 1rem; /* 16px */
+  --text-h5: 0.875rem; /* 14px */
+  --text-h6: 0.75rem; /* 12px */
+  --text-p: 1rem; /* 16px */
+  --text-a: 1rem; /* 16px */
+  --text-span: 0.8rem; /* 14px */
+  --breakpoint-middle: 54rem;
+}
+
+@layer base {
+  html {
+    @apply text-[14px];
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    @apply hidden;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .gradient {
+    @apply bg-gradient-to-r from-[var(--gr-from)] via-[var(--gr-via)] to-[var(--gr-to)];
+  }
+
+  body {
+    @apply bg-[var(--bg1)] font-[var(--font-paragraph),var(--font-emoji),Arial,Helvetica,sans-serif] text-[var(--fn1)];
+  }
+
+  ::selection {
+    @apply bg-[var(--fn1)] text-[var(--bg1)];
+  }
+
+  .lucide {
+    @apply block h-[22px] w-[22px] stroke-2;
+  }
+
+  /* Headings */
+  h1 {
+    @apply font-bold text-[var(--text-h1)];
+  }
+
+  h2 {
+    @apply text-[var(--text-h2)];
+  }
+
+  h3 {
+    @apply text-[var(--text-h3)];
+  }
+
+  h4 {
+    @apply text-[var(--text-h4)];
+  }
+
+  h5 {
+    @apply text-[var(--text-h5)];
+  }
+
+  h6 {
+    @apply text-[var(--text-h6)];
+  }
+
+  p,
+  input,
+  textarea,
+  select {
+    @apply text-[var(--text-p)];
+  }
+
+  span {
+    @apply text-[var(--text-span)];
+  }
+
+  p + p {
+    @apply mt-4;
+  }
+
+  a {
+    @apply text-[var(--text-a)] no-underline;
+  }
+
+  label {
+    @apply text-[var(--text-h6)];
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    @apply outline-none;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}
