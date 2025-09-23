@@ -57,6 +57,7 @@ html.dark {
   --text-a: 1rem; /* 16px */
   --text-span: 0.8rem; /* 14px */
   --breakpoint-region: 70rem;
+  --breakpoint-min: 25rem;
 }
 
 @layer base {

@@ -13,10 +13,7 @@ const NavMenu: FC = () => {
       <MenuButton as={Button}>
         <MenuIcon />
       </MenuButton>
-      <MenuItems
-        anchor='bottom end'
-        className='border-bg3 bg-bg1 w-48 origin-top-right rounded-xl border px-1 py-2 focus:outline-none'
-      >
+      <MenuItems anchor='bottom' className='bg-bg1 border-bg3 w-48 rounded-xl border px-1 py-2 focus:outline-none'>
         <NavLinks isMobile />
       </MenuItems>
     </Menu>

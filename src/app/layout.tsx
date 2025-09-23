@@ -1,5 +1,6 @@
 import { bodyFonts } from '@/shared/config/fonts'
 import { globalMetadata as metadata, viewport } from '@/shared/config/metadata/global.metadata'
+import Footer from '@/shared/ui/components/Footer'
 import NavBar from '@/shared/ui/components/NavBar'
 import { ThemeProvider } from 'next-themes'
 import { ViewTransitions } from 'next-view-transitions'
@@ -23,6 +24,7 @@ const Bootstrap: FC<Props> = ({ children }) => {
           <ThemeProvider defaultTheme='system' enableSystem attribute={'class'} disableTransitionOnChange>
             <NavBar />
             {children}
+            <Footer />
           </ThemeProvider>
         </body>
       </html>
