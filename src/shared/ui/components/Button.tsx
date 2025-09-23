@@ -39,7 +39,7 @@ const Button = ({
 }: ButtonProps) => {
   const hoverClass = noHover ? '' : 'hover:opacity-90'
   const baseClasses = cn(
-    'w-fit focus:outline-none flex items-center gap-2 rounded-full px-4 py-2',
+    'w-fit focus:outline-none flex items-center gap-2 rounded-full px-4 py-2 h-fit',
     variants[variant],
     hoverClass,
     className
