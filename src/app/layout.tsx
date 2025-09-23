@@ -1,6 +1,6 @@
-import NavBar from '@/shared/components/NavBar'
 import { bodyFonts } from '@/shared/config/fonts'
 import { globalMetadata as metadata, viewport } from '@/shared/config/metadata/global.metadata'
+import NavBar from '@/shared/ui/components/NavBar'
 import { ThemeProvider } from 'next-themes'
 import { ViewTransitions } from 'next-view-transitions'
 import NextTopLoader from 'nextjs-toploader'
