@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Noto_Color_Emoji, Rubik_Lines, Send_Flowers } from '
 export const geist = Geist({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-geist'
+  variable: '--font-geist-text'
 })
 
 export const geist_mono = Geist_Mono({
@@ -21,7 +21,7 @@ export const send_flowers = Send_Flowers({
 export const noto = Noto_Color_Emoji({
   subsets: ['emoji'],
   weight: ['400'],
-  variable: '--font-emoji'
+  variable: '--font-emojis'
 })
 
 export const rubik_lines = Rubik_Lines({
