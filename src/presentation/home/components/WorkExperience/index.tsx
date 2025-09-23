@@ -1,4 +1,5 @@
 import { HISTORY_JOBS } from '@/shared/config/constants/historyJobs'
+import Title from '@/shared/ui/components/Title'
 import type { FC } from 'react'
 
 import JobExperience from './JobExperience'
@@ -8,10 +9,10 @@ const WorkExperience: FC = () => {
     <article className='max-region:px-5 flex min-h-screen w-full cursor-pointer flex-col items-center gap-20'>
       <header className='region max-region:text-center max-region:items-center flex flex-col gap-3.5'>
         <h3 className='text-fn2 font-mono'>2019 ― 2025</h3>
-        <h2 className='text-6xl leading-tight font-bold max-sm:text-4xl'>
+        <Title>
           Mi Experiencia
           <br /> Laboral
-        </h2>
+        </Title>
         <p className='text-fn2 max-w-[650px] font-mono'>
           <strong>He participado en el desarrollo de software para diversas empresas</strong>, colaborando tanto en equipos
           reducidos como en grupos de gran escala. Durante este proceso, he diseñado y mantenido sistemas robustos y seguros,
