@@ -10,7 +10,7 @@ const HeroHeader: FC = () => {
         width={370}
         height={370}
         alt='logo principal'
-        className='contain pointer-events-none select-none max-lg:h-[200px] max-lg:w-[200px]'
+        className='contain pointer-events-none relative z-[1] select-none max-lg:h-[200px] max-lg:w-[200px]'
       />
 
       <div className='flex w-fit flex-col gap-5 max-lg:text-center'>
@@ -28,7 +28,7 @@ const HeroHeader: FC = () => {
           <h4 className='text-fn2'>Disponible para trabajar</h4>
         </Link>
       </div>
-      <div className='font-rubik text-fn2 pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-[10rem] leading-[1] opacity-10 select-none max-md:text-[6rem]'>
+      <div className='font-rubik text-fn2 pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-[10rem] leading-[1] opacity-15 select-none max-md:text-[6rem]'>
         LUIS
         <br /> FERNANDO
         <br /> DEVELOPER
