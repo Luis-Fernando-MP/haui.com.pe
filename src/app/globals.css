@@ -42,17 +42,16 @@ html.dark {
   --color-fnA: var(--fnA);
   --color-tn1: var(--tn1);
   --color-tn2: var(--tn2);
-  --font-geist: var(--font-geist), sans-serif;
-  --font-paragraph: var(--font-geist-mono), monospace;
+  --font-geist: var(--font-geist-text), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
   --font-flowers: var(--font-send-flowers), cursive;
-  --font-emoji: var(--font-emoji), 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  --font-emoji: var(--font-emoji), 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emojis', sans-serif;
   --font-rubik: var(--font-rubik-lines), sans-serif;
   --text-h1: 2rem; /* 32px */
   --text-h2: 1.5rem; /* 24px */
   --text-h3: 1.25rem; /* 20px */
-  --text-h4: 1rem; /* 16px */
-  --text-h5: 0.875rem; /* 14px */
-  --text-h6: 0.75rem; /* 12px */
+  --text-h4: 1.1rem; /* 16px */
+  --text-h5: 1rem; /* 14px */
   --text-p: 1rem; /* 16px */
   --text-a: 1rem; /* 16px */
   --text-span: 0.8rem; /* 14px */
@@ -87,7 +86,7 @@ html.dark {
   }
 
   body {
-    @apply bg-bg1 font-[var(--font-paragraph),var(--font-emoji),Arial,Helvetica,sans-serif] text-[var(--fn1)];
+    @apply bg-bg1 font-[var(--font-geist),var(--font-emoji),Arial,Helvetica,sans-serif] text-[var(--fn1)];
   }
 
   ::selection {
@@ -119,10 +118,6 @@ html.dark {
     @apply text-h5;
   }
 
-  h6 {
-    @apply text-h6;
-  }
-
   p,
   input,
   textarea,
@@ -152,4 +147,8 @@ html.dark {
   button {
     @apply cursor-pointer;
   }
+}
+
+.contain {
+  object-fit: contain !important;
 }
