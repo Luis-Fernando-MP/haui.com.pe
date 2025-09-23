@@ -10,7 +10,7 @@ import NavMenu from './NavMenu'
 
 const NavBar: FC = () => {
   return (
-    <nav className='from-bg1 sticky top-0 w-full bg-gradient-to-b from-70% to-transparent to-95% pt-5 pb-10'>
+    <nav className='from-bg1 sticky top-0 w-full bg-gradient-to-b from-70% to-transparent pt-5 pb-15'>
       <div className='region max-region:px-5 max-min:items-center max-min:justify-center max-min:gap-5 mx-auto flex flex-wrap items-center justify-between'>
         <Link href='/' className='flex items-center gap-3'>
           <Image src='/logo.webp' className='rounded-md' width={45} height={45} alt='logo' />
