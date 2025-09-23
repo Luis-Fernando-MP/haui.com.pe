@@ -14,9 +14,24 @@ export const INFO = {
 } as const
 
 export const SOCIAL = {
-  Gmail: 'luigfmp@gmail.com',
-  WhatsApp: `https://wa.me/${INFO.phone}?text=Hola%20Luis`,
-  LinkedIn: 'https://www.linkedin.com/in/luigfmp/',
-  GitHub: 'https://github.com/Luis-Fernando-MP',
-  Figma: 'https://www.figma.com/@luigfmp'
+  Gmail: {
+    url: 'mailto:luigfmp@gmail.com?subject=Hola&cc=otro@correo.com&bcc=secret@correo.com&body=Este%20es%20el%20mensaje',
+    display: 'luigfmp@gmail.com'
+  },
+  GitHub: {
+    url: 'https://github.com/Luis-Fernando-MP',
+    display: '@Luis-Fernando-MP'
+  },
+  LinkedIn: {
+    url: 'https://www.linkedin.com/in/luigfmp/',
+    display: 'in-Luis Fernando'
+  },
+  Figma: {
+    url: 'https://www.figma.com/@luigfmp',
+    display: '@luigfmp'
+  },
+  WhatsApp: {
+    url: `https://wa.me/${INFO.phone}?text=Hola%20Luis`,
+    display: `+51 ${INFO.phone}`
+  }
 }

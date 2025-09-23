@@ -20,12 +20,14 @@ const Footer: FC = () => {
             <h4>🎨 ¿Un café?</h4>
             <div className='flex flex-wrap justify-center gap-2.5'>
               {Object.entries(SOCIAL).map(([key, value]) => {
+                const { url } = value
+
                 return (
                   <Link
                     className='text-fn2 px-2.5 underline underline-offset-4'
                     target='_blank'
                     rel='noopener noreferrer'
-                    href={value}
+                    href={url}
                     key={key}
                     aria-label={`Link to ${key}`}
                   >

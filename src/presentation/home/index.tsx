@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
+import Contact from './components/Contact'
 import HeroHeader from './components/HeroHeader'
-import Projects from './components/Projects'
 import WorkExperience from './components/WorkExperience'
 
 const Home: FC = () => {
@@ -10,6 +10,7 @@ const Home: FC = () => {
       <HeroHeader />
       <WorkExperience />
       {/* <Projects /> */}
+      <Contact />
     </main>
   )
 }

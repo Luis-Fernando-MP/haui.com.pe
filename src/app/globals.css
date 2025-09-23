@@ -130,8 +130,7 @@ html.dark {
     @apply text-span;
   }
 
-  p + p,
-  li + li {
+  p + p {
     @apply mt-4;
   }
 
