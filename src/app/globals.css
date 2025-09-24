@@ -85,6 +85,10 @@ html.dark {
     @apply bg-gradient-to-r from-[var(--gr-from)] via-[var(--gr-via)] to-[var(--gr-to)] bg-clip-text text-transparent;
   }
 
+  .danger {
+    @apply text-red-400 hover:bg-red-900/20 hover:text-red-300;
+  }
+
   body {
     @apply bg-bg1 font-[var(--font-geist),var(--font-emoji),Arial,Helvetica,sans-serif] text-[var(--fn1)];
   }

@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 
 const variants = {
   normal: 'bg-bg2 text-fn1',
-  border: 'border-bg3 bg-bg2 border-[1.5px]',
+  border: 'border-bg3 border-[1.5px]',
   active: 'bg-fn1 text-bg1',
   gradient: 'gradient text-bg1',
   transparent: ''

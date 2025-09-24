@@ -1,14 +1,16 @@
+import { Technology } from '@/lib/techQuery/tech.type'
+
 export type TechName = (typeof technologies)[number]['name']
 export type TechProps = (typeof technologies)[number]
 
-export const technologies = [
+export const technologies: Technology[] = [
   {
     name: 'NextJs',
     icon: '/assets/code/nextjs.webp',
     level: 'Aprendiendo',
     color: '#fff',
     categories: ['framework'],
-    stack: ['fullstack'],
+    stack: ['frontend'],
     favorite: true,
     notionPage: 'https://www.notion.so/mis-apuntes-nextjs-abc123'
   },
@@ -68,7 +70,7 @@ export const technologies = [
     level: 'Aprendiendo',
     color: '#F0DB4F',
     categories: ['language', 'web-standard', 'scripting'],
-    stack: ['fullstack']
+    stack: ['frontend', 'backend']
   },
   {
     name: 'TypeScript',
@@ -76,7 +78,7 @@ export const technologies = [
     level: 'Aprendiendo',
     color: '#007ACC',
     categories: ['language', 'superset', 'scripting'],
-    stack: ['fullstack'],
+    stack: ['frontend', 'backend'],
     favorite: true,
     notionPage: 'https://www.notion.so/typescript-diary-834ab'
   },
@@ -86,7 +88,7 @@ export const technologies = [
     level: 'Incursionando',
     color: '#FFDF5B',
     categories: ['language', 'scripting'],
-    stack: ['fullstack']
+    stack: ['backend']
   },
   {
     name: 'Java',
@@ -112,7 +114,7 @@ export const technologies = [
     level: 'Aprendiendo',
     color: '#539E43',
     categories: ['runtime'],
-    stack: ['fullstack']
+    stack: ['backend']
   },
   {
     name: 'Redis',
@@ -120,7 +122,7 @@ export const technologies = [
     level: 'Incursionando',
     color: '#C6302B',
     categories: ['database', 'nosql'],
-    stack: ['fullstack'],
+    stack: ['backend'],
     favorite: true
   },
   {
@@ -129,7 +131,7 @@ export const technologies = [
     level: 'Aprendiendo',
     color: '#04BEA4',
     categories: ['ORM', 'library'],
-    stack: ['fullstack'],
+    stack: ['backend'],
     favorite: true
   },
   {
@@ -173,7 +175,7 @@ export const technologies = [
     level: 'Incursionando',
     color: '#099CEC',
     categories: ['container', 'devops'],
-    stack: ['backend'],
+    stack: ['devops'],
     favorite: true,
     notionPage: 'https://www.notion.so/docker-containers-cursos-88213'
   },
@@ -183,7 +185,7 @@ export const technologies = [
     level: 'Aprendiendo',
     color: '#F05033',
     categories: ['VCS'],
-    stack: ['Kit'],
+    stack: ['devops'],
     favorite: true
   },
   {
@@ -192,7 +194,7 @@ export const technologies = [
     level: 'Aprendiendo',
     color: '#343336',
     categories: ['VCS', 'hosting'],
-    stack: ['Kit'],
+    stack: ['devops'],
     favorite: true
   },
   {
@@ -209,7 +211,7 @@ export const technologies = [
     level: 'Aprendiendo',
     color: '#BD34FE',
     categories: ['build-tool'],
-    stack: ['fullstack']
+    stack: ['Kit']
   },
   {
     name: 'ViteTest',
@@ -217,7 +219,7 @@ export const technologies = [
     level: 'Incursionando',
     color: '#729B1B',
     categories: ['testing'],
-    stack: ['backend']
+    stack: ['Kit']
   },
   {
     name: 'Figma',
@@ -242,7 +244,7 @@ export const technologies = [
     level: 'Incursionando',
     color: '#F0BA1E',
     categories: ['OS'],
-    stack: ['Kit']
+    stack: ['devops']
   },
   {
     name: 'Scrum',
@@ -266,7 +268,7 @@ export const technologies = [
     level: 'Incursionando',
     color: '#FF9900',
     categories: ['devops', 'cloud'],
-    stack: ['Kit']
+    stack: ['devops']
   },
   {
     name: 'Bootstrap',
@@ -298,7 +300,7 @@ export const technologies = [
     level: 'Incursionando',
     color: '#F38020',
     categories: ['devops', 'cloud'],
-    stack: ['Kit']
+    stack: ['devops']
   },
   {
     name: 'Firebase',
@@ -306,7 +308,7 @@ export const technologies = [
     level: 'Incursionando',
     color: '#FFCA28',
     categories: ['database', 'nosql'],
-    stack: ['fullstack']
+    stack: ['backend']
   },
   {
     name: 'Hostinger',
@@ -314,7 +316,7 @@ export const technologies = [
     level: 'Incursionando',
     color: '#983cf4',
     categories: ['devops', 'hosting', 'cloud'],
-    stack: ['Kit']
+    stack: ['devops']
   },
   {
     name: 'MongoDB',
@@ -346,7 +348,7 @@ export const technologies = [
     level: 'Incursionando',
     color: '#2477FF',
     categories: ['devops', 'container'],
-    stack: ['Kit']
+    stack: ['devops']
   },
   {
     name: 'Supabase',
@@ -354,7 +356,7 @@ export const technologies = [
     level: 'Incursionando',
     color: '#3ECF8E',
     categories: ['database', 'sql'],
-    stack: ['fullstack']
+    stack: ['backend']
   },
   {
     name: 'Skeleton',
@@ -370,7 +372,7 @@ export const technologies = [
     level: 'Incursionando',
     color: '#267CCA',
     categories: ['devops'],
-    stack: ['Kit']
+    stack: ['devops']
   },
   {
     name: 'Vivaldi',
@@ -394,7 +396,7 @@ export const technologies = [
     level: 'Incursionando',
     color: '#fff',
     categories: ['devops', 'cloud', 'hosting'],
-    stack: ['Kit']
+    stack: ['devops']
   },
   {
     name: 'Beekeeper',
