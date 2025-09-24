@@ -59,7 +59,7 @@ const JobExperience: FC<JobExperienceProps> = ({ job }) => {
 
           <ul
             className={cn(
-              'text-fn2 relative flex max-h-[100px] list-disc flex-col gap-1 overflow-y-clip pl-6 font-mono',
+              'text-fn2 relative flex max-h-[100px] list-disc flex-col gap-3.5 overflow-y-clip pl-6 font-mono',
               more && 'max-h-max'
             )}
           >
@@ -70,7 +70,9 @@ const JobExperience: FC<JobExperienceProps> = ({ job }) => {
           </ul>
 
           {more && (
-            <ul className='text-fn2 relative flex max-h-max list-disc flex-col gap-1 overflow-y-clip pl-6 font-mono'>{Extra}</ul>
+            <ul className='text-fn2 relative flex max-h-max list-disc flex-col gap-3.5 overflow-y-clip pl-6 font-mono'>
+              {Extra}
+            </ul>
           )}
         </section>
 
