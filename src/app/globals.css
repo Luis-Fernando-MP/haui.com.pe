@@ -153,9 +153,9 @@ html.dark {
   object-fit: contain !important;
 }
 
-html {
+/* html {
   filter: invert(2);
   img {
     filter: invert(1);
   }
-}
+} */
