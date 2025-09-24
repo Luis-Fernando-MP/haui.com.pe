@@ -4,17 +4,17 @@ export type TechProps = (typeof technologies)[number]
 export const technologies = [
   {
     name: 'NextJs',
-    src: '/assets/code/nextjs.webp',
+    icon: '/assets/code/nextjs.webp',
     level: 'Aprendiendo',
     color: '#fff',
     categories: ['framework'],
     stack: ['fullstack'],
-    favoriteFor: ['frontend'],
+    favorite: true,
     notionPage: 'https://www.notion.so/mis-apuntes-nextjs-abc123'
   },
   {
     name: 'AstroJs',
-    src: '/assets/code/astro.webp',
+    icon: '/assets/code/astro.webp',
     level: 'Incursionando',
     color: '#E33A91',
     categories: ['framework'],
@@ -22,7 +22,7 @@ export const technologies = [
   },
   {
     name: 'ReactJs',
-    src: '/assets/code/react.webp',
+    icon: '/assets/code/react.webp',
     level: 'Aprendiendo',
     color: '#5FD4F5',
     categories: ['library'],
@@ -31,16 +31,16 @@ export const technologies = [
   },
   {
     name: 'Sass',
-    src: '/assets/code/sass.webp',
+    icon: '/assets/code/sass.webp',
     level: 'Aprendiendo',
     color: '#CD669A',
     categories: ['style', 'preprocessor'],
     stack: ['frontend'],
-    favoriteFor: ['frontend']
+    favorite: true
   },
   {
     name: 'Tailwind',
-    src: '/assets/code/tailwind.webp',
+    icon: '/assets/code/tailwind.webp',
     level: 'Incursionando',
     color: '#007ACC',
     categories: ['style', 'framework', 'utility-first'],
@@ -48,7 +48,7 @@ export const technologies = [
   },
   {
     name: 'HTML',
-    src: '/assets/code/html.webp',
+    icon: '/assets/code/html.webp',
     level: 'Aprendiendo',
     color: '#E44D26',
     categories: ['markup', 'web-standard'],
@@ -56,7 +56,7 @@ export const technologies = [
   },
   {
     name: 'CSS',
-    src: '/assets/code/css.webp',
+    icon: '/assets/code/css.webp',
     level: 'Aprendiendo',
     color: '#842cddff',
     categories: ['style', 'web-standard'],
@@ -64,7 +64,7 @@ export const technologies = [
   },
   {
     name: 'JavaScript',
-    src: '/assets/code/javascript.webp',
+    icon: '/assets/code/javascript.webp',
     level: 'Aprendiendo',
     color: '#F0DB4F',
     categories: ['language', 'web-standard', 'scripting'],
@@ -72,17 +72,17 @@ export const technologies = [
   },
   {
     name: 'TypeScript',
-    src: '/assets/code/typescript.webp',
+    icon: '/assets/code/typescript.webp',
     level: 'Aprendiendo',
     color: '#007ACC',
     categories: ['language', 'superset', 'scripting'],
     stack: ['fullstack'],
-    favoriteFor: ['frontend', 'backend'],
+    favorite: true,
     notionPage: 'https://www.notion.so/typescript-diary-834ab'
   },
   {
     name: 'Python',
-    src: '/assets/code/python.webp',
+    icon: '/assets/code/python.webp',
     level: 'Incursionando',
     color: '#FFDF5B',
     categories: ['language', 'scripting'],
@@ -90,7 +90,7 @@ export const technologies = [
   },
   {
     name: 'Java',
-    src: '/assets/code/java.webp',
+    icon: '/assets/code/java.webp',
     level: 'Incursionando',
     color: '#73A1FB',
     categories: ['language', 'scripting'],
@@ -98,17 +98,17 @@ export const technologies = [
   },
   {
     name: 'NestJs',
-    src: '/assets/code/nestjs.webp',
+    icon: '/assets/code/nestjs.webp',
     level: 'Aprendiendo',
     color: '#DD234D',
     categories: ['framework', 'api'],
     stack: ['backend'],
-    favoriteFor: ['backend'],
+    favorite: true,
     notionPage: 'https://www.notion.so/nest-api-design-92fa4'
   },
   {
     name: 'NodeJs',
-    src: '/assets/code/nodejs.webp',
+    icon: '/assets/code/nodejs.webp',
     level: 'Aprendiendo',
     color: '#539E43',
     categories: ['runtime'],
@@ -116,34 +116,34 @@ export const technologies = [
   },
   {
     name: 'Redis',
-    src: '/assets/code/redis.webp',
+    icon: '/assets/code/redis.webp',
     level: 'Incursionando',
     color: '#C6302B',
     categories: ['database', 'nosql'],
     stack: ['fullstack'],
-    favoriteFor: ['backend']
+    favorite: true
   },
   {
     name: 'Prisma',
-    src: '/assets/code/prisma.webp',
+    icon: '/assets/code/prisma.webp',
     level: 'Aprendiendo',
     color: '#04BEA4',
     categories: ['ORM', 'library'],
     stack: ['fullstack'],
-    favoriteFor: ['backend', 'frontend']
+    favorite: true
   },
   {
     name: 'TypeORM',
-    src: '/assets/code/typeorm.webp',
+    icon: '/assets/code/typeorm.webp',
     level: 'Aprendiendo',
     color: '#fe00009d',
     categories: ['ORM', 'library'],
     stack: ['backend'],
-    favoriteFor: ['backend']
+    favorite: true
   },
   {
     name: 'GraphQl',
-    src: '/assets/code/graphql.webp',
+    icon: '/assets/code/graphql.webp',
     level: 'Incursionando',
     color: '#E535AB',
     categories: ['query-language'],
@@ -151,17 +151,17 @@ export const technologies = [
   },
   {
     name: 'MySQL',
-    src: '/assets/code/mysql.webp',
+    icon: '/assets/code/mysql.webp',
     level: 'Aprendiendo',
     color: '#21748E',
     categories: ['database', 'sql'],
     stack: ['backend'],
-    favoriteFor: ['backend'],
+    favorite: true,
     notionPage: 'https://www.notion.so/mysql-crud-queries-1108a'
   },
   {
     name: 'PostgreSQL',
-    src: '/assets/code/postgresql.webp',
+    icon: '/assets/code/postgresql.webp',
     level: 'Incursionando',
     color: '#2D74AD',
     categories: ['database', 'sql'],
@@ -169,35 +169,35 @@ export const technologies = [
   },
   {
     name: 'Docker',
-    src: '/assets/code/docker.webp',
+    icon: '/assets/code/docker.webp',
     level: 'Incursionando',
     color: '#099CEC',
     categories: ['container', 'devops'],
     stack: ['backend'],
-    favoriteFor: ['backend'],
+    favorite: true,
     notionPage: 'https://www.notion.so/docker-containers-cursos-88213'
   },
   {
     name: 'Git',
-    src: '/assets/code/git.webp',
+    icon: '/assets/code/git.webp',
     level: 'Aprendiendo',
     color: '#F05033',
     categories: ['VCS'],
     stack: ['Kit'],
-    favoriteFor: ['backend', 'frontend']
+    favorite: true
   },
   {
     name: 'GitHub',
-    src: '/assets/code/github.webp',
+    icon: '/assets/code/github.webp',
     level: 'Aprendiendo',
     color: '#343336',
     categories: ['VCS', 'hosting'],
     stack: ['Kit'],
-    favoriteFor: ['frontend', 'backend']
+    favorite: true
   },
   {
     name: 'Postman',
-    src: '/assets/code/postman.webp',
+    icon: '/assets/code/postman.webp',
     level: 'Aprendiendo',
     color: '#EE6D3F',
     categories: ['testing', 'api'],
@@ -205,7 +205,7 @@ export const technologies = [
   },
   {
     name: 'Vite',
-    src: '/assets/code/vite.webp',
+    icon: '/assets/code/vite.webp',
     level: 'Aprendiendo',
     color: '#BD34FE',
     categories: ['build-tool'],
@@ -213,7 +213,7 @@ export const technologies = [
   },
   {
     name: 'ViteTest',
-    src: '/assets/code/vitest.webp',
+    icon: '/assets/code/vitest.webp',
     level: 'Incursionando',
     color: '#729B1B',
     categories: ['testing'],
@@ -221,16 +221,16 @@ export const technologies = [
   },
   {
     name: 'Figma',
-    src: '/assets/code/figma.webp',
+    icon: '/assets/code/figma.webp',
     level: 'Aprendiendo',
     color: '#F041FF',
     categories: ['design', 'editor'],
     stack: ['Kit'],
-    favoriteFor: ['frontend']
+    favorite: true
   },
   {
     name: 'VSCode',
-    src: '/assets/code/vscode.webp',
+    icon: '/assets/code/vscode.webp',
     level: 'Aprendiendo',
     color: '#42ABF2',
     categories: ['editor', 'IDE'],
@@ -238,7 +238,7 @@ export const technologies = [
   },
   {
     name: 'Linux',
-    src: '/assets/code/linux.webp',
+    icon: '/assets/code/linux.webp',
     level: 'Incursionando',
     color: '#F0BA1E',
     categories: ['OS'],
@@ -246,7 +246,7 @@ export const technologies = [
   },
   {
     name: 'Scrum',
-    src: '/assets/code/scrum.webp',
+    icon: '/assets/code/scrum.webp',
     level: 'Incursionando',
     color: '#1B849A',
     categories: ['methodology'],
@@ -254,7 +254,7 @@ export const technologies = [
   },
   {
     name: 'Angular',
-    src: '/assets/code/angular.webp',
+    icon: '/assets/code/angular.webp',
     level: 'Incursionando',
     color: '#DD0031',
     categories: ['framework', 'superset'],
@@ -262,7 +262,7 @@ export const technologies = [
   },
   {
     name: 'AWS',
-    src: '/assets/code/aws.webp',
+    icon: '/assets/code/aws.webp',
     level: 'Incursionando',
     color: '#FF9900',
     categories: ['devops', 'cloud'],
@@ -270,7 +270,7 @@ export const technologies = [
   },
   {
     name: 'Bootstrap',
-    src: '/assets/code/bootstrap.webp',
+    icon: '/assets/code/bootstrap.webp',
     level: 'Incursionando',
     color: '#7952B3',
     categories: ['framework', 'style'],
@@ -278,7 +278,7 @@ export const technologies = [
   },
   {
     name: 'Bulma',
-    src: '/assets/code/bulma.webp',
+    icon: '/assets/code/bulma.webp',
     level: 'Incursionando',
     color: '#00D1B2',
     categories: ['framework', 'style'],
@@ -286,7 +286,7 @@ export const technologies = [
   },
   {
     name: 'Bun',
-    src: '/assets/code/bun.webp',
+    icon: '/assets/code/bun.webp',
     level: 'Incursionando',
     color: '#FABBD1',
     categories: ['runtime'],
@@ -294,7 +294,7 @@ export const technologies = [
   },
   {
     name: 'Cloudflare',
-    src: '/assets/code/cloudflare.webp',
+    icon: '/assets/code/cloudflare.webp',
     level: 'Incursionando',
     color: '#F38020',
     categories: ['devops', 'cloud'],
@@ -302,7 +302,7 @@ export const technologies = [
   },
   {
     name: 'Firebase',
-    src: '/assets/code/firebase.webp',
+    icon: '/assets/code/firebase.webp',
     level: 'Incursionando',
     color: '#FFCA28',
     categories: ['database', 'nosql'],
@@ -310,7 +310,7 @@ export const technologies = [
   },
   {
     name: 'Hostinger',
-    src: '/assets/code/hostinger.webp',
+    icon: '/assets/code/hostinger.webp',
     level: 'Incursionando',
     color: '#983cf4',
     categories: ['devops', 'hosting', 'cloud'],
@@ -318,7 +318,7 @@ export const technologies = [
   },
   {
     name: 'MongoDB',
-    src: '/assets/code/mongodb.webp',
+    icon: '/assets/code/mongodb.webp',
     level: 'Incursionando',
     color: '#4DB33D',
     categories: ['database', 'nosql'],
@@ -326,7 +326,7 @@ export const technologies = [
   },
   {
     name: 'Notion',
-    src: '/assets/code/notion.webp',
+    icon: '/assets/code/notion.webp',
     level: 'Aprendiendo',
     color: '#000000',
     categories: ['editor'],
@@ -334,7 +334,7 @@ export const technologies = [
   },
   {
     name: 'PHP',
-    src: '/assets/code/php.webp',
+    icon: '/assets/code/php.webp',
     level: 'Incursionando',
     color: '#777BB3',
     categories: ['language', 'scripting'],
@@ -342,7 +342,7 @@ export const technologies = [
   },
   {
     name: 'Portainer',
-    src: '/assets/code/portainer.webp',
+    icon: '/assets/code/portainer.webp',
     level: 'Incursionando',
     color: '#2477FF',
     categories: ['devops', 'container'],
@@ -350,7 +350,7 @@ export const technologies = [
   },
   {
     name: 'Supabase',
-    src: '/assets/code/supabase.webp',
+    icon: '/assets/code/supabase.webp',
     level: 'Incursionando',
     color: '#3ECF8E',
     categories: ['database', 'sql'],
@@ -358,7 +358,7 @@ export const technologies = [
   },
   {
     name: 'Skeleton',
-    src: '/assets/code/skeleton.webp',
+    icon: '/assets/code/skeleton.webp',
     level: 'Incursionando',
     color: '#fff',
     categories: ['framework', 'style'],
@@ -366,7 +366,7 @@ export const technologies = [
   },
   {
     name: 'Termius',
-    src: '/assets/code/termius.webp',
+    icon: '/assets/code/termius.webp',
     level: 'Incursionando',
     color: '#267CCA',
     categories: ['devops'],
@@ -374,7 +374,7 @@ export const technologies = [
   },
   {
     name: 'Vivaldi',
-    src: '/assets/code/vivaldi.webp',
+    icon: '/assets/code/vivaldi.webp',
     level: 'Incursionando',
     color: '#EF3939',
     categories: ['editor', 'browser'],
@@ -382,7 +382,7 @@ export const technologies = [
   },
   {
     name: 'Cursor',
-    src: '/assets/code/cursor.webp',
+    icon: '/assets/code/cursor.webp',
     level: 'Incursionando',
     color: '#fff',
     categories: ['editor', 'IDE'],
@@ -390,7 +390,7 @@ export const technologies = [
   },
   {
     name: 'Vercel',
-    src: '/assets/code/vercel.webp',
+    icon: '/assets/code/vercel.webp',
     level: 'Incursionando',
     color: '#fff',
     categories: ['devops', 'cloud', 'hosting'],
@@ -398,7 +398,7 @@ export const technologies = [
   },
   {
     name: 'Beekeeper',
-    src: '/assets/code/beekeeper.webp',
+    icon: '/assets/code/beekeeper.webp',
     level: 'Aprendiendo',
     color: '#E0C03A',
     categories: ['IDE', 'editor'],
@@ -406,7 +406,7 @@ export const technologies = [
   },
   {
     name: 'phpMyAdmin',
-    src: '/assets/code/phpMyAdmin.webp',
+    icon: '/assets/code/phpMyAdmin.webp',
     level: 'Aprendiendo',
     color: '#F99C0E',
     categories: ['IDE', 'editor'],
@@ -414,7 +414,7 @@ export const technologies = [
   },
   {
     name: 'MySQL Workbench',
-    src: '/assets/code/workbench.webp',
+    icon: '/assets/code/workbench.webp',
     level: 'Aprendiendo',
     color: '#25567C',
     categories: ['IDE', 'database', 'sql'],
@@ -422,7 +422,7 @@ export const technologies = [
   },
   {
     name: 'Microsoft PowerPoint',
-    src: '/assets/code/powerPoint.webp',
+    icon: '/assets/code/powerPoint.webp',
     level: 'Aprendiendo',
     color: '#D65130',
     categories: ['presentation'],
@@ -430,7 +430,7 @@ export const technologies = [
   },
   {
     name: 'Microsoft Word',
-    src: '/assets/code/word.webp',
+    icon: '/assets/code/word.webp',
     level: 'Aprendiendo',
     color: '#1759BB',
     categories: ['presentation'],
@@ -438,7 +438,7 @@ export const technologies = [
   },
   {
     name: 'Microsoft Excel',
-    src: '/assets/code/excel.webp',
+    icon: '/assets/code/excel.webp',
     level: 'Aprendiendo',
     color: '#1DA364',
     categories: ['spreadsheet'],
@@ -446,7 +446,7 @@ export const technologies = [
   },
   {
     name: 'WordPress',
-    src: '/assets/code/wordPress.webp',
+    icon: '/assets/code/wordPress.webp',
     level: 'Aprendiendo',
     color: '#0D8EBF',
     categories: ['CMS', 'hosting'],
