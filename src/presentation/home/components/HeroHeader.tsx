@@ -4,7 +4,7 @@ import type { FC } from 'react'
 
 const HeroHeader: FC = () => {
   return (
-    <article className='relative flex h-[80vh] w-full items-center justify-center gap-24 overflow-x-hidden max-lg:flex-col max-lg:gap-10 max-md:px-5'>
+    <article className='relative flex h-auto min-h-[80vh] w-full items-center justify-center gap-24 overflow-x-hidden max-lg:flex-col max-lg:gap-10 max-md:px-5'>
       <Image
         src='/logo-big.webp'
         width={370}

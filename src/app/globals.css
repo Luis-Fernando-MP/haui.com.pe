@@ -61,7 +61,7 @@ html.dark {
 
 @layer base {
   html {
-    @apply text-[14px];
+    @apply scroll-smooth text-[14px];
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -151,4 +151,11 @@ html.dark {
 
 .contain {
   object-fit: contain !important;
+}
+
+html {
+  filter: invert(2);
+  img {
+    filter: invert(1);
+  }
 }

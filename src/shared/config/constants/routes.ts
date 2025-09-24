@@ -1,18 +1,18 @@
 export const NAV_ROUTES = {
   trayectoria: {
-    path: '/trayectoria',
+    path: '/#experience',
     label: 'Trayectoria'
   },
   acerca: {
-    path: '/acerca',
+    path: '/about',
     label: 'Acerca de mí'
   },
   proyectos: {
-    path: '/proyectos',
+    path: '/#projects',
     label: 'Proyectos'
   },
   contacto: {
-    path: '/contacto',
+    path: '/#contact',
     label: 'Contacto'
   }
 } as const

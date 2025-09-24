@@ -8,7 +8,10 @@ const Contact: FC = () => {
   const socialList = Object.entries(SOCIAL).slice(1, Object.entries(SOCIAL).length)
 
   return (
-    <article className='region max-region:px-5 max-region:flex-col max-region:gap-7 max-region:text-center relative mx-auto flex min-h-[60vh] items-center justify-between'>
+    <article
+      id='contact'
+      className='region max-region:px-5 max-region:flex-col max-region:gap-7 max-region:text-center relative mx-auto flex min-h-[60vh] items-center justify-between'
+    >
       <section className='max-region:items-center max-region:gap-10 flex flex-col gap-20'>
         <div className='flex flex-col gap-3'>
           <Title>Hablemos</Title>

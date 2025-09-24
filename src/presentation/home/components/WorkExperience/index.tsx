@@ -6,7 +6,7 @@ import JobExperience from './JobExperience'
 
 const WorkExperience: FC = () => {
   return (
-    <article className='max-region:px-5 flex min-h-screen w-full cursor-pointer flex-col items-center gap-20'>
+    <article id='experience' className='max-region:px-5 flex min-h-screen w-full cursor-pointer flex-col items-center gap-20'>
       <header className='region max-region:text-center max-region:items-center flex flex-col gap-3.5'>
         <h3 className='text-fn2 font-mono'>2019 ― 2025</h3>
         <Title>

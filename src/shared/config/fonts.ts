@@ -2,7 +2,7 @@ import { Geist, Geist_Mono, Noto_Color_Emoji, Rubik_Lines, Send_Flowers } from '
 
 export const geist = Geist({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
   variable: '--font-geist-text'
 })
 

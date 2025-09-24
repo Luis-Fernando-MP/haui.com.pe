@@ -22,6 +22,7 @@ interface CardTabsProps<T> {
   contentClassName?: string
   autoAdvance?: boolean
   autoAdvanceInterval?: number
+  connectorLineSize?: number
 }
 
 const CardTabs = <T,>({
@@ -37,7 +38,8 @@ const CardTabs = <T,>({
   tabsClassName,
   contentClassName,
   autoAdvance = true,
-  autoAdvanceInterval = 5000
+  autoAdvanceInterval = 5000,
+  connectorLineSize = 30
 }: CardTabsProps<T>) => {
   const { activeIndex, handleTabClick, sectionRef, buttonRefs, isVertical, setIsHovering } = useCardTabs({
     items,
@@ -53,8 +55,12 @@ const CardTabs = <T,>({
   const defaultConnectorLine = (index: number) => {
     const isLineActive = index < activeIndex
 
+    const baseStyle = isVertical
+      ? { height: `${connectorLineSize}px`, width: '1.5px' }
+      : { height: '1.5px', width: `${connectorLineSize}px` }
+
     if (!enableGradientLines || !isLineActive || gradientColors.length < 2) {
-      return <div className={cn(isVertical ? 'h-[30px] w-[1.5px]' : 'h-[1.5px] w-[30px]', 'bg-bg3')} />
+      return <div className='bg-bg3' style={baseStyle} />
     }
 
     const effectiveActiveIndex = activeIndex > 0 ? activeIndex : 1
@@ -68,15 +74,15 @@ const CardTabs = <T,>({
 
     return (
       <div
-        className={cn(isVertical ? 'h-[30px] w-[1.5px]' : 'h-[1.5px] w-[30px]')}
         style={{
+          ...baseStyle,
           backgroundImage: `linear-gradient(${gradientDirection}, ${startColor}, ${endColor})`
         }}
       />
     )
   }
 
-  const containerClasses = cn(isVertical ? 'flex gap-5' : 'flex flex-col gap-5 w-fit max-w-full overflow-x-clip', className)
+  const containerClasses = cn(isVertical ? 'flex gap-5 w-fit' : 'flex flex-col gap-5 w-fit max-w-full', className)
 
   const tabsContainerClasses = cn(
     'no-scrollbar',
