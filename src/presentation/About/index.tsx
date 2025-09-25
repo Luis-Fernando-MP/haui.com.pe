@@ -7,7 +7,7 @@ import Technologies from './components/Technologies'
 
 const About: FC = () => {
   return (
-    <main className='flex min-h-screen w-full flex-col gap-[100px]'>
+    <main className='flex min-h-screen w-full flex-col gap-[150px]'>
       <GradientSvg />
       <HeroHeader />
       <MyDevStack />
