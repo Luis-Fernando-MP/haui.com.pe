@@ -9,7 +9,7 @@ const MyDevStack: FC = () => {
   const favTechs = technologies.filter((tech: any) => tech?.favorite)
 
   return (
-    <section className='region max-region:px-5 relative mx-auto flex min-h-[50vh] w-full flex-col items-center gap-10 text-center'>
+    <section className='region max-region:px-5 relative mx-auto flex min-h-[50vh] w-full flex-col items-center justify-center gap-10 text-center'>
       <Title>Mi Stack Favorito 🌱</Title>
       <p className='w-full max-w-[400px] text-center font-mono'>
         Los uso en proyectos personales, prototipos rápidos y aprendizajes diarios

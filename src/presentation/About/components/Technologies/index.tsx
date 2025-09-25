@@ -6,7 +6,7 @@ import TechnologiesList from './TechnologiesList'
 
 const Technologies: FC = () => {
   return (
-    <article className='region max-region:px-5 max-region:flex-col max-region:items-center max-region:gap-10 relative mx-auto flex min-h-screen w-full justify-between'>
+    <article className='region max-region:px-5 max-region:flex-col max-region:items-center max-region:gap-10 relative mx-auto flex min-h-screen w-full items-center justify-between'>
       <section className='max-region:max-w-full max-region:w-full max-region:items-center max-region:text-center max-region:justify-center flex max-w-[450px] flex-col gap-15'>
         <div className='flex flex-col gap-5'>
           <h2 className='font-flowers text-h1'>Tecnologías de desarrollo</h2>

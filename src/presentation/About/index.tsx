@@ -4,6 +4,7 @@ import type { FC } from 'react'
 import HeroHeader from './components/HeroHeader'
 import MyDevStack from './components/MyDevStack'
 import Technologies from './components/Technologies'
+import Workspace from './components/Workspace'
 
 const About: FC = () => {
   return (
@@ -12,6 +13,7 @@ const About: FC = () => {
       <HeroHeader />
       <MyDevStack />
       <Technologies />
+      <Workspace />
     </main>
   )
 }
