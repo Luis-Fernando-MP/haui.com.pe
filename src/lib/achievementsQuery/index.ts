@@ -10,8 +10,8 @@ export function achievementsQuery(filters: FiltersAchievements = {}, list: Achie
   const filtered = list.filter(cert => {
     if (achievementType && cert.achievementType !== achievementType) return false
     if (devContribution && cert.devContribution !== devContribution) return false
-    if (skillDomain && !cert.skillDomain.some(s => skillDomain.includes(s))) return false
-    if (technologies && !cert.technologies.some(t => technologies.includes(t))) return false
+    if (skillDomain?.length && !cert.skillDomain.some(s => skillDomain.includes(s))) return false
+    if (technologies?.length && !cert.technologies.some(t => technologies.includes(t))) return false
     if (acquisitionRange) {
       const { from, to } = acquisitionRange
       const certDate = dayjs(cert.acquisitionDate)
@@ -24,7 +24,6 @@ export function achievementsQuery(filters: FiltersAchievements = {}, list: Achie
   if (!orderBy) return filtered
 
   const requested = orderBy ?? defaultPriorityOrder
-
   const priority = defaultPriorityOrder.filter(k => requested.includes(k))
 
   return [...filtered].sort((a, b) => {

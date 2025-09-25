@@ -12,12 +12,12 @@ interface Props {
 
 const state: StateCreator<Props> = (set, get) => ({
   filters: {},
-  technologies: technologies,
+  technologies: techQuery({ orderBy: ['Nombre'] }),
 
   setFilters: newFilters => {
     const prevFilter = get().filters
     const mergedFilter = { ...prevFilter, ...newFilters }
-    const filtered = techQuery(mergedFilter, technologies)
+    const filtered = techQuery({ ...mergedFilter, orderBy: ['Nombre'] }, technologies)
 
     set(() => {
       return { filters: mergedFilter, technologies: filtered }

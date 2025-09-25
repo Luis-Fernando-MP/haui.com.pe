@@ -1,20 +1,18 @@
 import { TechName } from '@/shared/config/constants/technologies'
-import { Award, BookOpen, GraduationCap, Medal } from 'lucide-react'
+import { Award, GraduationCap, Medal } from 'lucide-react'
 import { FC } from 'react'
 
 export type AchievementType = keyof typeof achievementCat
 export const achievementCat = {
   Título: 10,
-  Certificado: 9,
   Bootcamp: 8,
-  Curso: 5
+  Certificado: 9
 } as const
 
 export const achievementIcons: Record<AchievementType, FC> = {
   Título: GraduationCap,
   Certificado: Award,
-  Bootcamp: Medal,
-  Curso: BookOpen
+  Bootcamp: Medal
 } as const
 
 export type SkillDomain = keyof typeof skillDomainCategories
@@ -32,6 +30,12 @@ export const devContribution = {
   Especializado: 10,
   Aplicables: 8,
   Fundamentos: 6
+} as const
+
+export const devContributionColor = {
+  Especializado: 'var(--gr-from)',
+  Aplicables: 'var(--gr-via)',
+  Fundamentos: 'var(--gr-to)'
 } as const
 
 export const devContributionMapper: Partial<Record<DevContribution, string>> = {

@@ -19,7 +19,7 @@ const Bootstrap: FC<Props> = ({ children }) => {
   return (
     <ViewTransitions>
       <html lang='es' className={`${bodyFonts} no-scrollbar`} data-lt-installed='true' suppressHydrationWarning>
-        <body className='bg-bg1 relative flex min-h-screen max-w-screen flex-col'>
+        <body className='bg-bg1 relative flex min-h-screen max-w-screen flex-col overflow-x-clip'>
           <Toaster position='top-center' />
           <NextTopLoader color='var(--tn1)' showSpinner={false} />
           <ThemeProvider defaultTheme='system' enableSystem attribute={'class'} disableTransitionOnChange>

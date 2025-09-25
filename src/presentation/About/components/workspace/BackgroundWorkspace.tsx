@@ -30,7 +30,7 @@ const BackgroundWorkspace = () => {
   return (
     <section
       ref={$element}
-      className='region max-region:min-w-fit max-region:max-w-[500px] relative h-fit min-w-[1100px] max-md:max-w-[80%]'
+      className='region max-region:min-w-fit max-region:max-w-[500px] relative h-max min-w-[1100px] max-md:max-w-[80%]'
     >
       <motion.div
         className='aspect-[16/10] h-fit w-full bg-cover bg-center'

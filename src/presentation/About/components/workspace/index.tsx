@@ -5,7 +5,7 @@ import BackgroundWorkspace from './BackgroundWorkspace'
 
 const Workspace: FC = () => {
   return (
-    <article className='region max-region:px-5 relative mx-auto flex min-h-screen w-full flex-col items-center gap-20'>
+    <article className='region max-region:px-5 pointer-events-none relative mx-auto flex h-fit w-full flex-col items-center gap-20 select-none'>
       <div className='flex flex-col items-center gap-5 text-center'>
         <Title className=''>Mi Workspace 🏆</Title>
         <p className='text-fn2 w-full max-w-[600px] font-mono'>
