@@ -1,6 +1,7 @@
 import GradientSvg from '@/shared/ui/components/GradientSvg'
 import type { FC } from 'react'
 
+import Achievements from './components/Achievements'
 import HeroHeader from './components/HeroHeader'
 import MyDevStack from './components/MyDevStack'
 import Technologies from './components/Technologies'
@@ -14,6 +15,7 @@ const About: FC = () => {
       <MyDevStack />
       <Technologies />
       <Workspace />
+      <Achievements />
     </main>
   )
 }

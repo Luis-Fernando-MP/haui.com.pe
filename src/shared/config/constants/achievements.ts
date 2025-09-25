@@ -1,16 +1,6 @@
-import { TechName, type TechProps, technologies } from './technologies'
+import { Achievements } from '@/lib/achievementsQuery/achievement.type'
 
-interface Achievements {
-  path: string
-  name: string
-  achievementType: string
-  skillDomain: string[]
-  technologies: TechName[]
-  acquisitionDate: string
-  devContribution: string
-  AdditionalImages?: string[]
-  weight: string
-}
+import { type TechProps, technologies } from './technologies'
 
 export const achievements: Achievements[] = [
   {
