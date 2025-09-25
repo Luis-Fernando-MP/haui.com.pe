@@ -8,8 +8,8 @@ import TechnologiesSelector from './TechnologiesSelector'
 
 const Achievements: FC = () => {
   return (
-    <article className='region max-region:px-5 no-scrollbar mx-auto flex min-h-screen w-full justify-between gap-10'>
-      <div className='sticky top-30 flex w-full max-w-[450px] flex-col gap-10 self-start'>
+    <article className='region max-region:px-5 no-scrollbar max-region:flex-col mx-auto flex min-h-screen w-full justify-between gap-10'>
+      <div className='max-region:relative max-region:items-center max-region:top-0 max-region:mx-auto max-region:text-center sticky top-30 flex w-full max-w-[450px] flex-col gap-10 self-start'>
         <div className='flex flex-col gap-2.5'>
           <Title>
             📜

@@ -11,7 +11,10 @@ const AchievementsList: FC = () => {
   const [parent] = useAutoAnimate()
 
   return (
-    <section className='no-scrollbar flex w-full flex-wrap content-start justify-end gap-5' ref={parent}>
+    <section
+      className='no-scrollbar max-region:justify-center flex w-full flex-wrap content-start justify-end gap-5'
+      ref={parent}
+    >
       {achievements.map(achievement => (
         <Achievement key={achievement.name} {...achievement} />
       ))}
