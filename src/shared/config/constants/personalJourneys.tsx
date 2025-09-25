@@ -20,42 +20,55 @@ export type Journey = {
 export const personalJourneys: Journey[] = [
   {
     id: 'jny-00001',
-    title: 'Mis inicios',
-    Icon: InfinityIcon,
-    description: (
-      <p>
-        Mi camino comenzó en 2021, cuando obtuve el título de{' '}
-        <strong>Técnico en Diseño y Programación de Aplicaciones Web</strong>. Desde entonces, he seguido formándome y actualmente
-        curso el séptimo ciclo de la carrera de <strong>Ingeniería de Software</strong> en la Universidad Tecnológica del Perú.
-      </p>
-    ),
-    date: '2025-01',
-    images: [
-      {
-        src: '/assets/default_profile.webp',
-        caption: 'Ilustración por defecto de un puerco'
-      },
-      {
-        src: '/assets/default_profile.webp',
-        action: '/about'
-      }
-    ]
-  },
-  {
-    id: 'jny-00002',
     title: 'Mi desorden',
     Icon: PuzzleIcon,
     description: (
-      <p>
-        No sé lidiar ni con lo normal ni con lo perfecto. Solo soy, y cada proyecto que toco lo sabe. Si puedo mejorarlo,
-        transformarlo o reinventarlo… lo haré. Para eso están mis manitas.
-      </p>
+      <div>
+        <p>
+          No sé lidiar ni con lo normal ni con lo perfecto. Solo soy, y cada proyecto que toco lo sabe. Si puedo mejorarlo,
+          transformarlo o reinventarlo… lo haré. Para eso están mis manitas.
+        </p>
+        <p>
+          Mi código a veces parece un cuarto sin barrer: caótico, lleno de esquinas olvidadas, pero con un encanto secreto que
+          solo aparece cuando enciendes la luz.
+        </p>
+        <p>Mi desorden florece cuando menos lo esperas, pinchando y regalando flores al mismo tiempo.</p>
+      </div>
     ),
     date: '2024-05',
     images: [
       {
         src: '/assets/default_profile.webp',
         caption: 'Así comenzó mi camino en el mundo del desarrollo web, lleno de curiosidad y sueños',
+        action: '/about'
+      }
+    ]
+  },
+  {
+    id: 'jny-00002',
+    title: 'Mis inicios',
+    Icon: InfinityIcon,
+    description: (
+      <div>
+        <p>
+          Mi camino comenzó en 2021, cuando obtuve el título de{' '}
+          <strong>Técnico en Diseño y Programación de Aplicaciones Web</strong>.
+        </p>
+        <p>
+          Desde entonces, he seguido formándome y actualmente curso el octavo ciclo de la carrera de{' '}
+          <strong>Ingeniería de Software</strong> en la Universidad Tecnológica del Perú.
+        </p>
+        <p>El conocimiento, como las espinas, duele al principio; pero un día entiendes que era la única forma de protegerte.</p>
+      </div>
+    ),
+    date: '2025-01',
+    images: [
+      {
+        src: '/assets/default_profile.webp',
+        caption: 'Un puerco que me recuerda que todos empezamos con lo simple'
+      },
+      {
+        src: '/assets/default_profile.webp',
         action: '/about'
       }
     ]
@@ -74,18 +87,21 @@ export const personalJourneys: Journey[] = [
           </strong>
         </p>
         <p>
-          Me encuentro en sintonía con el mundo, porque este es mi encargo; es mi constante que permanecerá entre mis
-          particularidades, un bug que no resolveré y un deploy que permanecerá perpetuo… aun si es viernes.
+          Una de mis particularidades es esa forma de ver el mundo desde adentro. No hablaré mucho, pero dentro ya habré vivido
+          una historia completa. Encuentro paz mientras abrazo mis propios colores, aunque a veces duelan.
         </p>
         <p>
-          Te voy a contar un secreto{' '}
+          Te voy a contar un secreto:{' '}
           <strong>
             <em>
-              <q>Para mi, programar es escribir una carta despedida.</q>
+              <q>Para mí, programar es como escribir una carta de despedida: un acto íntimo, bello y un poco trágico.</q>
             </em>
           </strong>
         </p>
-        <p>Si has llegado hasta aquí… algún día deberíamos tomarnos un café, Yo invito</p>
+        <p>Si has llegado hasta aquí… algún día deberíamos tomarnos un café. Yo invito.</p>
+        <p>
+          Soy un cactus: callado, separado, paciente, a veces pinchudo, pero en silencio, dare las rosas mas hermosas del mundo.
+        </p>
       </div>
     ),
     date: '2022-06-17',

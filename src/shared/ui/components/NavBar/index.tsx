@@ -1,5 +1,6 @@
 'use client'
 
+import { INFO } from '@/shared/config/constants'
 import { Image } from '@unpic/react/nextjs'
 import Link from 'next/link'
 import type { FC } from 'react'
@@ -21,9 +22,11 @@ const NavBar: FC = () => {
 
         <div className='flex flex-wrap items-center gap-5'>
           <NavMenu />
-          <Button className='rounded-full' variant='active'>
-            <h3 className='text-bg1'>Descargar CV</h3>
-          </Button>
+          <Link href={INFO.cv} target='_blank' rel='noopener noreferrer'>
+            <Button asClass className='rounded-full' variant='active'>
+              <h3 className='text-bg1'>Descargar CV</h3>
+            </Button>
+          </Link>
         </div>
       </div>
     </nav>

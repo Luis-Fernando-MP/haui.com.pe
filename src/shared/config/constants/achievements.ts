@@ -2,7 +2,73 @@ import { Achievements } from '@/lib/achievementsQuery/achievement.type'
 
 export const achievements: Achievements[] = [
   {
-    path: '/achievements/20-web-projects-build-20-html-css-and-javascript-projects.webp',
+    path: '/assets/achievements/tecnico-en-diseño-y-programacion-de-aplicaciones-web.webp',
+    name: 'Técnico en Diseño y Programación de Aplicaciones Web.webp',
+    achievementType: 'Título',
+    skillDomain: ['Frontend', 'Diseño'],
+    technologies: [
+      'NextJs',
+      'AstroJs',
+      'ReactJs',
+      'Sass',
+      'Tailwind',
+      'HTML',
+      'CSS',
+      'JavaScript',
+      'TypeScript',
+      'Python',
+      'Java',
+      'NestJs',
+      'NodeJs',
+      'Redis',
+      'Prisma',
+      'TypeORM',
+      'GraphQl',
+      'MySQL',
+      'PostgreSQL',
+      'Docker',
+      'Git',
+      'GitHub',
+      'Postman',
+      'Vite',
+      'ViteTest',
+      'Figma',
+      'VSCode',
+      'Linux',
+      'Scrum',
+      'Angular',
+      'AWS',
+      'Bootstrap',
+      'Bulma',
+      'Bun',
+      'Cloudflare',
+      'Firebase',
+      'Hostinger',
+      'MongoDB',
+      'Notion',
+      'PHP',
+      'Portainer',
+      'Supabase',
+      'Skeleton',
+      'Termius',
+      'Vivaldi',
+      'Cursor',
+      'Vercel',
+      'Beekeeper',
+      'phpMyAdmin',
+      'MySQL Workbench',
+      'Microsoft PowerPoint',
+      'Microsoft Word',
+      'Microsoft Excel',
+      'WordPress'
+    ],
+    acquisitionDate: '2024-09-20',
+    devContribution: 'Especializado',
+    weight: 'veryHigh',
+    AdditionalImages: ['/assets/achievements/tecnico-en-diseño-y-programacion-de-aplicaciones-web-2.webp']
+  },
+  {
+    path: '/assets/achievements/20-web-projects-build-20-html-css-and-javascript-projects.webp',
     name: 'Web Projects Build 20 HTML, CSS and JavaScript Projects',
     achievementType: 'Certificado',
     skillDomain: ['Frontend', 'Diseño'],
@@ -12,7 +78,7 @@ export const achievements: Achievements[] = [
     weight: 'medium'
   },
   {
-    path: '/achievements/aprende-javascript-desde-cero-con-freecodecamp.webp',
+    path: '/assets/achievements/aprende-javascript-desde-cero-con-freecodecamp.webp',
     name: 'Aprende JavaScript Desde Cero con FreeCodeCamp',
     achievementType: 'Certificado',
     skillDomain: ['Frontend'],
@@ -22,7 +88,7 @@ export const achievements: Achievements[] = [
     weight: 'medium'
   },
   {
-    path: '/achievements/aprende-nodejs-y-express-desde-cero-con-freecodecamp.webp',
+    path: '/assets/achievements/aprende-nodejs-y-express-desde-cero-con-freecodecamp.webp',
     name: 'Aprende NodeJS y Express Desde Cero con FreeCodeCamp',
     achievementType: 'Certificado',
     skillDomain: ['Backend'],
@@ -32,7 +98,7 @@ export const achievements: Achievements[] = [
     weight: 'medium'
   },
   {
-    path: '/achievements/automatizando-componentes-html-con-selenium.webp',
+    path: '/assets/achievements/automatizando-componentes-html-con-selenium.webp',
     name: 'Automatizando Componentes HTML con Selenium',
     achievementType: 'Certificado',
     skillDomain: ['Frontend'],
@@ -42,7 +108,7 @@ export const achievements: Achievements[] = [
     weight: 'medium'
   },
   {
-    path: '/achievements/cloud-computing-aws-azure-google-cloud.webp',
+    path: '/assets/achievements/cloud-computing-aws-azure-google-cloud.webp',
     name: 'Cloud Computing AWS Azure Google Cloud',
     achievementType: 'Bootcamp',
     skillDomain: ['Cloud'],
@@ -50,10 +116,10 @@ export const achievements: Achievements[] = [
     acquisitionDate: '2025-06-03',
     devContribution: 'Aplicables',
     weight: 'high',
-    AdditionalImages: ['/achievements/cloud-computing-aws-azure-google-cloud-2.webp']
+    AdditionalImages: ['/assets/achievements/cloud-computing-aws-azure-google-cloud-2.webp']
   },
   {
-    path: '/achievements/como-crear-una-pagina-web-con-hostinger-desde-cero-2025.webp',
+    path: '/assets/achievements/como-crear-una-pagina-web-con-hostinger-desde-cero-2025.webp',
     name: 'Como Crear una Pagina Web con Hostinger Desde Cero 2025',
     achievementType: 'Certificado',
     skillDomain: ['Cloud', 'Diseño'],
@@ -63,7 +129,7 @@ export const achievements: Achievements[] = [
     weight: 'low'
   },
   {
-    path: '/achievements/como-hacer-sitios-web-usando-html-y-css-con-bluuweb.webp',
+    path: '/assets/achievements/como-hacer-sitios-web-usando-html-y-css-con-bluuweb.webp',
     name: 'Como Hacer Sitios Web Usando HTML y CSS con Bluuweb',
     achievementType: 'Certificado',
     skillDomain: ['Frontend'],
@@ -73,7 +139,7 @@ export const achievements: Achievements[] = [
     weight: 'medium'
   },
   {
-    path: '/achievements/complete-guide-in-html-css-build-responsive-website.webp',
+    path: '/assets/achievements/complete-guide-in-html-css-build-responsive-website.webp',
     name: 'Complete Guide in HTML & CSS - Build Responsive Website',
     achievementType: 'Certificado',
     skillDomain: ['Frontend'],
@@ -83,7 +149,7 @@ export const achievements: Achievements[] = [
     weight: 'medium'
   },
   {
-    path: '/achievements/creando-api-usando-nodejs-con-ceii-uca.webp',
+    path: '/assets/achievements/creando-api-usando-nodejs-con-ceii-uca.webp',
     name: 'Creando API Usando NodeJS con CEII UCA',
     achievementType: 'Certificado',
     skillDomain: ['Backend'],
@@ -93,7 +159,7 @@ export const achievements: Achievements[] = [
     weight: 'high'
   },
   {
-    path: '/achievements/creando-api-con-nodejs-express-mongodb-y-jwt-con-bluuweb.webp',
+    path: '/assets/achievements/creando-api-con-nodejs-express-mongodb-y-jwt-con-bluuweb.webp',
     name: 'Creando API con NodeJS Express MongoDB y JWT con Bluuweb',
     achievementType: 'Certificado',
     skillDomain: ['Backend'],
@@ -103,7 +169,7 @@ export const achievements: Achievements[] = [
     weight: 'medium'
   },
   {
-    path: '/achievements/css-the-complete-guide-to-css-for-beginners.webp',
+    path: '/assets/achievements/css-the-complete-guide-to-css-for-beginners.webp',
     name: 'CSS - The Complete Guide to CSS for Beginners',
     achievementType: 'Certificado',
     skillDomain: ['Frontend'],
@@ -113,7 +179,7 @@ export const achievements: Achievements[] = [
     weight: 'low'
   },
   {
-    path: '/achievements/css-bootstrap-con-autodidacta.webp',
+    path: '/assets/achievements/css-bootstrap-con-autodidacta.webp',
     name: 'CSS Bootstrap con Autodidacta',
     achievementType: 'Certificado',
     skillDomain: ['Frontend'],
@@ -123,7 +189,7 @@ export const achievements: Achievements[] = [
     weight: 'low'
   },
   {
-    path: '/achievements/css-javascript-and-php-complete-course-for-beginners.webp',
+    path: '/assets/achievements/css-javascript-and-php-complete-course-for-beginners.webp',
     name: 'CSS, JavaScript and PHP Complete Course for Beginners',
     achievementType: 'Certificado',
     skillDomain: ['Fullstack'],
@@ -133,7 +199,7 @@ export const achievements: Achievements[] = [
     weight: 'medium'
   },
   {
-    path: '/achievements/Certificado-intensivo-de-mysql-aprende-sql-desde-cero-a-experto.webp',
+    path: '/assets/achievements/Certificado-intensivo-de-mysql-aprende-sql-desde-cero-a-experto.webp',
     name: 'Certificado Intensivo de MySQL Aprende SQL Desde Cero a Experto',
     achievementType: 'Certificado',
     skillDomain: ['Base de datos'],
@@ -143,7 +209,7 @@ export const achievements: Achievements[] = [
     weight: 'low'
   },
   {
-    path: '/achievements/digitaliza-tu-negocio-transformacion-digital.webp',
+    path: '/assets/achievements/digitaliza-tu-negocio-transformacion-digital.webp',
     name: 'Digitaliza tu Negocio - Transformacion Digital',
     achievementType: 'Certificado',
     skillDomain: ['Diseño'],
@@ -153,7 +219,7 @@ export const achievements: Achievements[] = [
     weight: 'low'
   },
   {
-    path: '/achievements/figma-essential-for-user-interface-and-user-experience-ui-ux.webp',
+    path: '/assets/achievements/figma-essential-for-user-interface-and-user-experience-ui-ux.webp',
     name: 'Figma Essential for User Interface and User Experience (UI/UX)',
     achievementType: 'Certificado',
     skillDomain: ['Diseño'],
@@ -163,7 +229,7 @@ export const achievements: Achievements[] = [
     weight: 'medium'
   },
   {
-    path: '/achievements/javascript-10-projects-in-10-days-course-for-beginners.webp',
+    path: '/assets/achievements/javascript-10-projects-in-10-days-course-for-beginners.webp',
     name: 'JavaScript 10 Projects in 10 Days Course for Beginners',
     achievementType: 'Certificado',
     skillDomain: ['Frontend'],
@@ -173,7 +239,7 @@ export const achievements: Achievements[] = [
     weight: 'low'
   },
   {
-    path: '/achievements/javascript-desde-0-con-pildorasinformaticas.webp',
+    path: '/assets/achievements/javascript-desde-0-con-pildorasinformaticas.webp',
     name: 'JavaScript Desde 0 con Pildorasinformaticas',
     achievementType: 'Certificado',
     skillDomain: ['Fullstack'],
@@ -183,7 +249,7 @@ export const achievements: Achievements[] = [
     weight: 'high'
   },
   {
-    path: '/achievements/javascript-for-beginners-complete-course.webp',
+    path: '/assets/achievements/javascript-for-beginners-complete-course.webp',
     name: 'JavaScript for Beginners Complete Course',
     achievementType: 'Certificado',
     skillDomain: ['Frontend'],
@@ -193,7 +259,7 @@ export const achievements: Achievements[] = [
     weight: 'low'
   },
   {
-    path: '/achievements/javascript-fundamentals-course-for-beginners.webp',
+    path: '/assets/achievements/javascript-fundamentals-course-for-beginners.webp',
     name: 'JavaScript Fundamentals Course for Beginners',
     achievementType: 'Certificado',
     skillDomain: ['Frontend'],
@@ -203,7 +269,7 @@ export const achievements: Achievements[] = [
     weight: 'low'
   },
   {
-    path: '/achievements/javascript-practicals-crash-course.webp',
+    path: '/assets/achievements/javascript-practicals-crash-course.webp',
     name: 'JavaScript Practicals Crash Course',
     achievementType: 'Certificado',
     skillDomain: ['Frontend'],
@@ -213,7 +279,7 @@ export const achievements: Achievements[] = [
     weight: 'low'
   },
   {
-    path: '/achievements/javascript-desde-cero-con-nodejs.webp',
+    path: '/assets/achievements/javascript-desde-cero-con-nodejs.webp',
     name: 'JavaScript Desde Cero con NodeJS',
     achievementType: 'Certificado',
     skillDomain: ['Backend'],
@@ -224,7 +290,7 @@ export const achievements: Achievements[] = [
   },
   // OK
   {
-    path: '/achievements/learn-html-and-css-from-beginning-to-advanced.webp',
+    path: '/assets/achievements/learn-html-and-css-from-beginning-to-advanced.webp',
     name: 'Learn HTML and CSS from Beginning to Advanced',
     achievementType: 'Certificado',
     skillDomain: ['Frontend'],
@@ -234,7 +300,7 @@ export const achievements: Achievements[] = [
     weight: 'medium'
   },
   {
-    path: '/achievements/maestria-en-javascript-desde-principiante-hasta-experto.webp',
+    path: '/assets/achievements/maestria-en-javascript-desde-principiante-hasta-experto.webp',
     name: 'Maestría en JavaScript Desde Principiante Hasta Experto',
     achievementType: 'Certificado',
     skillDomain: ['Frontend', 'Backend', 'Fullstack'],
@@ -244,7 +310,7 @@ export const achievements: Achievements[] = [
     weight: 'medium'
   },
   {
-    path: '/achievements/master-course-amazon-s3-simple-storage-service-deep-dive.webp',
+    path: '/assets/achievements/master-course-amazon-s3-simple-storage-service-deep-dive.webp',
     name: 'Master Course Amazon S3 Simple Storage Service Deep Dive',
     achievementType: 'Certificado',
     skillDomain: ['Cloud'],
@@ -254,18 +320,18 @@ export const achievements: Achievements[] = [
     weight: 'low'
   },
   {
-    path: '/achievements/programacion-en-python-intermedio.webp',
+    path: '/assets/achievements/programacion-en-python-intermedio.webp',
     name: 'Programación en Python Intermedio',
     achievementType: 'Bootcamp',
     skillDomain: ['Backend'],
     technologies: ['Python'],
     acquisitionDate: '2025-05-21',
     devContribution: 'Aplicables',
-    AdditionalImages: ['/achievements/programacion-en-python-intermedio-2.webp'],
+    AdditionalImages: ['/assets/achievements/programacion-en-python-intermedio-2.webp'],
     weight: 'high'
   },
   {
-    path: '/achievements/sql-creacion-de-bases-de-datos-de-cero-a-profesional.webp',
+    path: '/assets/achievements/sql-creacion-de-bases-de-datos-de-cero-a-profesional.webp',
     name: 'SQL Creación de Bases de Datos De Cero a Profesional',
     achievementType: 'Certificado',
     skillDomain: ['Base de datos'],
@@ -275,7 +341,7 @@ export const achievements: Achievements[] = [
     weight: 'low'
   },
   {
-    path: '/achievements/universidad-desarrollo-web-frontend-web-developer.webp',
+    path: '/assets/achievements/universidad-desarrollo-web-frontend-web-developer.webp',
     name: 'Universidad Desarrollo Web FrontEnd Web Developer',
     achievementType: 'Certificado',
     skillDomain: ['Frontend', 'Diseño'],
@@ -285,7 +351,7 @@ export const achievements: Achievements[] = [
     weight: 'high'
   },
   {
-    path: '/achievements/web-design-course-for-beginners-to-intermediate.webp',
+    path: '/assets/achievements/web-design-course-for-beginners-to-intermediate.webp',
     name: 'Web Design Course for Beginners to Intermediate_compressed',
     achievementType: 'Certificado',
     skillDomain: ['Diseño', 'Frontend'],

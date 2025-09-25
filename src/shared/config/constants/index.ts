@@ -8,7 +8,7 @@ export const INFO = {
     enterprise: ''
   },
   phone: '958978370',
-  cv: 'https://luigfmp.github.io/cv/',
+  cv: 'https://drive.google.com/file/d/1uL6k9y1Sd64ZkVKYiXXFL1FZy-5RDPGV/view?usp=sharing',
   resumeAbout: 'Desarrollador y diseñador de aplicaciones full stack',
   hobbies: ['Estudiar', 'Leer', 'Entrenar', 'Programar', 'Investigar', 'Gatos', 'Hamsters', 'Músicas', 'Meditar']
 } as const

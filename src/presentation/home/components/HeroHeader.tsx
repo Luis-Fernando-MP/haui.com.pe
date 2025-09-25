@@ -21,11 +21,11 @@ const HeroHeader: FC = () => {
         </h1>
         <p className='text-fn2 text-h4 max-w-[440px] font-mono'>
           <strong className='text-fn1'> Desarrollador y diseñador de aplicaciones full stack</strong>, pero mi fuerte es la
-          creación de <strong>aplicaciones web</strong> funcionales e interactivas centradas en el usuario.
+          creación de <strong>aplicaciones web</strong>, funcionales e interactivas centradas en el usuario.
         </p>
-        <Link href='#contact' className='flex items-center gap-2 max-lg:justify-center'>
+        <Link href='#contact' className='flex items-center gap-2.5 max-lg:justify-center'>
           <span className='text-[0.5rem] text-green-500'>●</span>
-          <h4 className='text-fn2'>Disponible para trabajar</h4>
+          <h4>Disponible para trabajar</h4>
         </Link>
       </div>
       <div className='font-rubik text-fn2 pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-[10rem] leading-[1] opacity-15 select-none max-md:text-[6rem]'>

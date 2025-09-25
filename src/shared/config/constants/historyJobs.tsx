@@ -52,7 +52,7 @@ export const HISTORY_JOBS: HistoryJob[] = [
           especializada en el desarrollo software a medida, diseño web y soluciones digitales personalizadas.
         </li>
         <li>
-          <strong>Mi experiencia en:</strong>DevDatep Consulting fue estimulante y desafiante. Agradezco haber sido parte de un
+          <strong>Mi experiencia en: </strong>DevDatep Consulting fue estimulante y desafiante. Agradezco haber sido parte de un
           equipo de trabajo tan profesional y comprometido. Gracias a esta oportunidad, no solo pude aplicar mis conocimientos en
           un entorno real, sino también aprender nuevas tecnologías y metodologías que me han permitido crecer tanto profesional
           como personalmente.
@@ -140,7 +140,7 @@ export const HISTORY_JOBS: HistoryJob[] = [
           <strong>auditorías tecnológicas</strong> para mejorar la eficiencia de los negocios.
         </li>
         <li>
-          <strong>Mi experiencia en:</strong> AVS Consultores Informáticos fue gratificante, ya que me permitió adentrarme en el
+          <strong>Mi experiencia en: </strong>AVS Consultores Informáticos fue gratificante, ya que me permitió adentrarme en el
           mundo laboral tecnológico y desarrollar habilidades técnicas y profesionales que hoy forman parte de mi base sólida en
           este campo. Agradezco la oportunidad de haber compartido estadía con mis compañeros y de haber formado parte de la
           empresa.
@@ -200,7 +200,7 @@ export const HISTORY_JOBS: HistoryJob[] = [
           habitantes.
         </li>
         <li>
-          <strong>Mi experiencia en:</strong> Mi experiencia en la Municipalidad Distrital de San Agustín de Cajas fue
+          <strong>Mi experiencia en: </strong>Mi experiencia en la Municipalidad Distrital de San Agustín de Cajas fue
           enriquecedora y desafiante . Me permitió aplicar mis conocimientos técnicos en un entorno real donde el trabajo bajo
           presión era continuo. Agradezco la oportunidad de haber formado parte de un equipo comprometido y de contribuir al
           desarrollo digital de la institución.{' '}
@@ -271,7 +271,7 @@ export const HISTORY_JOBS: HistoryJob[] = [
           gráfica de la localidad.
         </li>
         <li>
-          <strong>Mi experiencia en:</strong> Industria Gráfica Inmaculada Concepción
+          <strong>Mi experiencia en: </strong>Industria Gráfica Inmaculada Concepción
           <em>
             <q>fue mucho más que una simple práctica; fue un verdadero punto de partida en mi carrera profesional.</q>
           </em>{' '}
