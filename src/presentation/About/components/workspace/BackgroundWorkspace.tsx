@@ -28,13 +28,16 @@ const BackgroundWorkspace = () => {
   }
 
   return (
-    <section ref={$element} className='relative h-fit'>
+    <section
+      ref={$element}
+      className='region max-region:min-w-fit max-region:max-w-[500px] relative h-fit min-w-[1100px] max-md:max-w-[80%]'
+    >
       <motion.div
-        className='region aspect-[16/10] h-fit min-w-[1100px] rounded-[20px] bg-cover bg-center'
+        className='aspect-[16/10] h-fit w-full bg-cover bg-center'
         style={{ ...maskStyle, backgroundImage: "url('/assets/workspace.webp')" }}
       />
       <motion.div
-        className='region gradient absolute inset-0 z-[1] aspect-[16/10] h-fit min-w-[1100px] rounded-[20px] bg-cover bg-center'
+        className='gradient absolute inset-0 z-[1] aspect-[16/10] h-fit w-full bg-cover bg-center'
         style={{ ...maskStyle, opacity: opacityMask }}
       />
     </section>
