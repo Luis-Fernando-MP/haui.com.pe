@@ -1,0 +1,102 @@
+:root,
+[data-theme='light'],
+html.light {
+  --bg1: #ffffff;
+  --bg2: #dedede;
+  --bg3: #cececd;
+
+  --fn1: #1a1a1a;
+  --fn2: #4d4d4d;
+  --fnA: #000000;
+
+  --gr-from: #e63946;
+  --gr-via: #f1a208;
+  --gr-to: #457b9d;
+
+  --logo-bg: #f0f0f0;
+}
+
+[data-theme='candy'],
+html.candy {
+  --bg1: #ffe1ff;
+  --bg2: #f8c8e8;
+  --bg3: #f1aacd;
+
+  --fn1: #5e2749;
+  --fn2: #7c3760;
+  --fn3: #9a4878;
+
+  --gr-from: #ff006e;
+  --gr-via: #fb5607;
+  --gr-to: #8338ec;
+
+  --logo-bg: #f2c0da;
+}
+
+[data-theme='rebecca'],
+html.rebecca {
+  --bg1: #f8eef8;
+  --bg2: #edd6f0;
+  --bg3: #e1bde1;
+
+  --fn1: #4f234d;
+  --fn2: #6b3b6e;
+  --fnA: #000000;
+
+  --gr-from: #c084fc;
+  --gr-via: #a855f7;
+  --gr-to: #6366f1;
+
+  --logo-bg: #dfb3e5;
+}
+
+[data-theme='dark'],
+html.dark {
+  --bg1: #000000;
+  --bg2: #242424;
+  --bg3: #353535;
+
+  --fn1: #f1f1f1;
+  --fn2: #b5b5b5;
+  --fnA: #ffffff;
+
+  --gr-from: #ff4d6d;
+  --gr-via: #ffd60a;
+  --gr-to: #00bbf9;
+
+  --logo-bg: #ffffff;
+}
+
+[data-theme='midnight'],
+html.midnight {
+  --bg1: #1c1c2a;
+  --bg2: #2a2436;
+  --bg3: #3b3049;
+
+  --fn1: #f4f4f4;
+  --fn2: #b3b3cc;
+  --fnA: #ffffff;
+
+  --gr-from: #ff006e;
+  --gr-via: #3a86ff;
+  --gr-to: #ffbe0b;
+
+  --logo-bg: #e8e8f2;
+}
+
+[data-theme='neon'],
+html.neon {
+  --bg1: #1a0033;
+  --bg2: #26004d;
+  --bg3: #330066;
+
+  --fn1: #fff0d9;
+  --fn2: #e6ffcc;
+  --fnA: #ffffff;
+
+  --gr-from: #ff00ff;
+  --gr-via: #00f0ff;
+  --gr-to: #39ff14;
+
+  --logo-bg: #f2ffda;
+}

@@ -1,38 +1,5 @@
 @import 'tailwindcss';
 
-:root {
-  --bg1: oklch(100% 0 0);
-  --bg2: oklch(90% 0.00002 271.152);
-  --bg3: oklch(85% 0.00002 271.152);
-  --fn1: oklch(10% 0.00011 271.152);
-  --fn2: oklch(30% 0.00008 271.152);
-  --fnA: oklch(0% 0.00011 271.152);
-  --bg1: oklch(71.387% 0.15557 31.622);
-  --tn2: oklch(84.509% 0.17407 141.84);
-
-  /* Gradient */
-  --gr-from: #f47963;
-  --gr-via: #fdf56c;
-  --gr-to: #85e87a;
-}
-
-[data-theme='dark'],
-html.dark {
-  --bg1: oklch(0% 0 0);
-  --bg2: oklch(14.479% 0.00002 271.152);
-  --bg3: oklch(20.904% 0.00002 271.152);
-  --fn1: oklch(94.611% 0.00011 271.152);
-  --fn2: oklch(70.9% 0.00008 271.152);
-  --fnA: oklch(100% 0.00011 271.152);
-  --tn1: oklch(71.387% 0.15557 31.622);
-  --tn2: oklch(84.509% 0.17407 141.84);
-
-  /* Gradient */
-  --gr-from: #f47963;
-  --gr-via: #fdf56c;
-  --gr-to: #85e87a;
-}
-
 @theme {
   --color-bg1: var(--bg1);
   --color-bg2: var(--bg2);
@@ -40,11 +7,10 @@ html.dark {
   --color-fn1: var(--fn1);
   --color-fn2: var(--fn2);
   --color-fnA: var(--fnA);
-  --color-tn1: var(--tn1);
-  --color-tn2: var(--tn2);
   --color-from: var(--gr-from);
   --color-via: var(--gr-via);
   --color-to: var(--gr-to);
+  --color-logo-bg: var(--logo-bg);
 
   --font-geist: var(--font-geist-text), sans-serif;
   --font-mono: var(--font-geist-mono), monospace;

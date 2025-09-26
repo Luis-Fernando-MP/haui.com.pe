@@ -15,8 +15,8 @@ const HeroHeader: FC = () => {
 
       <div className='flex w-fit flex-col gap-5 max-lg:text-center'>
         <h2 className='text-fn2 font-mono'>Portfolio / 2025</h2>
-        <h1 className='mb-4 text-6xl font-bold'>
-          LUIS
+        <h1 className='mb-4 text-7xl font-extrabold'>
+          <span className='text-gradient text-7xl font-extrabold'>LUIS</span>
           <br /> FERNANDO
         </h1>
         <p className='text-fn2 text-h4 max-w-[440px] font-mono'>
