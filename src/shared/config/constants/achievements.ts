@@ -3,7 +3,7 @@ import { Achievements } from '@/lib/achievementsQuery/achievement.type'
 export const achievements: Achievements[] = [
   {
     path: '/assets/achievements/tecnico-en-diseño-y-programacion-de-aplicaciones-web.webp',
-    name: 'Técnico en Diseño y Programación de Aplicaciones Web.webp',
+    name: 'Técnico en Diseño y Programación de Aplicaciones Web',
     achievementType: 'Título',
     skillDomain: ['Frontend', 'Diseño'],
     technologies: [
@@ -65,7 +65,11 @@ export const achievements: Achievements[] = [
     acquisitionDate: '2024-09-20',
     devContribution: 'Especializado',
     weight: 'veryHigh',
-    AdditionalImages: ['/assets/achievements/tecnico-en-diseño-y-programacion-de-aplicaciones-web-2.webp']
+    actionLink: 'https://titulosinstitutos.minedu.gob.pe',
+    AdditionalImages: [
+      '/assets/achievements/tecnico-en-diseño-y-programacion-de-aplicaciones-web-2.webp',
+      '/assets/achievements/tecnico-en-diseño-y-programacion-de-aplicaciones-web-3.webp'
+    ]
   },
   {
     path: '/assets/achievements/20-web-projects-build-20-html-css-and-javascript-projects.webp',

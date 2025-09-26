@@ -62,6 +62,7 @@ export type Achievements = {
   devContribution: DevContribution
   weight: AchievementWeight
   AdditionalImages?: string[]
+  actionLink?: string
 }
 
 export const defaultPriorityOrder = ['Contribución', 'Skill', 'Fecha', 'Nombre'] as const
