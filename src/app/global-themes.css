@@ -16,8 +16,8 @@ html.light {
   --logo-bg: #f0f0f0;
 }
 
-[data-theme='candy'],
-html.candy {
+[data-theme='juli'],
+html.juli {
   --bg1: #ffe1ff;
   --bg2: #f8c8e8;
   --bg3: #f1aacd;
@@ -67,8 +67,8 @@ html.dark {
   --logo-bg: #ffffff;
 }
 
-[data-theme='midnight'],
-html.midnight {
+[data-theme='sam'],
+html.sam {
   --bg1: #1c1c2a;
   --bg2: #2a2436;
   --bg3: #3b3049;
@@ -84,8 +84,8 @@ html.midnight {
   --logo-bg: #e8e8f2;
 }
 
-[data-theme='neon'],
-html.neon {
+[data-theme='andrea'],
+html.andrea {
   --bg1: #1a0033;
   --bg2: #26004d;
   --bg3: #330066;
