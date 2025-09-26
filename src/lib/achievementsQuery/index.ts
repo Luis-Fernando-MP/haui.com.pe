@@ -10,8 +10,14 @@ export function achievementsQuery(filters: FiltersAchievements = {}, list: Achie
   const filtered = list.filter(cert => {
     if (achievementType && cert.achievementType !== achievementType) return false
     if (devContribution && cert.devContribution !== devContribution) return false
-    if (skillDomain?.length && !cert.skillDomain.some(s => skillDomain.includes(s))) return false
-    if (technologies?.length && !cert.technologies.some(t => technologies.includes(t))) return false
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (skillDomain?.length && !cert.skillDomain.includes('*' as any) && !cert.skillDomain.some(s => skillDomain.includes(s)))
+      return false
+
+    if (technologies?.length && !cert.technologies.includes('*') && !cert.technologies.some(t => technologies.includes(t)))
+      return false
+
     if (acquisitionRange) {
       const { from, to } = acquisitionRange
       const certDate = dayjs(cert.acquisitionDate)
