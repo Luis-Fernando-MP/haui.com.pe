@@ -1,13 +1,24 @@
 import { Achievements, devContributionColor } from '@/lib/achievementsQuery/achievement.type'
-import type { FC } from 'react'
+import ImageGallery from '@/shared/ui/components/FocusGallery/ImageGallery'
+import { type FC, useRef } from 'react'
 
 type Props = Achievements
 
-const Achievement: FC<Props> = ({ achievementType, name, devContribution, acquisitionDate }) => {
+const Achievement: FC<Props> = props => {
+  const { achievementType, name, devContribution, acquisitionDate, path, AdditionalImages, actionLink } = props
+
   const achievementColor = devContributionColor[devContribution]
+  const $imageRef = useRef<HTMLImageElement>(null)
+
+  const handleOpen = (): void => {
+    $imageRef.current?.click()
+  }
 
   return (
-    <div className='border-bg3 flex h-[200px] w-[290px] flex-col justify-between rounded-xl border p-5'>
+    <button
+      onClick={handleOpen}
+      className='border-bg3 flex h-[200px] w-[290px] flex-col justify-between rounded-xl border p-5 text-left focus:outline-none'
+    >
       <span className='bg-bg2 border-bg3 text-fn2 w-fit rounded-full border px-3 py-1.5 font-mono'>{achievementType}</span>
 
       <h4 className='font-medium'>{name}</h4>
@@ -18,9 +29,23 @@ const Achievement: FC<Props> = ({ achievementType, name, devContribution, acquis
           <h5 className='text-fn2 flex gap-2.5 font-mono'>{devContribution}</h5>
         </div>
 
+        <ImageGallery
+          ref={$imageRef}
+          src={path}
+          groupId='achievement'
+          className='hidden'
+          caption={`<p>${name}</p>`}
+          action={actionLink}
+          actionText='Consultar information'
+        />
+
+        {AdditionalImages?.map(additional => {
+          return <ImageGallery key={additional} src={additional} groupId='achievement' className='hidden' />
+        })}
+
         <span className='text-fn2 font-mono'>{acquisitionDate}</span>
       </div>
-    </div>
+    </button>
   )
 }
 

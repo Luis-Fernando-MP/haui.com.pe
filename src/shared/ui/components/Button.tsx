@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from 'react'
+import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode, Ref } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const variants = {
@@ -20,11 +20,13 @@ type CommonProps = {
 type ButtonAsButton = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     asClass?: false
+    ref?: Ref<HTMLButtonElement>
   }
 
 type ButtonAsDiv = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     asClass: true
+    ref?: Ref<HTMLDivElement>
   }
 
 type ButtonProps = ButtonAsButton | ButtonAsDiv
@@ -35,6 +37,7 @@ const Button = ({
   asClass = false,
   variant = 'transparent',
   noHover = false,
+  ref,
   ...props
 }: ButtonProps) => {
   const hoverClass = noHover ? '' : 'hover:opacity-90'
@@ -49,14 +52,14 @@ const Button = ({
 
   if (asClass) {
     return (
-      <div className={merged} {...(props as HTMLAttributes<HTMLDivElement>)}>
+      <div ref={ref as Ref<HTMLDivElement>} className={merged} {...(props as HTMLAttributes<HTMLDivElement>)}>
         {children}
       </div>
     )
   }
 
   return (
-    <button className={merged} {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}>
+    <button ref={ref as Ref<HTMLButtonElement>} className={merged} {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}>
       {children}
     </button>
   )

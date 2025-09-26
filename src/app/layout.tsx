@@ -1,5 +1,6 @@
 import { bodyFonts } from '@/shared/config/fonts'
 import { globalMetadata as metadata, viewport } from '@/shared/config/metadata/global.metadata'
+import FocusGallery from '@/shared/ui/components/FocusGallery'
 import Footer from '@/shared/ui/components/Footer'
 import FooterGradient from '@/shared/ui/components/FooterGradient'
 import NavBar from '@/shared/ui/components/NavBar'
@@ -27,6 +28,7 @@ const Bootstrap: FC<Props> = ({ children }) => {
             {children}
             <FooterGradient />
             <Footer />
+            <FocusGallery />
           </ThemeProvider>
         </body>
       </html>

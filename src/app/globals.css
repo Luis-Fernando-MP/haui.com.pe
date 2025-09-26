@@ -42,6 +42,10 @@ html.dark {
   --color-fnA: var(--fnA);
   --color-tn1: var(--tn1);
   --color-tn2: var(--tn2);
+  --color-from: var(--gr-from);
+  --color-via: var(--gr-via);
+  --color-to: var(--gr-to);
+
   --font-geist: var(--font-geist-text), sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
   --font-flowers: var(--font-send-flowers), cursive;
@@ -163,3 +167,36 @@ html.dark {
     filter: invert(1);
   }
 } */
+
+@layer utilities {
+  @keyframes loading-animation {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 60px 60px;
+    }
+  }
+
+  .loading {
+    @apply relative;
+
+    &::after {
+      content: '';
+      @apply absolute top-0 left-0 flex h-full w-full items-center justify-center;
+      background-image: linear-gradient(
+        135deg,
+        var(--bg2) 25%,
+        var(--bg3) 25%,
+        var(--bg3) 50%,
+        var(--bg2) 50%,
+        var(--bg2) 75%,
+        var(--bg3) 75%,
+        var(--bg3) 100%
+      );
+
+      background-size: 60px 60px;
+      animation: loading-animation 0.5s linear infinite;
+    }
+  }
+}
