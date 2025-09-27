@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 
 import Button from '../Button'
 
-export const listThemes = ['light', 'juli', 'rebecca', 'dark', 'sam', 'andrea', 'system'] as const
+export const listThemes = ['light', 'juli', 'rebecca', 'dark', 'sam', 'andrea', 'system']
 
 type Theme = {
   id: (typeof listThemes)[number]
