@@ -2,7 +2,7 @@
 
 import { cl } from '@/lib/utils'
 import { Image } from '@unpic/react/nextjs'
-import { ArrowLeft, ArrowRight, ExternalLink, X, ZoomIn, ZoomOut } from 'lucide-react'
+import { ArrowLeft, ArrowRight, X, ZoomIn, ZoomOut } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
