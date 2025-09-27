@@ -49,6 +49,7 @@ const ImageGallery: FC<Props> = ({
   index,
   groupId,
   noUniqueGroup = false,
+  className,
   ref,
   alt,
   ...imgProps
@@ -69,6 +70,7 @@ const ImageGallery: FC<Props> = ({
       data-gallery-action-text={actionText}
       itemProp='image'
       background='/fallback.webp'
+      className={`cursor-pointer hover:opacity-90 ${className}`}
       {...imgProps}
     />
   )

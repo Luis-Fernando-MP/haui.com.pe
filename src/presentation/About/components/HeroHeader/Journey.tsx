@@ -1,5 +1,5 @@
 import { Journey } from '@/shared/config/constants/personalJourneys'
-import { Image } from '@unpic/react/nextjs'
+import ImageGallery from '@/shared/ui/components/FocusGallery/ImageGallery'
 import type { FC } from 'react'
 
 interface Props {
@@ -16,16 +16,17 @@ const JourneyComponent: FC<Props> = ({ journey }) => {
         <div className='text-fn2'>{description}</div>
       </header>
 
-      <section className='border-bg3 bg-bg2 flex w-fit gap-5 rounded-md border p-2.5'>
+      <section className='flex w-fit gap-5'>
         {images.map(image => {
           return (
-            <Image
+            <ImageGallery
               className='rounded-full'
               key={image.src + image.caption}
-              src={image.src}
               width={40}
               height={40}
               alt={image.caption ?? 'journey image'}
+              groupId={`journey-${title}`}
+              {...image}
             />
           )
         })}

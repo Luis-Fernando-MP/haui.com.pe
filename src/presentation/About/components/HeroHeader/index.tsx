@@ -33,7 +33,7 @@ const HeroHeader: FC = () => {
           renderTab={(item, isActive) => {
             return (
               <div className={`rounded-full p-0.5 ease-in ${isActive ? 'gradient animate-[spin_5s]' : 'border-bg3 border'}`}>
-                <Button className='bg-bg1 p-1.5 max-md:w-[38px]'>
+                <Button className='bg-bg1 p-1.5'>
                   <item.Icon width={28} height={28} />
                 </Button>
               </div>

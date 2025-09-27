@@ -32,15 +32,14 @@ export const personalJourneys: Journey[] = [
           Mi código a veces parece un cuarto sin barrer: caótico, lleno de esquinas olvidadas, pero con un encanto secreto que
           solo aparece cuando enciendes la luz.
         </p>
-        <p>Mi desorden florece cuando menos lo esperas, pinchando y regalando flores al mismo tiempo.</p>
+        <p>El conocimiento, como las espinas, duele al principio; pero un día entiendes que era la única forma de protegerte.</p>
       </div>
     ),
     date: '2024-05',
     images: [
       {
-        src: '/assets/default_profile.webp',
-        caption: 'Así comenzó mi camino en el mundo del desarrollo web, lleno de curiosidad y sueños',
-        action: '/about'
+        src: '/assets/testimonies/default_profile.webp',
+        caption: 'Un puerco que me recuerda que todos empezamos con lo simple'
       }
     ]
   },
@@ -58,19 +57,20 @@ export const personalJourneys: Journey[] = [
           Desde entonces, he seguido formándome y actualmente curso el octavo ciclo de la carrera de{' '}
           <strong>Ingeniería de Software</strong> en la Universidad Tecnológica del Perú.
         </p>
-        <p>El conocimiento, como las espinas, duele al principio; pero un día entiendes que era la única forma de protegerte.</p>
       </div>
     ),
     date: '2025-01',
     images: [
       {
-        src: '/assets/default_profile.webp',
-        caption: 'Un puerco que me recuerda que todos empezamos con lo simple'
+        src: '/assets/achievements/tecnico-en-diseño-y-programacion-de-aplicaciones-web.webp',
+        caption: 'Técnico en Diseño y Programación de Aplicaciones Web',
+        action: 'https://titulosinstitutos.minedu.gob.pe',
+        actionText: 'Consultar information'
       },
       {
-        src: '/assets/default_profile.webp',
-        action: '/about'
-      }
+        src: '/assets/achievements/tecnico-en-diseño-y-programacion-de-aplicaciones-web-2.webp'
+      },
+      { src: '/assets/achievements/tecnico-en-diseño-y-programacion-de-aplicaciones-web-3.webp' }
     ]
   },
   {

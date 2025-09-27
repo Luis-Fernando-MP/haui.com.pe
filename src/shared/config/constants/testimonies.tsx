@@ -1,3 +1,5 @@
+import { createTestimonyMailto } from '@/lib/mailto'
+
 export type Testimony = {
   id: string
   autor: string
@@ -5,6 +7,7 @@ export type Testimony = {
   role: string
   webPage?: string
   githubPage?: string
+  linkedIn?: string
   mailTo?: string
   degree: string
   testimonial: string
@@ -13,59 +16,33 @@ export type Testimony = {
 export const testimonies: Testimony[] = [
   {
     id: 'testimony-1',
-    autor: 'María Rodríguez',
-    photo: '/assets/default_profile.webp',
-    role: 'CTO en NovaLabs',
-    webPage: 'https://www.novalabs.fake',
-    githubPage: 'https://github.com/maria-rodriguez',
-    mailTo: 'mailto:maria.rodriguez@novalabs.fake',
-    degree: 'MSc. en Ingeniería de Software',
+    autor: 'Gonzalez Chaca Angel Jefferson',
+    photo: '/assets/testimonies/gonzalez-chaca-angel-jefferson.webp',
+    role: 'Desarrollador Backend Odoo',
+    linkedIn: 'https://www.linkedin.com/in/jgonzalezchaca/',
+    githubPage: 'https://github.com/angelgonzdev',
+    mailTo: createTestimonyMailto('jgonzalezhcaca@gmail.com'),
+    degree: 'Ingeniero de Software',
     testimonial:
-      'Colaborar con Luis Fernando ha sido clave para impulsar nuestra estrategia digital. Su compromiso, visión estética y atención a los detalles marcaron una gran diferencia en la presentación de nuestra marca. ¡Un talento que destaca en cualquier equipo!'
+      'Trabajar con Luis en los proyectos de la universidad ha sido muy grandioso, gracias a su excelente forma de trabajar como desarrollador y de gestionar los proyectos para alcanzar las metas deseadas. Sus habilidades que destaco incluyen su gran pasión por la tecnología y su entusiasmo por aprender continuamente.'
   },
   {
     id: 'testimony-2',
-    autor: 'Carlos Méndez',
-    photo: '/assets/default_profile.webp',
-    role: 'Líder de Producto en ByteForge',
-    webPage: 'https://www.byteforge.fake',
-    mailTo: 'mailto:carlos.mendez@byteforge.fake',
-    degree: 'MBA en Gestión de Proyectos Tecnológicos',
+    autor: 'Cataño Perez Wiener',
+    photo: '/assets/testimonies/cataño-perez-wiener.webp',
+    role: 'Desarrollador Backend Junior',
+    mailTo: createTestimonyMailto('Winercr12383@gmail.com'),
+    degree: 'Ingeniero de Sistemas',
     testimonial:
-      'Luis Fernando aporta no solo habilidades técnicas, sino una sensibilidad especial para entender las necesidades del usuario. Su trabajo ha elevado la calidad y usabilidad de nuestros productos. ¡Una mente creativa y resolutiva!'
+      'Trabajar con Luis ha sido una experiencia muy agradable. Su dedicación, habilidades técnicas y capacidad para resolver problemas complejos han contribuido de manera decisiva al éxito de nuestros proyectos. Es una persona que destaca por su disposición para colaborar, aprender y compartir conocimientos. Es un futuro ingeniero que promete grandes logros en el mundo del software'
   },
   {
     id: 'testimony-3',
-    autor: 'Laura Sánchez',
-    photo: '/assets/default_profile.webp',
-    role: 'UX Manager en Creatix Studio',
-    githubPage: 'https://github.com/laura-sanchez',
-    degree: 'Lic. en Diseño Digital',
+    autor: 'Méndez Pariona Carlos',
+    photo: '/assets/testimonies/default_profile.webp',
+    role: 'Líder de Producto en Devdatep',
+    degree: 'Ingeniero de Sistemas',
     testimonial:
-      'Desde el primer momento, Luis demostró una capacidad impresionante para transformar ideas en experiencias funcionales. Su enfoque humano y profesional marcó la diferencia en cada entrega. ¡Recomiendo su trabajo sin dudarlo!'
-  },
-  {
-    id: 'testimony-4',
-    autor: 'Andrés Navarro',
-    photo: '/assets/default_profile.webp',
-    role: 'CEO en PixelBloom',
-    webPage: 'https://www.pixelbloom.fake',
-    githubPage: 'https://github.com/andres-navarro',
-    mailTo: 'mailto:andres.navarro@pixelbloom.fake',
-    degree: 'Ing. en Sistemas Computacionales',
-    testimonial:
-      'Con Luis Fernando encontramos a alguien que entiende la importancia del diseño enfocado en resultados. Su colaboración nos permitió lanzar un producto sólido, elegante y efectivo en tiempo récord. ¡Un verdadero aliado estratégico!'
-  },
-  {
-    id: 'testimony-5',
-    autor: 'María Rodríguez',
-    photo: '/assets/default_profile.webp',
-    role: 'CTO en NovaLabs',
-    webPage: 'https://www.novalabs.fake',
-    githubPage: 'https://github.com/maria-rodriguez',
-    mailTo: 'mailto:maria.rodriguez@novalabs.fake',
-    degree: 'MSc. en Ingeniería de Software',
-    testimonial:
-      'Colaborar con Luis Fernando ha sido clave para impulsar nuestra estrategia digital. Su compromiso, visión estética y atención a los detalles marcaron una gran diferencia en la presentación de nuestra marca. ¡Un talento que destaca en cualquier equipo!'
+      'Luis Fernando aporta no solo habilidades técnicas, sino una sensibilidad especial para entender las necesidades del usuario. Sus contribuciones han elevado la calidad y usabilidad de nuestros productos. Tiene una mente creativa y resolutiva'
   }
 ]

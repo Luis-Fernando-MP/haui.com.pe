@@ -1,7 +1,9 @@
 'use client'
 
+import { INFO } from '@/shared/config/constants'
 import Button from '@/shared/ui/components/Button'
 import Title from '@/shared/ui/components/Title'
+import Link from 'next/link'
 import { FC } from 'react'
 
 import TestimoniesList from './TestimoniesList'
@@ -29,9 +31,11 @@ const Testimonials: FC = () => {
             </p>
           </div>
 
-          <Button variant='active'>
-            <h4 className='font-medium'>Comparte una palabrita</h4>
-          </Button>
+          <Link href={INFO.testimonios_discussions} target='_blank' rel='noopener noreferrer'>
+            <Button asClass variant='active'>
+              <h4 className='font-medium'>Comparte una palabrita</h4>
+            </Button>
+          </Link>
         </section>
         <TestimoniesList />
       </div>

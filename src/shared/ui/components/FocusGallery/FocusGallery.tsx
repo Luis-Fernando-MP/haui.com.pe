@@ -54,7 +54,7 @@ const FocusGalleryComponent = () => {
   const gridNormal = 'grid-rows-[60px_1fr_100px]'
   const gridZoom = 'grid-rows-[60px_1fr]'
 
-  const dynamicGrid = isImageZoomed ? gridZoom : gridNormal
+  const dynamicGrid = isImageZoomed || !hasMultipleImages ? gridZoom : gridNormal
 
   const Modal = (
     <div

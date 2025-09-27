@@ -10,7 +10,7 @@ interface Props {
 }
 
 const TestimonyCard: FC<Props> = ({ testimony }) => {
-  const { autor, degree, githubPage, webPage, mailTo } = testimony
+  const { autor, degree, githubPage, webPage, mailTo, linkedIn } = testimony
 
   return (
     <section className='bg-bg1 border-bg3 flex h-[430px] w-[550px] flex-col items-center justify-center gap-16 rounded-xl border p-6 max-md:w-full'>
@@ -29,6 +29,11 @@ const TestimonyCard: FC<Props> = ({ testimony }) => {
           {githubPage && (
             <Link href={githubPage} target='_blank' rel='noopener noreferrer' className='text-fn2 underline underline-offset-4'>
               GitHub
+            </Link>
+          )}
+          {linkedIn && (
+            <Link href={linkedIn} target='_blank' rel='noopener noreferrer' className='text-fn2 underline underline-offset-4'>
+              LinkedIn
             </Link>
           )}
           {webPage && (
