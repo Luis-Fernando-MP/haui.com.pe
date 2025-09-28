@@ -6,8 +6,8 @@ export const globalMetadata: Metadata = {
   title: INFO.devName,
   description: `Hola soy ${INFO.name} pero dime ${INFO.devShortName}, soy un desarrollador de aplicaciones apasionado por crear soluciones innovadoras, estaré encantado de trabajar contigo`,
   keywords: `Portafolio, Desarrollador Web, Full Stack, ${INFO.fullName}, ${INFO.devName}, dev, programador, lima, Perú`,
-  metadataBase: new URL('https://haui.vercel.app'),
-  authors: [{ name: 'Luis Fernando Melgar Pizarro', url: 'https://haui.vercel.app' }],
+  metadataBase: new URL('https://haui-dev.vercel.app'),
+  authors: [{ name: 'Luis Fernando Melgar Pizarro', url: 'https://haui-dev.vercel.app' }],
   creator: 'Luis Fernando Melgar Pizarro',
   publisher: 'haui.dev',
   icons: {
@@ -17,7 +17,7 @@ export const globalMetadata: Metadata = {
     title: 'haui:Porfolio',
     description:
       'Hola, soy Luis, pero dime haui, te invito a explorar mi porfolio y conocer más sobre mi, inténtalo y tomemos un cafe',
-    url: 'https://haui.vercel.app',
+    url: 'https://haui-dev.vercel.app',
     siteName: 'haui:Porfolio',
     images: [
       {
