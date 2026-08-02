@@ -31,19 +31,17 @@ const JobExperience: FC<JobExperienceProps> = ({ job }) => {
 
   return (
     <li
-      className={cn('border-bg3 mt-0 w-full border-b py-20 last:border-b-0', more && 'bg-bg2')}
+      className={cn('border-bg3 mt-0 w-full border-b py-10 last:border-b-0 md:py-12', more && 'bg-bg2')}
       onClick={handleToggle}
       aria-expanded={more}
       role='button'
     >
-      <div className='region max-region:max-w-[700px] max-region:flex max-region:flex-col mx-auto grid grid-cols-[100px_1fr_300px] gap-10 max-md:items-center'>
-        {/* Año */}
+      <div className='region max-region:max-w-[700px] max-region:flex max-region:flex-col mx-auto grid grid-cols-[100px_1fr_300px] gap-6 max-md:items-center md:gap-8'>
         <time className='text-h2 text-fn2 order-1 w-fit font-mono font-light' dateTime={year.toString()}>
           {year}
         </time>
 
-        {/* Descripción */}
-        <section className='order-2 flex w-fit flex-col gap-10'>
+        <section className='order-2 flex w-fit flex-col gap-6'>
           <div className='flex flex-col gap-2.5 max-md:items-center max-md:text-center'>
             <h2 className='max-w-[400px] text-2xl font-medium max-sm:text-xl'>{position}</h2>
             <Link
@@ -77,8 +75,7 @@ const JobExperience: FC<JobExperienceProps> = ({ job }) => {
           )}
         </section>
 
-        {/* Extra / Herramientas */}
-        <section className='order-3 flex h-fit w-fit flex-col gap-10 max-md:text-center'>
+        <section className='order-3 flex h-fit w-fit flex-col gap-6 max-md:text-center'>
           <div className='flex flex-wrap gap-3.5 max-md:items-center max-md:justify-center'>
             {listOfTools.map(tool => (
               <Button className='text-fn2' key={`${tool}-${name}`}>

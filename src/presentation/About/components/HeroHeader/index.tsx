@@ -1,26 +1,26 @@
 'use client'
 
-import { personalJourneys } from '@common/core/constants/personalJourneys'
 import Button from '@common/components/button'
 import CardTabs from '@common/components/card-tabs'
+import { personalJourneys } from '@common/core/constants/personalJourneys'
 import type { FC } from 'react'
 
 import JourneyComponent from './Journey'
 
 const HeroHeader: FC = () => {
   return (
-    <article className='region max-region:px-5 mx-auto flex min-h-[80vh] w-full flex-col gap-24 overflow-x-hidden'>
-      <div className='flex flex-col gap-10 pt-30 max-lg:items-center max-lg:text-center'>
-        <h1 className='font-geist text-fn2 text-9xl font-black max-lg:text-8xl'>
-          DIME <span className='text-gradient text-9xl font-black max-lg:text-8xl'>HAUI</span>
+    <article className='region max-region:px-5 mx-auto flex w-full flex-col gap-14 overflow-x-hidden pt-16 md:pt-20'>
+      <div className='flex flex-col gap-6 max-lg:items-center max-lg:text-center'>
+        <h1 className='font-geist text-fn2 text-7xl leading-[0.95] font-black md:text-8xl lg:text-9xl'>
+          DIME <span className='text-gradient'>HAUI</span>
         </h1>
-        <div className='flex flex-col gap-2.5'>
-          <h2 className='font-geist text-4xl font-black max-lg:text-3xl'>CONSTRUYENDO EXPERIENCIAS DIGITALES</h2>
-          <h3 className='text-fn2 text-5xl font-light max-lg:text-3xl'>UN PIXEL A LA VEZ</h3>
+        <div className='flex flex-col gap-2'>
+          <h2 className='font-geist text-3xl font-black md:text-4xl'>CONSTRUYENDO EXPERIENCIAS DIGITALES</h2>
+          <p className='text-fn2 text-3xl font-light md:text-4xl'>UN PIXEL A LA VEZ</p>
         </div>
       </div>
 
-      <section className='flex w-full justify-between max-lg:flex-col max-lg:items-center max-lg:gap-10'>
+      <section className='flex w-full items-start justify-between gap-10 max-lg:flex-col max-lg:items-center'>
         <CardTabs
           items={personalJourneys}
           defaultIndex={1}
@@ -30,30 +30,28 @@ const HeroHeader: FC = () => {
           connectorLineSize={100}
           tabsClassName='max-lg:justify-center'
           renderContent={journey => <JourneyComponent journey={journey} />}
-          renderTab={(item, isActive) => {
-            return (
-              <div className={`rounded-full p-0.5 ease-in ${isActive ? 'gradient animate-[spin_5s]' : 'border-bg3 border'}`}>
-                <Button className='bg-bg1 p-1.5'>
-                  <item.Icon width={28} height={28} />
-                </Button>
-              </div>
-            )
-          }}
+          renderTab={(item, isActive) => (
+            <div className={`rounded-full p-0.5 ${isActive ? 'gradient' : 'border-bg3 border'}`}>
+              <Button className='bg-bg1 p-1.5' aria-label={item.title ?? 'journey'}>
+                <item.Icon width={28} height={28} />
+              </Button>
+            </div>
+          )}
         />
 
-        <section className='flex flex-col gap-10 max-lg:items-center max-lg:text-center'>
-          <div className='flex flex-col flex-wrap gap-2.5 max-lg:flex-row max-lg:items-center'>
-            <h3 className='text-fn2 font-light'>UBICACIÓN</h3>
+        <aside className='flex flex-col gap-6 max-lg:items-center max-lg:text-center'>
+          <div className='flex flex-col gap-1.5 max-lg:items-center'>
+            <h3 className='text-fn2 text-sm font-light tracking-wide'>UBICACIÓN</h3>
             <p className='font-mono'>Lima, Peru</p>
           </div>
 
-          <h3 className='text-fn2'>UTC-5</h3>
+          <p className='text-fn2 font-mono text-sm'>UTC-5</p>
 
-          <div className='flex flex-col flex-wrap gap-2.5 max-lg:flex-row max-lg:items-center'>
-            <h3 className='text-fn2 font-light'>IDIOMAS</h3>
+          <div className='flex flex-col gap-1.5 max-lg:items-center'>
+            <h3 className='text-fn2 text-sm font-light tracking-wide'>IDIOMAS</h3>
             <p className='font-mono'>Español, Nativo</p>
           </div>
-        </section>
+        </aside>
       </section>
     </article>
   )

@@ -5,12 +5,11 @@ import BackgroundWorkspace from './BackgroundWorkspace'
 
 const Workspace: FC = () => {
   return (
-    <article className='region max-region:px-5 pointer-events-none relative mx-auto flex h-fit w-full flex-col items-center gap-20 select-none'>
-      <div className='flex flex-col items-center gap-5 text-center'>
-        <Title className=''>Mi Workspace 🏆</Title>
-        <p className='text-fn2 w-full max-w-[600px] font-mono'>
-          “Mi espacio de trabajo esta diseñado para fomentar la concentración y la eficiencia, integrando las herramientas que
-          utilizo en el dia a dia del desarrollo de software.”
+    <article className='region max-region:px-5 pointer-events-none relative mx-auto flex h-fit w-full flex-col items-center gap-10 select-none'>
+      <div className='flex flex-col items-center gap-3 text-center'>
+        <Title>Mi Workspace</Title>
+        <p className='text-fn2 w-full max-w-[560px] font-mono'>
+          Un espacio pensado para concentración y eficiencia, con las herramientas del día a día en el desarrollo de software.
         </p>
       </div>
 

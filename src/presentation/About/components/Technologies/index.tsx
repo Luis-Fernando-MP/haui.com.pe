@@ -6,20 +6,14 @@ import TechnologiesList from './TechnologiesList'
 
 const Technologies: FC = () => {
   return (
-    <article className='region max-region:px-5 max-region:flex-col max-region:items-center max-region:gap-10 relative mx-auto flex min-h-screen w-full items-center justify-between'>
-      <section className='max-region:max-w-full max-region:w-full max-region:items-center max-region:text-center max-region:justify-center flex max-w-[450px] flex-col gap-15'>
-        <div className='flex flex-col gap-5'>
+    <article className='region max-region:px-5 max-region:flex-col max-region:items-center max-region:gap-10 relative mx-auto flex w-full items-start justify-between gap-12'>
+      <section className='max-region:max-w-full max-region:w-full max-region:items-center max-region:text-center flex w-full max-w-[450px] flex-col gap-8'>
+        <div className='flex flex-col gap-4'>
           <h2 className='font-flowers text-h1'>Tecnologías de desarrollo</h2>
-          <div className='text-fn2 max-region:max-w-[600px] w-full max-w-[400px] font-mono'>
-            <p>Estas son otras herramientas que me permiten adaptarme a distintos proyectos y contextos.</p>
-            <p>
-              Al mismo tiempo, hay varias que aun no domino del todo, pero cada vez que me acerco a ellas descubro nuevas formas
-              de crecer.
-            </p>
-            <p>
-              Como desarrollador, siempre busco ampliar mi caja de herramientas para estar mejor preparado frente a los retos que
-              vienen.
-            </p>
+          <div className='text-fn2 max-region:max-w-[600px] flex w-full max-w-[400px] flex-col gap-3 font-mono'>
+            <p>Otras herramientas que me permiten adaptarme a distintos proyectos y contextos.</p>
+            <p>Hay varias que aún no domino del todo, pero cada acercamiento abre nuevas formas de crecer.</p>
+            <p>Sigo ampliando mi caja de herramientas para los retos que vienen.</p>
           </div>
         </div>
         <StackSelector />

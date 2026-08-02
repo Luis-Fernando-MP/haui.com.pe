@@ -71,7 +71,11 @@
   }
 
   .text-gradient {
-    @apply bg-gradient-to-r from-[var(--gr-from)] via-[var(--gr-via)] to-[var(--gr-to)] bg-clip-text text-transparent;
+    @apply inline bg-gradient-to-r from-[var(--gr-from)] via-[var(--gr-via)] to-[var(--gr-to)] bg-clip-text text-transparent;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
   }
 
   .danger {

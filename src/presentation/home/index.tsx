@@ -8,7 +8,7 @@ import WorkExperience from './components/WorkExperience'
 
 const Home: FC = () => {
   return (
-    <main className='relative flex min-h-screen w-full flex-col gap-[200px]'>
+    <main className='relative flex w-full flex-col gap-20 pb-20 md:gap-28 md:pb-28'>
       <HeroGrainGradient />
       <HeroHeader />
       <WorkExperience />

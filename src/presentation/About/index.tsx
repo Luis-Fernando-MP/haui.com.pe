@@ -9,7 +9,7 @@ import Workspace from './components/workspace'
 
 const About: FC = () => {
   return (
-    <main className='flex min-h-screen w-full flex-col gap-[150px]'>
+    <main className='relative flex w-full flex-col gap-20 pb-20 md:gap-28 md:pb-28'>
       <GradientSvg />
       <HeroHeader />
       <MyDevStack />
