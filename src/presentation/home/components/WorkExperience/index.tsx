@@ -1,8 +1,8 @@
 'use client'
 
-import { HISTORY_JOBS } from '@/shared/config/constants/historyJobs'
-import Title from '@/shared/ui/components/Title'
-import { motion } from 'framer-motion'
+import { HISTORY_JOBS } from '@common/core/constants/historyJobs'
+import Title from '@common/components/title'
+import { motion } from 'motion/react'
 import type { FC } from 'react'
 
 import JobExperience from './JobExperience'

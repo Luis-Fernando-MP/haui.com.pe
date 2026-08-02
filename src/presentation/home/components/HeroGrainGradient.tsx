@@ -2,22 +2,28 @@
 
 import { GodRays } from '@paper-design/shaders-react'
 import { useTheme } from 'next-themes'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { FC } from 'react'
-import { useIntersectionObserver } from 'usehooks-ts'
+import { useIntersectionObserver, useMediaQuery } from 'usehooks-ts'
 
 import useUseAppStore from '../store/useApp'
 
+/**
+ * HeroGrainGradient
+ * descripcion: fondo WebGL GodRays solo en home; pausa fuera de viewport y respeta reduced-motion
+ * propiedades: ninguna
+ * ejemplos: <HeroGrainGradient />
+ */
 const HeroGrainGradient: FC = () => {
   const { theme } = useTheme()
-  const { enabledGradient } = useUseAppStore()
+  const enabledGradient = useUseAppStore(s => s.enabledGradient)
   const [colors, setColors] = useState<string[]>([])
+  const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   const { isIntersecting, ref } = useIntersectionObserver({
     threshold: 0.1
   })
-
-  console.log(`Render Section ${isIntersecting}`)
 
   useEffect(() => {
     const updateColors = () => {
@@ -31,17 +37,16 @@ const HeroGrainGradient: FC = () => {
 
     const raf = requestAnimationFrame(updateColors)
     return () => cancelAnimationFrame(raf)
-  }, [theme, isIntersecting])
+  }, [theme])
 
-  const godRayColors = useMemo(() => colors, [colors])
-  if (colors.length === 0 || !enabledGradient) return null
+  if (colors.length === 0 || !enabledGradient || reduceMotion || isMobile) return null
 
   return (
     <div className='absolute top-0 left-0 -z-10 block h-[120vh] w-full' ref={ref}>
-      {isIntersecting && (
+      <div className={isIntersecting ? 'h-full w-full' : 'pointer-events-none invisible h-full w-full'}>
         <GodRays
           className='h-full w-full'
-          colors={godRayColors}
+          colors={colors}
           colorBack={'#00000000'}
           colorBloom={'#00000000'}
           bloom={1}
@@ -50,12 +55,10 @@ const HeroGrainGradient: FC = () => {
           spotty={1}
           midSize={0.1}
           midIntensity={1}
-          speed={1}
+          speed={isIntersecting ? 1 : 0}
           offsetY={-0.45}
         />
-      )}
-
-      {/* Gradient overlay */}
+      </div>
       <div className='from-bg1 pointer-events-none absolute bottom-0 z-50 h-3/12 w-full bg-gradient-to-t from-30% to-transparent to-100% pt-5 pb-10 select-none' />
     </div>
   )

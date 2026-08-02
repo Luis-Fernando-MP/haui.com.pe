@@ -1,5 +1,5 @@
-import { technologies } from '@/shared/config/constants/technologies'
-import Title from '@/shared/ui/components/Title'
+import { technologies } from '@common/core/constants/technologies'
+import Title from '@common/components/title'
 import type { FC } from 'react'
 
 import TechChip from './TechChip'

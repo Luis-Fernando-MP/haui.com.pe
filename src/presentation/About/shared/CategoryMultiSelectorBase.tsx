@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/shared/ui/components/Button'
+import Button from '@common/components/button'
 import { Menu, MenuButton, MenuItem, MenuItems, MenuSeparator } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from 'lucide-react'
 

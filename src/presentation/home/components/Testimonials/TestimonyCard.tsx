@@ -1,6 +1,6 @@
 'use client'
 
-import { Testimony } from '@/shared/config/constants/testimonies'
+import { Testimony } from '@common/core/constants/testimonies'
 import { GraduationCapIcon } from 'lucide-react'
 import Link from 'next/link'
 import type { FC } from 'react'

@@ -1,5 +1,5 @@
-import { Journey } from '@/shared/config/constants/personalJourneys'
-import ImageGallery from '@/shared/ui/components/FocusGallery/ImageGallery'
+import { Journey } from '@common/core/constants/personalJourneys'
+import ImageGallery from '@common/components/focus-gallery/ImageGallery'
 import type { FC } from 'react'
 
 interface Props {

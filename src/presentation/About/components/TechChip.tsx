@@ -1,5 +1,5 @@
-import { Technology } from '@/lib/techQuery/tech.type'
-import Button from '@/shared/ui/components/Button'
+import { Technology } from '@common/core/queries/techQuery/tech.type'
+import Button from '@common/components/button'
 import { Image } from '@unpic/react/nextjs'
 import type { FC } from 'react'
 

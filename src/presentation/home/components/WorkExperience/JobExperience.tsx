@@ -1,9 +1,9 @@
 'use client'
 
-import { cn } from '@/lib/utils'
-import { HistoryJob } from '@/shared/config/constants/historyJobs'
-import Button from '@/shared/ui/components/Button'
-import { ArrowUpRightIcon, FacebookIcon, GlobeIcon } from 'lucide-react'
+import { cn } from '@common/core/cn'
+import { HistoryJob } from '@common/core/constants/historyJobs'
+import Button from '@common/components/button'
+import { ArrowUpRightIcon, GlobeIcon, Share2Icon } from 'lucide-react'
 import Link from 'next/link'
 import { type FC, type MouseEvent } from 'react'
 
@@ -14,7 +14,8 @@ interface JobExperienceProps {
 }
 
 const JobExperience: FC<JobExperienceProps> = ({ job }) => {
-  const { selectedJob, setSelectedJob } = useJobExperienceStore()
+  const selectedJob = useJobExperienceStore(s => s.selectedJob)
+  const setSelectedJob = useJobExperienceStore(s => s.setSelectedJob)
 
   const { year, name, position, websiteUrl, facebookUrl, externalUrl, Activities, usedTools, Extra, period } = job
 
@@ -100,31 +101,27 @@ const JobExperience: FC<JobExperienceProps> = ({ job }) => {
           {more && (
             <div className='flex flex-wrap gap-1 max-md:justify-center'>
               {facebookUrl && (
-                <Link
+                <Button
                   href={facebookUrl}
                   target='_blank'
                   rel='noopener noreferrer'
                   className='text-fn2'
                   aria-label={`Visitar Facebook de ${name}`}
                 >
-                  <Button asClass>
-                    <FacebookIcon />
-                  </Button>
-                </Link>
+                  <Share2Icon />
+                </Button>
               )}
 
               {externalUrl && (
-                <Link
+                <Button
                   href={externalUrl}
                   target='_blank'
                   rel='noopener noreferrer'
                   className='text-fn2'
                   aria-label={`Visitar sitio de ${name}`}
                 >
-                  <Button asClass>
-                    <GlobeIcon />
-                  </Button>
-                </Link>
+                  <GlobeIcon />
+                </Button>
               )}
             </div>
           )}

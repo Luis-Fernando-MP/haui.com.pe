@@ -1,8 +1,8 @@
 'use client'
 
-import { testimonies } from '@/shared/config/constants/testimonies'
-import Button from '@/shared/ui/components/Button'
-import CardTabs from '@/shared/ui/components/CardTabs'
+import { testimonies } from '@common/core/constants/testimonies'
+import Button from '@common/components/button'
+import CardTabs from '@common/components/card-tabs'
 import { Image } from '@unpic/react/nextjs'
 import { useMediaQuery } from 'usehooks-ts'
 

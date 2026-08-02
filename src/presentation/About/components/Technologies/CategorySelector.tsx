@@ -1,6 +1,6 @@
 'use client'
 
-import { TechnologyCategory, technologyCategories } from '@/lib/techQuery/tech.type'
+import { TechnologyCategory, technologyCategories } from '@common/core/queries/techQuery/tech.type'
 
 import CategoryMultiSelectorBase from '../../shared/CategoryMultiSelectorBase'
 import useTechStore from '../../store/useTechStore'

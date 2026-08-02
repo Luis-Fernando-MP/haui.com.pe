@@ -1,6 +1,6 @@
 'use client'
 
-import { TechnologyStack, technologyStack } from '@/lib/techQuery/tech.type'
+import { TechnologyStack, technologyStack } from '@common/core/queries/techQuery/tech.type'
 import { useState } from 'react'
 
 import CategorySelectorBase from '../../shared/CategorySelectorBase'

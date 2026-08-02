@@ -1,8 +1,8 @@
 'use client'
 
-import { personalJourneys } from '@/shared/config/constants/personalJourneys'
-import Button from '@/shared/ui/components/Button'
-import CardTabs from '@/shared/ui/components/CardTabs'
+import { personalJourneys } from '@common/core/constants/personalJourneys'
+import Button from '@common/components/button'
+import CardTabs from '@common/components/card-tabs'
 import type { FC } from 'react'
 
 import JourneyComponent from './Journey'

@@ -1,6 +1,6 @@
 'use client'
 
-import { SkillDomain, skillDomainCategories } from '@/lib/achievementsQuery/achievement.type'
+import { SkillDomain, skillDomainCategories } from '@common/core/queries/achievementsQuery/achievement.type'
 import type { FC } from 'react'
 
 import CategoryMultiSelectorBase from '../../shared/CategoryMultiSelectorBase'

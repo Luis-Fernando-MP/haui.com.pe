@@ -1,4 +1,4 @@
-import GradientSvg from '@/shared/ui/components/GradientSvg'
+import GradientSvg from '@common/components/gradient-svg'
 import type { FC } from 'react'
 
 import Achievements from './components/Achievements'

@@ -1,6 +1,6 @@
 'use client'
 
-import { AchievementType, achievementIcons } from '@/lib/achievementsQuery/achievement.type'
+import { AchievementType, achievementIcons } from '@common/core/queries/achievementsQuery/achievement.type'
 import { useState } from 'react'
 
 import CategorySelectorBase from '../../shared/CategorySelectorBase'

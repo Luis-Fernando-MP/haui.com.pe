@@ -1,5 +1,5 @@
-import { SOCIAL } from '@/shared/config/constants'
-import Title from '@/shared/ui/components/Title'
+import { SOCIAL } from '@common/core/constants'
+import Title from '@common/components/title'
 import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 import type { FC } from 'react'

@@ -1,6 +1,6 @@
 'use client'
 
-import { achievementCategories } from '@/shared/config/constants/achievements'
+import { achievementCategories } from '@common/core/constants/achievements'
 import type { FC } from 'react'
 
 import CategoryMultiSelectorBase from '../../shared/CategoryMultiSelectorBase'

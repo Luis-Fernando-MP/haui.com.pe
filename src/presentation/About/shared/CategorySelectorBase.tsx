@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/shared/ui/components/Button'
+import Button from '@common/components/button'
 import type { ReactNode } from 'react'
 
 interface CategorySelectorBaseProps<T extends string> {

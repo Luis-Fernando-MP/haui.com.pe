@@ -1,4 +1,4 @@
-import Title from '@/shared/ui/components/Title'
+import Title from '@common/components/title'
 import type { FC } from 'react'
 
 import BackgroundWorkspace from './BackgroundWorkspace'
