@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { useEffect, useRef, useState, type FC } from 'react'
+import { type FC, useEffect, useRef, useState } from 'react'
 import { useIntersectionObserver, useMediaQuery } from 'usehooks-ts'
 
 import useUseAppStore from '../store/useApp'
@@ -139,9 +139,9 @@ const HeroGrainGradient: FC = () => {
         }`}
         style={{
           background: `
-            radial-gradient(95% 75% at 50% -5%, color-mix(in srgb, var(--gr-from) 44%, transparent), transparent 58%),
-            radial-gradient(65% 55% at 22% 18%, color-mix(in srgb, var(--gr-via) 27%, transparent), transparent 52%),
-            radial-gradient(65% 55% at 78% 22%, color-mix(in srgb, var(--gr-to) 27%, transparent), transparent 52%)
+            radial-gradient(95% 75% at 50% -12%, color-mix(in srgb, var(--gr-from) 42%, transparent), transparent 58%),
+            radial-gradient(65% 55% at 22% 12%, color-mix(in srgb, var(--gr-via) 26%, transparent), transparent 52%),
+            radial-gradient(65% 55% at 78% 16%, color-mix(in srgb, var(--gr-to) 26%, transparent), transparent 52%)
           `
         }}
       />
@@ -157,22 +157,33 @@ const HeroGrainGradient: FC = () => {
             colors={colors}
             colorBack='#00000000'
             colorBloom='#00000000'
+            // bloom={1}
+            // intensity={0.5}
+            // density={0.02}
+            // spotty={1}
+            // midSize={0.1}
+            // midIntensity={1}
+            // speed={playing ? 1 : 0}
+            // offsetY={-0.42}
+            // minPixelRatio={1}
+
             bloom={1}
-            intensity={0.5}
-            density={0.02}
+            intensity={0.05}
+            density={3}
             spotty={1}
-            midSize={0.1}
-            midIntensity={1}
-            speed={playing ? 1 : 0}
-            offsetY={-0.42}
-            minPixelRatio={1}
+            midSize={0.2}
+            midIntensity={0.95}
+            speed={playing ? 1.3 : 0}
+            offsetY={-0.56}
+            scale={1.05}
+            minPixelRatio={20}
             maxPixelCount={MAX_PIXEL_COUNT}
             webGlContextAttributes={WEBGL_CONTEXT}
           />
         </div>
       )}
 
-      <div className='from-bg1 pointer-events-none absolute inset-x-0 bottom-0 h-[28%] bg-gradient-to-t from-25% via-bg1/50 to-transparent select-none' />
+      <div className='from-bg1 via-bg1/50 pointer-events-none absolute inset-x-0 bottom-0 h-[28%] bg-gradient-to-t from-25% to-transparent select-none' />
     </div>
   )
 }
