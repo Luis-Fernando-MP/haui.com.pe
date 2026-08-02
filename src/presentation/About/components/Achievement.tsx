@@ -39,37 +39,42 @@ const Achievement: FC<Achievements> = props => {
       onClick={handleOpen}
       className={cn(
         'group border-bg3/70 bg-bg1 relative flex h-full w-full flex-col overflow-hidden rounded-2xl border text-left',
-        'transition-[border-color,background-color,transform] duration-300 outline-none motion-reduce:transition-none',
-        'hover:border-fn2/30 hover:bg-bg2/25 hover:-translate-y-0.5',
+        'transition-[border-color,background-color] duration-300 outline-none motion-reduce:transition-none',
+        'hover:border-fn2/30 hover:bg-bg2/30',
         'focus-visible:ring-fn2/40 focus-visible:ring-offset-bg1 focus-visible:ring-2 focus-visible:ring-offset-2'
       )}
     >
       <span
         aria-hidden
-        className='pointer-events-none absolute inset-x-4 top-0 h-px opacity-80'
+        className='pointer-events-none absolute inset-x-4 top-0 z-[2] h-px opacity-80'
         style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
       />
 
-      <div className='border-bg3/60 relative aspect-[16/10] w-full overflow-hidden border-b'>
+      <div className='relative aspect-[16/10] w-full overflow-hidden'>
         <Image
-          className='size-full object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none'
+          className={cn(
+            'absolute inset-0 size-full object-cover',
+            'origin-center transform-gpu transition-transform duration-500 ease-out will-change-transform',
+            'group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100'
+          )}
           src={path}
           width={480}
           height={300}
           alt=''
           background='/fallback.webp'
         />
+
         <div
           aria-hidden
-          className='from-bg1 via-bg1/20 pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t to-transparent'
+          className='pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-1/3 bg-gradient-to-t from-black/25 to-transparent'
         />
 
-        <span className='bg-bg1/90 border-bg3 text-fn2 absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] tracking-wide backdrop-blur-sm'>
+        <span className='bg-bg1/90 border-bg3 text-fn2 absolute top-3 left-3 z-[2] inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] tracking-wide backdrop-blur-sm'>
           <TypeIcon className='size-3' aria-hidden />
           {achievementType}
         </span>
 
-        <span className='bg-bg1/90 border-bg3 text-fn1 absolute top-3 right-3 inline-flex size-7 items-center justify-center rounded-full border opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100'>
+        <span className='bg-bg1/90 border-bg3 text-fn1 absolute top-3 right-3 z-[2] inline-flex size-7 items-center justify-center rounded-full border opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100'>
           <ArrowUpRightIcon className='size-3.5' aria-hidden />
         </span>
       </div>

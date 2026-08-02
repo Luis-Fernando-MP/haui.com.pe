@@ -10,8 +10,6 @@ import { createPortal } from 'react-dom'
 
 import { useFocusGallery } from './useFocusGallery'
 
-/* eslint-disable @next/next/no-img-element */
-
 const ease = [0.22, 1, 0.36, 1] as const
 
 const FocusGalleryComponent = () => {
