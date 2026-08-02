@@ -1,7 +1,6 @@
 import Button from '@common/components/button'
 import Title from '@common/components/title'
 import { SOCIAL } from '@common/core/constants'
-import { ArrowUpRightIcon } from 'lucide-react'
 import type { FC } from 'react'
 
 const Contact: FC = () => {
@@ -25,11 +24,11 @@ const Contact: FC = () => {
           href={SOCIAL.Gmail.url}
           target='_blank'
           rel='noopener noreferrer'
-          variant='active'
-          className='group px-5 font-mono'
+          variant='default'
+          showIconLink
+          className='px-5 font-mono'
         >
           {SOCIAL.Gmail.display}
-          <ArrowUpRightIcon className='size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none' aria-hidden />
         </Button>
       </div>
 
@@ -43,8 +42,9 @@ const Contact: FC = () => {
                 href={value.url}
                 target='_blank'
                 rel='noopener noreferrer'
-                variant='border'
-                className='border-bg3 bg-bg1/80 hover:border-fn2/40 hover:bg-bg2 focus-visible:border-fn2 group h-full w-full flex-col items-start gap-1 rounded-2xl px-5 py-5 transition-[background-color,border-color] duration-200'
+                variant='outline'
+                center={false}
+                className='flex h-full w-full flex-col items-start gap-1 rounded-2xl px-5 py-5'
               >
                 <span className='text-fn1 text-base font-semibold'>{key}</span>
                 <span className='text-fn2 truncate text-sm'>{value.display}</span>

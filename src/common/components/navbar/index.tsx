@@ -8,6 +8,7 @@ import { INFO } from '@common/core/constants'
 import { ArrowUpRightIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { type FC, useLayoutEffect, useRef, useState } from 'react'
 import { useIntersectionObserver } from 'usehooks-ts'
 
@@ -18,6 +19,7 @@ const MAX_WIDTH = 1100
 const ease = [0.22, 1, 0.36, 1] as const
 
 const NavBar: FC = () => {
+  const pathname = usePathname()
   const shellRef = useRef<HTMLElement>(null)
   const rowRef = useRef<HTMLDivElement>(null)
   const [widths, setWidths] = useState({ full: MAX_WIDTH, fit: MAX_WIDTH })
@@ -29,6 +31,7 @@ const NavBar: FC = () => {
   })
 
   const scrolled = entry != null && !isIntersecting
+  const isHome = pathname === '/'
 
   useLayoutEffect(() => {
     const shell = shellRef.current
@@ -83,19 +86,11 @@ const NavBar: FC = () => {
             )}
           >
             <div ref={rowRef} className='flex h-14 w-full items-center justify-between gap-3 px-3'>
-              <Link
-                href='/'
-                className='group focus-visible:ring-fn2/40 focus-visible:ring-offset-bg1 flex shrink-0 items-center gap-2.5 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-offset-2'
-              >
-                <Image
-                  src='/logo.webp'
-                  className='bg-logo-bg size-9 shrink-0 rounded-lg p-1 transition-transform duration-300 group-hover:scale-[1.05]'
-                  width={36}
-                  height={36}
-                  alt={`${INFO.devShortName} logo`}
-                  priority
-                />
-                <span className='text-fn1 text-lg font-bold tracking-tight whitespace-nowrap'>{INFO.devShortName}</span>
+              <Link href='/' className='flex items-center gap-2.5'>
+                <Image src='/logo.webp' width={25} height={25} alt={`${INFO.devShortName} logo`} priority />
+                <p className={cn('text-fn1 text-lg font-bold tracking-tight whitespace-nowrap', isHome && 'text-gradient')}>
+                  {INFO.devShortName}
+                </p>
               </Link>
 
               <NavLinks className='max-region:hidden' />
@@ -108,7 +103,7 @@ const NavBar: FC = () => {
                   href={INFO.cv}
                   target='_blank'
                   rel='noopener noreferrer'
-                  variant='active'
+                  variant='default'
                   className='group h-9 shrink-0 rounded-full px-4 text-sm font-semibold whitespace-nowrap sm:px-5'
                   aria-label='Descargar CV'
                 >

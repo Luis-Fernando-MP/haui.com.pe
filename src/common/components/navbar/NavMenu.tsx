@@ -1,9 +1,10 @@
 'use client'
 
 import Button from '@common/components/button'
+import GithubIcon from '@common/icons/github'
 import { INFO, SOCIAL } from '@common/core/constants'
 import { Menu, MenuButton, MenuItem, MenuItems, MenuSeparator } from '@headlessui/react'
-import { BriefcaseBusinessIcon, DownloadIcon, FolderGit2Icon, MenuIcon, XIcon } from 'lucide-react'
+import { BriefcaseBusinessIcon, DownloadIcon, MenuIcon, XIcon } from 'lucide-react'
 import type { FC } from 'react'
 
 import NavLinks from './NavLinks'
@@ -13,7 +14,7 @@ const NavMenu: FC = () => {
     <Menu as='div' className='region:hidden relative'>
       {({ open, close }) => (
         <>
-          <MenuButton as={Button} variant='border' className='px-2.5' aria-label={open ? 'Cerrar menú' : 'Abrir menú'}>
+          <MenuButton as={Button} variant='outline' className='px-2.5' aria-label={open ? 'Cerrar menú' : 'Abrir menú'}>
             {open ? <XIcon className='text-fn1 size-5' /> : <MenuIcon className='text-fn1 size-5' />}
           </MenuButton>
 
@@ -27,7 +28,7 @@ const NavMenu: FC = () => {
                 {!INFO.working.state && <span className='text-fn2 text-xs'>Disponible para proyectos</span>}
               </div>
               <MenuItem>
-                <Button className='px-2' variant='border' aria-label='Cerrar' onClick={close}>
+                <Button className='px-2' variant='outline' aria-label='Cerrar' onClick={close}>
                   <XIcon className='text-fn2 size-4' />
                 </Button>
               </MenuItem>
@@ -47,9 +48,10 @@ const NavMenu: FC = () => {
                   href={SOCIAL.GitHub.url}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='hover:bg-bg2 w-full justify-start'
+                  variant='ghost'
+                  className='w-full justify-start'
                 >
-                  <FolderGit2Icon className='text-fn1 size-4' />
+                  <GithubIcon className='text-fn1 size-4' />
                   <span className='text-fn2 text-sm'>GitHub</span>
                 </Button>
               </MenuItem>
@@ -58,7 +60,8 @@ const NavMenu: FC = () => {
                   href={SOCIAL.LinkedIn.url}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='hover:bg-bg2 w-full justify-start'
+                  variant='ghost'
+                  className='w-full justify-start'
                 >
                   <BriefcaseBusinessIcon className='text-fn1 size-4' />
                   <span className='text-fn2 text-sm'>LinkedIn</span>
@@ -69,7 +72,7 @@ const NavMenu: FC = () => {
                   href={INFO.cv}
                   target='_blank'
                   rel='noopener noreferrer'
-                  variant='active'
+                  variant='default'
                   className='mt-1 w-full justify-center'
                 >
                   <DownloadIcon className='size-4' />

@@ -32,7 +32,7 @@ const HeroHeader: FC = () => {
           renderContent={journey => <JourneyComponent journey={journey} />}
           renderTab={(item, isActive) => (
             <div className={`rounded-full p-0.5 ${isActive ? 'gradient' : 'border-bg3 border'}`}>
-              <Button className='bg-bg1 p-1.5' aria-label={item.title ?? 'journey'}>
+              <Button className='bg-bg1 p-1.5' variant='ghost' size='icon' aria-label={item.title ?? 'journey'}>
                 <item.Icon width={28} height={28} />
               </Button>
             </div>

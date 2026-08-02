@@ -32,7 +32,7 @@ const Testimonials: FC = () => {
             </p>
           </div>
 
-          <Button href={INFO.testimonios_discussions} target='_blank' rel='noopener noreferrer' variant='active' className='px-5'>
+          <Button href={INFO.testimonios_discussions} target='_blank' rel='noopener noreferrer' variant='default' className='px-5'>
             Comparte una palabrita
           </Button>
         </aside>

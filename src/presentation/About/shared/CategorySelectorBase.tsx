@@ -35,7 +35,7 @@ const CategorySelectorBase = <T extends string>({
           return (
             <Button
               key={`category-${item}`}
-              variant='border'
+              variant='outline'
               onClick={() => onSelect(item)}
               className={`${active ? 'svg-gradient text-gradient' : 'text-fn2'} px-2`}
             >

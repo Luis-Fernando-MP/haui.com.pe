@@ -19,7 +19,7 @@ interface Props {
  */
 const Themes: FC<Props> = ({ children }) => {
   return (
-    <ThemeProvider defaultTheme='system' themes={listThemes} enableSystem attribute='class' disableTransitionOnChange>
+    <ThemeProvider defaultTheme='system' themes={[...listThemes]} enableSystem attribute='class' disableTransitionOnChange>
       {children}
     </ThemeProvider>
   )

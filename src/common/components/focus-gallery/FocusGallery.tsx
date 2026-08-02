@@ -66,12 +66,14 @@ const FocusGalleryComponent = () => {
     >
       {/* Controles */}
       <nav className='bg-bg1 text-fn2 border-bg3 mx-auto flex w-full max-w-[500px] flex-wrap items-center justify-between gap-2 rounded-full border px-4 py-2'>
-        <Button onClick={navigateToPrevious} disabled={!canNavigateToPrevious}>
+        <Button onClick={navigateToPrevious} disabled={!canNavigateToPrevious} variant='ghost' size='icon'>
           <ArrowLeft />
         </Button>
 
         <div className='flex items-center gap-2.5'>
-          <Button onClick={toggleImageZoom}>{isImageZoomed ? <ZoomOut /> : <ZoomIn />}</Button>
+          <Button onClick={toggleImageZoom} variant='ghost' size='icon'>
+            {isImageZoomed ? <ZoomOut /> : <ZoomIn />}
+          </Button>
 
           {hasMultipleImages && (
             <h5 className='text-fn1'>
@@ -79,12 +81,12 @@ const FocusGalleryComponent = () => {
             </h5>
           )}
 
-          <Button ref={btnCloseRef} onClick={closeModal}>
+          <Button ref={btnCloseRef} onClick={closeModal} variant='ghost' size='icon'>
             <X />
           </Button>
         </div>
 
-        <Button onClick={navigateToNext} disabled={!canNavigateToNext}>
+        <Button onClick={navigateToNext} disabled={!canNavigateToNext} variant='ghost' size='icon'>
           <ArrowRight />
         </Button>
       </nav>
@@ -109,7 +111,7 @@ const FocusGalleryComponent = () => {
               {caption && <figcaption dangerouslySetInnerHTML={{ __html: caption }} />}
 
               {action && (
-                <Button href={action} target='_blank' rel='noopener noreferrer' variant='active'>
+                <Button href={action} target='_blank' rel='noopener noreferrer' variant='default'>
                   <span>{actionText}</span>
                 </Button>
               )}

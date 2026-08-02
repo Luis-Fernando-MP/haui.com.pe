@@ -25,7 +25,7 @@ const TestimoniesList = () => {
               : 'border-bg3 rounded-full border p-[2px]'
           }
         >
-          <Button className='bg-bg1 p-1.5 max-md:w-[38px]' aria-label={`Ver testimonio de ${item.autor}`}>
+          <Button className='bg-bg1 p-1.5 max-md:w-[38px]' variant='ghost' size='icon' aria-label={`Ver testimonio de ${item.autor}`}>
             <Image
               className='aspect-square size-7 rounded-full object-cover'
               src={item.photo}

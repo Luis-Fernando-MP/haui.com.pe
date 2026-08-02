@@ -28,22 +28,22 @@ const TestimonyCard: FC<Props> = ({ testimony }) => {
 
       <footer className='flex flex-wrap items-center justify-center gap-2'>
         {githubPage && (
-          <Button href={githubPage} target='_blank' rel='noopener noreferrer' variant='border' className='px-3 text-sm'>
+          <Button href={githubPage} target='_blank' rel='noopener noreferrer' variant='outline' className='px-3 text-sm'>
             GitHub
           </Button>
         )}
         {linkedIn && (
-          <Button href={linkedIn} target='_blank' rel='noopener noreferrer' variant='border' className='px-3 text-sm'>
+          <Button href={linkedIn} target='_blank' rel='noopener noreferrer' variant='outline' className='px-3 text-sm'>
             LinkedIn
           </Button>
         )}
         {webPage && (
-          <Button href={webPage} target='_blank' rel='noopener noreferrer' variant='border' className='px-3 text-sm'>
+          <Button href={webPage} target='_blank' rel='noopener noreferrer' variant='outline' className='px-3 text-sm'>
             Website
           </Button>
         )}
         {mailTo && (
-          <Button href={mailTo} variant='border' className='px-3 text-sm'>
+          <Button href={mailTo} variant='outline' className='px-3 text-sm'>
             Email
           </Button>
         )}

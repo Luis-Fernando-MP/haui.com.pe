@@ -38,7 +38,7 @@ const CategoryMultiSelectorBase = <T extends string>({
 
           return (
             <Button
-              variant='border'
+              variant='outline'
               key={`category-${cat}`}
               onClick={() => onSelectCategory(cat)}
               className={`text-fn2 ${active ? 'text-gradient' : 'text-fn2'}`}
@@ -50,7 +50,7 @@ const CategoryMultiSelectorBase = <T extends string>({
 
         {remainingCategories.length > 0 && (
           <Menu as='div' className='relative'>
-            <MenuButton as={Button} variant='border' className='text-fn2'>
+            <MenuButton as={Button} variant='outline' className='text-fn2'>
               <h5>+{remainingCategories.length}</h5>
               <ChevronDownIcon />
             </MenuButton>
@@ -78,6 +78,7 @@ const CategoryMultiSelectorBase = <T extends string>({
                       {({ focus }) => (
                         <Button
                           onClick={() => onSelectCategory(category)}
+                          variant='ghost'
                           className={`flex w-full items-center justify-between rounded-none text-left ${focus ? 'bg-bg3 text-fn1' : 'text-fn2'} ${active ? 'text-gradient' : ''}`}
                         >
                           <div className='text-a font-mono'>{getLabel ? getLabel(category) : category}</div>
@@ -95,7 +96,7 @@ const CategoryMultiSelectorBase = <T extends string>({
                 <div>
                   <MenuItem>
                     {() => (
-                      <Button onClick={clearAllCategories} className='danger w-full rounded-md text-left'>
+                      <Button onClick={clearAllCategories} variant='destructive' className='w-full justify-start rounded-md text-left'>
                         Limpiar selección
                       </Button>
                     )}
@@ -107,7 +108,7 @@ const CategoryMultiSelectorBase = <T extends string>({
         )}
 
         {activeCategories.length > 0 && (
-          <Button onClick={clearAllCategories} variant='border' className='danger'>
+          <Button onClick={clearAllCategories} variant='destructive'>
             <p>Limpiar</p>
           </Button>
         )}

@@ -5,10 +5,10 @@ import NavBar from '@common/components/navbar'
 import { bodyFonts } from '@common/metadata/fonts'
 import { globalMetadata as metadata, viewport } from '@common/metadata/global.metadata'
 import Themes from '@common/style/themes'
+import '@common/style/themes/themes.css'
 import NextTopLoader from 'nextjs-toploader'
 import type { FC, ReactNode } from 'react'
 
-import '@common/style/themes/themes.css'
 import './globals.css'
 
 interface Props {
@@ -23,7 +23,7 @@ const Bootstrap: FC<Props> = ({ children }) => {
         <Themes>
           <NavBar />
           {children}
-          <FooterGradient />
+          {/* <FooterGradient /> */}
           <Footer />
           <FocusGallery />
         </Themes>

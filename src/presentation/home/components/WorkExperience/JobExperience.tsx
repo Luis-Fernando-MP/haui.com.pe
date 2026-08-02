@@ -62,7 +62,8 @@ const JobExperience: FC<Props> = ({ job }) => {
               href={websiteUrl}
               target='_blank'
               rel='noopener noreferrer'
-              className='text-fn2 hover:text-fn1 h-auto rounded-none px-0 py-0 font-mono text-sm underline-offset-4 hover:underline'
+              variant='link'
+              className='text-fn2 hover:text-fn1 font-mono text-sm'
               aria-label={`Visitar sitio de ${name}`}
             >
               <ArrowUpRightIcon className='size-4 max-sm:hidden' aria-hidden />
@@ -117,7 +118,7 @@ const JobExperience: FC<Props> = ({ job }) => {
                   href={facebookUrl}
                   target='_blank'
                   rel='noopener noreferrer'
-                  variant='border'
+                  variant='outline'
                   className='text-fn2 px-3'
                   aria-label={`Red social de ${name}`}
                 >
@@ -129,7 +130,7 @@ const JobExperience: FC<Props> = ({ job }) => {
                   href={externalUrl}
                   target='_blank'
                   rel='noopener noreferrer'
-                  variant='border'
+                  variant='outline'
                   className='text-fn2 px-3'
                   aria-label={`Sitio externo de ${name}`}
                 >

@@ -5,7 +5,7 @@ import { cn } from '@common/core/cn'
 import { NAV_ROUTES } from '@common/core/constants/routes'
 import { motion } from 'motion/react'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState, type FC } from 'react'
+import { type FC, useEffect, useState } from 'react'
 
 interface Props {
   className?: string
@@ -25,13 +25,7 @@ const NavLinks: FC<Props> = ({ className, isMobile = false, onNavigate }) => {
   }, [pathname])
 
   return (
-    <div
-      className={cn(
-        'flex items-center',
-        isMobile ? 'w-full flex-col gap-1' : 'flex-nowrap gap-1.5 p-1',
-        className
-      )}
-    >
+    <div className={cn('flex items-center', isMobile ? 'w-full flex-col gap-1' : 'flex-nowrap gap-1.5 p-1', className)}>
       {Object.entries(NAV_ROUTES).map(([key, value]) => {
         const hashTarget = value.path.includes('#') ? value.path.slice(value.path.indexOf('#')) : ''
         const isActive =
@@ -44,6 +38,7 @@ const NavLinks: FC<Props> = ({ className, isMobile = false, onNavigate }) => {
             key={key}
             href={value.path}
             onClick={onNavigate}
+            variant='ghost'
             noHover
             className={cn(
               'relative shrink-0 rounded-full px-3.5 py-2 whitespace-nowrap transition-colors duration-300',
@@ -58,9 +53,9 @@ const NavLinks: FC<Props> = ({ className, isMobile = false, onNavigate }) => {
                 transition={{ type: 'spring', stiffness: 380, damping: 30 }}
               />
             )}
-            <span className={cn('text-sm font-semibold tracking-wide whitespace-nowrap', isActive && 'text-gradient')}>
+            <p className={cn('text-sm font-semibold tracking-wide whitespace-nowrap', isActive && 'text-gradient')}>
               {value.label}
-            </span>
+            </p>
           </Button>
         )
       })}

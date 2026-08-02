@@ -9,7 +9,7 @@ const ThemeChanger = dynamic(() => import('./ThemeChanger'), {
   ssr: false,
   loading: () => {
     return (
-      <Button variant='border' className='px-2'>
+      <Button variant='outline' className='px-2'>
         <LoaderIcon className='text-fn2 animate-spin' />
       </Button>
     )
