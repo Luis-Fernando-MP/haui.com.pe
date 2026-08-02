@@ -50,8 +50,8 @@ const JobExperience: FC<Props> = ({ job }) => {
         more && 'border-fn2/15 bg-bg2/30'
       )}
     >
-      <div className='flex w-full items-center justify-between gap-4'>
-        <div className='flex min-w-0 w-full items-center gap-4'>
+      <div className='flex w-full items-start justify-between gap-4 md:items-center'>
+        <div className='flex min-w-0 flex-1 flex-col items-start gap-3 md:flex-row md:items-center md:gap-4'>
           <div className='bg-bg2 border-bg3/50 flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border p-2 md:size-12'>
             <Image
               src={logo}
@@ -74,7 +74,7 @@ const JobExperience: FC<Props> = ({ job }) => {
                 rel='noopener noreferrer'
                 variant='link'
                 showIconLink
-                className='text-fn2 hover:text-fn1 h-auto min-h-0 px-0 font-semibold transition-colors text-xs md:text-sm'
+                className='text-fn2 hover:text-fn1 h-auto min-h-0 px-0 font-semibold transition-colors text-xs md:text-sm whitespace-normal text-left'
                 aria-label={`Visitar sitio de ${name}`}
               >
                 {name}
@@ -105,7 +105,7 @@ const JobExperience: FC<Props> = ({ job }) => {
           </div>
         </div>
 
-        <div className='flex items-center gap-3 shrink-0'>
+        <div className='flex items-center gap-3 shrink-0 pt-1 md:pt-0'>
           <span className='bg-bg2/40 text-fn2 font-mono text-[11px] md:text-xs font-semibold tracking-wider px-2.5 py-1 rounded-lg hidden sm:inline-block'>
             {year}
           </span>

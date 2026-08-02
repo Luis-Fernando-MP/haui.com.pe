@@ -30,7 +30,7 @@ const Footer: FC = () => {
 
           <nav className='max-region:items-center flex flex-col gap-4' aria-label='Navegación del pie'>
             <h3 className='text-fn2 font-mono text-[11px] tracking-[0.18em] uppercase'>Explorar</h3>
-            <ul className='flex flex-col gap-2.5'>
+            <ul className='flex flex-col gap-2.5 max-region:items-center'>
               {navEntries.map(([key, { label, path }]) => (
                 <li key={key} className='list-none'>
                   <Button href={path} variant='link' className='text-fn2 hover:text-fn1 h-auto min-h-0 px-0 text-sm font-medium'>
@@ -43,7 +43,7 @@ const Footer: FC = () => {
 
           <div className='max-region:items-center flex flex-col gap-4'>
             <h3 className='text-fn2 font-mono text-[11px] tracking-[0.18em] uppercase'>Contacto</h3>
-            <ul className='flex flex-col gap-2.5'>
+            <ul className='flex flex-col gap-2.5 max-region:items-center'>
               {socialEntries.map(([key, value]) => (
                 <li key={key} className='list-none'>
                   <Button

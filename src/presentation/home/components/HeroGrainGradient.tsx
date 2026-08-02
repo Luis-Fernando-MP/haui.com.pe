@@ -101,7 +101,7 @@ const HeroGrainGradient: FC = () => {
   }, [colors])
 
   useEffect(() => {
-    if (!enabledGradient || reduceMotion || isMobile) {
+    if (!enabledGradient || reduceMotion) {
       setCanMountShader(false)
       return
     }
@@ -119,9 +119,9 @@ const HeroGrainGradient: FC = () => {
       if (idleId !== undefined && 'cancelIdleCallback' in window) window.cancelIdleCallback(idleId)
       if (timeoutId) clearTimeout(timeoutId)
     }
-  }, [enabledGradient, reduceMotion, isMobile])
+  }, [enabledGradient, reduceMotion])
 
-  if (!enabledGradient || reduceMotion || isMobile || colors.length === 0) return null
+  if (!enabledGradient || reduceMotion || colors.length === 0) return null
 
   const playing = canMountShader && isIntersecting && !paused
 

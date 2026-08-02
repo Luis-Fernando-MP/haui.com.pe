@@ -18,7 +18,7 @@ interface Props {
 const Bootstrap: FC<Props> = ({ children }) => {
   return (
     <html lang='es' className={`${bodyFonts} no-scrollbar`} data-lt-installed='true' suppressHydrationWarning>
-      <body className='no-scrollbar bg-bg1 relative flex min-h-screen w-screen flex-col overflow-x-clip'>
+      <body className='no-scrollbar bg-bg1 relative flex min-h-screen w-full flex-col overflow-x-clip'>
         <NextTopLoader color='var(--fn1)' showSpinner={false} />
         <Themes>
           <NavBar />
