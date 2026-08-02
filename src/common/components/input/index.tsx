@@ -6,10 +6,14 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 /**
- * Input
- * descripcion: campo de texto del design system haui
- * propiedades: atributos nativos de input + className
- * ejemplos: <Input type="email" placeholder="hola@mail.com" />
+ * Campo de texto del design system haui.
+ *
+ * @param props.type - Tipo nativo del input
+ * @param props.className - Clases adicionales
+ * @example
+ * ```tsx
+ * <Input type="email" placeholder="hola@mail.com" />
+ * ```
  */
 const Input: FC<Props> = ({ className, ...props }) => {
   return (

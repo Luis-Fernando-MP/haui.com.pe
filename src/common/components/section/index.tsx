@@ -9,13 +9,16 @@ interface Props extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
 }
 
 /**
- * Section
- * descripcion: contenedor de sección con título/subtítulo opcionales
- * propiedades:
- * - title?: ReactNode — título principal
- * - subtitle?: ReactNode — texto de apoyo
- * - as?: "section" | "article" — default "section"
- * ejemplos: <Section title="Trabajo">...</Section>
+ * Contenedor de sección con título y subtítulo opcionales.
+ *
+ * @param props.title - Título principal
+ * @param props.subtitle - Texto de apoyo
+ * @param props.as - Elemento semántico: `"section"` | `"article"`
+ * @default props.as - `"section"`
+ * @example
+ * ```tsx
+ * <Section title="Trabajo">contenido</Section>
+ * ```
  */
 const Section: FC<Props> = ({ children, title, subtitle, as = 'section', className, ...props }) => {
   const Tag = as

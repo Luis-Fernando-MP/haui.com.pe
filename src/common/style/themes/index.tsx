@@ -9,11 +9,13 @@ interface Props {
 }
 
 /**
- * Themes
- * descripcion: provider de temas haui (next-themes) con la lista de temas del portafolio
- * propiedades:
- * - children?: ReactNode — árbol de la app
- * ejemplos: <Themes>{children}</Themes>
+ * Provider de temas haui (`next-themes`) con la lista del portafolio.
+ *
+ * @param props.children - Árbol de la app
+ * @example
+ * ```tsx
+ * <Themes>{children}</Themes>
+ * ```
  */
 const Themes: FC<Props> = ({ children }) => {
   return (

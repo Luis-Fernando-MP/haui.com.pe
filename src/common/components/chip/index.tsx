@@ -10,12 +10,16 @@ interface Props {
 }
 
 /**
- * Chip
- * descripcion: pill para tags/tecnologías; sin onClick es solo visual
- * propiedades:
- * - active?: boolean — estilo activo — default false
- * - onClick?: () => void — si existe, es interactivo
- * ejemplos: <Chip active>React</Chip>
+ * Pill para tags o tecnologías. Sin `onClick` es solo visual (`span`).
+ *
+ * @param props.active - Aplica el estilo activo
+ * @param props.onClick - Si existe, el chip es interactivo (botón)
+ * @default props.active - `false`
+ * @example
+ * ```tsx
+ * <Chip active>React</Chip>
+ * <Chip onClick={toggle}>Vue</Chip>
+ * ```
  */
 const Chip: FC<Props> = ({ children, className, active = false, onClick }) => {
   const styles = cn(

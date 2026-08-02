@@ -11,11 +11,14 @@ interface Props {
 }
 
 /**
- * Popover
- * descripcion: panel flotante animado para menús contextuales
- * propiedades:
- * - open: boolean — controla visibilidad
- * ejemplos: <Popover open={open}>...</Popover>
+ * Panel flotante animado para menús contextuales.
+ *
+ * @param props.open - Controla la visibilidad
+ * @param props.className - Clases adicionales
+ * @example
+ * ```tsx
+ * <Popover open={open}>contenido</Popover>
+ * ```
  */
 const Popover: FC<Props> = ({ open, children, className }) => {
   return (

@@ -21,15 +21,20 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /**
- * Button
- * descripcion: botón de UI; si recibe href renderiza Link de Next.js con el mismo estilo
- * propiedades:
- * - href?: string — si existe, el nodo es un Link
- * - target?: string — target del Link (ej. _blank)
- * - rel?: string — rel del Link
- * - variant?: "normal" | "border" | "active" | "gradient" | "transparent" — default "transparent"
- * - noHover?: boolean — default false
- * ejemplos: <Button variant="border">Ok</Button> / <Button href="/about">About</Button>
+ * Botón de UI; si recibe `href` renderiza un `Link` de Next.js con el mismo estilo.
+ *
+ * @param props.href - Si existe, el nodo es un Link
+ * @param props.target - Target del Link (ej. `_blank`)
+ * @param props.rel - Rel del Link
+ * @param props.variant - Look: `"normal"` | `"border"` | `"active"` | `"gradient"` | `"transparent"`
+ * @param props.noHover - Desactiva el hover por opacity
+ * @default props.variant - `"transparent"`
+ * @default props.noHover - `false`
+ * @example
+ * ```tsx
+ * <Button variant="border">Ok</Button>
+ * <Button href="/about">About</Button>
+ * ```
  */
 const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   { children, className = '', href, target, rel, variant = 'transparent', noHover = false, type = 'button', ...props },

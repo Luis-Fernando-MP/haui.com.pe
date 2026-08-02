@@ -7,11 +7,15 @@ interface Props extends HTMLAttributes<HTMLHeadingElement> {
 }
 
 /**
- * Title
- * descripcion: título de sección del portafolio con tipografía display equilibrada
- * propiedades:
- * - as?: "h1" | "h2" | "h3" — nivel semántico — default "h2"
- * ejemplos: <Title>Hablemos</Title> / <Title as="h1">…</Title>
+ * Título de sección con tipografía display equilibrada.
+ *
+ * @param props.as - Nivel semántico: `"h1"` | `"h2"` | `"h3"`
+ * @default props.as - `"h2"`
+ * @example
+ * ```tsx
+ * <Title>Hablemos</Title>
+ * <Title as="h1">Haui</Title>
+ * ```
  */
 const Title: FC<Props> = ({ className, children, as = 'h2', ...props }) => {
   const Tag = as

@@ -10,11 +10,14 @@ interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
 }
 
 /**
- * Select
- * descripcion: selector nativo estilizado con tokens haui
- * propiedades:
- * - options: { value, label }[] — opciones del select
- * ejemplos: <Select options={[{ value: "a", label: "A" }]} />
+ * Selector nativo estilizado con tokens haui.
+ *
+ * @param props.options - Opciones `{ value, label }[]`
+ * @param props.className - Clases adicionales
+ * @example
+ * ```tsx
+ * <Select options={[{ value: 'a', label: 'A' }]} />
+ * ```
  */
 const Select: FC<Props> = ({ className, options, ...props }) => {
   return (

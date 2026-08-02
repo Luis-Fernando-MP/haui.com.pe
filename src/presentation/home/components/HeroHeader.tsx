@@ -2,12 +2,6 @@ import Button from '@common/components/button'
 import Image from '@common/components/image'
 import type { FC } from 'react'
 
-/**
- * HeroHeader
- * descripcion: hero de la home con marca, nombre y disponibilidad
- * propiedades: ninguna
- * ejemplos: <HeroHeader />
- */
 const HeroHeader: FC = () => {
   return (
     <header className='relative flex min-h-[78vh] w-full items-center justify-center overflow-x-hidden px-5 pt-10 max-lg:flex-col max-lg:gap-10 md:gap-20 md:pt-6'>

@@ -4,10 +4,10 @@ description: >
   jujufer's architecture and coding-style philosophy for any project (React,
   TypeScript, Next.js, or others). Covers Zustand local-first, Context micro-only,
   co-location, native browser APIs, early returns with no else, no micro-types or
-  trivial utils, boolean && rendering, Spanish JSDoc only on reusable
-  components/utilities, type inference first, atomic components, and lean
-  performance. Use whenever writing, reviewing, refactoring, or designing
-  components, stores, typing, folder structure, or UI logic.
+  trivial utils, boolean && rendering, proper JSDoc (`@param`, `@example`) only
+  on reusable components/utilities, type inference first, atomic components,
+  and lean performance. Use whenever writing, reviewing, refactoring, or
+  designing components, stores, typing, folder structure, or UI logic.
 license: MIT
 metadata:
   author: jujufer
@@ -72,12 +72,13 @@ if (list.length === 0) return null
 {open && <Dialog />}
 ```
 
-### 1.5 Spanish JSDoc (only where it earns its place)
+### 1.5 JSDoc (only where it earns its place)
 
 - Only on reusable components or complex utilities worth documenting.
 - **Never** on types / interfaces / type aliases.
 - Place it **on the component or function**, not on `Props`.
-- Format (labels stay in Spanish as required by the author):
+- Use **real JSDoc tags** (`@description`, `@param`, `@default`, `@example`, `@returns`, …). Never invent pseudo-fields like `descripcion:`, `propiedades:`, `ejemplos:`.
+- Prose inside the tags may be in Spanish; the tags themselves are standard JSDoc/`@`.
 
 ```ts
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -86,23 +87,28 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /**
- * Button
- * descripcion: botón de UI; si recibe href renderiza Link de Next.js con el mismo estilo
- * propiedades:
- * - href?: string — si existe, el nodo es un Link
- * - variant?: "normal" | "border" | "active" | "gradient" | "transparent" — default "transparent"; define el look
- * ejemplos: <Button variant="border">Ok</Button> / <Button href="/about">About</Button>
+ * Botón de UI; si recibe `href` renderiza un `Link` de Next.js con el mismo estilo.
+ *
+ * @param props.href - Si existe, el nodo es un Link
+ * @param props.variant - Look del botón: `"normal"` | `"border"` | `"active"` | `"gradient"` | `"transparent"`
+ * @default props.variant - `"transparent"`
+ * @example
+ * ```tsx
+ * <Button variant="border">Ok</Button>
+ * <Button href="/about">About</Button>
+ * ```
  */
 const Button: FC<Props> = ({ href, children, ...props }) => { ... }
 
 export default Button
 ```
 
-JSDoc must include:
-1. title (component/utility name)
-2. `descripcion:` short and precise
-3. `propiedades:` name, type, default, what it does; if a union, list values (`"active"`, `"inactive"`, …)
-4. `ejemplos:` usage examples
+Required shape:
+1. First line: short summary of what it does
+2. `@param` for each public prop (type + meaning; list union values when relevant)
+3. `@default` when a prop has a non-obvious default
+4. `@example` with a fenced code block
+5. Skip empty noise like `@param` lists that say “none”
 
 ### 1.6 No micro-types
 
@@ -316,7 +322,7 @@ Prefer the platform over heavy libraries.
 - [ ] Prop-drilling store data? Child reads the store with a fine selector.
 - [ ] Context on a page/section? Move to Zustand.
 - [ ] Empty/premature `hooks/` `helpers/` `store/` folders? Do not create them.
-- [ ] JSDoc on a type? Remove it; JSDoc only on reusable component/utility, in Spanish, per §1.5.
+- [ ] JSDoc on a type? Remove it. On reusable code only: real `@param` / `@example` tags (§1.5), never pseudo `descripcion:` / `propiedades:`.
 - [ ] Can a native API or usehooks-ts cover it? Prefer that.
 
 ---

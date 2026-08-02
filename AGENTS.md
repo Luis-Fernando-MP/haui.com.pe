@@ -4,7 +4,7 @@ Personal portfolio (Next.js 16 App Router, React 19, Tailwind v4). Two real rout
 
 ## Coding style
 
-Always apply [`.agents/skills/coding-preferences/SKILL.md`](.agents/skills/coding-preferences/SKILL.md) (author: **jujufer**). That skill wins over others on style/architecture conflicts: Zustand local-first, Context micro-only, co-location, native browser APIs, early returns with no `else`, no micro-types/trivial utils, boolean `&&` rendering, Spanish JSDoc only on reusable components.
+Always apply [`.agents/skills/coding-preferences/SKILL.md`](.agents/skills/coding-preferences/SKILL.md) (author: **jujufer**). That skill wins over others on style/architecture conflicts: Zustand local-first, Context micro-only, co-location, native browser APIs, early returns with no `else`, no micro-types/trivial utils, boolean `&&` rendering, proper JSDoc (`@param`, `@default`, `@example`) only on reusable components — never pseudo fields like `descripcion:` / `propiedades:`.
 
 ## Stack
 

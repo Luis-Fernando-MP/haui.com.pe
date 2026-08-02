@@ -14,13 +14,18 @@ interface Props {
 }
 
 /**
- * Dialog
- * descripcion: diálogo modal con AnimatePresence; usa tokens haui/shadcn
- * propiedades:
- * - open: boolean — controla visibilidad
- * - onClose: () => void — cierra al overlay/escape
- * - title?: string — título accesible
- * ejemplos: <Dialog open={open} onClose={close}>contenido</Dialog>
+ * Diálogo modal con `AnimatePresence` y tokens haui.
+ *
+ * @param props.open - Controla la visibilidad
+ * @param props.onClose - Cierra al hacer clic en el overlay
+ * @param props.title - Etiqueta accesible del diálogo
+ * @param props.className - Clases del panel
+ * @example
+ * ```tsx
+ * <Dialog open={open} onClose={close} title="Detalle">
+ *   contenido
+ * </Dialog>
+ * ```
  */
 const Dialog: FC<Props> = ({ open, onClose, children, className, title }) => {
   if (typeof document === 'undefined') return null

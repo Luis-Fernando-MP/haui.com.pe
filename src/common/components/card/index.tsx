@@ -6,10 +6,13 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * Card
- * descripcion: contenedor de contenido con borde del design system haui
- * propiedades: className y atributos HTML de div
- * ejemplos: <Card className="p-5">contenido</Card>
+ * Contenedor de contenido con borde del design system haui.
+ *
+ * @param props.className - Clases adicionales
+ * @example
+ * ```tsx
+ * <Card className="p-5">contenido</Card>
+ * ```
  */
 const Card: FC<Props> = ({ children, className, ...props }) => {
   return (

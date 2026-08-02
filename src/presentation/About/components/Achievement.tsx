@@ -6,12 +6,6 @@ import { memo, type FC } from 'react'
 
 type Props = Achievements
 
-/**
- * Achievement
- * descripcion: tarjeta de logro; abre FocusGallery por store sin montar imágenes ocultas
- * propiedades: Achievements (name, path, AdditionalImages, achievementType, ...)
- * ejemplos: <Achievement {...achievement} />
- */
 const Achievement: FC<Props> = props => {
   const { achievementType, name, devContribution, acquisitionDate, path, AdditionalImages, actionLink } = props
   const open = useFocusGalleryStore(s => s.open)
