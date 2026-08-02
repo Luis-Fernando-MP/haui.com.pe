@@ -10,43 +10,55 @@ import type { FC } from 'react'
  */
 const HeroHeader: FC = () => {
   return (
-    <article className='relative flex min-h-[72vh] w-full items-center justify-center gap-16 overflow-x-hidden px-5 pt-8 max-lg:flex-col max-lg:gap-8 md:pt-4'>
+    <header className='relative flex min-h-[78vh] w-full items-center justify-center overflow-x-hidden px-5 pt-10 max-lg:flex-col max-lg:gap-10 md:gap-20 md:pt-6'>
       <Image
         src='/logo-big.webp'
-        width={340}
-        height={340}
-        alt='logo principal'
+        width={360}
+        height={360}
+        alt='Logo de Haui'
         priority
-        className='contain pointer-events-none relative z-[1] select-none max-lg:h-[180px] max-lg:w-[180px]'
+        className='pointer-events-none relative z-[1] h-auto w-[220px] object-contain select-none max-lg:w-[160px] md:w-[320px]'
       />
 
-      <div className='relative z-[1] flex w-fit flex-col gap-4 max-lg:items-center max-lg:text-center'>
-        <p className='text-fn2 font-mono text-sm tracking-wide'>Portfolio / 2026</p>
-        <h1 className='text-6xl leading-[1.05] font-extrabold md:text-7xl'>
+      <div className='relative z-[1] flex max-w-[520px] flex-col gap-5 max-lg:items-center max-lg:text-center'>
+        <p className='text-fn2 font-mono text-xs tracking-[0.2em] uppercase'>Portfolio · 2026</p>
+
+        <h1 className='text-pretty text-6xl leading-[0.98] font-extrabold tracking-tight md:text-7xl lg:text-8xl'>
           <span className='text-gradient'>LUIS</span>
-          <br /> FERNANDO
+          <br />
+          FERNANDO
         </h1>
-        <p className='text-fn2 text-h4 max-w-[440px] font-mono'>
-          <strong className='text-fn1'>Desarrollador y diseñador de aplicaciones full stack</strong>, con foco en{' '}
-          <strong className='text-fn1'>aplicaciones web</strong> funcionales, interactivas y centradas en el usuario.
+
+        <p className='text-fn2 text-pretty max-w-[440px] font-mono text-base leading-relaxed md:text-lg'>
+          <strong className='text-fn1 font-semibold'>Desarrollador y diseñador full stack</strong> con foco en aplicaciones web
+          funcionales, interactivas y centradas en el usuario.
         </p>
-        <Button href='#contact' variant='border' className='mt-1'>
-          <span className='text-[0.5rem] text-green-500' aria-hidden>
-            ●
-          </span>
-          <span>Disponible para trabajar</span>
-        </Button>
+
+        <div className='mt-1 flex flex-wrap items-center gap-3 max-lg:justify-center'>
+          <Button href='#contact' variant='active' className='px-5'>
+            <span className='relative flex h-2 w-2'>
+              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60 motion-reduce:animate-none' />
+              <span className='relative inline-flex h-2 w-2 rounded-full bg-green-500' />
+            </span>
+            Disponible para trabajar
+          </Button>
+          <Button href='#experience' variant='border' className='px-5'>
+            Ver experiencia
+          </Button>
+        </div>
       </div>
 
-      <div
+      <p
         aria-hidden
-        className='font-rubik text-fn2 pointer-events-none absolute top-1/2 left-1/2 -z-0 -translate-x-1/2 -translate-y-1/2 text-center text-[8rem] leading-[0.95] opacity-10 select-none md:text-[10rem]'
+        className='font-rubik text-fn2 pointer-events-none absolute top-1/2 left-1/2 -z-0 -translate-x-1/2 -translate-y-1/2 text-center text-[7rem] leading-[0.92] opacity-[0.07] select-none md:text-[9.5rem]'
       >
         LUIS
-        <br /> FERNANDO
-        <br /> DEVELOPER
-      </div>
-    </article>
+        <br />
+        FERNANDO
+        <br />
+        DEVELOPER
+      </p>
+    </header>
   )
 }
 

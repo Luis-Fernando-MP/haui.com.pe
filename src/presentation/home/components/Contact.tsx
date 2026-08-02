@@ -1,57 +1,64 @@
 import Button from '@common/components/button'
 import Title from '@common/components/title'
 import { SOCIAL } from '@common/core/constants'
-import { ArrowRightIcon } from 'lucide-react'
+import { ArrowUpRightIcon } from 'lucide-react'
 import type { FC } from 'react'
 
 const Contact: FC = () => {
   const socialList = Object.entries(SOCIAL).slice(1)
 
   return (
-    <article
+    <section
       id='contact'
-      className='region max-region:px-5 max-region:flex-col max-region:gap-10 max-region:text-center relative mx-auto flex items-start justify-between gap-12'
+      className='region max-region:px-5 max-region:flex-col max-region:items-center max-region:gap-12 max-region:text-center relative mx-auto flex scroll-mt-28 items-end justify-between gap-14'
     >
-      <section className='max-region:items-center flex flex-col gap-8'>
-        <div className='flex flex-col gap-3'>
+      <div className='max-region:items-center flex flex-col gap-8'>
+        <div className='flex flex-col gap-4'>
+          <p className='text-fn2 font-mono text-xs tracking-[0.18em] uppercase'>Contacto</p>
           <Title>Hablemos</Title>
-          <p className='text-fn2 max-w-[400px] font-mono'>
-            Siempre abierto a nuevas oportunidades, colaboraciones y charlas sobre tecnología y diseño.
+          <p className='text-fn2 text-pretty max-w-[400px] font-mono text-base leading-relaxed'>
+            Abierto a oportunidades, colaboraciones y conversaciones sobre tecnología y diseño.
           </p>
         </div>
 
-        <Button href={SOCIAL.Gmail.url} target='_blank' rel='noopener noreferrer' variant='border' className='font-mono'>
-          <span>{SOCIAL.Gmail.display}</span>
-          <ArrowRightIcon />
+        <Button
+          href={SOCIAL.Gmail.url}
+          target='_blank'
+          rel='noopener noreferrer'
+          variant='active'
+          className='group px-5 font-mono'
+        >
+          {SOCIAL.Gmail.display}
+          <ArrowUpRightIcon className='size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none' aria-hidden />
         </Button>
-      </section>
+      </div>
 
-      <section className='relative flex flex-col gap-4'>
-        <h3 className='text-fn2 font-light'>En otros espacios:</h3>
+      <div className='relative flex w-full max-w-[400px] flex-col gap-4'>
+        <h3 className='text-fn2 text-sm font-medium tracking-wide'>En otros espacios</h3>
 
-        <ul className='flex max-w-[400px] flex-wrap gap-3 max-sm:justify-center'>
+        <ul className='grid grid-cols-2 gap-3 max-sm:grid-cols-1'>
           {socialList.map(([key, value]) => (
-            <li key={`${key}-contact`} className='w-full max-w-[180px]'>
+            <li key={`${key}-contact`}>
               <Button
                 href={value.url}
                 target='_blank'
                 rel='noopener noreferrer'
                 variant='border'
-                className='border-bg3 bg-bg1 hover:bg-bg2 h-full w-full flex-col items-start rounded-xl px-5 py-6 transition-colors'
+                className='border-bg3 bg-bg1/80 hover:border-fn2/40 hover:bg-bg2 focus-visible:border-fn2 group h-full w-full flex-col items-start gap-1 rounded-2xl px-5 py-5 transition-[background-color,border-color] duration-200'
               >
-                <span className='text-h3 font-medium'>{key}</span>
-                <span className='text-fn2 text-sm'>{value.display}</span>
+                <span className='text-fn1 text-base font-semibold'>{key}</span>
+                <span className='text-fn2 truncate text-sm'>{value.display}</span>
               </Button>
             </li>
           ))}
         </ul>
-      </section>
+      </div>
 
       <div
         aria-hidden
-        className='bg-fn2 pointer-events-none absolute top-1/2 -left-1/12 -z-10 h-[220px] w-[220px] -translate-y-1/2 rounded-full opacity-40 blur-[120px] select-none'
+        className='bg-fn2 pointer-events-none absolute top-1/2 -left-8 -z-10 h-[200px] w-[200px] -translate-y-1/2 rounded-full opacity-30 blur-[100px] select-none max-lg:left-1/2 max-lg:-translate-x-1/2'
       />
-    </article>
+    </section>
   )
 }
 

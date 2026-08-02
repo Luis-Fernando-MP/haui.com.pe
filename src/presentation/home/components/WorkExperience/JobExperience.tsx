@@ -1,130 +1,146 @@
 'use client'
 
+import Button from '@common/components/button'
+import Chip from '@common/components/chip'
 import { cn } from '@common/core/cn'
 import { HistoryJob } from '@common/core/constants/historyJobs'
-import Button from '@common/components/button'
 import { ArrowUpRightIcon, GlobeIcon, Share2Icon } from 'lucide-react'
-import Link from 'next/link'
-import { type FC, type MouseEvent } from 'react'
+import type { FC, KeyboardEvent, MouseEvent } from 'react'
 
 import useJobExperienceStore from '../../store/useJobExperience'
 
-interface JobExperienceProps {
+interface Props {
   job: HistoryJob
 }
 
-const JobExperience: FC<JobExperienceProps> = ({ job }) => {
+const JobExperience: FC<Props> = ({ job }) => {
   const selectedJob = useJobExperienceStore(s => s.selectedJob)
   const setSelectedJob = useJobExperienceStore(s => s.setSelectedJob)
 
   const { year, name, position, websiteUrl, facebookUrl, externalUrl, Activities, usedTools, Extra, period } = job
-
   const more = selectedJob === name
+  const listOfTools = more ? usedTools : usedTools.slice(0, 5)
 
-  const handleToggle = (e: MouseEvent<HTMLLIElement>): void => {
-    const target = e.target as HTMLElement
-    if (target.closest('a')) return
+  const handleToggle = (e: MouseEvent<HTMLDivElement>): void => {
+    if ((e.target as HTMLElement).closest('a,button')) return
     setSelectedJob(name)
   }
 
-  const listOfTools = more ? usedTools : usedTools.slice(0, 5)
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>): void => {
+    if (e.key !== 'Enter' && e.key !== ' ') return
+    e.preventDefault()
+    setSelectedJob(name)
+  }
 
   return (
-    <li
-      className={cn('border-bg3 mt-0 w-full border-b py-10 last:border-b-0 md:py-12', more && 'bg-bg2')}
-      onClick={handleToggle}
-      aria-expanded={more}
+    <div
       role='button'
+      tabIndex={0}
+      aria-expanded={more}
+      aria-label={`${position} en ${name}. ${more ? 'Contraer' : 'Expandir'} detalles`}
+      onClick={handleToggle}
+      onKeyDown={handleKeyDown}
+      className={cn(
+        'border-bg3 group w-full border-b py-8 last:border-b-0 md:py-10',
+        'outline-none transition-colors duration-200',
+        'hover:bg-bg2/60 focus-visible:bg-bg2/60 focus-visible:ring-fn2/40 focus-visible:ring-2 focus-visible:ring-inset',
+        more && 'bg-bg2'
+      )}
     >
-      <div className='region max-region:max-w-[700px] max-region:flex max-region:flex-col mx-auto grid grid-cols-[100px_1fr_300px] gap-6 max-md:items-center md:gap-8'>
-        <time className='text-h2 text-fn2 order-1 w-fit font-mono font-light' dateTime={year.toString()}>
+      <div className='region max-region:flex max-region:max-w-[700px] max-region:flex-col mx-auto grid grid-cols-[96px_1fr_280px] items-start gap-6 max-md:items-center md:gap-8'>
+        <time
+          className='text-fn2 order-1 w-fit font-mono text-2xl font-light tabular-nums md:text-3xl'
+          dateTime={year.toString()}
+        >
           {year}
         </time>
 
-        <section className='order-2 flex w-fit flex-col gap-6'>
-          <div className='flex flex-col gap-2.5 max-md:items-center max-md:text-center'>
-            <h2 className='max-w-[400px] text-2xl font-medium max-sm:text-xl'>{position}</h2>
-            <Link
+        <div className='order-2 flex min-w-0 flex-col gap-5'>
+          <div className='flex flex-col gap-2 max-md:items-center max-md:text-center'>
+            <h3 className='text-pretty max-w-[420px] text-xl font-semibold tracking-tight md:text-2xl'>{position}</h3>
+            <Button
               href={websiteUrl}
               target='_blank'
               rel='noopener noreferrer'
-              className='text-fn2 flex w-fit items-center justify-center gap-2 font-mono underline-offset-4 hover:underline'
+              className='text-fn2 hover:text-fn1 h-auto rounded-none px-0 py-0 font-mono text-sm underline-offset-4 hover:underline'
               aria-label={`Visitar sitio de ${name}`}
             >
-              <ArrowUpRightIcon className='max-sm:hidden' />
-              <h5 className='max-sm:underline'>{name}</h5>
-            </Link>
+              <ArrowUpRightIcon className='size-4 max-sm:hidden' aria-hidden />
+              {name}
+            </Button>
           </div>
 
-          <ul
-            className={cn(
-              'text-fn2 relative flex max-h-[100px] list-disc flex-col gap-3.5 overflow-y-clip pl-6 font-mono',
-              more && 'max-h-max'
-            )}
-          >
-            {Activities}
-            {!more && (
-              <div className='from-bg1 pointer-events-none absolute bottom-0 left-0 h-[50px] w-full bg-gradient-to-t from-0% to-transparent to-70%'></div>
-            )}
-          </ul>
-
-          {more && (
-            <ul className='text-fn2 relative flex max-h-max list-disc flex-col gap-3.5 overflow-y-clip pl-6 font-mono'>
-              {Extra}
+          <div className='relative'>
+            <ul
+              className={cn(
+                'text-fn2 flex max-h-[96px] list-disc flex-col gap-2.5 overflow-hidden pl-5 font-mono text-sm leading-relaxed',
+                more && 'max-h-none overflow-visible'
+              )}
+            >
+              {Activities}
             </ul>
-          )}
-        </section>
+            {!more && (
+              <div
+                aria-hidden
+                className='from-bg1 group-hover:from-bg2 pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t to-transparent'
+              />
+            )}
+          </div>
 
-        <section className='order-3 flex h-fit w-fit flex-col gap-6 max-md:text-center'>
-          <div className='flex flex-wrap gap-3.5 max-md:items-center max-md:justify-center'>
+          {more && Extra && (
+            <ul className='text-fn2 flex list-disc flex-col gap-2.5 pl-5 font-mono text-sm leading-relaxed'>{Extra}</ul>
+          )}
+        </div>
+
+        <div className='order-3 flex h-fit w-full flex-col gap-4 max-md:items-center max-md:text-center'>
+          <div className='flex flex-wrap gap-2 max-md:justify-center'>
             {listOfTools.map(tool => (
-              <Button className='text-fn2' key={`${tool}-${name}`}>
+              <Chip key={`${tool}-${name}`} className='pointer-events-none text-xs'>
                 {tool}
-              </Button>
+              </Chip>
             ))}
             {!more && usedTools.length > 5 && (
-              <Button className='text-fn2' variant='border'>
-                +{usedTools.length - 5}
-              </Button>
+              <Chip className='pointer-events-none text-xs'>+{usedTools.length - 5}</Chip>
             )}
           </div>
 
           {more && (
-            <time className='text-h5 text-fn2 px-4 font-mono' dateTime={period.toString()}>
+            <time className='text-fn2 px-1 font-mono text-xs tracking-wide' dateTime={period.toString()}>
               {period}
             </time>
           )}
 
-          {more && (
+          {more && (facebookUrl || externalUrl) && (
             <div className='flex flex-wrap gap-1 max-md:justify-center'>
               {facebookUrl && (
                 <Button
                   href={facebookUrl}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='text-fn2'
-                  aria-label={`Visitar Facebook de ${name}`}
+                  variant='border'
+                  className='text-fn2 px-3'
+                  aria-label={`Red social de ${name}`}
                 >
-                  <Share2Icon />
+                  <Share2Icon aria-hidden />
                 </Button>
               )}
-
               {externalUrl && (
                 <Button
                   href={externalUrl}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='text-fn2'
-                  aria-label={`Visitar sitio de ${name}`}
+                  variant='border'
+                  className='text-fn2 px-3'
+                  aria-label={`Sitio externo de ${name}`}
                 >
-                  <GlobeIcon />
+                  <GlobeIcon aria-hidden />
                 </Button>
               )}
             </div>
           )}
-        </section>
+        </div>
       </div>
-    </li>
+    </div>
   )
 }
 

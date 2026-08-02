@@ -1,37 +1,41 @@
 'use client'
 
-import { testimonies } from '@common/core/constants/testimonies'
 import Button from '@common/components/button'
 import CardTabs from '@common/components/card-tabs'
-import { Image } from '@unpic/react/nextjs'
+import Image from '@common/components/image'
+import { testimonies } from '@common/core/constants/testimonies'
 import { useMediaQuery } from 'usehooks-ts'
 
 import TestimonyCard from './TestimonyCard'
 
 const TestimoniesList = () => {
-  const matches = useMediaQuery('(max-width: 768px)')
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   return (
     <CardTabs
-      orientation={matches ? 'horizontal' : 'vertical'}
+      orientation={isMobile ? 'horizontal' : 'vertical'}
       items={testimonies}
       tabsClassName='max-md:max-w-full'
       renderContent={item => <TestimonyCard testimony={item} />}
-      renderTab={(item, isActive) => {
-        return (
-          <div className={`rounded-full p-0.5 ease-in ${isActive ? 'gradient animate-[spin_5s]' : 'border-bg3 border'}`}>
-            <Button className='bg-bg1 p-1.5 max-md:w-[38px]'>
-              <Image
-                className='aspect-square h-[28px] w-[28px] rounded-full'
-                src={item.photo}
-                width={28}
-                height={28}
-                alt={item.autor}
-              />
-            </Button>
-          </div>
-        )
-      }}
+      renderTab={(item, isActive) => (
+        <div
+          className={
+            isActive
+              ? 'gradient rounded-full p-[2px] shadow-[0_0_0_1px_color-mix(in_oklab,var(--fn1)_12%,transparent)]'
+              : 'border-bg3 rounded-full border p-[2px]'
+          }
+        >
+          <Button className='bg-bg1 p-1.5 max-md:w-[38px]' aria-label={`Ver testimonio de ${item.autor}`}>
+            <Image
+              className='aspect-square size-7 rounded-full object-cover'
+              src={item.photo}
+              width={28}
+              height={28}
+              alt=''
+            />
+          </Button>
+        </div>
+      )}
     />
   )
 }

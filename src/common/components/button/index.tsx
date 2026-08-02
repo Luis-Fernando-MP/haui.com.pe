@@ -36,7 +36,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   ref
 ) {
   const merged = cn(
-    'w-fit focus:outline-none flex items-center gap-2 rounded-full px-4 py-2 h-fit',
+    'w-fit outline-none focus-visible:ring-2 focus-visible:ring-fn2/50 focus-visible:ring-offset-2 focus-visible:ring-offset-bg1 flex items-center gap-2 rounded-full px-4 py-2 h-fit transition-opacity duration-200',
     variants[variant],
     !noHover && 'hover:opacity-90',
     className
