@@ -1,22 +1,23 @@
 'use client'
 
+import Button from '@common/components/button'
 import { cn } from '@common/core/cn'
 import { XIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import { Popover as PopoverPrimitive } from 'radix-ui'
 import {
+  useState,
   type ComponentProps,
   type FC,
   type HTMLAttributes,
   type ReactNode
 } from 'react'
 
-import Button from '@common/components/button'
-
 const ease = [0.22, 1, 0.36, 1] as const
 
 /**
  * Popup flotante (Radix Popover + tokens haui). Compound: `Header` / `Content` / `Footer`.
+ * Caja negra: gestiona open/focus y no se cierra durante `theme-transition`.
  *
  * @example
  * ```tsx
@@ -35,8 +36,30 @@ const ease = [0.22, 1, 0.36, 1] as const
  * </Popup>
  * ```
  */
-const PopupRoot: FC<ComponentProps<typeof PopoverPrimitive.Root>> = props => {
-  return <PopoverPrimitive.Root data-slot='popup' {...props} />
+const PopupRoot: FC<ComponentProps<typeof PopoverPrimitive.Root>> = ({
+  modal = false,
+  open,
+  defaultOpen = false,
+  onOpenChange,
+  ...props
+}) => {
+  const [internalOpen, setInternalOpen] = useState(defaultOpen)
+  const isControlled = open != null
+  const resolvedOpen = isControlled ? open : internalOpen
+
+  return (
+    <PopoverPrimitive.Root
+      data-slot='popup'
+      modal={modal}
+      open={resolvedOpen}
+      onOpenChange={next => {
+        if (!next && document.documentElement.classList.contains('theme-transition')) return
+        if (!isControlled) setInternalOpen(next)
+        onOpenChange?.(next)
+      }}
+      {...props}
+    />
+  )
 }
 
 const PopupTrigger: FC<ComponentProps<typeof PopoverPrimitive.Trigger>> = props => {
@@ -55,6 +78,8 @@ const PopupContent: FC<PopupContentProps> = ({
   className,
   align = 'end',
   sideOffset = 8,
+  onOpenAutoFocus,
+  onCloseAutoFocus,
   children,
   ...props
 }) => {
@@ -64,6 +89,14 @@ const PopupContent: FC<PopupContentProps> = ({
         data-slot='popup-content'
         align={align}
         sideOffset={sideOffset}
+        onOpenAutoFocus={event => {
+          event.preventDefault()
+          onOpenAutoFocus?.(event)
+        }}
+        onCloseAutoFocus={event => {
+          event.preventDefault()
+          onCloseAutoFocus?.(event)
+        }}
         asChild
         {...props}
       >

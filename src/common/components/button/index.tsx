@@ -5,22 +5,22 @@ import Link from 'next/link'
 import { type ButtonHTMLAttributes, type MouseEventHandler, type ReactNode, forwardRef } from 'react'
 
 const buttonVariants = cva(
-  'rounded-full text-sm font-medium whitespace-nowrap outline-none transition-[background-color,border-color,opacity,color,text-decoration-color] duration-200 focus-visible:ring-2 focus-visible:ring-fn2/50 focus-visible:ring-offset-2 focus-visible:ring-offset-bg1 disabled:pointer-events-none disabled:opacity-50',
+  'rounded-xl text-sm font-medium whitespace-nowrap outline-none transition-[background-color,border-color,opacity,color,text-decoration-color] duration-200 focus-visible:ring-2 focus-visible:ring-fn2/50 focus-visible:ring-offset-2 focus-visible:ring-offset-bg1 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
         default: 'bg-fn1 text-bg1 hover:bg-fn1/90',
         secondary: 'bg-bg2 text-fn1 hover:bg-bg3',
         destructive: 'bg-semantic-danger text-bg1 hover:bg-semantic-danger/90',
-        outline: 'border-bg3 bg-bg1 text-fn1 border-[1.5px] hover:border-fn2/40 hover:bg-bg2',
+        outline: 'border-bg3 bg-bg1 text-fn1 border hover:border-fn2/45 hover:bg-bg2',
         ghost: 'text-fn1 hover:bg-bg2',
         link: 'text-fn1 min-h-0 h-auto w-fit rounded-none px-0 underline-offset-4 hover:underline'
       },
       size: {
-        default: 'min-h-9 h-9 w-fit px-4 py-2',
-        sm: 'min-h-9 h-9 w-fit px-3 text-xs',
-        lg: 'min-h-9 h-9 w-fit px-6 text-base',
-        icon: 'size-9 shrink-0 p-0'
+        sm: 'min-h-7 h-7 w-fit px-2.5 text-xs gap-1',
+        md: 'min-h-8 h-8 w-fit px-3 text-sm gap-1.5',
+        lg: 'min-h-9 h-9 w-fit px-4 text-sm gap-1.5',
+        icon: 'size-8 shrink-0 p-0'
       },
       styles: {
         default: '',
@@ -41,7 +41,7 @@ const buttonVariants = cva(
     },
     defaultVariants: {
       variant: 'default',
-      size: 'default',
+      size: 'md',
       styles: 'default',
       status: 'default'
     }
@@ -66,14 +66,14 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<ty
  * @param props.target - Target del Link (ej. `_blank`)
  * @param props.rel - Rel del Link
  * @param props.variant - `"default"` | `"secondary"` | `"destructive"` | `"outline"` | `"ghost"` | `"link"`
- * @param props.size - `"default"` | `"sm"` | `"lg"` | `"icon"`
+ * @param props.size - `"sm"` | `"md"` | `"lg"` | `"icon"`
  * @param props.styles - Acabado visual: `"default"` | `"gradient"` | `"transparent"` | `"soft"`
  * @param props.status - Tinte semántico: `"danger"` | `"warning"` | `"info"` | `"success"`
  * @param props.center - Aplica `flex items-center justify-center gap-1.5`
  * @param props.noHover - Quita los estilos hover de la variante
  * @param props.showIconLink - En links, muestra `ArrowUpRight` con hover
  * @default props.variant - `"default"`
- * @default props.size - `"default"`
+ * @default props.size - `"md"`
  * @default props.styles - `"default"`
  * @default props.status - `"default"`
  * @default props.center - `true`
@@ -112,7 +112,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
 
   const merged = cn(
     buttonVariants({ variant: resolvedVariant, size, styles, status }),
-    center && 'flex items-center justify-center gap-1.5',
+    center && 'flex items-center justify-center',
     noHover && 'hover:bg-transparent hover:border-bg3 hover:opacity-100 hover:no-underline',
     Boolean(href) && showIconLink && 'group',
     className
@@ -123,7 +123,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       {typeof children === 'string' ? <p>{children}</p> : children}
       {Boolean(href) && showIconLink && (
         <ArrowUpRightIcon
-          className='size-4 shrink-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:scale-110 group-hover:opacity-100 motion-reduce:transition-none'
+          className='size-3.5 shrink-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:scale-110 group-hover:opacity-100 motion-reduce:transition-none'
           aria-hidden
         />
       )}

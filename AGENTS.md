@@ -21,7 +21,7 @@ Always apply [`.agents/skills/coding-preferences/SKILL.md`](.agents/skills/codin
 ```
 src/app/                 # routes, layout, globals.css, robots/sitemap
 src/common/
-  components/            # shadcn/haui primitives (button, card, dialog, …)
+  components/            # shadcn/haui primitives (button, card, dialog, popup, theme-transition, …)
   icons/                 # custom SVG marks (e.g. GitHub brand)
   core/                  # cn, constants, queries, contact, services (future REST)
   metadata/              # SEO, fonts, robots, sitemap
@@ -80,6 +80,7 @@ Floating menus use the compound `Popup` (`Popup.Header` / `Popup.Content` / `Pop
 ## Routes / motion
 
 - Page: CSS `::view-transition-old/new(root)` blur-fade + `experimental.viewTransition`
+- Theme toggle: black-box `common/components/theme-transition` (`ThemeTransition` + colocated CSS). Types: `circle` | `circle-with-blur` | `circle-blur-top-left` | `polygon` | `polygon-gradient` | `png` (`/assets/mask.webp`). Intercepts `html` theme class changes — consumers only call `setTheme`. Does not replace page blur
 - UI: `motion/react` (`AnimatePresence`, `layout`, hover)
 - Do not reintroduce `next-view-transitions`
 

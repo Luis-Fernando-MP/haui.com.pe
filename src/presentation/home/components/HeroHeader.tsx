@@ -19,14 +19,6 @@ const HeroHeader: FC = () => {
         transition={{ duration: 0.75, ease, delay: 0.05 }}
         className='relative z-[1] shrink-0'
       >
-        <div
-          aria-hidden
-          className='from-from/25 via-via/20 to-to/25 absolute top-1/2 left-1/2 -z-10 size-[130%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br blur-3xl'
-        />
-        <div
-          aria-hidden
-          className='bg-semantic-success/10 absolute top-[18%] right-[8%] -z-10 size-24 rounded-full blur-2xl'
-        />
         <Image
           src='/logo-big.webp'
           width={360}
@@ -67,13 +59,6 @@ const HeroHeader: FC = () => {
         </motion.h1>
 
         <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.55, ease, delay: 0.24 }}
-          className='gradient h-px w-16 origin-left max-lg:origin-center'
-        />
-
-        <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease, delay: 0.28 }}
@@ -92,7 +77,7 @@ const HeroHeader: FC = () => {
           className='flex flex-wrap items-center gap-2.5 max-lg:justify-center'
         >
           {!INFO.working.state && (
-            <Button href='#contact' status='success' showIconLink size='lg'>
+            <Button href='#contact' showIconLink>
               <span className='relative flex size-2'>
                 <span className='bg-semantic-success absolute inset-0 animate-ping rounded-full opacity-55 motion-reduce:animate-none' />
                 <span className='bg-semantic-success relative size-2 rounded-full' />
@@ -100,7 +85,8 @@ const HeroHeader: FC = () => {
               Disponible para trabajar
             </Button>
           )}
-          <Button href='#experience' variant='outline' showIconLink size='lg'>
+
+          <Button href='#experience' variant='outline' showIconLink>
             Ver experiencia
           </Button>
           <Button
@@ -124,29 +110,18 @@ const HeroHeader: FC = () => {
             <BriefcaseBusinessIcon className='size-4' />
           </Button>
         </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, ease, delay: 0.5 }}
-          className='text-fn2 font-mono text-xs tracking-wide'
-        >
-          {SOCIAL.GitHub.display}
-          <span className='text-fn2/50 mx-2'>·</span>
-          Open to collaborate
-        </motion.p>
       </div>
 
-      <p
+      <div
         aria-hidden
-        className='font-rubik text-fn2 pointer-events-none absolute top-1/2 left-1/2 -z-0 -translate-x-1/2 -translate-y-1/2 text-center text-[5.5rem] leading-[0.9] opacity-[0.04] select-none sm:text-[7rem] md:text-[9rem]'
+        className='font-rubik text-fn2 pointer-events-none absolute top-1/2 left-1/2 -z-0 w-full -translate-x-1/2 -translate-y-1/2 bg-transparent text-center text-[clamp(6rem,22vw,12rem)] leading-[0.85] opacity-[0.3] select-none [font-size-adjust:none]'
       >
         LUIS
         <br />
         FERNANDO
         <br />
         DEVELOPER
-      </p>
+      </div>
     </header>
   )
 }

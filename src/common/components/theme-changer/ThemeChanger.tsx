@@ -76,7 +76,10 @@ const ThemeChanger: FC = () => {
                   return (
                     <Button
                       key={t.id}
-                      onClick={() => setTheme(t.id)}
+                      onClick={() => {
+                        if (t.id === selected.id) return
+                        setTheme(t.id)
+                      }}
                       variant={isActive ? 'secondary' : 'ghost'}
                       className='w-full justify-start'
                     >

@@ -1,8 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { useTheme } from 'next-themes'
-import { useEffect, useState, type FC } from 'react'
+import { useEffect, useRef, useState, type FC } from 'react'
 import { useIntersectionObserver, useMediaQuery } from 'usehooks-ts'
 
 import useUseAppStore from '../store/useApp'
@@ -17,13 +16,25 @@ const WEBGL_CONTEXT = {
   powerPreference: 'low-power' as const
 }
 
+const readGradientColors = () => {
+  const root = getComputedStyle(document.documentElement)
+  return [
+    root.getPropertyValue('--gr-to').trim(),
+    root.getPropertyValue('--gr-via').trim(),
+    root.getPropertyValue('--gr-from').trim()
+  ]
+}
+
 const HeroGrainGradient: FC = () => {
-  const { theme, resolvedTheme } = useTheme()
   const enabledGradient = useUseAppStore(s => s.enabledGradient)
   const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
   const isMobile = useMediaQuery('(max-width: 768px)')
   const [colors, setColors] = useState<string[]>([])
   const [canMountShader, setCanMountShader] = useState(false)
+  const [paused, setPaused] = useState(false)
+  const [visible, setVisible] = useState(false)
+  const pendingSwap = useRef(false)
+  const lastKey = useRef('')
 
   const { isIntersecting, ref } = useIntersectionObserver({
     rootMargin: '160px 0px',
@@ -31,18 +42,63 @@ const HeroGrainGradient: FC = () => {
   })
 
   useEffect(() => {
-    const updateColors = () => {
-      const root = getComputedStyle(document.documentElement)
-      setColors([
-        root.getPropertyValue('--gr-to').trim(),
-        root.getPropertyValue('--gr-via').trim(),
-        root.getPropertyValue('--gr-from').trim()
-      ])
+    const settle = () => {
+      const root = document.documentElement
+
+      if (root.classList.contains('theme-transition')) {
+        pendingSwap.current = true
+        setPaused(true)
+        return
+      }
+
+      if (!pendingSwap.current && lastKey.current.length > 0) return
+
+      const next = readGradientColors()
+      if (next.some(c => c.length === 0)) return
+
+      const key = next.join('|')
+      if (key === lastKey.current && !pendingSwap.current) return
+
+      lastKey.current = key
+      pendingSwap.current = false
+      setPaused(true)
+      setColors(next)
     }
 
-    const raf = requestAnimationFrame(updateColors)
-    return () => cancelAnimationFrame(raf)
-  }, [theme, resolvedTheme])
+    settle()
+    const raf = requestAnimationFrame(settle)
+
+    const observer = new MutationObserver(() => {
+      requestAnimationFrame(settle)
+    })
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    })
+
+    return () => {
+      cancelAnimationFrame(raf)
+      observer.disconnect()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (colors.length === 0) return
+
+    let cancelled = false
+    const play = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (cancelled) return
+        setPaused(false)
+        setVisible(true)
+      })
+    })
+
+    return () => {
+      cancelled = true
+      cancelAnimationFrame(play)
+    }
+  }, [colors])
 
   useEffect(() => {
     if (!enabledGradient || reduceMotion || isMobile) {
@@ -67,18 +123,26 @@ const HeroGrainGradient: FC = () => {
 
   if (!enabledGradient || reduceMotion || isMobile || colors.length === 0) return null
 
+  const playing = canMountShader && isIntersecting && !paused
+
   return (
     <div
       ref={ref}
       aria-hidden
-      className='pointer-events-none absolute top-0 left-0 -z-10 block h-[130vh] w-full overflow-hidden'
+      className={`pointer-events-none absolute top-0 left-0 -z-10 block h-[130vh] w-full overflow-hidden transition-opacity duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+        visible ? 'opacity-100' : 'opacity-0'
+      }`}
     >
       <div
-        className={`absolute inset-0 transition-opacity duration-700 ease-out ${canMountShader ? 'opacity-0' : 'opacity-100'}`}
+        className={`absolute inset-0 transition-opacity duration-700 ease-out motion-reduce:transition-none ${
+          canMountShader ? 'opacity-0' : 'opacity-100'
+        }`}
         style={{
-          background: `radial-gradient(95% 75% at 50% -5%, ${colors[2]}70, transparent 58%),
-            radial-gradient(65% 55% at 22% 18%, ${colors[1]}45, transparent 52%),
-            radial-gradient(65% 55% at 78% 22%, ${colors[0]}45, transparent 52%)`
+          background: `
+            radial-gradient(95% 75% at 50% -5%, color-mix(in srgb, var(--gr-from) 44%, transparent), transparent 58%),
+            radial-gradient(65% 55% at 22% 18%, color-mix(in srgb, var(--gr-via) 27%, transparent), transparent 52%),
+            radial-gradient(65% 55% at 78% 22%, color-mix(in srgb, var(--gr-to) 27%, transparent), transparent 52%)
+          `
         }}
       />
 
@@ -99,7 +163,7 @@ const HeroGrainGradient: FC = () => {
             spotty={1}
             midSize={0.1}
             midIntensity={1}
-            speed={isIntersecting ? 1 : 0}
+            speed={playing ? 1 : 0}
             offsetY={-0.42}
             minPixelRatio={1}
             maxPixelCount={MAX_PIXEL_COUNT}
