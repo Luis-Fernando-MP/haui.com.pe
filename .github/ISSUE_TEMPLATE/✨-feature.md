@@ -1,10 +1,9 @@
 ---
-name: "✨ Feature"
+name: '✨ Feature'
 about: Solicitar una nueva funcionalidad o característica
-title: "[FEATURE]"
-labels: "✨ enhancement"
+title: '[FEATURE]'
+labels: '✨ enhancement'
 assignees: ''
-
 ---
 
 ## ✨ Feature

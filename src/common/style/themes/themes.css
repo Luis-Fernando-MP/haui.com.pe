@@ -1,0 +1,212 @@
+:root,
+[data-theme='light'],
+html.light {
+  --bg1: #fafafa;
+  --bg2: #f0f0f0;
+  --bg3: #e2e2e2;
+
+  --fn1: #171717;
+  --fn2: #525252;
+  --fnA: #000000;
+
+  --gr-from: #e63946;
+  --gr-via: #f1a208;
+  --gr-to: #457b9d;
+
+  --logo-bg: #ececec;
+
+  --semantic-danger: #dc2626;
+  --semantic-warning: #d97706;
+  --semantic-info: #2563eb;
+  --semantic-success: #16a34a;
+  --semantic-text-danger: #b91c1c;
+  --semantic-text-warning: #b45309;
+  --semantic-text-info: #1d4ed8;
+  --semantic-text-success: #15803d;
+}
+
+[data-theme='juli'],
+html.juli {
+  --bg1: #fff5fa;
+  --bg2: #f8e0ef;
+  --bg3: #efc5dc;
+
+  --fn1: #4a1f3a;
+  --fn2: #7a4460;
+  --fnA: #2a1020;
+
+  --gr-from: #db2777;
+  --gr-via: #ea580c;
+  --gr-to: #7c3aed;
+
+  --logo-bg: #f2c9de;
+
+  --semantic-danger: #be123c;
+  --semantic-warning: #c2410c;
+  --semantic-info: #7c3aed;
+  --semantic-success: #15803d;
+  --semantic-text-danger: #9f1239;
+  --semantic-text-warning: #9a3412;
+  --semantic-text-info: #6d28d9;
+  --semantic-text-success: #166534;
+}
+
+[data-theme='rebecca'],
+html.rebecca {
+  --bg1: #faf7fc;
+  --bg2: #f0e8f5;
+  --bg3: #e0d2eb;
+
+  --fn1: #3d2a45;
+  --fn2: #6b5575;
+  --fnA: #1f1426;
+
+  --gr-from: #a855f7;
+  --gr-via: #8b5cf6;
+  --gr-to: #6366f1;
+
+  --logo-bg: #e4d0ef;
+
+  --semantic-danger: #c026d3;
+  --semantic-warning: #b45309;
+  --semantic-info: #6366f1;
+  --semantic-success: #059669;
+  --semantic-text-danger: #a21caf;
+  --semantic-text-warning: #92400e;
+  --semantic-text-info: #4f46e5;
+  --semantic-text-success: #047857;
+}
+
+[data-theme='dark'],
+html.dark {
+  --bg1: #0a0a0a;
+  --bg2: #1a1a1a;
+  --bg3: #2a2a2a;
+
+  --fn1: #f5f5f5;
+  --fn2: #a3a3a3;
+  --fnA: #ffffff;
+
+  --gr-from: #fb7185;
+  --gr-via: #fbbf24;
+  --gr-to: #38bdf8;
+
+  --logo-bg: #ffffff;
+
+  --semantic-danger: #f87171;
+  --semantic-warning: #fbbf24;
+  --semantic-info: #38bdf8;
+  --semantic-success: #4ade80;
+  --semantic-text-danger: #fca5a5;
+  --semantic-text-warning: #fde68a;
+  --semantic-text-info: #7dd3fc;
+  --semantic-text-success: #86efac;
+}
+
+[data-theme='sam'],
+html.sam {
+  --bg1: #12121c;
+  --bg2: #1c1a28;
+  --bg3: #2c2838;
+
+  --fn1: #f4f4f8;
+  --fn2: #a8a6bc;
+  --fnA: #ffffff;
+
+  --gr-from: #f43f5e;
+  --gr-via: #3b82f6;
+  --gr-to: #f59e0b;
+
+  --logo-bg: #e8e8f2;
+
+  --semantic-danger: #fb7185;
+  --semantic-warning: #fbbf24;
+  --semantic-info: #60a5fa;
+  --semantic-success: #34d399;
+  --semantic-text-danger: #fda4af;
+  --semantic-text-warning: #fde68a;
+  --semantic-text-info: #93c5fd;
+  --semantic-text-success: #6ee7b7;
+}
+
+[data-theme='andrea'],
+html.andrea {
+  --bg1: #14081f;
+  --bg2: #1f0f30;
+  --bg3: #2c1842;
+
+  --fn1: #f5efe6;
+  --fn2: #c4b8ce;
+  --fnA: #ffffff;
+
+  --gr-from: #e879f9;
+  --gr-via: #22d3ee;
+  --gr-to: #a3e635;
+
+  --logo-bg: #f0ffe0;
+
+  --semantic-danger: #fb7185;
+  --semantic-warning: #facc15;
+  --semantic-info: #22d3ee;
+  --semantic-success: #a3e635;
+  --semantic-text-danger: #fda4af;
+  --semantic-text-warning: #fde047;
+  --semantic-text-info: #67e8f9;
+  --semantic-text-success: #bef264;
+}
+
+[data-theme='shei'],
+html.shei {
+  --bg1: #050505;
+  --bg2: #101010;
+  --bg3: #1c1c1c;
+
+  --fn1: #f2f2f2;
+  --fn2: #8f8f8f;
+  --fnA: #ffffff;
+
+  --gr-from: #ff6b8a;
+  --gr-via: #5eead4;
+  --gr-to: #60a5fa;
+
+  --logo-bg: #f0f0f0;
+
+  --semantic-danger: #f87171;
+  --semantic-warning: #fbbf24;
+  --semantic-info: #38bdf8;
+  --semantic-success: #4ade80;
+  --semantic-text-danger: #fda4af;
+  --semantic-text-warning: #fde68a;
+  --semantic-text-info: #7dd3fc;
+  --semantic-text-success: #86efac;
+}
+
+:root,
+[data-theme],
+html.light,
+html.juli,
+html.rebecca,
+html.dark,
+html.sam,
+html.andrea,
+html.shei {
+  --background: var(--bg1);
+  --foreground: var(--fn1);
+  --card: var(--bg2);
+  --card-foreground: var(--fn1);
+  --popover: var(--bg2);
+  --popover-foreground: var(--fn1);
+  --primary: var(--fn1);
+  --primary-foreground: var(--bg1);
+  --secondary: var(--bg2);
+  --secondary-foreground: var(--fn1);
+  --muted: var(--bg3);
+  --muted-foreground: var(--fn2);
+  --accent: var(--bg2);
+  --accent-foreground: var(--fn1);
+  --destructive: var(--semantic-danger);
+  --border: var(--bg3);
+  --input: var(--bg3);
+  --ring: var(--fn2);
+  --radius: 0.75rem;
+}

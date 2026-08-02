@@ -1,10 +1,9 @@
 ---
 name: "\U0001F4DA Documentation"
 about: Actualizar o crear documentación técnica o de usuario
-title: "[DOCS]"
+title: '[DOCS]'
 labels: "\U0001F4DA documentation"
 assignees: ''
-
 ---
 
 ## 📚 Documentation

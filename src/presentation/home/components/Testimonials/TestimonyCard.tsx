@@ -1,8 +1,11 @@
 'use client'
 
-import { Testimony } from '@/shared/config/constants/testimonies'
-import { GraduationCapIcon } from 'lucide-react'
-import Link from 'next/link'
+import Button from '@common/components/button'
+import Image from '@common/components/image'
+import { Testimony } from '@common/core/constants/testimonies'
+import GithubIcon from '@common/icons/github'
+import LinkedInIcon from '@common/icons/linkedin'
+import { Globe, GraduationCapIcon, Mail } from 'lucide-react'
 import type { FC } from 'react'
 
 interface Props {
@@ -10,45 +13,89 @@ interface Props {
 }
 
 const TestimonyCard: FC<Props> = ({ testimony }) => {
-  const { autor, degree, githubPage, webPage, mailTo, linkedIn } = testimony
+  const { autor, photo, role, degree, githubPage, webPage, mailTo, linkedIn, testimonial } = testimony
+  const hasLinks = Boolean(githubPage?.length) || Boolean(linkedIn?.length) || Boolean(webPage?.length) || Boolean(mailTo?.length)
 
   return (
-    <section className='bg-bg1 border-bg3 flex h-[430px] w-[550px] flex-col items-center justify-center gap-16 rounded-xl border p-6 max-md:w-full'>
-      <div className='flex flex-col items-center gap-3'>
-        <h2 className='font-flowers text-h1'>{autor}</h2>
-        <div className='text-fn2 flex items-center gap-2 font-mono'>
-          <GraduationCapIcon className='h-5 w-5 max-sm:hidden' />
-          <h4>{degree}</h4>
+    <article className='bg-bg1 border-bg3 flex h-full flex-col gap-8 rounded-2xl border p-6 md:p-8'>
+      <header className='flex items-center gap-4'>
+        <div className='bg-bg2 border-bg3 size-16 shrink-0 overflow-hidden rounded-2xl border md:size-20'>
+          <Image src={photo} alt={`Foto de ${autor}`} width={80} height={80} className='size-full object-cover' />
         </div>
-      </div>
 
-      <div className='flex flex-col items-center gap-10'>
-        <p className='text-fn2 max-w-[450px] text-center font-mono'>{testimony.testimonial}</p>
+        <div className='flex min-w-0 flex-col gap-1'>
+          <h3 className='font-flowers text-fn1 text-2xl leading-tight text-pretty md:text-3xl'>{autor}</h3>
+          <p className='text-fn1/90 truncate text-sm font-medium'>{role}</p>
+          <p className='text-fn2 flex items-center gap-1.5 font-mono text-xs'>
+            <GraduationCapIcon className='size-3.5 shrink-0' aria-hidden />
+            <span className='truncate'>{degree}</span>
+          </p>
+        </div>
+      </header>
 
-        <div className='flex gap-5'>
-          {githubPage && (
-            <Link href={githubPage} target='_blank' rel='noopener noreferrer' className='text-fn2 underline underline-offset-4'>
+      <blockquote className='border-bg3 text-fn2 border-l-2 pl-5 text-base leading-relaxed text-pretty md:text-lg'>
+        “{testimonial}”
+      </blockquote>
+
+      {hasLinks && (
+        <footer className='border-bg3/50 flex flex-wrap items-center gap-2 border-t pt-5'>
+          {Boolean(githubPage?.length) && (
+            <Button
+              href={githubPage}
+              target='_blank'
+              rel='noopener noreferrer'
+              variant='outline'
+              size='sm'
+              className='gap-1.5 rounded-lg px-3'
+              aria-label={`GitHub de ${autor}`}
+            >
+              <GithubIcon className='size-3.5' />
               GitHub
-            </Link>
+            </Button>
           )}
-          {linkedIn && (
-            <Link href={linkedIn} target='_blank' rel='noopener noreferrer' className='text-fn2 underline underline-offset-4'>
+          {Boolean(linkedIn?.length) && (
+            <Button
+              href={linkedIn}
+              target='_blank'
+              rel='noopener noreferrer'
+              variant='outline'
+              size='sm'
+              className='gap-1.5 rounded-lg px-3'
+              aria-label={`LinkedIn de ${autor}`}
+            >
+              <LinkedInIcon className='size-3.5' />
               LinkedIn
-            </Link>
+            </Button>
           )}
-          {webPage && (
-            <Link href={webPage} target='_blank' rel='noopener noreferrer' className='text-fn2 underline underline-offset-4'>
+          {Boolean(webPage?.length) && (
+            <Button
+              href={webPage}
+              target='_blank'
+              rel='noopener noreferrer'
+              variant='outline'
+              size='sm'
+              className='gap-1.5 rounded-lg px-3'
+              aria-label={`Sitio web de ${autor}`}
+            >
+              <Globe className='size-3.5' />
               Website
-            </Link>
+            </Button>
           )}
-          {mailTo && (
-            <Link href={mailTo} className='text-fn2 underline underline-offset-4'>
+          {Boolean(mailTo?.length) && (
+            <Button
+              href={mailTo}
+              variant='outline'
+              size='sm'
+              className='gap-1.5 rounded-lg px-3'
+              aria-label={`Email de ${autor}`}
+            >
+              <Mail className='size-3.5' />
               Email
-            </Link>
+            </Button>
           )}
-        </div>
-      </div>
-    </section>
+        </footer>
+      )}
+    </article>
   )
 }
 

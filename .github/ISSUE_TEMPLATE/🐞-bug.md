@@ -1,10 +1,9 @@
 ---
 name: "\U0001F41E Bug"
 about: Reportar un error inesperado o mal funcionamiento en el sistema
-title: "[BUG]"
+title: '[BUG]'
 labels: "\U0001F41E bug"
 assignees: Luis-Fernando-MP
-
 ---
 
 ## 🐞 Bug
@@ -12,7 +11,8 @@ assignees: Luis-Fernando-MP
 **Descripción del bug**  
 Explica brevemente cuál es el problema.
 
-**Pasos para reproducirlo**  
+**Pasos para reproducirlo**
+
 1. Ir a '...'
 2. Hacer clic en '...'
 3. Ver error
@@ -23,7 +23,8 @@ Explica brevemente cuál es el problema.
 **Evidencia (opcional)**  
 Agrega capturas, logs o videos que ayuden a entender el problema.
 
-**Entorno (si aplica)**  
+**Entorno (si aplica)**
+
 - SO: [Windows, macOS, Linux]
 - Navegador/App: [Chrome, Safari, App móvil]
 - Versión: [ej. 1.0.2]
