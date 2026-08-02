@@ -1,35 +1,85 @@
 'use client'
 
+import Button from '@common/components/button'
+import { INFO, SOCIAL } from '@common/core/constants'
 import { Menu, MenuButton, MenuItem, MenuItems, MenuSeparator } from '@headlessui/react'
-import { MenuIcon, XIcon } from 'lucide-react'
+import { BriefcaseBusinessIcon, DownloadIcon, FolderGit2Icon, MenuIcon, XIcon } from 'lucide-react'
 import type { FC } from 'react'
 
-import Button from '@common/components/button'
 import NavLinks from './NavLinks'
 
 const NavMenu: FC = () => {
   return (
     <Menu as='div' className='region:hidden relative'>
-      <MenuButton as={Button}>
-        <MenuIcon />
-      </MenuButton>
+      {({ open, close }) => (
+        <>
+          <MenuButton as={Button} variant='border' className='px-2.5' aria-label={open ? 'Cerrar menú' : 'Abrir menú'}>
+            {open ? <XIcon className='text-fn1 size-5' /> : <MenuIcon className='text-fn1 size-5' />}
+          </MenuButton>
 
-      <MenuItems anchor='bottom' className='bg-bg1 border-bg3 z-50 w-48 rounded-xl border px-1 py-2 focus:outline-none'>
-        <div className='flex items-center justify-between px-4 py-3'>
-          <h4 className='text-fn1 font-semibold'>Menú</h4>
-          <MenuItem>
-            <Button className='px-2' variant='border'>
-              <XIcon className='text-fn2 h-5 w-5' />
-            </Button>
-          </MenuItem>
-        </div>
+          <MenuItems
+            anchor='bottom end'
+            className='border-bg3/80 bg-bg1/95 z-50 mt-2 w-64 origin-top-right rounded-2xl border p-2 shadow-lg backdrop-blur-xl focus:outline-none'
+          >
+            <div className='flex items-center justify-between px-3 py-2.5'>
+              <div className='flex flex-col gap-0.5'>
+                <span className='text-fn1 text-sm font-semibold'>Navegación</span>
+                {!INFO.working.state && <span className='text-fn2 text-xs'>Disponible para proyectos</span>}
+              </div>
+              <MenuItem>
+                <Button className='px-2' variant='border' aria-label='Cerrar' onClick={close}>
+                  <XIcon className='text-fn2 size-4' />
+                </Button>
+              </MenuItem>
+            </div>
 
-        <MenuSeparator className='bg-bg3 my-1 h-px' />
+            <MenuSeparator className='bg-bg3 my-1 h-px' />
 
-        <div className='py-1'>
-          <NavLinks isMobile />
-        </div>
-      </MenuItems>
+            <div className='py-1'>
+              <NavLinks isMobile onNavigate={close} />
+            </div>
+
+            <MenuSeparator className='bg-bg3 my-1 h-px' />
+
+            <div className='flex flex-col gap-1 p-1'>
+              <MenuItem>
+                <Button
+                  href={SOCIAL.GitHub.url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='hover:bg-bg2 w-full justify-start'
+                >
+                  <FolderGit2Icon className='text-fn1 size-4' />
+                  <span className='text-fn2 text-sm'>GitHub</span>
+                </Button>
+              </MenuItem>
+              <MenuItem>
+                <Button
+                  href={SOCIAL.LinkedIn.url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='hover:bg-bg2 w-full justify-start'
+                >
+                  <BriefcaseBusinessIcon className='text-fn1 size-4' />
+                  <span className='text-fn2 text-sm'>LinkedIn</span>
+                </Button>
+              </MenuItem>
+              <MenuItem>
+                <Button
+                  href={INFO.cv}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  variant='active'
+                  className='mt-1 w-full justify-center'
+                >
+                  <DownloadIcon className='size-4' />
+                  <span className='text-bg1 text-sm font-semibold'>Descargar CV</span>
+                </Button>
+              </MenuItem>
+            </div>
+          </MenuItems>
+        </>
+      )}
     </Menu>
   )
 }

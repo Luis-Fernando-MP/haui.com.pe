@@ -1,6 +1,6 @@
 import { cn } from '@common/core/cn'
 import Link from 'next/link'
-import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react'
+import { forwardRef, type ButtonHTMLAttributes, type MouseEventHandler, type ReactNode } from 'react'
 
 const variants = {
   normal: 'bg-bg2 text-fn1',
@@ -37,7 +37,18 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
  * ```
  */
 const Button = forwardRef<HTMLButtonElement, Props>(function Button(
-  { children, className = '', href, target, rel, variant = 'transparent', noHover = false, type = 'button', ...props },
+  {
+    children,
+    className = '',
+    href,
+    target,
+    rel,
+    variant = 'transparent',
+    noHover = false,
+    type = 'button',
+    onClick,
+    ...props
+  },
   ref
 ) {
   const merged = cn(
@@ -49,14 +60,20 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
 
   if (href) {
     return (
-      <Link href={href} target={target} rel={rel} className={merged}>
+      <Link
+        href={href}
+        target={target}
+        rel={rel}
+        className={merged}
+        onClick={onClick as MouseEventHandler<HTMLAnchorElement> | undefined}
+      >
         {children}
       </Link>
     )
   }
 
   return (
-    <button ref={ref} type={type} className={merged} {...props}>
+    <button ref={ref} type={type} className={merged} onClick={onClick} {...props}>
       {children}
     </button>
   )
