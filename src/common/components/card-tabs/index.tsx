@@ -3,7 +3,6 @@
 import { cn } from '@common/core/cn'
 import { twMerge } from 'tailwind-merge'
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import useCardTabs from './useCardTabs'
 
 type TabOrientation = 'vertical' | 'horizontal'

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Achievements } from '@common/core/queries/achievementsQuery/achievement.type'
 
 export const achievements: Achievements[] = [

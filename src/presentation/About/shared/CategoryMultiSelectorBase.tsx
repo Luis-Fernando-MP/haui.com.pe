@@ -96,7 +96,11 @@ const CategoryMultiSelectorBase = <T extends string>({
                 <div>
                   <MenuItem>
                     {() => (
-                      <Button onClick={clearAllCategories} variant='destructive' className='w-full justify-start rounded-md text-left'>
+                      <Button
+                        onClick={clearAllCategories}
+                        variant='destructive'
+                        className='w-full justify-start rounded-md text-left'
+                      >
                         Limpiar selección
                       </Button>
                     )}

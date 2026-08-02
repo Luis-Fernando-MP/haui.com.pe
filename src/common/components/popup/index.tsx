@@ -5,13 +5,7 @@ import { cn } from '@common/core/cn'
 import { XIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import { Popover as PopoverPrimitive } from 'radix-ui'
-import {
-  useState,
-  type ComponentProps,
-  type FC,
-  type HTMLAttributes,
-  type ReactNode
-} from 'react'
+import { type ComponentProps, type FC, type HTMLAttributes, type ReactNode, useState } from 'react'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -185,14 +179,4 @@ const Popup = Object.assign(PopupRoot, {
 })
 
 export default Popup
-export {
-  PopupRoot,
-  PopupTrigger,
-  PopupContent,
-  PopupHeader,
-  PopupFooter,
-  PopupTitle,
-  PopupDescription,
-  PopupClose,
-  PopupAnchor
-}
+export { PopupRoot, PopupTrigger, PopupContent, PopupHeader, PopupFooter, PopupTitle, PopupDescription, PopupClose, PopupAnchor }

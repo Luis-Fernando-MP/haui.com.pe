@@ -29,7 +29,10 @@ const Popover: FC<Props> = ({ open, children, className }) => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -4 }}
           transition={{ duration: 0.15 }}
-          className={cn('bg-popover text-popover-foreground border-border absolute z-50 rounded-xl border p-2 shadow-md', className)}
+          className={cn(
+            'bg-popover text-popover-foreground border-border absolute z-50 rounded-xl border p-2 shadow-md',
+            className
+          )}
         >
           {children}
         </motion.div>

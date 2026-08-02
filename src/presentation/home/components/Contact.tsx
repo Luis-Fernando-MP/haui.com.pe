@@ -3,9 +3,9 @@
 import Button from '@common/components/button'
 import Title from '@common/components/title'
 import { SOCIAL } from '@common/core/constants'
+import { ArrowRightIcon, MailIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import type { FC } from 'react'
-import { MailIcon, ArrowRightIcon } from 'lucide-react'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -22,10 +22,7 @@ const Contact: FC = () => {
         className='region bg-bg1 border-bg3 relative mx-auto flex flex-col items-center gap-10 overflow-hidden rounded-2xl border px-6 py-12 text-center md:gap-12 md:px-10 md:py-16'
       >
         {/* Background Glow */}
-        <div
-          aria-hidden
-          className='bg-gr-via absolute -top-32 -left-32 -z-10 h-64 w-64 rounded-full opacity-10 blur-[100px]'
-        />
+        <div aria-hidden className='bg-gr-via absolute -top-32 -left-32 -z-10 h-64 w-64 rounded-full opacity-10 blur-[100px]' />
         <div
           aria-hidden
           className='bg-gr-to absolute -right-32 -bottom-32 -z-10 h-64 w-64 rounded-full opacity-10 blur-[100px]'
@@ -39,7 +36,7 @@ const Contact: FC = () => {
             </Title>
           </div>
 
-          <p className='text-fn2 text-pretty max-w-[500px] text-base leading-relaxed md:text-lg'>
+          <p className='text-fn2 max-w-[500px] text-base leading-relaxed text-pretty md:text-lg'>
             Estoy abierto a nuevas oportunidades, colaboraciones o simplemente a una charla sobre tecnología y diseño.
           </p>
         </header>
@@ -59,9 +56,9 @@ const Contact: FC = () => {
 
           <div className='flex w-full flex-col gap-6'>
             <div className='flex items-center gap-4'>
-              <div className='h-px flex-1 bg-bg3/40' />
+              <div className='bg-bg3/40 h-px flex-1' />
               <span className='text-fn2 font-mono text-[10px] tracking-widest uppercase'>En mis redes</span>
-              <div className='h-px flex-1 bg-bg3/40' />
+              <div className='bg-bg3/40 h-px flex-1' />
             </div>
 
             <ul className='grid w-full grid-cols-2 gap-3 sm:grid-cols-4'>
@@ -82,9 +79,7 @@ const Contact: FC = () => {
                       className='bg-bg2/40 hover:border-fn2/30 hover:bg-bg2 flex h-full w-full flex-col items-center gap-1.5 rounded-xl py-3.5 transition-all'
                     >
                       <span className='text-fn1 text-sm font-bold'>{key}</span>
-                      <span className='text-fn2/70 truncate text-[10px] font-medium tracking-tight'>
-                        {value.display}
-                      </span>
+                      <span className='text-fn2/70 truncate text-[10px] font-medium tracking-tight'>{value.display}</span>
                     </Button>
                   </motion.div>
                 </li>

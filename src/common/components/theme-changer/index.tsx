@@ -1,9 +1,8 @@
 'use client'
 
+import Button from '@common/components/button'
 import { LoaderIcon } from 'lucide-react'
 import dynamic from 'next/dynamic'
-
-import Button from '@common/components/button'
 
 const ThemeChanger = dynamic(() => import('./ThemeChanger'), {
   ssr: false,

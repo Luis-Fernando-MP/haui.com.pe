@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, type FC, type ReactNode } from 'react'
+import { type FC, type ReactNode, useEffect } from 'react'
 import { flushSync } from 'react-dom'
 
 import './theme-transition.css'
@@ -38,8 +38,7 @@ const ThemeTransitionEngine: FC<{ type: ThemeTransitionType; themes: string[] }>
     let active = false
 
     const canTransition = () =>
-      typeof document.startViewTransition === 'function' &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      typeof document.startViewTransition === 'function' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     const isThemeToken = (tokens: string[]) => tokens.some(token => themeSet.has(token))
 

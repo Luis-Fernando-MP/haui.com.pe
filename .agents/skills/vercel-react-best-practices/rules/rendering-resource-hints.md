@@ -34,7 +34,7 @@ export default function App() {
 **Example (preload critical fonts and styles):**
 
 ```tsx
-import { preload, preinit } from 'react-dom'
+import { preinit, preload } from 'react-dom'
 
 export default function RootLayout({ children }) {
   // Preload font file
@@ -54,7 +54,7 @@ export default function RootLayout({ children }) {
 **Example (preload modules for code-split routes):**
 
 ```tsx
-import { preloadModule, preinitModule } from 'react-dom'
+import { preinitModule, preloadModule } from 'react-dom'
 
 function Navigation() {
   const preloadDashboard = () => {
@@ -63,7 +63,7 @@ function Navigation() {
 
   return (
     <nav>
-      <a href="/dashboard" onMouseEnter={preloadDashboard}>
+      <a href='/dashboard' onMouseEnter={preloadDashboard}>
         Dashboard
       </a>
     </nav>
@@ -73,13 +73,13 @@ function Navigation() {
 
 **When to use each:**
 
-| API | Use case |
-|-----|----------|
-| `prefetchDNS` | Third-party domains you'll connect to later |
-| `preconnect` | APIs or CDNs you'll fetch from immediately |
-| `preload` | Critical resources needed for current page |
-| `preloadModule` | JS modules for likely next navigation |
-| `preinit` | Stylesheets/scripts that must execute early |
-| `preinitModule` | ES modules that must execute early |
+| API             | Use case                                    |
+| --------------- | ------------------------------------------- |
+| `prefetchDNS`   | Third-party domains you'll connect to later |
+| `preconnect`    | APIs or CDNs you'll fetch from immediately  |
+| `preload`       | Critical resources needed for current page  |
+| `preloadModule` | JS modules for likely next navigation       |
+| `preinit`       | Stylesheets/scripts that must execute early |
+| `preinitModule` | ES modules that must execute early          |
 
 Reference: [React DOM Resource Preloading APIs](https://react.dev/reference/react-dom#resource-preloading-apis)

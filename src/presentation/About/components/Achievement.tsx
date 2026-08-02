@@ -2,18 +2,13 @@
 
 import { useFocusGalleryStore } from '@common/components/focus-gallery/store'
 import { cn } from '@common/core/cn'
-import {
-  Achievements,
-  achievementIcons,
-  devContributionColor
-} from '@common/core/queries/achievementsQuery/achievement.type'
+import { Achievements, achievementIcons, devContributionColor } from '@common/core/queries/achievementsQuery/achievement.type'
 import { Image } from '@unpic/react/nextjs'
 import { ArrowUpRightIcon } from 'lucide-react'
-import { memo, type FC } from 'react'
+import { type FC, memo } from 'react'
 
 const Achievement: FC<Achievements> = props => {
-  const { achievementType, name, devContribution, acquisitionDate, path, AdditionalImages, actionLink, technologies } =
-    props
+  const { achievementType, name, devContribution, acquisitionDate, path, AdditionalImages, actionLink, technologies } = props
   const open = useFocusGalleryStore(s => s.open)
   const TypeIcon = achievementIcons[achievementType]
   const accent = devContributionColor[devContribution]

@@ -3,7 +3,7 @@
 import { cn } from '@common/core/cn'
 import { type TechnologyStack, technologyStack } from '@common/core/queries/techQuery/tech.type'
 import { motion } from 'motion/react'
-import { useState, type FC } from 'react'
+import { type FC, useState } from 'react'
 
 import useTechStore from '../../store/useTechStore'
 
@@ -61,12 +61,7 @@ const StackSelector: FC = () => {
               <Icon className='size-3.5' aria-hidden />
             </span>
 
-            <span
-              className={cn(
-                'relative z-[1] text-sm font-semibold tracking-tight',
-                active ? 'text-fn1' : 'text-fn2'
-              )}
-            >
+            <span className={cn('relative z-[1] text-sm font-semibold tracking-tight', active ? 'text-fn1' : 'text-fn2')}>
               {STACK_LABEL[stack]}
             </span>
           </button>

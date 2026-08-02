@@ -58,15 +58,15 @@ haui tokens: `--bg1/2/3`, `--fn1/2/A`, `--gr-*`, plus semantic status colors. Br
 
 Every theme defines its own status palette (tuned to that theme’s contrast):
 
-| Token | Tailwind | Use |
-| --- | --- | --- |
-| `--semantic-danger` | `bg-semantic-danger`, border accents | fill / surface tint |
-| `--semantic-warning` | `bg-semantic-warning` | fill / surface tint |
-| `--semantic-info` | `bg-semantic-info` | fill / surface tint |
-| `--semantic-success` | `bg-semantic-success` | fill / surface tint |
-| `--semantic-text-danger` | `text-semantic-text-danger`, `.danger` | readable status text |
+| Token                     | Tailwind                                 | Use                  |
+| ------------------------- | ---------------------------------------- | -------------------- |
+| `--semantic-danger`       | `bg-semantic-danger`, border accents     | fill / surface tint  |
+| `--semantic-warning`      | `bg-semantic-warning`                    | fill / surface tint  |
+| `--semantic-info`         | `bg-semantic-info`                       | fill / surface tint  |
+| `--semantic-success`      | `bg-semantic-success`                    | fill / surface tint  |
+| `--semantic-text-danger`  | `text-semantic-text-danger`, `.danger`   | readable status text |
 | `--semantic-text-warning` | `text-semantic-text-warning`, `.warning` | readable status text |
-| `--semantic-text-info` | `text-semantic-text-info`, `.info` | readable status text |
+| `--semantic-text-info`    | `text-semantic-text-info`, `.info`       | readable status text |
 | `--semantic-text-success` | `text-semantic-text-success`, `.success` | readable status text |
 
 Prefer these tokens over ad-hoc red/green hex or Tailwind default `red-*` / `green-*`. Themes live in `src/common/style/themes/themes.css`; expose new ones via `@theme` in `globals.css` (`--color-semantic-*`).

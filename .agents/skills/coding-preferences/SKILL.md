@@ -11,7 +11,7 @@ description: >
 license: MIT
 metadata:
   author: jujufer
-  version: "1.0.0"
+  version: '1.0.0'
 ---
 
 # Coding Preferences — jujufer
@@ -60,16 +60,28 @@ if (list.length === 0) return null
 
 ```tsx
 // bad — renders 0 when length is 0
-{list.length && <List />}
+{
+  list.length && <List />
+}
 
 // bad — ternary for show/hide
-{open ? <Dialog /> : null}
-{open ? <A /> : <B />}
+{
+  open ? <Dialog /> : null
+}
+{
+  open ? <A /> : <B />
+}
 
 // good
-{list.length > 0 && <List />}
-{Boolean(items?.length) && <List />}
-{open && <Dialog />}
+{
+  list.length > 0 && <List />
+}
+{
+  Boolean(items?.length) && <List />
+}
+{
+  open && <Dialog />
+}
 ```
 
 ### 1.5 JSDoc (only where it earns its place)
@@ -80,7 +92,7 @@ if (list.length === 0) return null
 - Use **real JSDoc tags** (`@description`, `@param`, `@default`, `@example`, `@returns`, …). Never invent pseudo-fields like `descripcion:`, `propiedades:`, `ejemplos:`.
 - Prose inside the tags may be in Spanish; the tags themselves are standard JSDoc/`@`.
 
-```ts
+````ts
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string
   variant?: 'normal' | 'border' | 'active' | 'gradient' | 'transparent'
@@ -101,9 +113,10 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: FC<Props> = ({ href, children, ...props }) => { ... }
 
 export default Button
-```
+````
 
 Required shape:
+
 1. First line: short summary of what it does
 2. `@param` for each public prop (type + meaning; list union values when relevant)
 3. `@default` when a prop has a non-obvious default
@@ -243,10 +256,10 @@ Props still make sense for: local presentation config, children, slots, data tha
 
 ## 3. Context vs Store (hard boundaries)
 
-| Mechanism | Allowed | Forbidden |
-| --------- | ------- | --------- |
+| Mechanism         | Allowed                                                                                                                | Forbidden                                                            |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
 | **React Context** | Micro-scope: communication between internal subcomponents of a primitive (e.g. internals of a Button or Card compound) | Full views, pages, large modules, section headers with many children |
-| **Zustand** | Sections, modules, headers, features, pages, shared state across multiple child levels | — |
+| **Zustand**       | Sections, modules, headers, features, pages, shared state across multiple child levels                                 | —                                                                    |
 
 - Context on full pages/sections causes mass re-renders → **forbidden**.
 - For a large module with several child levels: Zustand store, not Context.
@@ -283,15 +296,15 @@ Keep it light:
 
 Prefer the platform over heavy libraries.
 
-| API / tool | Use |
-| ---------- | --- |
-| `BroadcastChannel` | sync events across tabs |
-| `IntersectionObserver` | load / viewport triggers; prefer **usehooks-ts** when enough |
-| `WeakMap` / `WeakSet` | local caches or in-memory refs without leaks |
-| `requestAnimationFrame` | visual updates synced to refresh rate |
-| `requestIdleCallback` | secondary work (analytics, preload, sync) during CPU idle |
-| CSS `transform` / `opacity` (e.g. `translate3d`) | GPU animations |
-| View Transitions API | native route / morph transitions; the browser does the heavy work — do not saturate the React thread |
+| API / tool                                       | Use                                                                                                  |
+| ------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| `BroadcastChannel`                               | sync events across tabs                                                                              |
+| `IntersectionObserver`                           | load / viewport triggers; prefer **usehooks-ts** when enough                                         |
+| `WeakMap` / `WeakSet`                            | local caches or in-memory refs without leaks                                                         |
+| `requestAnimationFrame`                          | visual updates synced to refresh rate                                                                |
+| `requestIdleCallback`                            | secondary work (analytics, preload, sync) during CPU idle                                            |
+| CSS `transform` / `opacity` (e.g. `translate3d`) | GPU animations                                                                                       |
+| View Transitions API                             | native route / morph transitions; the browser does the heavy work — do not saturate the React thread |
 
 - For IntersectionObserver and similar: prefer **usehooks-ts** (`useIntersectionObserver`, etc.) before inventing custom hooks.
 - Page animations: prefer native View Transitions (CSS / `document.startViewTransition` / Next integration) over heavy JS wrappers for a global fade.

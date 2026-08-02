@@ -77,7 +77,7 @@ const HeroHeader: FC = () => {
           className='flex flex-wrap items-center gap-2.5 max-lg:justify-center'
         >
           {INFO.working.enterprise.length > 0 && (
-            <Button href='#experience' variant='outline' showIconLink className='whitespace-normal text-left'>
+            <Button href='#experience' variant='outline' showIconLink className='text-left whitespace-normal'>
               <Image
                 src={INFO.working.logo}
                 alt={`Logo de ${INFO.working.enterprise}`}

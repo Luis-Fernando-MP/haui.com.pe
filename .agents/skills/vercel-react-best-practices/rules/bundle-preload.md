@@ -20,11 +20,7 @@ function EditorButton({ onClick }: { onClick: () => void }) {
   }
 
   return (
-    <button
-      onMouseEnter={preload}
-      onFocus={preload}
-      onClick={onClick}
-    >
+    <button onMouseEnter={preload} onFocus={preload} onClick={onClick}>
       Open Editor
     </button>
   )
@@ -41,9 +37,7 @@ function FlagsProvider({ children, flags }: Props) {
     }
   }, [flags.editorEnabled])
 
-  return <FlagsContext.Provider value={flags}>
-    {children}
-  </FlagsContext.Provider>
+  return <FlagsContext.Provider value={flags}>{children}</FlagsContext.Provider>
 }
 ```
 

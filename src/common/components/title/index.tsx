@@ -21,7 +21,10 @@ const Title: FC<Props> = ({ className, children, as = 'h2', ...props }) => {
   const Tag = as
 
   return (
-    <Tag className={cn('text-pretty text-5xl leading-[1.1] font-bold tracking-tight max-sm:text-4xl md:text-6xl', className)} {...props}>
+    <Tag
+      className={cn('text-5xl leading-[1.1] font-bold tracking-tight text-pretty max-sm:text-4xl md:text-6xl', className)}
+      {...props}
+    >
       {children}
     </Tag>
   )

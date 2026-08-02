@@ -11,7 +11,6 @@ export function achievementsQuery(filters: FiltersAchievements = {}, list: Achie
     if (achievementType && cert.achievementType !== achievementType) return false
     if (devContribution && cert.devContribution !== devContribution) return false
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if (skillDomain?.length && !cert.skillDomain.includes('*' as any) && !cert.skillDomain.some(s => skillDomain.includes(s)))
       return false
 

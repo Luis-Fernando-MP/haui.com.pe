@@ -50,7 +50,10 @@ const Dialog: FC<Props> = ({ open, onClose, children, className, title }) => {
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: 8, filter: 'blur(6px)' }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className={cn('bg-card text-card-foreground border-border w-full max-w-lg rounded-xl border p-5 shadow-lg', className)}
+            className={cn(
+              'bg-card text-card-foreground border-border w-full max-w-lg rounded-xl border p-5 shadow-lg',
+              className
+            )}
           >
             {children}
           </motion.div>

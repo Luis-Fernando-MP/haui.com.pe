@@ -130,12 +130,7 @@ const FocusGalleryComponent = () => {
                 />
               )}
 
-              <div
-                className={cn(
-                  'relative flex max-h-full max-w-full items-center justify-center',
-                  !isLoaded && 'opacity-0'
-                )}
-              >
+              <div className={cn('relative flex max-h-full max-w-full items-center justify-center', !isLoaded && 'opacity-0')}>
                 <img
                   ref={mainImageRef}
                   src={activeImage.src}
@@ -148,9 +143,7 @@ const FocusGalleryComponent = () => {
                     handleImageClick()
                   }}
                   style={{
-                    transform: isImageZoomed
-                      ? `scale(${zoomScale}) translate(${panPosition.x}px, ${panPosition.y}px)`
-                      : undefined
+                    transform: isImageZoomed ? `scale(${zoomScale}) translate(${panPosition.x}px, ${panPosition.y}px)` : undefined
                   }}
                   className={cn(
                     'max-h-[calc(100vh-220px)] max-w-full rounded-2xl object-contain shadow-[0_24px_60px_-24px_rgba(0,0,0,0.45)] transition-[transform,opacity] duration-300 motion-reduce:transition-none',

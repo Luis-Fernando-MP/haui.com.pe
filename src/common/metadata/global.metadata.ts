@@ -1,6 +1,5 @@
-import type { Metadata } from 'next'
-
 import { INFO } from '@common/core/constants'
+import type { Metadata } from 'next'
 
 export const globalMetadata: Metadata = {
   title: INFO.devName,

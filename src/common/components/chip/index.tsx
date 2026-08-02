@@ -31,7 +31,11 @@ const Chip: FC<Props> = ({ children, className, active = false, onClick }) => {
   if (!onClick) return <span className={styles}>{children}</span>
 
   return (
-    <Button onClick={onClick} variant={active ? 'default' : 'outline'} className={cn('rounded-full px-3 py-1.5 text-sm', className)}>
+    <Button
+      onClick={onClick}
+      variant={active ? 'default' : 'outline'}
+      className={cn('rounded-full px-3 py-1.5 text-sm', className)}
+    >
       {children}
     </Button>
   )

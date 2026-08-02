@@ -25,7 +25,7 @@ const WorkExperience: FC = () => {
           <br />
           <span className='text-gradient'>Laboral</span>
         </Title>
-        <p className='text-fn2 max-w-[520px] text-base leading-relaxed text-pretty font-mono'>
+        <p className='text-fn2 max-w-[520px] font-mono text-base leading-relaxed text-pretty'>
           Diseño y desarrollo de sistemas robustos, escalables y centrados en el usuario para startups y empresas consolidadas.
         </p>
       </motion.header>

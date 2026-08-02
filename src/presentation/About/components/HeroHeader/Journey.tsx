@@ -29,7 +29,7 @@ const JourneyComponent: FC<Props> = ({ journey }) => {
         </time>
       </header>
 
-      <div className='text-fn2 max-w-[560px] space-y-3 text-sm leading-relaxed text-pretty md:text-[15px] [&_strong]:text-fn1 [&_strong]:font-semibold'>
+      <div className='text-fn2 [&_strong]:text-fn1 max-w-[560px] space-y-3 text-sm leading-relaxed text-pretty md:text-[15px] [&_strong]:font-semibold'>
         {description}
       </div>
 

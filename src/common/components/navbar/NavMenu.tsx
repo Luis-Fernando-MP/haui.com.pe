@@ -1,8 +1,8 @@
 'use client'
 
 import Button from '@common/components/button'
-import GithubIcon from '@common/icons/github'
 import { INFO, SOCIAL } from '@common/core/constants'
+import GithubIcon from '@common/icons/github'
 import { Menu, MenuButton, MenuItem, MenuItems, MenuSeparator } from '@headlessui/react'
 import { BriefcaseBusinessIcon, DownloadIcon, MenuIcon, XIcon } from 'lucide-react'
 import type { FC } from 'react'

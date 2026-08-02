@@ -1,5 +1,5 @@
 import { TechName } from '@common/core/constants/technologies'
-import { Award, GraduationCap, Medal, type LucideIcon } from 'lucide-react'
+import { Award, GraduationCap, type LucideIcon, Medal } from 'lucide-react'
 
 export type AchievementType = keyof typeof achievementCat
 export const achievementCat = {

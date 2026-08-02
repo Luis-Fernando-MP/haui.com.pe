@@ -17,7 +17,7 @@ signatures.
 function Composer({
   renderHeader,
   renderFooter,
-  renderActions,
+  renderActions
 }: {
   renderHeader?: () => React.ReactNode
   renderFooter?: () => React.ReactNode
@@ -77,10 +77,7 @@ return (
 
 ```tsx
 // Render props work well when you need to pass data back
-<List
-  data={items}
-  renderItem={({ item, index }) => <Item item={item} index={index} />}
-/>
+<List data={items} renderItem={({ item, index }) => <Item item={item} index={index} />} />
 ```
 
 Use render props when the parent needs to provide data or state to the child.

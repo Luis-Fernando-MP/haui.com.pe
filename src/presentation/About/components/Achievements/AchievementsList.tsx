@@ -27,10 +27,7 @@ const AchievementsList: FC = () => {
   }
 
   return (
-    <ul
-      ref={parent}
-      className='grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3'
-    >
+    <ul ref={parent} className='grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3'>
       {achievements.map(achievement => (
         <li key={achievement.name} className='list-none'>
           <Achievement {...achievement} />
