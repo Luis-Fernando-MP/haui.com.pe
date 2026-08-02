@@ -1,7 +1,3 @@
-// Compatibility re-export for case-insensitive environments (Windows) so imports
-// using `@presentation/about` resolve on case-sensitive systems (Linux/Vercel).
-export { default } from '../About'
-
 'use client'
 
 import dynamic from 'next/dynamic'
