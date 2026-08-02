@@ -32,7 +32,7 @@ const state: StateCreator<Props> = (set, get) => ({
   resetFilters: () =>
     set(() => ({
       filters: {} as FiltersAchievements,
-      achievements: achievementsData
+      achievements: achievementsQuery({ orderBy: ['Contribución', 'Fecha'], orderDirection: 'desc' })
     }))
 })
 

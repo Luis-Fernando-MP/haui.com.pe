@@ -1,6 +1,5 @@
 import { TechName } from '@common/core/constants/technologies'
-import { Award, GraduationCap, Medal } from 'lucide-react'
-import { FC } from 'react'
+import { Award, GraduationCap, Medal, type LucideIcon } from 'lucide-react'
 
 export type AchievementType = keyof typeof achievementCat
 export const achievementCat = {
@@ -9,11 +8,11 @@ export const achievementCat = {
   Certificado: 9
 } as const
 
-export const achievementIcons: Record<AchievementType, FC> = {
+export const achievementIcons: Record<AchievementType, LucideIcon> = {
   Título: GraduationCap,
   Certificado: Award,
   Bootcamp: Medal
-} as const
+}
 
 export type SkillDomain = keyof typeof skillDomainCategories
 export const skillDomainCategories = {
