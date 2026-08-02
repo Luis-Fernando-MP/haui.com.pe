@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from '@common/core/cn'
 import { Image, type ImageProps } from '@unpic/react/nextjs'
 import { type FC, Ref, useId } from 'react'
 
@@ -52,6 +53,7 @@ const ImageGallery: FC<Props> = ({
   className,
   ref,
   alt,
+  onKeyDown,
   ...imgProps
 }) => {
   const fallbackGroupId = useId()
@@ -62,6 +64,14 @@ const ImageGallery: FC<Props> = ({
       ref={ref}
       src={src}
       alt={alt ?? 'gallery image'}
+      role='button'
+      tabIndex={0}
+      onKeyDown={event => {
+        onKeyDown?.(event)
+        if (event.key !== 'Enter' && event.key !== ' ') return
+        event.preventDefault()
+        event.currentTarget.click()
+      }}
       data-gallery-src={src}
       data-gallery-index={index}
       data-gallery-group={finalGroupId}
@@ -70,7 +80,10 @@ const ImageGallery: FC<Props> = ({
       data-gallery-action-text={actionText}
       itemProp='image'
       background='/fallback.webp'
-      className={`cursor-pointer hover:opacity-90 ${className}`}
+      className={cn(
+        'focus-visible:ring-fn2/50 focus-visible:ring-offset-bg1 cursor-zoom-in transition-opacity duration-200 outline-none hover:opacity-85 focus-visible:ring-2 focus-visible:ring-offset-2 motion-reduce:transition-none',
+        className
+      )}
       {...imgProps}
     />
   )

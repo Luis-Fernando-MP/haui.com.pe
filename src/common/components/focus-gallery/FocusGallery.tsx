@@ -1,18 +1,20 @@
 'use client'
 
-import { cl } from '@common/core/cn'
+import Button from '@common/components/button'
+import { cn } from '@common/core/cn'
 import { Image } from '@unpic/react/nextjs'
-import { ArrowLeft, ArrowRight, X, ZoomIn, ZoomOut } from 'lucide-react'
+import { ChevronLeftIcon, ChevronRightIcon, XIcon, ZoomInIcon, ZoomOutIcon } from 'lucide-react'
+import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
-import Button from '@common/components/button'
 import { useFocusGallery } from './useFocusGallery'
 
 /* eslint-disable @next/next/no-img-element */
 
+const ease = [0.22, 1, 0.36, 1] as const
+
 const FocusGalleryComponent = () => {
-  const body = typeof document !== 'undefined' ? document.body : null
   const {
     isModalOpen,
     activeImage,
@@ -35,6 +37,7 @@ const FocusGalleryComponent = () => {
     toggleImageZoom,
     handleMouseDown,
     handleMouseUp,
+    handleImageClick,
     HandleCloseOverlay,
     btnCloseRef
   } = useFocusGallery()
@@ -45,127 +48,226 @@ const FocusGalleryComponent = () => {
     setIsLoaded(false)
   }, [activeImage?.src])
 
-  if (!isModalOpen || !activeImage) return null
+  if (typeof document === 'undefined') return null
 
-  const { src, caption, action, actionText } = activeImage
-  const transform = `scale(${zoomScale}) translate(${panPosition.x}px, ${panPosition.y}px)`
+  const caption = activeImage?.caption?.trim() ?? ''
+  const action = activeImage?.action?.trim() ?? ''
+  const showCaption = caption.length + action.length > 0 && !isImageZoomed
 
-  const gridNormal = 'grid-rows-[60px_1fr_100px]'
-  const gridZoom = 'grid-rows-[60px_1fr]'
-
-  const dynamicGrid = isImageZoomed || !hasMultipleImages ? gridZoom : gridNormal
-
-  const Modal = (
-    <div
-      role='dialog'
-      aria-modal='true'
-      aria-label='Image gallery modal'
-      ref={modalContainerRef}
-      onClick={HandleCloseOverlay}
-      className={`bg-bg1/50 fixed inset-0 z-100 grid max-h-screen w-full max-w-screen gap-5 overflow-hidden p-5 backdrop-blur-lg ${dynamicGrid}`}
-    >
-      {/* Controles */}
-      <nav className='bg-bg1 text-fn2 border-bg3 mx-auto flex w-full max-w-[500px] flex-wrap items-center justify-between gap-2 rounded-full border px-4 py-2'>
-        <Button onClick={navigateToPrevious} disabled={!canNavigateToPrevious} variant='ghost' size='icon'>
-          <ArrowLeft />
-        </Button>
-
-        <div className='flex items-center gap-2.5'>
-          <Button onClick={toggleImageZoom} variant='ghost' size='icon'>
-            {isImageZoomed ? <ZoomOut /> : <ZoomIn />}
-          </Button>
-
+  return createPortal(
+    <AnimatePresence>
+      {isModalOpen && activeImage != null && (
+        <motion.div
+          key='focus-gallery'
+          role='dialog'
+          aria-modal='true'
+          aria-label='Galería de imágenes'
+          ref={modalContainerRef}
+          onClick={HandleCloseOverlay}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2, ease }}
+          className='bg-bg1/10 fixed inset-0 z-100 flex flex-col overflow-hidden backdrop-blur-sm'
+        >
           {hasMultipleImages && (
-            <h5 className='text-fn1'>
-              {currentImageIndex + 1} / {imageGallery.length}
-            </h5>
+            <div aria-hidden className='bg-bg3/50 absolute inset-x-0 top-0 h-0.5'>
+              <motion.div
+                initial={false}
+                animate={{ width: `${((currentImageIndex + 1) / imageGallery.length) * 100}%` }}
+                transition={{ duration: 0.4, ease }}
+                className='gradient h-full'
+              />
+            </div>
           )}
 
-          <Button ref={btnCloseRef} onClick={closeModal} variant='ghost' size='icon'>
-            <X />
-          </Button>
-        </div>
+          <header className='flex shrink-0 items-center justify-between gap-3 p-4'>
+            {hasMultipleImages && (
+              <div className='bg-bg1 border-bg3 flex h-10 shrink-0 items-center gap-1.5 rounded-full border px-4 font-mono text-xs'>
+                <span className='text-fn1 font-semibold'>{String(currentImageIndex + 1).padStart(2, '0')}</span>
+                <span className='text-fn2/50'>/</span>
+                <span className='text-fn2'>{String(imageGallery.length).padStart(2, '0')}</span>
+              </div>
+            )}
 
-        <Button onClick={navigateToNext} disabled={!canNavigateToNext} variant='ghost' size='icon'>
-          <ArrowRight />
-        </Button>
-      </nav>
+            <div className='bg-bg1 border-bg3 ml-auto flex h-10 shrink-0 items-center gap-1 rounded-full border px-1.5'>
+              <Button
+                onClick={toggleImageZoom}
+                variant='ghost'
+                size='icon'
+                aria-pressed={isImageZoomed}
+                aria-label={isImageZoomed ? 'Alejar imagen' : 'Acercar imagen'}
+                className='size-8 rounded-full'
+              >
+                {isImageZoomed && <ZoomOutIcon className='size-4' />}
+                {!isImageZoomed && <ZoomInIcon className='size-4' />}
+              </Button>
 
-      <figure
-        onClick={e => e.stopPropagation()}
-        onDoubleClick={toggleImageZoom}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        className={`relative flex h-full w-full items-center justify-center ${isImageZoomed ? '' : ''} ${cl(!isLoaded, 'loading')}`}
-      >
-        {/* Header */}
-        {(caption || action) && (
-          <header className='bg-bg1 absolute bottom-0 left-1/2 mb-5 flex w-full max-w-[400px] -translate-x-1/2 flex-col gap-5 overflow-hidden rounded-lg p-4'>
-            <div className='flex items-center gap-2'>
-              <span className='bg-from size-3 rounded-full' />
-              <span className='bg-via size-3 rounded-full' />
-              <span className='bg-to size-3 rounded-full' />
-            </div>
+              <span aria-hidden className='bg-bg3 h-5 w-px' />
 
-            <div className='flex flex-col gap-2.5'>
-              {caption && <figcaption dangerouslySetInnerHTML={{ __html: caption }} />}
-
-              {action && (
-                <Button href={action} target='_blank' rel='noopener noreferrer' variant='default'>
-                  <span>{actionText}</span>
-                </Button>
-              )}
+              <Button
+                ref={btnCloseRef}
+                onClick={closeModal}
+                variant='ghost'
+                size='icon'
+                aria-label='Cerrar galería'
+                className='size-8 rounded-full'
+              >
+                <XIcon className='size-4' />
+              </Button>
             </div>
           </header>
-        )}
 
-        <img
-          ref={mainImageRef}
-          src={src}
-          alt={caption ?? 'Image from gallery'}
-          draggable={false}
-          fetchPriority='high'
-          onLoad={() => setIsLoaded(true)}
-          style={{ transform: isImageZoomed ? transform : undefined }}
-          className={`max-h-[calc(100vh-200px)] max-w-full rounded-lg object-contain transition-transform duration-300 ${cl(isImageZoomed, 'cursor-grab active:cursor-grabbing')} ${cl(!isLoaded, 'loading')} ${cl(!isImageZoomed, 'cursor-zoom-in')} ${cl(isDraggingImage, 'transition-none')} `}
-        />
-      </figure>
+          <figure className='flex min-h-0 flex-1 flex-col px-4 pb-4'>
+            <div
+              onClick={HandleCloseOverlay}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+              className='relative flex min-h-0 flex-1 items-center justify-center'
+            >
+              {!isLoaded && (
+                <span
+                  aria-hidden
+                  className='border-bg3 border-t-fn1 pointer-events-none absolute size-8 animate-spin rounded-full border-2'
+                />
+              )}
 
-      {/* Miniaturas */}
-      {hasMultipleImages && !isImageZoomed && (
-        <nav ref={thumbnailsContainerRef} className='no-scrollbar mx-auto flex max-w-[90%] overflow-x-scroll overflow-y-hidden'>
-          {imageGallery.map((galleryImage, imageIndex) => {
-            const isActive = imageIndex === currentImageIndex
-
-            return (
-              <Button
-                key={`thumb-${imageIndex}`}
-                onClick={() => navigateToIndex(imageIndex)}
-                className={`border-bg3 h-16 w-16 min-w-16 overflow-hidden rounded-md border p-[1px] ${
-                  isActive ? 'gradient' : 'opacity-50'
-                }`}
+              <div
+                className={cn(
+                  'relative flex max-h-full max-w-full items-center justify-center',
+                  !isLoaded && 'opacity-0'
+                )}
               >
-                <div className='bg-bg1 h-full w-full rounded-md p-1'>
-                  <Image
-                    src={galleryImage.src}
-                    width={60}
-                    height={60}
-                    alt={`Thumbnail ${imageIndex + 1}`}
-                    loading='lazy'
-                    fetchPriority='low'
-                    background='/fallback.webp'
-                    className='contain h-full w-full'
-                  />
-                </div>
-              </Button>
-            )
-          })}
-        </nav>
-      )}
-    </div>
-  )
+                <img
+                  ref={mainImageRef}
+                  src={activeImage.src}
+                  alt={caption.replace(/<[^>]+>/g, '').trim() || 'Imagen de la galería'}
+                  draggable={false}
+                  fetchPriority='high'
+                  onLoad={() => setIsLoaded(true)}
+                  onClick={e => {
+                    e.stopPropagation()
+                    handleImageClick()
+                  }}
+                  style={{
+                    transform: isImageZoomed
+                      ? `scale(${zoomScale}) translate(${panPosition.x}px, ${panPosition.y}px)`
+                      : undefined
+                  }}
+                  className={cn(
+                    'max-h-[calc(100vh-220px)] max-w-full rounded-2xl object-contain shadow-[0_24px_60px_-24px_rgba(0,0,0,0.45)] transition-[transform,opacity] duration-300 motion-reduce:transition-none',
+                    isImageZoomed && 'cursor-grab active:cursor-grabbing',
+                    !isImageZoomed && 'cursor-zoom-in',
+                    isDraggingImage && 'transition-none'
+                  )}
+                />
 
-  return body ? createPortal(Modal, body) : null
+                {showCaption && (
+                  <figcaption
+                    onClick={e => e.stopPropagation()}
+                    className='bg-bg1 border-bg3 absolute bottom-4 left-1/2 z-10 flex w-[min(100%-2rem,400px)] -translate-x-1/2 flex-col gap-3 overflow-hidden rounded-xl border p-4 shadow-[0_16px_40px_-18px_rgba(0,0,0,0.4)]'
+                  >
+                    <div className='flex items-center gap-1.5' aria-hidden>
+                      <span className='bg-semantic-danger size-2.5 rounded-full' />
+                      <span className='bg-semantic-warning size-2.5 rounded-full' />
+                      <span className='bg-semantic-success size-2.5 rounded-full' />
+                    </div>
+
+                    {caption.length > 0 && (
+                      <div
+                        className='text-fn1 [&_p]:text-fn1 min-w-0 text-sm leading-relaxed [&_p]:text-sm'
+                        dangerouslySetInnerHTML={{ __html: caption }}
+                      />
+                    )}
+
+                    {action.length > 0 && (
+                      <Button
+                        href={action}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        showIconLink
+                        className='h-9 w-fit shrink-0 rounded-full px-4'
+                      >
+                        {activeImage.actionText}
+                      </Button>
+                    )}
+                  </figcaption>
+                )}
+              </div>
+
+              {hasMultipleImages && !isImageZoomed && (
+                <>
+                  <Button
+                    onClick={e => {
+                      e.stopPropagation()
+                      navigateToPrevious()
+                    }}
+                    disabled={!canNavigateToPrevious}
+                    variant='outline'
+                    size='icon'
+                    aria-label='Imagen anterior'
+                    className='absolute top-1/2 left-0 z-10 size-10 -translate-y-1/2 rounded-full sm:left-2'
+                  >
+                    <ChevronLeftIcon className='size-5' />
+                  </Button>
+
+                  <Button
+                    onClick={e => {
+                      e.stopPropagation()
+                      navigateToNext()
+                    }}
+                    disabled={!canNavigateToNext}
+                    variant='outline'
+                    size='icon'
+                    aria-label='Imagen siguiente'
+                    className='absolute top-1/2 right-0 z-10 size-10 -translate-y-1/2 rounded-full sm:right-2'
+                  >
+                    <ChevronRightIcon className='size-5' />
+                  </Button>
+                </>
+              )}
+            </div>
+          </figure>
+
+          {hasMultipleImages && !isImageZoomed && (
+            <nav aria-label='Miniaturas de la galería' className='shrink-0 px-4 pb-4'>
+              <div ref={thumbnailsContainerRef} className='no-scrollbar mx-auto flex w-fit max-w-full gap-2 overflow-x-auto'>
+                {imageGallery.map((galleryImage, imageIndex) => (
+                  <Button
+                    key={`thumb-${galleryImage.src}-${imageIndex}`}
+                    onClick={() => navigateToIndex(imageIndex)}
+                    variant='ghost'
+                    size='icon'
+                    aria-label={`Ver imagen ${imageIndex + 1}`}
+                    aria-current={imageIndex === currentImageIndex}
+                    className={cn(
+                      'size-14 shrink-0 overflow-hidden rounded-xl p-px transition-[opacity,background-color] duration-200 motion-reduce:transition-none',
+                      imageIndex === currentImageIndex && 'gradient',
+                      imageIndex !== currentImageIndex && 'bg-bg3/70 hover:bg-bg3 opacity-50 hover:opacity-100'
+                    )}
+                  >
+                    <span className='bg-bg1 flex size-full items-center justify-center overflow-hidden rounded-[11px]'>
+                      <Image
+                        src={galleryImage.src}
+                        width={56}
+                        height={56}
+                        alt=''
+                        loading='lazy'
+                        fetchPriority='low'
+                        background='/fallback.webp'
+                        className='size-full object-cover'
+                      />
+                    </span>
+                  </Button>
+                ))}
+              </div>
+            </nav>
+          )}
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    document.body
+  )
 }
 
 export default FocusGalleryComponent

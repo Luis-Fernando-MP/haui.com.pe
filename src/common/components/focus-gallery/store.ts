@@ -1,22 +1,10 @@
+import type { JourneysImage } from '@common/core/constants/personalJourneys'
 import { create } from 'zustand'
 
 export const useFocusGalleryStore = create<{
-  images: {
-    src: string
-    caption?: string
-    action?: string
-    actionText?: string
-  }[]
+  images: JourneysImage[]
   index: number
-  open: (
-    images: {
-      src: string
-      caption?: string
-      action?: string
-      actionText?: string
-    }[],
-    index?: number
-  ) => void
+  open: (images: JourneysImage[], index?: number) => void
   close: () => void
 }>(set => ({
   images: [],

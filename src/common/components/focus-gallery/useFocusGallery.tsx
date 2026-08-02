@@ -124,11 +124,14 @@ export const useFocusGallery = () => {
     setInitialPanPosition({ x: 0, y: 0 })
   }, [isImageZoomed])
 
+  const didPanDuringDrag = useRef(false)
+
   const handleMouseDown = useCallback(
     (mouseEvent: React.MouseEvent) => {
       if (!isImageZoomed) return
 
       mouseEvent.preventDefault()
+      didPanDuringDrag.current = false
       setIsDraggingImage(true)
       setDragStartPosition({
         x: mouseEvent.clientX,
@@ -142,6 +145,14 @@ export const useFocusGallery = () => {
   const handleMouseUp = useCallback(() => {
     setIsDraggingImage(false)
   }, [])
+
+  const handleImageClick = useCallback(() => {
+    if (didPanDuringDrag.current) {
+      didPanDuringDrag.current = false
+      return
+    }
+    toggleImageZoom()
+  }, [toggleImageZoom])
 
   // Calcula los límites de paneo basados en el tamaño de la imagen
   const calculatePanLimits = useCallback((): PanLimits => {
@@ -193,6 +204,7 @@ export const useFocusGallery = () => {
       const clampedX = Math.min(Math.max(targetX, -maxPanX), maxPanX)
       const clampedY = Math.min(Math.max(targetY, -maxPanY), maxPanY)
 
+      didPanDuringDrag.current = true
       setPanPosition({ x: clampedX, y: clampedY })
     },
     [isImageZoomed, isDraggingImage, dragStartPosition, initialPanPosition, calculatePanLimits]
@@ -288,6 +300,17 @@ export const useFocusGallery = () => {
 
   useEffect(() => {
     if (!isModalOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [isModalOpen])
+
+  useEffect(() => {
+    if (!isModalOpen) return
     // Atajos de teclado
 
     const EVENTS = {
@@ -368,6 +391,7 @@ export const useFocusGallery = () => {
 
     handleMouseDown,
     handleMouseUp,
+    handleImageClick,
     HandleCloseOverlay
   }
 }

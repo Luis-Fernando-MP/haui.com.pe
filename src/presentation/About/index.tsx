@@ -1,6 +1,5 @@
 'use client'
 
-import GradientSvg from '@common/components/gradient-svg'
 import dynamic from 'next/dynamic'
 import type { FC } from 'react'
 
@@ -16,9 +15,8 @@ const HeroGrainGradient = dynamic(() => import('@presentation/home/components/He
 
 const About: FC = () => {
   return (
-    <main className='relative flex w-full flex-col gap-20 pb-20 md:gap-28 md:pb-28'>
+    <main className='relative flex w-full flex-col gap-24 pb-24 md:gap-32 md:pb-32'>
       <HeroGrainGradient />
-      <GradientSvg />
       <HeroHeader />
       <MyDevStack />
       <Technologies />
