@@ -8,7 +8,8 @@ export const INFO = {
   fullName: 'Luis Fernando Melgar Pizarro',
   working: {
     state: false,
-    enterprise: ''
+    enterprise: 'Bluepoint AI',
+    logo: '/assets/work-experience/bluepoint_ai.webp'
   },
   phone: '958978370',
   cv: 'https://drive.google.com/file/d/1uL6k9y1Sd64ZkVKYiXXFL1FZy-5RDPGV/view?usp=sharing',

@@ -76,7 +76,19 @@ const HeroHeader: FC = () => {
           transition={{ duration: 0.6, ease, delay: 0.36 }}
           className='flex flex-wrap items-center gap-2.5 max-lg:justify-center'
         >
-          {!INFO.working.state && (
+          {INFO.working.enterprise.length > 0 && (
+            <Button href='#experience' variant='outline' showIconLink>
+              <Image
+                src={INFO.working.logo}
+                alt={`Logo de ${INFO.working.enterprise}`}
+                width={16}
+                height={16}
+                className='size-4 shrink-0 rounded-md object-contain'
+              />
+              Creando ideas con: {INFO.working.enterprise}
+            </Button>
+          )}
+          {!INFO.working.state && INFO.working.enterprise.length === 0 && (
             <Button href='#contact' showIconLink>
               <span className='relative flex size-2'>
                 <span className='bg-semantic-success absolute inset-0 animate-ping rounded-full opacity-55 motion-reduce:animate-none' />

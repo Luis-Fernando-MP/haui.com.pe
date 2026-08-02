@@ -2,49 +2,47 @@
 
 import Title from '@common/components/title'
 import { HISTORY_JOBS } from '@common/core/constants/historyJobs'
-import { motion, useReducedMotion } from 'motion/react'
+import { motion } from 'motion/react'
 import type { FC } from 'react'
 
 import JobExperience from './JobExperience'
 
-const WorkExperience: FC = () => {
-  const reduceMotion = useReducedMotion()
+const ease = [0.22, 1, 0.36, 1] as const
 
+const WorkExperience: FC = () => {
   return (
-    <section id='experience' className='max-region:px-5 flex w-full scroll-mt-28 flex-col items-center gap-12'>
+    <section id='experience' className='max-region:px-5 flex w-full scroll-mt-28 flex-col items-center gap-12 md:gap-16'>
       <motion.header
-        initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.35 }}
-        transition={{ duration: 0.45, ease: 'easeOut' }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.5, ease }}
         className='region max-region:items-center max-region:text-center flex flex-col gap-4'
       >
-        <p className='text-fn2 font-mono text-xs tracking-[0.18em] uppercase'>2019 — 2026</p>
+        <p className='text-fn2 font-mono text-xs tracking-[0.18em] uppercase'>Trayectoria Profesional</p>
         <Title>
           Mi Experiencia
           <br />
           <span className='text-gradient'>Laboral</span>
         </Title>
-        <p className='text-fn2 text-pretty max-w-[640px] font-mono text-base leading-relaxed'>
-          <strong className='text-fn1 font-semibold'>He construido software para empresas de distinto tamaño</strong>, desde
-          equipos pequeños hasta organizaciones grandes. Priorizo sistemas robustos, seguros y fáciles de mantener.
+        <p className='text-fn2 max-w-[520px] text-base leading-relaxed text-pretty font-mono'>
+          Diseño y desarrollo de sistemas robustos, escalables y centrados en el usuario para startups y empresas consolidadas.
         </p>
       </motion.header>
 
-      <ul className='border-bg3 flex w-full flex-col border-y'>
+      <div className='region mx-auto flex w-full flex-col gap-5'>
         {HISTORY_JOBS.map((job, i) => (
-          <motion.li
+          <motion.div
             key={job.name}
-            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.12 }}
-            transition={{ duration: 0.4, delay: reduceMotion ? 0 : Math.min(i * 0.06, 0.24), ease: 'easeOut' }}
-            className='list-none'
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.45, delay: Math.min(i * 0.08, 0.3), ease }}
           >
             <JobExperience job={job} />
-          </motion.li>
+          </motion.div>
         ))}
-      </ul>
+      </div>
     </section>
   )
 }

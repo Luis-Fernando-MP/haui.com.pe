@@ -18,6 +18,243 @@ export type HistoryJob = {
 
 export const HISTORY_JOBS: HistoryJob[] = [
   {
+    name: 'Bluepoint AI S.A.C.S.',
+    logo: '/assets/work-experience/bluepoint_ai.webp',
+    position: 'Ingeniero de software',
+    period: 'Mar 2025 — Actualidad',
+    year: '2026',
+    usedTools: [
+      'NextJs',
+      'TypeScript',
+      'ReactJs',
+      'Tailwind',
+      'NestJs',
+      'Prisma',
+      'PostgreSQL',
+      'Docker',
+      'Cloudflare',
+      'GitHub',
+      'Git',
+      'Cursor',
+      'NodeJs'
+    ],
+
+    websiteUrl: 'https://bluepoint.ai/',
+    externalUrl: 'https://bluepoint.ai/nosotros/',
+
+    Extra: (
+      <>
+        <li>
+          <strong>Sobre la empresa:</strong> Bluepoint AI (Miraflores, Lima) tiene más de <time dateTime='2011'>15 años</time>{' '}
+          desarrollando soluciones de <strong>inteligencia artificial</strong>, <strong>machine learning</strong> y agentes
+          cognitivos para empresas en Perú y Latinoamérica. Los productos en los que participo están orientados a{' '}
+          <strong>retail</strong> y <strong>manufactura</strong>, con volúmenes de datos muy altos.
+        </li>
+        <li>
+          <strong>Mi experiencia:</strong> Me siento muy a gusto en Bluepoint. Mi día a día está más centrado en el{' '}
+          <strong>frontend</strong> —que la aplicación se sienta clara y usable para el cliente—, pero también entro al backend, a
+          microservicios y a revisar que los datos cuadren cuando toca. Al inicio no me costó tanto integrarme con el equipo; lo
+          que sí me demandó fue entender cómo está armada toda la información y cómo se conecta la aplicación completa. Todavía
+          hay módulos que voy descubriendo, pero ya manejo varios con seguridad. Acá aprendí de verdad lo que pesa la{' '}
+          <strong>puntualidad</strong> (un minuto cuenta) y la <strong>responsabilidad</strong>: si te comprometes, cumples, y si
+          no se pudo, se explica con claridad. También me marcaron mucho la cultura de <strong>iniciativa</strong>: si tienes una
+          idea, plásmala; si falla, se entiende y se corrige, lo importante es atreverse. El equipo es unido, el líder técnico
+          domina el sistema y el negocio, y siempre siento que puedo preguntar sin miedo. Me gusta mucho trabajar en físico —
+          hojas, rayones, gráficos— y las reuniones con lápiz y papel; como dicen, las palabras se pierden más rápido en la mente
+          que en la hoja. Me retan a crecer no solo como programador, sino a <strong>entender el negocio</strong>. Por eso sigo
+          aquí: me siento cómodo, apoyado y retado a la vez, y de momento no busco cambiar.
+        </li>
+      </>
+    ),
+    Activities: (
+      <>
+        <li>
+          Desarrollo de interfaces avanzadas con <strong>Next.js</strong>, monorepos y micro frontends.
+        </li>
+        <li>
+          Implementación de comunicación en tiempo real con <strong>WebSockets</strong>, <strong>SSE</strong>, APIs{' '}
+          <abbr title='Representational State Transfer'>REST</abbr>, <strong>Web Workers</strong> (Comlink) y{' '}
+          <strong>Broadcast Channel</strong>.
+        </li>
+        <li>
+          Optimización de renderizados pesados mediante virtualización de componentes, caching y gestión de estado con{' '}
+          <strong>Zustand</strong>.
+        </li>
+        <li>
+          Manejo de datos masivos y tablas complejas utilizando <strong>React Query</strong>, <strong>React Table</strong>,{' '}
+          <strong>Immer</strong>, <strong>Apache Arrow</strong> y compresión <strong>Deflate</strong>.
+        </li>
+        <li>
+          Construcción de sistemas de UI y componentes con <strong>Tailwind CSS</strong>, <strong>shadcn/ui</strong>,{' '}
+          <strong>Storybook</strong> y <strong>Turbopack</strong>.
+        </li>
+        <li>
+          Creación de microservicios con <strong>NestJS</strong>, <strong>Prisma ORM</strong>, <strong>Swagger</strong>,{' '}
+          <strong>WebSockets</strong> y colas con <strong>p-queue</strong>.
+        </li>
+        <li>
+          Administración de bases de datos <strong>PostgreSQL</strong> con <strong>DBeaver</strong> y <strong>Prisma</strong>.
+        </li>
+        <li>
+          Integración de servicios cloud para assets y seguridad con <strong>Cloudinary</strong> y <strong>Cloudflare</strong>.
+        </li>
+        <li>
+          Automatización de flujos <abbr title='Continuous Integration / Continuous Delivery'>CI/CD</abbr> con{' '}
+          <strong>GitHub Actions</strong> y contenedorización con <strong>Docker</strong>.
+        </li>
+        <li>
+          Escaneo de vulnerabilidades y seguridad de código con <strong>Trivy</strong>.
+        </li>
+        <li>
+          Uso de herramientas de IA, agentes, Specs y Skills con <strong>Claude</strong>, <strong>Cursor</strong>,{' '}
+          <strong>MiniMax</strong>, <strong>Trae</strong> y <strong>OpenCode</strong>.
+        </li>
+      </>
+    )
+  },
+  {
+    name: 'Fragote Software Factory S.A.C.',
+    logo: '/assets/work-experience/fragote.webp',
+    position: 'Ingeniero de software',
+    period: 'Dic 2024 — Mar 2025',
+    year: '2025',
+    usedTools: ['NextJs', 'TypeScript', 'ReactJs', 'Docker', 'GitHub', 'Git', 'Cursor', 'NodeJs'],
+
+    websiteUrl: 'https://fragote.com/',
+    externalUrl: 'https://fragote.com/en/',
+
+    Extra: (
+      <>
+        <li>
+          <strong>Sobre la empresa:</strong> FraGoTe Software Factory es una fábrica de software en Lima enfocada en desarrollo a
+          medida, MVPs, aplicaciones web y móviles, integraciones e inteligencia artificial. Trabajan con metodologías ágiles y
+          partners empresariales; ahí participé en el proyecto operativo de la mina de <strong>Ferreyros</strong>.
+        </li>
+        <li>
+          <strong>Mi experiencia:</strong> En Fragote me sentí parte de un equipo que de verdad se compromete. Cubría{' '}
+          <strong>frontend y backend</strong>: la pista 3D con <strong>Three.js</strong> / <strong>React Three Fiber</strong> y el
+          backend que recibía e integraba la data de Ferreyros. Había presión —como en cualquier entrega importante—, pero el
+          ambiente era cordial y me llevé buenos amigos. Me marcó mucho ver cómo el equipo se quedaba a rematar cuando hacía
+          falta, y eso me empujó a <strong>dar un poco más</strong> de mí para sacar el proyecto adelante. También guardo con
+          cariño las explicaciones del líder: gráficos, lluvia de ideas y espacio para preguntar hasta que a todos nos quedara
+          claro. Fragote fue una etapa bonita; me sentí cómodo, apoyado y con ganas de aportar. No tengo nada que omitir ni
+          suavizar: me gustó de verdad.
+        </li>
+      </>
+    ),
+    Activities: (
+      <>
+        <li>
+          Desarrollo de aplicaciones complejas en <strong>Next.js</strong> con integración e interactividad 3D utilizando{' '}
+          <strong>Three.js</strong> y <strong>React Three Fiber</strong>.
+        </li>
+        <li>
+          Administración de bases de datos <strong>SQL Server</strong> mediante <strong>Azure Data Studio</strong> y{' '}
+          <strong>TablePlus</strong>, procesando archivos <strong>Parquet</strong>.
+        </li>
+        <li>
+          Construcción de pipelines <abbr title='Continuous Integration / Continuous Delivery'>CI/CD</abbr> automatizados con{' '}
+          <strong>GitHub Actions</strong> y contenedorización con <strong>Docker</strong>.
+        </li>
+        <li>
+          Implementación de autenticación segura con <strong>Better Auth</strong> y gestión de sesiones por inactividad con{' '}
+          <strong>Idle.js</strong>.
+        </li>
+        <li>
+          Desarrollo de backend en <strong>Next.js</strong> integrando <strong>WebSockets</strong>, APIs{' '}
+          <abbr title='Representational State Transfer'>REST</abbr>, <strong>Web Workers</strong> y{' '}
+          <strong>Broadcast Channel</strong> para la sincronización en tiempo real de datos y vistas de la mina de{' '}
+          <strong>Ferreyros</strong>.
+        </li>
+        <li>
+          Uso de herramientas asistidas por IA como <strong>Kiro</strong> y <strong>Cursor</strong> para la aceleración del
+          desarrollo y debugging.
+        </li>
+        <li>
+          Gestión de sprints, tareas y colaboración de equipo mediante <strong>Makaha</strong>, <strong>GitLab</strong>,{' '}
+          <strong>Slack</strong> y <strong>Microsoft Teams</strong>.
+        </li>
+      </>
+    )
+  },
+  {
+    name: 'LEXIA LEGALTECH S.A.C.',
+    logo: '/assets/work-experience/lexia.webp',
+    position: 'Ingeniero de software',
+    period: 'Oct 2024 — Nov 2024',
+    year: '2024',
+    usedTools: [
+      'NextJs',
+      'TypeScript',
+      'ReactJs',
+      'PostgreSQL',
+      'Beekeeper',
+      'Docker',
+      'Cloudflare',
+      'AWS',
+      'GitHub',
+      'Git',
+      'GraphQl',
+      'Cursor'
+    ],
+
+    websiteUrl: 'https://www.lexia.lat',
+    externalUrl: 'https://www.lexia.lat/about',
+
+    Extra: (
+      <>
+        <li>
+          <strong>Sobre la empresa:</strong> Lexia Legaltech desarrolla <strong>LexIA</strong>, una plataforma{' '}
+          <abbr title='Software as a Service'>SaaS</abbr> de asistente legal con IA para abogados, estudiantes y equipos
+          jurídicos. Apoya consultas y borradores sin reemplazar la asesoría legal.
+        </li>
+        <li>
+          <strong>Mi experiencia:</strong> Llegué a LexIA cerca del <strong>MVP 2</strong>, cuando tocaba modernizar el sistema:
+          roles, espacios de trabajo, créditos, pagos, agentes y módulos de IA. En alrededor de dos meses armamos unos{' '}
+          <strong>10–12 módulos</strong>; aporté en streaming de IA, pasarelas de pago, despliegues y la base serverless. Al
+          inicio el ambiente se sentía un poco frío, pero con el tiempo se volvió más cercano y colaborativo, con buen apoyo de
+          los líderes. Ahí aprendí de verdad a trabajar bajo la <strong>presión de una startup</strong> que debe entregar: ritmo
+          alto, fallos que se corrigen rápido y foco en sacar producto. Cuando llegó el <strong>MVP 3</strong> con los primeros
+          clientes, el modo pasó de crear sin pausa a mantenimiento y soporte, y se sintió más ameno. Me gustaba LexIA, aprendí
+          mucho y me llevo una etapa intensa pero valiosa.
+        </li>
+      </>
+    ),
+    Activities: (
+      <>
+        <li>
+          Desarrollo de plataformas <abbr title='Software as a Service'>SaaS</abbr> avanzadas en <strong>Next.js</strong> para
+          módulos integrados con IA, gestión de caché y sesiones con <strong>Better Auth</strong>, <strong>React Query</strong> y{' '}
+          <strong>Apollo Client</strong>.
+        </li>
+        <li>
+          Administración de bases de datos relacionales <strong>PostgreSQL</strong> mediante <strong>DBeaver</strong> y{' '}
+          <strong>Beekeeper Studio</strong>.
+        </li>
+        <li>
+          Construcción de canalizaciones <abbr title='Continuous Integration / Continuous Delivery'>CI/CD</abbr> con{' '}
+          <strong>GitHub Actions</strong>, <strong>Docker</strong>, <strong>Cloudflare Workers</strong>,{' '}
+          <strong>Cloudflare Pages</strong>, <strong>Cloudflare D1</strong> y <strong>Cloudflare Hyperdrive</strong>.
+        </li>
+        <li>
+          Creación de microservicios backend serverless en <strong>Cloudflare Workers</strong>, implementando middlewares y
+          plugins de integración con <strong>Polar Client</strong> y <strong>Better Auth</strong>.
+        </li>
+        <li>
+          Gestión de infraestructura e instancias en <abbr title='Amazon Web Services'>AWS</abbr> junto con despliegues de workers
+          en <strong>Cloudflare</strong>.
+        </li>
+        <li>
+          Desarrollo de microservicios backend ultrarrápidos con <strong>Hono</strong>, <strong>WebSockets</strong> y{' '}
+          <strong>SSE</strong> para streaming en módulos de IA.
+        </li>
+        <li>
+          Integración de pasarelas de pago y monetización mediante <strong>Polar.sh</strong> y <strong>Better Auth</strong>.
+        </li>
+      </>
+    )
+  },
+  {
     name: 'DevDatep Consulting E.I.R.L',
     logo: '/assets/work-experience/devdatep-consulting.webp',
     position: 'Web Database Intern & Web Development Leader',
@@ -250,7 +487,7 @@ export const HISTORY_JOBS: HistoryJob[] = [
   },
   {
     name: 'Industria Gráfica Inmaculada Concepción',
-    logo: '/assets/work-experience/grafica-Concepcion.webp',
+    logo: '/assets/work-experience/grafica-concepcion.webp',
     position: 'Graphic Design Intern',
     period: 'Abr 2019 — Dic 2019',
     year: '2019',

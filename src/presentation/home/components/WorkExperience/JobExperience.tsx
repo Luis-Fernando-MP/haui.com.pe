@@ -2,9 +2,11 @@
 
 import Button from '@common/components/button'
 import Chip from '@common/components/chip'
+import Image from '@common/components/image'
 import { cn } from '@common/core/cn'
 import { HistoryJob } from '@common/core/constants/historyJobs'
-import { ArrowUpRightIcon, GlobeIcon, Share2Icon } from 'lucide-react'
+import { ChevronDownIcon, GlobeIcon, Share2Icon, CalendarIcon, BriefcaseIcon } from 'lucide-react'
+import { motion } from 'motion/react'
 import type { FC, KeyboardEvent, MouseEvent } from 'react'
 
 import useJobExperienceStore from '../../store/useJobExperience'
@@ -13,27 +15,28 @@ interface Props {
   job: HistoryJob
 }
 
+const ease = [0.22, 1, 0.36, 1] as const
+
 const JobExperience: FC<Props> = ({ job }) => {
   const selectedJob = useJobExperienceStore(s => s.selectedJob)
   const setSelectedJob = useJobExperienceStore(s => s.setSelectedJob)
 
-  const { year, name, position, websiteUrl, facebookUrl, externalUrl, Activities, usedTools, Extra, period } = job
+  const { year, name, position, websiteUrl, facebookUrl, externalUrl, Activities, usedTools, Extra, period, logo } = job
   const more = selectedJob === name
-  const listOfTools = more ? usedTools : usedTools.slice(0, 5)
 
-  const handleToggle = (e: MouseEvent<HTMLDivElement>): void => {
+  const handleToggle = (e: MouseEvent<HTMLElement>): void => {
     if ((e.target as HTMLElement).closest('a,button')) return
     setSelectedJob(name)
   }
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>): void => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLElement>): void => {
     if (e.key !== 'Enter' && e.key !== ' ') return
     e.preventDefault()
     setSelectedJob(name)
   }
 
   return (
-    <div
+    <article
       role='button'
       tabIndex={0}
       aria-expanded={more}
@@ -41,107 +44,175 @@ const JobExperience: FC<Props> = ({ job }) => {
       onClick={handleToggle}
       onKeyDown={handleKeyDown}
       className={cn(
-        'border-bg3 group w-full border-b py-8 last:border-b-0 md:py-10',
-        'outline-none transition-colors duration-200',
-        'hover:bg-bg2/60 focus-visible:bg-bg2/60 focus-visible:ring-fn2/40 focus-visible:ring-2 focus-visible:ring-inset',
-        more && 'bg-bg2'
+        'bg-bg1/30 border-bg3/50 relative w-full cursor-pointer rounded-2xl border p-4 outline-none transition-all duration-300 md:p-6',
+        'hover:border-bg3 hover:bg-bg2/20',
+        'focus-visible:ring-fn2/40 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg1',
+        more && 'border-fn2/15 bg-bg2/30'
       )}
     >
-      <div className='region max-region:flex max-region:max-w-[700px] max-region:flex-col mx-auto grid grid-cols-[96px_1fr_280px] items-start gap-6 max-md:items-center md:gap-8'>
-        <time
-          className='text-fn2 order-1 w-fit font-mono text-2xl font-light tabular-nums md:text-3xl'
-          dateTime={year.toString()}
-        >
-          {year}
-        </time>
-
-        <div className='order-2 flex min-w-0 flex-col gap-5'>
-          <div className='flex flex-col gap-2 max-md:items-center max-md:text-center'>
-            <h3 className='text-pretty max-w-[420px] text-xl font-semibold tracking-tight md:text-2xl'>{position}</h3>
-            <Button
-              href={websiteUrl}
-              target='_blank'
-              rel='noopener noreferrer'
-              variant='link'
-              className='text-fn2 hover:text-fn1 font-mono text-sm'
-              aria-label={`Visitar sitio de ${name}`}
-            >
-              <ArrowUpRightIcon className='size-4 max-sm:hidden' aria-hidden />
-              {name}
-            </Button>
+      <div className='flex w-full items-center justify-between gap-4'>
+        <div className='flex min-w-0 w-full items-center gap-4'>
+          <div className='bg-bg2 border-bg3/50 flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border p-2 md:size-12'>
+            <Image
+              src={logo}
+              alt={`Logo de ${name}`}
+              width={40}
+              height={40}
+              objectFit='contain'
+              className='size-full object-contain'
+            />
           </div>
 
-          <div className='relative'>
-            <ul
-              className={cn(
-                'text-fn2 flex max-h-[96px] list-disc flex-col gap-2.5 overflow-hidden pl-5 font-mono text-sm leading-relaxed',
-                more && 'max-h-none overflow-visible'
-              )}
-            >
-              {Activities}
-            </ul>
+          <div className='flex min-w-0 flex-col gap-0.5'>
+            <h3 className='text-fn1 text-base leading-snug font-bold tracking-tight text-pretty md:text-lg'>
+              {position}
+            </h3>
+            <div className='flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs md:text-sm text-fn2'>
+              <Button
+                href={websiteUrl}
+                target='_blank'
+                rel='noopener noreferrer'
+                variant='link'
+                showIconLink
+                className='text-fn2 hover:text-fn1 h-auto min-h-0 px-0 font-semibold transition-colors text-xs md:text-sm'
+                aria-label={`Visitar sitio de ${name}`}
+              >
+                {name}
+              </Button>
+              <span className='text-fn2/30' aria-hidden>
+                ·
+              </span>
+              <span className='flex items-center gap-1 text-[11px] md:text-xs font-medium text-fn2/80'>
+                <CalendarIcon className='size-3' />
+                {period}
+              </span>
+            </div>
+
             {!more && (
-              <div
-                aria-hidden
-                className='from-bg1 group-hover:from-bg2 pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t to-transparent'
-              />
+              <div className='flex flex-wrap gap-1 mt-1.5'>
+                {usedTools.slice(0, 4).map(tool => (
+                  <span key={`${tool}-preview-${name}`} className='bg-bg2/50 text-fn2/80 rounded-md px-1.5 py-0.5 text-[10px] font-medium md:text-[11px]'>
+                    {tool}
+                  </span>
+                ))}
+                {usedTools.length > 4 && (
+                  <span className='bg-bg2/30 text-fn2/60 rounded-md px-1.5 py-0.5 text-[10px] font-medium md:text-[11px]'>
+                    +{usedTools.length - 4}
+                  </span>
+                )}
+              </div>
             )}
           </div>
-
-          {more && Extra && (
-            <ul className='text-fn2 flex list-disc flex-col gap-2.5 pl-5 font-mono text-sm leading-relaxed'>{Extra}</ul>
-          )}
         </div>
 
-        <div className='order-3 flex h-fit w-full flex-col gap-4 max-md:items-center max-md:text-center'>
-          <div className='flex flex-wrap gap-2 max-md:justify-center'>
-            {listOfTools.map(tool => (
-              <Chip key={`${tool}-${name}`} className='pointer-events-none text-xs'>
-                {tool}
-              </Chip>
-            ))}
-            {!more && usedTools.length > 5 && (
-              <Chip className='pointer-events-none text-xs'>+{usedTools.length - 5}</Chip>
-            )}
-          </div>
-
-          {more && (
-            <time className='text-fn2 px-1 font-mono text-xs tracking-wide' dateTime={period.toString()}>
-              {period}
-            </time>
-          )}
-
-          {more && (facebookUrl || externalUrl) && (
-            <div className='flex flex-wrap gap-1 max-md:justify-center'>
-              {facebookUrl && (
-                <Button
-                  href={facebookUrl}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  variant='outline'
-                  className='text-fn2 px-3'
-                  aria-label={`Red social de ${name}`}
-                >
-                  <Share2Icon aria-hidden />
-                </Button>
-              )}
-              {externalUrl && (
-                <Button
-                  href={externalUrl}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  variant='outline'
-                  className='text-fn2 px-3'
-                  aria-label={`Sitio externo de ${name}`}
-                >
-                  <GlobeIcon aria-hidden />
-                </Button>
-              )}
-            </div>
-          )}
+        <div className='flex items-center gap-3 shrink-0'>
+          <span className='bg-bg2/40 text-fn2 font-mono text-[11px] md:text-xs font-semibold tracking-wider px-2.5 py-1 rounded-lg hidden sm:inline-block'>
+            {year}
+          </span>
+          
+          <Button
+            variant='ghost'
+            size='icon'
+            className='text-fn2 hover:text-fn1 hover:bg-bg2/50 size-8 rounded-full'
+            onClick={(e) => {
+              e.stopPropagation()
+              setSelectedJob(name)
+            }}
+            aria-label={more ? 'Contraer detalles' : 'Expandir detalles'}
+          >
+            <motion.span
+              animate={{ rotate: more ? 180 : 0 }}
+              transition={{ duration: 0.25, ease }}
+              className='flex items-center justify-center'
+              aria-hidden
+            >
+              <ChevronDownIcon className='size-4' />
+            </motion.span>
+          </Button>
         </div>
       </div>
-    </div>
+
+      <motion.div
+        initial={false}
+        animate={{ height: more ? 'auto' : 0, opacity: more ? 1 : 0 }}
+        transition={{ duration: 0.35, ease }}
+        className='overflow-hidden'
+      >
+        <div className='border-bg3/30 mt-4 grid grid-cols-1 gap-6 border-t pt-4 md:grid-cols-[1.6fr_1fr] md:gap-8'>
+          <div className='flex flex-col gap-3'>
+            <h4 className='text-fn2/60 font-mono text-xs font-bold tracking-wider uppercase flex items-center gap-1.5'>
+              <BriefcaseIcon className='size-3.5' />
+              Logros y Actividades
+            </h4>
+            <ul className='text-fn2 marker:text-via list-outside list-disc space-y-3 pl-5 text-sm leading-relaxed md:text-base [&_strong]:text-fn1 [&_strong]:font-semibold'>
+              {Activities}
+            </ul>
+          </div>
+
+          <div className='flex flex-col gap-6'>
+            {Extra != null && (
+              <div className='bg-bg2/30 border-bg3/30 flex flex-col gap-3 rounded-xl border p-4'>
+                <h4 className='text-fn2/60 font-mono text-xs font-bold tracking-wider uppercase'>
+                  Contexto y Aprendizaje
+                </h4>
+                <ul className='text-fn2 marker:text-fn2/50 list-outside list-disc space-y-3 pl-5 text-xs leading-relaxed md:text-sm [&_strong]:text-fn1 [&_strong]:font-medium'>
+                  {Extra}
+                </ul>
+              </div>
+            )}
+
+            <div className='flex flex-col gap-2.5'>
+              <h4 className='text-fn2/60 font-mono text-xs font-bold tracking-wider uppercase'>
+                Tecnologías y Herramientas
+              </h4>
+              <div className='flex flex-wrap gap-1.5'>
+                {usedTools.map(tool => (
+                  <Chip key={`${tool}-${name}`} className='pointer-events-none rounded-md px-2.5 py-0.5 text-xs font-medium'>
+                    {tool}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+
+            {((facebookUrl != null && facebookUrl.length > 0) || (externalUrl != null && externalUrl.length > 0)) && (
+              <div className='flex flex-col gap-2.5'>
+                <h4 className='text-fn2/60 font-mono text-xs font-bold tracking-wider uppercase'>
+                  Enlaces de Interés
+                </h4>
+                <div className='flex flex-wrap gap-2'>
+                  {facebookUrl != null && facebookUrl.length > 0 && (
+                    <Button
+                      href={facebookUrl}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      variant='outline'
+                      size='sm'
+                      className='text-xs font-medium rounded-lg gap-1.5'
+                    >
+                      <Share2Icon className='size-3.5' />
+                      Red Social
+                    </Button>
+                  )}
+                  {externalUrl != null && externalUrl.length > 0 && (
+                    <Button
+                      href={externalUrl}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      variant='outline'
+                      size='sm'
+                      className='text-xs font-medium rounded-lg gap-1.5'
+                    >
+                      <GlobeIcon className='size-3.5' />
+                      Sitio Externo
+                    </Button>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </motion.div>
+    </article>
   )
 }
 
