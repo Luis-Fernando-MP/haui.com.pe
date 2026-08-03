@@ -10,29 +10,6 @@ import { getAllBlocks } from './getAllBlocks'
 import { SimpleAdditionalImages, handleImageProcessing, processMultipleImages } from './handleImageProcessing'
 import clog from './log'
 
-const SKIP_BLOCK_TYPES = new Set([
-  'child_database',
-  'child_page',
-  'link_preview',
-  'embed',
-  'bookmark',
-  'unsupported',
-  'synced_block',
-  'template',
-  'breadcrumb',
-  'table_of_contents'
-])
-
-const emptyRenderer = (type: string) =>
-  createBlockRenderer(type as any, async () => {
-    return ''
-  })
-
-const renderer = new NotionRenderer({
-  client: notion,
-  renderers: [...SKIP_BLOCK_TYPES].map(emptyRenderer)
-})
-
 export interface MdxImageContentProps {
   blurhash: string
   placeholder: string
@@ -61,6 +38,19 @@ interface Props {
   generateContent?: boolean
 }
 
+const SKIP_BLOCK_TYPES = new Set([
+  'child_database',
+  'child_page',
+  'link_preview',
+  'embed',
+  'bookmark',
+  'unsupported',
+  'synced_block',
+  'template',
+  'breadcrumb',
+  'table_of_contents'
+])
+
 const EMPTY_IMAGE_PROPS: MdxImageContentProps = {
   blurhash: '',
   placeholder: '',
@@ -70,6 +60,16 @@ const EMPTY_IMAGE_PROPS: MdxImageContentProps = {
   thumbHeight: 0,
   aspectRatio: 0
 }
+
+const emptyRenderer = (type: string) =>
+  createBlockRenderer(type as any, async () => {
+    return ''
+  })
+
+const renderer = new NotionRenderer({
+  client: notion,
+  renderers: [...SKIP_BLOCK_TYPES].map(emptyRenderer)
+})
 
 export async function generateBlock(props: Props) {
   const {

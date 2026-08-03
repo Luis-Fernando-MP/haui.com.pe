@@ -26,7 +26,7 @@ notion/
     purgeLocal.ts       # delete local mdx/images/trace
     cli.ts              # ask / choose / confirm / runMenu
 content/{domain}/*.mdx  # generated (incl. trace.yaml for smart)
-public/content/{domain}/{id}/   # banner.webp, thumb.webp, …
+public/content/{domain}/{id}/   # banner.webp (una imagen; ver DUAL_IMAGE_VARIANTS)
 ```
 
 ## Pipeline
@@ -196,7 +196,10 @@ CLI menus rebuild from `option` order. Delete works for any domain that has loca
 | ---- | ---- |
 | `content/{id}/{pageId}.mdx` | Document |
 | `content/{id}/trace.yaml` | Smart sync state (same folder as MDX) |
-| `public/content/{id}/{pageId}/` | `banner.webp`, `thumb.webp`, body images |
+| `public/content/{id}/{pageId}/` | `banner.webp` (+ `thumb.webp` solo si `DUAL_IMAGE_VARIANTS`) |
+
+Imágenes: por defecto **una** variante (`banner.webp`). Unpic redimensiona en app.  
+PX: en [`utils/downloadImage.ts`](utils/downloadImage.ts) set `DUAL_IMAGE_VARIANTS = true` para banner+thumb otra vez.
 
 `cleanObsoleteFiles` never deletes `trace.yaml`.  
 Purge (CLI Eliminar) removes mdx + image folder + updates/deletes trace.
