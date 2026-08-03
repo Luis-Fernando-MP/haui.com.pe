@@ -108,6 +108,7 @@ Keep the modern floating chrome established in `common/components/navbar`:
 - **Page:** thin `src/app/.../page.tsx` → `src/presentation/{route}/index.tsx`
 - **Reusable component:** `src/common/components/{domain}/`
 - **Future REST service:** `src/common/core/services/`
+- **Notion content domain:** see [notion/AGENTS.md](notion/AGENTS.md) (`type` + `str.content` + `index` + `layerConfig` + `NOTION_PAGES` + contentlayer)
 
 ## Do not reintroduce
 
