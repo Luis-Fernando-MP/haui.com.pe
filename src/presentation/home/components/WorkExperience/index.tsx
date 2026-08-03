@@ -1,7 +1,7 @@
 'use client'
 
 import Title from '@common/components/title'
-import { HISTORY_JOBS } from '@common/core/constants/historyJobs'
+import { HISTORY_JOBS } from '@common/core/data/historyJobs'
 import { motion } from 'motion/react'
 import type { FC } from 'react'
 

@@ -1,4 +1,4 @@
-import { INFO } from '@common/core/constants'
+import { INFO } from '@common/core/data/info'
 import type { Metadata } from 'next'
 
 export const globalMetadata: Metadata = {

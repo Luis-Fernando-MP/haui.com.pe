@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@common/core/cn'
-import { technologies } from '@common/core/constants/technologies'
+import { technologies } from '@common/core/data/technologies'
 import { type TechnologyStack, technologyStack } from '@common/core/queries/techQuery/tech.type'
 import { Image } from '@unpic/react/nextjs'
 import { motion } from 'motion/react'

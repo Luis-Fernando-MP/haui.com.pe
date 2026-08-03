@@ -1,4 +1,4 @@
-import { TechName } from './technologies'
+import { TechName } from '@common/core/data/technologies'
 
 export type HistoryJob = {
   name: string

@@ -1,6 +1,6 @@
 # AGENTS.md — haui.com.pe
 
-Personal portfolio (Next.js 16 App Router, React 19, Tailwind v4). Two real routes: `/` and `/about`, plus 404. No backend or `app/api`; static data lives in constants.
+Personal portfolio (Next.js 16 App Router, React 19, Tailwind v4). Two real routes: `/` and `/about`, plus 404. No backend or `app/api`; static data lives in `common/core/data/{domain}`.
 
 ## Coding style
 
@@ -23,7 +23,7 @@ src/app/                 # routes, layout, globals.css, robots/sitemap
 src/common/
   components/            # shadcn/haui primitives (button, card, dialog, popup, theme-transition, …)
   icons/                 # custom SVG marks (e.g. GitHub brand)
-  core/                  # cn, constants, queries, contact, services (future REST)
+  core/                  # cn, data/{domain}, queries, contact, services (future REST)
   metadata/              # SEO, fonts, robots, sitemap
   style/themes/          # theme variables + shadcn bridge
 src/presentation/        # views per route (home, about, not-found)
@@ -38,7 +38,7 @@ public/                  # stable portfolio assets
 
 ## Data flow
 
-`common/core/constants` → `common/core/queries` + Zustand stores in presentation → view components.
+`common/core/data/{domain}` → `common/core/queries` + Zustand stores in presentation → view components.
 
 Children that can read the store do so with fine-grained selectors; no prop-drilling of store data. Context is micro-only (subcomponents inside a primitive).
 

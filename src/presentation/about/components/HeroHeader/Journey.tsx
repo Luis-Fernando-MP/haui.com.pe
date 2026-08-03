@@ -1,7 +1,7 @@
 'use client'
 
 import ImageGallery from '@common/components/focus-gallery/ImageGallery'
-import type { Journey } from '@common/core/constants/personalJourneys'
+import type { Journey } from '@common/core/data/personalJourneys'
 import { motion } from 'motion/react'
 import type { FC } from 'react'
 
