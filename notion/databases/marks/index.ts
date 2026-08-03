@@ -14,10 +14,10 @@ const MARKS_CONCURRENCY = 3
 
 export const generateMarks = async () => {
   try {
-    clog.block('GENERANDO MARKS')
+    clog.block('Marks')
     const startAll = Date.now()
 
-    clog.info('Cargando marks desde Notion...')
+    clog.info('Notion…')
     const marks = await getAllMarksDB<NotionMarksDB>({
       query: {
         database_id: env.MARKS_ID,
@@ -32,7 +32,7 @@ export const generateMarks = async () => {
       }
     })
 
-    clog.success(`${marks.length} marks cargadas\n`)
+    clog.success(`${marks.length} remotos`)
 
     const [mdxFolderPath, mdxImagesPath] = await createDirectories('content/marks', 'public/content/marks')
 
@@ -53,14 +53,13 @@ export const generateMarks = async () => {
       return id
     })
 
-    clog.block('LIMPIEZA DE ARCHIVOS OBSOLETOS')
     await Promise.all([
       cleanObsoleteFiles(generatedIds, mdxFolderPath, '.mdx'),
       cleanObsoleteFiles(generatedIds, mdxImagesPath)
     ])
-    clog.timer('Tiempo total', Date.now() - startAll)
+    clog.timer('total', Date.now() - startAll)
   } catch (e: any) {
-    clog.error('Error generando marks:')
+    clog.error('marks')
     console.log(e?.message ?? e)
   }
 }

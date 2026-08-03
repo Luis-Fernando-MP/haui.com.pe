@@ -3,38 +3,35 @@ import fs from 'fs'
 import path from 'path'
 
 const cleanObsoleteFiles = async (existingIds: string[], folderPath: string, suffix?: string) => {
-  const files = await fs.promises.readdir(folderPath)
+  let files: string[]
+  try {
+    files = await fs.promises.readdir(folderPath)
+  } catch {
+    return
+  }
 
-  const toDelete = await Promise.all(
+  const keep = new Set(existingIds)
+
+  await Promise.all(
     files.map(async file => {
+      if (file === 'trace.yaml') return
+
       const fullPath = path.join(folderPath, file)
       const stat = await fs.promises.stat(fullPath)
 
       if (stat.isFile() && suffix && file.endsWith(suffix)) {
-        const id = file.replace(suffix, '')
-        return !existingIds.includes(id) ? file : null
+        const id = file.slice(0, -suffix.length)
+        if (keep.has(id)) return
+        await fs.promises.unlink(fullPath)
+        clog.warn(`rm ${file.slice(0, 28)}`)
+        return
       }
 
-      if (stat.isDirectory() && !existingIds.includes(file)) {
-        return file
+      if (stat.isDirectory() && !keep.has(file)) {
+        await fs.promises.rm(fullPath, { recursive: true, force: true })
+        clog.warn(`rm ${file.slice(0, 28)}/`)
       }
-
-      return null
     })
-  )
-
-  await Promise.all(
-    toDelete
-      .filter((name): name is string => name !== null)
-      .map(async name => {
-        const fullPath = path.join(folderPath, name)
-        if (suffix) {
-          await fs.promises.unlink(fullPath)
-        } else {
-          await fs.promises.rm(fullPath, { recursive: true, force: true })
-        }
-        clog.error(`Eliminado: ${name.slice(0, 30)}`)
-      })
   )
 }
 

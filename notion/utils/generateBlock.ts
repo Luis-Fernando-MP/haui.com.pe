@@ -1,5 +1,4 @@
 import { NotionRenderer, createBlockRenderer } from '@notion-render/client'
-import chalk from 'chalk'
 import path from 'path'
 import readingTime from 'reading-time'
 import { stripHtml } from 'string-strip-html'
@@ -86,11 +85,10 @@ export async function generateBlock(props: Props) {
 
   const mdxFilePath = path.join(mdxFolderPath, `${blockId}.mdx`)
   const lastEditedTimeMs = new Date(lastEditedTime).getTime()
-  const cutTitle = title.slice(0, 30)
+  const cutTitle = title.slice(0, 40)
 
   try {
-    console.log(chalk.blueBright('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'))
-    clog.info(`Generando bloque: ${cutTitle}`, '')
+    clog.info(cutTitle)
 
     let imageProps = EMPTY_IMAGE_PROPS
     let additionalImages: SimpleAdditionalImages[] = []
@@ -141,14 +139,11 @@ export async function generateBlock(props: Props) {
       additionalImages
     }).trimEnd()
 
-    const content = body ? `${frontmatter}\n\n${body}\n` : `${frontmatter}\n`
-    await writeFile(mdxFilePath, content)
-
-    clog.success(`MDX generado: ${cutTitle}`)
-    console.log(chalk.blueBright('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n'))
+    await writeFile(mdxFilePath, body ? `${frontmatter}\n\n${body}\n` : `${frontmatter}\n`)
+    clog.success(cutTitle)
     return true
   } catch (error) {
-    clog.error(`Fallo al generar: ${cutTitle}`)
+    clog.error(cutTitle)
     console.log(error)
     return false
   }

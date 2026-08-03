@@ -1,5 +1,3 @@
-import path from 'path'
-
 import { env } from '@notion/constants'
 import cleanObsoleteFiles from '@notion/utils/cleanObsoleteFiles'
 import { createDirectories } from '@notion/utils/fs'
@@ -7,14 +5,14 @@ import { generateBlock } from '@notion/utils/generateBlock'
 import { getAllMarksDB } from '@notion/utils/getAllMarks'
 import clog from '@notion/utils/log'
 import { mapPool } from '@notion/utils/mapPool'
-import { pagesToSync, readTrace, writeTrace } from '@notion/utils/traceYaml'
+import { pagesToSync, readTrace, resolvePicks, tracePath, writeTrace } from '@notion/utils/traceYaml'
 
 import { NotionProjectsDB } from './projects.type'
 import { projectContent } from './str.content'
 
-const PROJECT_CONCURRENCY = 3
-const TRACE_PATH = path.join(process.cwd(), 'notion/databases/projects/trace.yaml')
-const CONTENT_REL = (id: string) => `content/projects/${id}.mdx`
+const CONCURRENCY = 3
+const DOMAIN = 'projects'
+const CONTENT_REL = (id: string) => `content/${DOMAIN}/${id}.mdx`
 
 export const generateProjects = async ({
   mode = 'smart',
@@ -30,10 +28,10 @@ export const generateProjects = async ({
   requestPicks?: () => Promise<string>
 } = {}) => {
   try {
-    clog.block('GENERANDO PROYECTOS')
-    const startAll = Date.now()
+    clog.block('Proyectos')
+    const started = Date.now()
 
-    clog.info('Cargando proyectos desde Notion...')
+    clog.info('Notion…')
     const projects = await getAllMarksDB<NotionProjectsDB>({
       query: {
         database_id: env.PROJECTS_ID,
@@ -47,7 +45,7 @@ export const generateProjects = async ({
       }
     })
 
-    clog.success(`${projects.length} proyectos cargados\n`)
+    clog.success(`${projects.length} remotos`)
 
     const remote = projects.map(project => ({
       id: project.id,
@@ -56,82 +54,70 @@ export const generateProjects = async ({
       project
     }))
 
-    const trace = await readTrace(TRACE_PATH)
+    const file = tracePath(DOMAIN)
+    const trace = await readTrace(file)
     const diff = await pagesToSync(
       remote.map(({ id, title, last_edited }) => ({ id, title, last_edited })),
       trace.pages
     )
 
-    clog.info(
-      `Sync · ${diff.new.length} nuevos · ${diff.modified.length} modificados · ${diff.unchanged.length} al día`
-    )
+    const newIds = new Set(diff.new.map(p => p.id))
+    const modIds = new Set(diff.modified.map(p => p.id))
+
+    clog.info(`+${diff.new.length}  ~${diff.modified.length}  =${diff.unchanged.length}`)
 
     let delta = remote
-    if (mode === 'smart') {
-      delta = remote.filter(p => [...diff.new, ...diff.modified].some(d => d.id === p.id))
-    }
+    if (mode === 'smart') delta = remote.filter(p => newIds.has(p.id) || modIds.has(p.id))
 
     if (mode === 'selected') {
-      for (const [i, page] of remote.entries()) {
-        console.log(`  ${i + 1}. ${page.title}  (${page.id.slice(0, 8)}…)`)
-      }
-      console.log('')
+      for (const [i, page] of remote.entries()) clog.item(i + 1, page.title, page.id.slice(0, 8))
       const chosen = picks.trim() || (requestPicks ? await requestPicks() : '')
       delta = resolvePicks(remote, chosen)
     }
 
     if (delta.length === 0) {
-      clog.success('Nada que sincronizar')
+      clog.success('Sin cambios')
       return
     }
 
     if (mode !== 'selected') {
       for (const [i, page] of delta.entries()) {
-        const tag = diff.new.some(d => d.id === page.id)
-          ? 'new'
-          : diff.modified.some(d => d.id === page.id)
-            ? 'mod'
-            : 'all'
-        console.log(`  ${i + 1}. [${tag}] ${page.title}  (${page.id.slice(0, 8)}…)`)
+        const tag = newIds.has(page.id) ? '+' : modIds.has(page.id) ? '~' : '*'
+        clog.item(i + 1, `${tag} ${page.title}`)
       }
-      console.log('')
     }
 
-    if (mode === 'smart' && !skipConfirm && confirm) {
-      const ok = await confirm()
-      if (!ok) {
-        clog.warn('Sync cancelado')
-        return
-      }
+    if (mode === 'smart' && !skipConfirm && confirm && !(await confirm())) {
+      clog.warn('Cancelado')
+      return
     }
 
     const [mdxFolderPath, mdxImagesPath] = await createDirectories(
-      'content/projects',
-      'public/content/projects'
+      `content/${DOMAIN}`,
+      `public/content/${DOMAIN}`
     )
 
-    const pages: Record<
-      string,
-      { title: string; last_downloaded: string; last_edited_notion: string; path: string }
-    > = {}
+    const pages = Object.fromEntries(
+      Object.entries(trace.pages).flatMap(([id, entry]) => {
+        if (!entry?.title || !entry.last_downloaded || !entry.last_edited_notion || !entry.path) return []
+        return [
+          [
+            id,
+            {
+              title: entry.title,
+              last_downloaded: entry.last_downloaded,
+              last_edited_notion: entry.last_edited_notion,
+              path: entry.path
+            }
+          ] as const
+        ]
+      })
+    )
 
-    for (const [id, entry] of Object.entries(trace.pages)) {
-      if (entry?.title && entry.last_downloaded && entry.last_edited_notion && entry.path) {
-        pages[id] = {
-          title: entry.title,
-          last_downloaded: entry.last_downloaded,
-          last_edited_notion: entry.last_edited_notion,
-          path: entry.path
-        }
-      }
-    }
-
-    await mapPool(delta, PROJECT_CONCURRENCY, async item => {
-      const { id, cover } = item.project
-      const coverUrl = cover?.external.url
+    await mapPool(delta, CONCURRENCY, async item => {
+      const coverUrl = item.project.cover?.external.url
       const ok = await generateBlock({
-        generateContent: true,
-        blockId: id,
+        blockId: item.id,
         coverImage: coverUrl,
         lastEditedTime: item.last_edited,
         mdxFolderPath,
@@ -140,61 +126,29 @@ export const generateProjects = async ({
         mdxContent: imageProps => projectContent(item.project, coverUrl, imageProps)
       })
 
-      if (!ok) return id
+      if (!ok) return
 
-      pages[id] = {
+      pages[item.id] = {
         title: item.title,
         last_downloaded: new Date().toISOString(),
         last_edited_notion: item.last_edited,
-        path: CONTENT_REL(id)
+        path: CONTENT_REL(item.id)
       }
-      return id
     })
 
     const remoteIds = remote.map(p => p.id)
-    const pruned: typeof pages = {}
-    for (const id of remoteIds) {
-      if (pages[id]) pruned[id] = pages[id]
-    }
+    const keep = new Set(remoteIds)
+    const pruned = Object.fromEntries(Object.entries(pages).filter(([id]) => keep.has(id)))
 
-    await writeTrace(TRACE_PATH, {
-      updated_at: new Date().toISOString(),
-      pages: pruned
-    })
+    await writeTrace(file, { updated_at: new Date().toISOString(), pages: pruned })
 
-    clog.block('LIMPIEZA DE ARCHIVOS OBSOLETOS')
     await Promise.all([
       cleanObsoleteFiles(remoteIds, mdxFolderPath, '.mdx'),
       cleanObsoleteFiles(remoteIds, mdxImagesPath)
     ])
-    clog.timer('Tiempo total', Date.now() - startAll)
+    clog.timer('total', Date.now() - started)
   } catch (e: any) {
-    clog.error('Error generando los proyectos:')
+    clog.error('proyectos')
     console.log(e?.message ?? e)
   }
-}
-
-function resolvePicks<T extends { id: string; title: string }>(remote: T[], picks: string) {
-  if (!picks.trim()) return [] as T[]
-
-  const tokens = picks
-    .split(/[,\s]+/)
-    .map(t => t.trim())
-    .filter(Boolean)
-
-  const selected = new Set<T>()
-  for (const token of tokens) {
-    const asIndex = Number(token)
-    if (Number.isInteger(asIndex) && asIndex >= 1 && asIndex <= remote.length) {
-      selected.add(remote[asIndex - 1])
-      continue
-    }
-
-    const match = remote.find(
-      p => p.id === token || p.id.startsWith(token) || p.title.toLowerCase().includes(token.toLowerCase())
-    )
-    if (match) selected.add(match)
-  }
-
-  return [...selected]
 }

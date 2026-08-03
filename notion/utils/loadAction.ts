@@ -1,25 +1,26 @@
 import chalk from 'chalk'
 
-const loadAction = async (task: () => Promise<any>) => {
-  const loadingChars = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
+import clog from './log'
 
-  let index = 0
-  let isRunning = true
+const frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
 
-  const intervalId = setInterval(() => {
-    if (isRunning) {
-      process.stdout.write(`\r${chalk.yellowBright.bold('▎Generando')} ${loadingChars[index]} `)
-      index = (index + 1) % loadingChars.length
-    }
-  }, 50)
+const loadAction = async (task: () => Promise<unknown>) => {
+  let i = 0
+  let live = true
+
+  const tick = setInterval(() => {
+    if (!live) return
+    process.stdout.write(`\r${chalk.yellow(frames[i])} `)
+    i = (i + 1) % frames.length
+  }, 80)
 
   try {
     await task()
   } finally {
-    isRunning = false
-    clearInterval(intervalId)
+    live = false
+    clearInterval(tick)
     process.stdout.write('\r')
-    console.log(chalk.greenBright('\n\n🍀 Proceso terminado.\n\n'))
+    clog.success('listo')
   }
 }
 

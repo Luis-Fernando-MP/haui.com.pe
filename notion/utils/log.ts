@@ -1,19 +1,17 @@
 import chalk from 'chalk'
 
 const clog = {
-  info: (msg: string, prev: string = '\n') => console.log(chalk.blueBright(`${prev}○  ${msg}`)),
-  success: (msg: string, prev: string = '') => console.log(chalk.greenBright(`${prev}▎${msg}`)),
-  warn: (msg: string, prev: string = '\n') => console.log(chalk.yellow(`${prev}▎${msg}`)),
-  error: (msg: string) => console.log(chalk.red(`\n▎${msg}`)),
-  block: (title: string) => {
-    const line = '━'.repeat(title.length + 4)
-    console.log(chalk.magentaBright(`\n╭${line}╮`))
-    console.log(chalk.magentaBright(`│  ${title}  │`))
-    console.log(chalk.magentaBright(`╰${line}╯`))
+  info: (msg: string) => console.log(chalk.cyan(`○ ${msg}`)),
+  success: (msg: string) => console.log(chalk.green(`✓ ${msg}`)),
+  warn: (msg: string) => console.log(chalk.yellow(`! ${msg}`)),
+  error: (msg: string) => console.log(chalk.red(`✗ ${msg}`)),
+  block: (title: string) => console.log(chalk.magentaBright(`\n▸ ${title}`)),
+  timer: (label: string, ms: number) => console.log(chalk.dim(`  ${label} ${ms}ms`)),
+  item: (index: number, label: string, detail = '') => {
+    const extra = detail ? chalk.dim(`  ${detail}`) : ''
+    console.log(`  ${chalk.yellow(`${index}.`)} ${label}${extra}`)
   },
-  timer: (label: string, ms: number, prev: string = '') => {
-    console.log(chalk.blueBright(`${prev}▎${label}: ${ms}ms`))
-  }
+  dim: (msg: string) => console.log(chalk.dim(msg))
 }
 
 export default clog

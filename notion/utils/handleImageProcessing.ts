@@ -43,7 +43,6 @@ export async function handleImageProcessing(props: ProcessingImgProps): Promise<
     })
 
     const { blurhash, placeholder } = await blurHashAndGradient(thumbFull)
-    clog.info(`Cover de ${cutTitle} descargado`, '')
 
     return {
       blurhash,
@@ -55,7 +54,7 @@ export async function handleImageProcessing(props: ProcessingImgProps): Promise<
       aspectRatio: Number((thumbImage.width / thumbImage.height).toFixed(6))
     }
   } catch (err) {
-    clog.error(`Descarga fallida: ${cutTitle}`)
+    clog.error(`cover ${cutTitle}`)
     throw new Error(`Image download failed: ${err}`)
   }
 }
@@ -79,14 +78,13 @@ async function processSingleGalleryImage(
       url: imageUrl,
       title: cutTitle
     })
-    clog.info(`Imagen ${imageKey} de ${cutTitle} descargado`, '')
 
     return {
       bannerImagePath: toPublicRelativePath(bannerFull),
       thumbImagePath: toPublicRelativePath(thumbFull)
     }
   } catch {
-    clog.error(`no se descargó ${cutTitle} (${imageKey})`)
+    clog.error(`img ${imageKey} ${cutTitle}`)
     return null
   }
 }

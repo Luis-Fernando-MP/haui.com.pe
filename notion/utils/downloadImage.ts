@@ -1,4 +1,3 @@
-import clog from '@notion/utils/log'
 import axios from 'axios'
 import fs from 'fs'
 import sharp from 'sharp'
@@ -11,9 +10,7 @@ interface Props {
   title: string
 }
 
-export default async function downloadImage({ folderPath, url, bannerImagePath, thumbImagePath, title }: Props) {
-  clog.info(`Descargando portada: ${title}`, '')
-
+export default async function downloadImage({ folderPath, url, bannerImagePath, thumbImagePath }: Props) {
   const response = await axios.get<ArrayBuffer>(url, {
     responseType: 'arraybuffer',
     timeout: 60_000,
@@ -37,6 +34,5 @@ export default async function downloadImage({ folderPath, url, bannerImagePath, 
       .toFile(thumbImagePath)
   ])
 
-  clog.success('Banner + thumb listos')
   return { bannerImage, thumbImage }
 }

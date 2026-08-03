@@ -14,10 +14,10 @@ const SERIES_CONCURRENCY = 3
 
 export const generateSeries = async () => {
   try {
-    clog.block('GENERANDO SERIES')
+    clog.block('Series')
     const startAll = Date.now()
 
-    clog.info('Cargando series desde Notion...')
+    clog.info('Notion…')
     const series = await getAllMarksDB<NotionSeriesDB>({
       query: {
         database_id: env.SERIES_ID,
@@ -28,7 +28,7 @@ export const generateSeries = async () => {
       }
     })
 
-    clog.success(`${series.length} series cargadas\n`)
+    clog.success(`${series.length} remotos`)
 
     const [mdxFolderPath, mdxImagesPath] = await createDirectories('content/series', 'public/content/series')
 
@@ -50,14 +50,13 @@ export const generateSeries = async () => {
       return id
     })
 
-    clog.block('LIMPIEZA DE ARCHIVOS OBSOLETOS')
     await Promise.all([
       cleanObsoleteFiles(generatedIds, mdxFolderPath, '.mdx'),
       cleanObsoleteFiles(generatedIds, mdxImagesPath)
     ])
-    clog.timer('Tiempo total', Date.now() - startAll)
+    clog.timer('total', Date.now() - startAll)
   } catch (e: any) {
-    clog.error('Error generando series:')
+    clog.error('series')
     console.log(e?.message ?? e)
   }
 }
