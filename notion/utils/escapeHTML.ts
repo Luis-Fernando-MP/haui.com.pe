@@ -160,11 +160,7 @@ function escapeTextForMdx(node: HTMLElement) {
     if (!(child instanceof TextNode)) continue
     if (child.rawText.includes('haui-code')) continue
 
-    child.rawText = child.rawText
-      .replace(/\{/g, '&#123;')
-      .replace(/\}/g, '&#125;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
+    child.rawText = child.rawText.replace(/\{/g, '&#123;').replace(/\}/g, '&#125;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   }
 }
 
@@ -175,6 +171,13 @@ function formatMdxBody(html: string) {
     .replace(/<\/h([1-6])>\s*</g, '</h$1>\n\n<')
     .replace(/<\/(ul|ol)>\s*</g, '</$1>\n\n<')
     .replace(/<\/li>\s*<li/g, '</li>\n<li')
+    .replace(/<li([^>]*)>([\s\S]*?)<\/li>/gi, (_m, attrs, inner) => {
+      const compact = String(inner)
+        .replace(/\s*\n\s*/g, ' ')
+        .replace(/\s{2,}/g, ' ')
+        .trim()
+      return `<li${attrs}>${compact}</li>`
+    })
     .replace(/<li([^>]*)>\s+/g, '<li$1>')
     .replace(/\s+<\/li>/g, '</li>')
     .replace(/<(h[1-6]|p|blockquote)([^>]*)>\s+/g, '<$1$2>')
@@ -205,8 +208,5 @@ function getImagesFromCustomSection(html: string) {
 }
 
 function removeAllDeleteSections(html: string) {
-  return html.replace(
-    /<p[^>]*>\s*(<span[^>]*>)?#delete-from(<\/span>)?[\s\S]*?(<span[^>]*>)?#delete-to(<\/span>)?\s*<\/p>/g,
-    ''
-  )
+  return html.replace(/<p[^>]*>\s*(<span[^>]*>)?#delete-from(<\/span>)?[\s\S]*?(<span[^>]*>)?#delete-to(<\/span>)?\s*<\/p>/g, '')
 }

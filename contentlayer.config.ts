@@ -8,6 +8,7 @@ import SeriesDocument from './notion/databases/series/series.layerConfig'
 
 export default makeSource({
   contentDirPath: 'content',
+  contentDirExclude: ['projects/trace.yaml', 'series/trace.yaml', 'marks/trace.yaml'],
   documentTypes: [ProjectsDocument, SeriesDocument, MarksDocument],
   mdx: {
     mdxOptions: () => ({

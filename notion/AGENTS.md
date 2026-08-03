@@ -195,7 +195,7 @@ CLI menus rebuild from `option` order. Delete works for any domain that has loca
 | Path | Role |
 | ---- | ---- |
 | `content/{id}/{pageId}.mdx` | Document |
-| `content/{id}/trace.yaml` | Smart sync state (same folder as MDX) |
+| `content/{id}/trace.yaml` | Smart sync state (same folder as MDX; excluded from Contentlayer) |
 | `public/content/{id}/{pageId}/` | `banner.webp` (+ `thumb.webp` solo si `DUAL_IMAGE_VARIANTS`) |
 
 Imágenes: por defecto **una** variante (`banner.webp`). Unpic redimensiona en app.  
