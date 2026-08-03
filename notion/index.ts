@@ -1,9 +1,7 @@
-import chalk from 'chalk'
 import { createInterface, type Interface } from 'readline/promises'
 
-import { generateMarks } from './databases/marks'
-import { generateProjects } from './databases/projects'
-import { generateSeries } from './databases/series'
+import { defaultPage, generate, listPages, type NotionPage } from './pages.lib'
+import { ask, confirm, runMenu } from './utils/cli'
 import loadAction from './utils/loadAction'
 import clog from './utils/log'
 import { listTracedPages, purgeLocal } from './utils/purgeLocal'
@@ -13,192 +11,152 @@ const argv = process.argv.slice(2)
 const flagAll = argv.includes('--all')
 const flagSmart = argv.includes('--smart')
 
-const ask = async (rl: Interface, prompt: string) => {
-  try {
-    return (await rl.question(chalk.blueBright(prompt))).trim()
-  } catch {
-    return '0'
-  }
-}
-
 const main = async () => {
   if (flagAll || flagSmart) {
-    await loadAction(() => generateProjects({ mode: flagAll ? 'all' : 'smart', skipConfirm: true }))
+    const page = defaultPage()
+    if (page.kind !== 'smart') {
+      await loadAction(() => generate(page))
+      return
+    }
+    await loadAction(() => generate(page, { mode: flagAll ? 'all' : 'smart', skipConfirm: true }))
     return
   }
 
   const rl = createInterface({ input: process.stdin, output: process.stdout })
   console.clear()
-  let option = ''
 
   try {
-    do {
-      console.log(chalk.magentaBright('\n━━━━━━━━━━━━━━━━━━━━'))
-      console.log(chalk.bold('Notion sync'))
-      console.log(chalk.yellow('1.') + ' Proyectos')
-      console.log(chalk.yellow('2.') + ' Series')
-      console.log(chalk.yellow('3.') + ' Marks')
-      console.log(chalk.redBright('0.') + ' Salir')
-      console.log(chalk.magentaBright('━━━━━━━━━━━━━━━━━━━━\n'))
+    while (true) {
+      const pages = listPages()
+      const menu = Object.fromEntries([
+        ...pages.map(page => [String(page.option), { label: page.label, run: () => domainMenu(rl, page) }]),
+        ['0', { label: 'Salir' }]
+      ])
+      const order = [...pages.map(p => String(p.option)), '0']
 
-      option = await ask(rl, '→ ')
-      console.clear()
+      const { choice, ok } = await runMenu(rl, 'Notion sync', menu, order)
 
-      if (option === '0') {
+      if (choice === '0') {
         clog.success('chao')
         break
       }
 
-      if (option === '1') {
-        await domainMenu(rl, 'projects')
-        continue
-      }
-
-      if (option === '2') {
-        await domainMenu(rl, 'series')
-        continue
-      }
-
-      if (option === '3') {
-        await domainMenu(rl, 'marks')
-        continue
-      }
-
-      clog.error('opción inválida')
-    } while (option !== '0')
+      if (!ok) clog.error('opción inválida')
+    }
   } finally {
     rl.close()
   }
 }
 
-async function domainMenu(rl: Interface, domain: 'projects' | 'series' | 'marks') {
-  const label = domain === 'projects' ? 'Proyectos' : domain === 'series' ? 'Series' : 'Marks'
+async function domainMenu(rl: Interface, page: NotionPage) {
+  if (page.kind === 'smart') {
+    const { choice, ok } = await runMenu(
+      rl,
+      page.label,
+      {
+        '1': {
+          label: 'Sync inteligente',
+          run: async () => {
+            await generate(page, { mode: 'smart', confirm: () => confirm(rl) })
+            clog.success('listo')
+          }
+        },
+        '2': {
+          label: 'Descargar todo',
+          run: () => loadAction(() => generate(page, { mode: 'all', skipConfirm: true }))
+        },
+        '3': {
+          label: 'Elegir específicos',
+          run: async () => {
+            await generate(page, {
+              mode: 'selected',
+              skipConfirm: true,
+              requestPicks: () => ask(rl, 'índices (ej. 1,3): ')
+            })
+            clog.success('listo')
+          }
+        },
+        '4': { label: 'Eliminar', run: () => deleteMenu(rl, page) },
+        '0': { label: 'Volver' }
+      },
+      ['1', '2', '3', '4', '0']
+    )
 
-  console.log(chalk.magentaBright('\n━━━━━━━━━━━━━━━━━━━━'))
-  console.log(chalk.bold(label))
-  if (domain === 'projects') {
-    console.log(chalk.yellow('1.') + ' Sync inteligente')
-    console.log(chalk.yellow('2.') + ' Descargar todo')
-    console.log(chalk.yellow('3.') + ' Elegir específicos')
-    console.log(chalk.yellow('4.') + ' Eliminar')
-  } else {
-    console.log(chalk.yellow('1.') + ' Generar todo')
-    console.log(chalk.yellow('2.') + ' Eliminar')
-  }
-  console.log(chalk.redBright('0.') + ' Volver')
-  console.log(chalk.magentaBright('━━━━━━━━━━━━━━━━━━━━\n'))
-
-  const choice = await ask(rl, '→ ')
-  console.clear()
-
-  if (choice === '0') return
-
-  const deleteKey = domain === 'projects' ? '4' : '2'
-  if (choice === deleteKey) {
-    await deleteMenu(rl, domain)
+    if (choice !== '0' && !ok) clog.error('opción inválida')
     return
   }
 
-  if (domain === 'projects') {
-    if (choice === '2') {
-      await loadAction(() => generateProjects({ mode: 'all', skipConfirm: true }))
-      return
-    }
+  const { choice, ok } = await runMenu(
+    rl,
+    page.label,
+    {
+      '1': {
+        label: 'Generar todo',
+        run: () => loadAction(() => generate(page))
+      },
+      '2': { label: 'Eliminar', run: () => deleteMenu(rl, page) },
+      '0': { label: 'Volver' }
+    },
+    ['1', '2', '0']
+  )
 
-    if (choice === '3') {
-      await generateProjects({
-        mode: 'selected',
-        skipConfirm: true,
-        requestPicks: () => ask(rl, 'índices (ej. 1,3): ')
-      })
-      clog.success('listo')
-      return
-    }
-
-    if (choice === '1') {
-      await generateProjects({
-        mode: 'smart',
-        confirm: async () => {
-          console.log(chalk.yellow('1.') + ' Confirmar')
-          console.log(chalk.redBright('0.') + ' Cancelar')
-          return (await ask(rl, '→ ')) === '1'
-        }
-      })
-      clog.success('listo')
-      return
-    }
-
-    clog.error('opción inválida')
-    return
-  }
-
-  if (choice === '1') {
-    await loadAction(() => (domain === 'series' ? generateSeries() : generateMarks()))
-    return
-  }
-
-  clog.error('opción inválida')
+  if (choice !== '0' && !ok) clog.error('opción inválida')
 }
 
-async function deleteMenu(rl: Interface, domain: 'projects' | 'series' | 'marks') {
-  const pages = await listTracedPages(domain)
+async function deleteMenu(rl: Interface, page: NotionPage) {
+  const pages = await listTracedPages(page.id)
 
-  console.log(chalk.magentaBright('\n━━━━━━━━━━━━━━━━━━━━'))
-  console.log(chalk.bold(`Eliminar · ${domain}`))
-  console.log(chalk.yellow('1.') + ' Todos')
-  console.log(chalk.yellow('2.') + ' Específicos')
-  console.log(chalk.redBright('0.') + ' Volver')
-  console.log(chalk.magentaBright('━━━━━━━━━━━━━━━━━━━━\n'))
+  const { choice, ok } = await runMenu(
+    rl,
+    `Eliminar · ${page.label}`,
+    {
+      '1': {
+        label: 'Todos',
+        run: async () => {
+          if (pages.length === 0) {
+            clog.warn('sin archivos locales')
+            return
+          }
+          for (const [i, item] of pages.entries()) clog.item(i + 1, item.title)
+          if (!(await confirm(rl, 'Confirmar borrar todos'))) {
+            clog.warn('Cancelado')
+            return
+          }
+          await purgeLocal(
+            page.id,
+            pages.map(p => p.id)
+          )
+        }
+      },
+      '2': {
+        label: 'Específicos',
+        run: async () => {
+          if (pages.length === 0) {
+            clog.warn('sin archivos locales')
+            return
+          }
+          for (const [i, item] of pages.entries()) clog.item(i + 1, item.title, item.id.slice(0, 8))
+          const selected = resolvePicks(pages, await ask(rl, 'índices (ej. 1,3): '))
+          if (selected.length === 0) {
+            clog.warn('sin selección')
+            return
+          }
+          if (!(await confirm(rl, `Confirmar (${selected.length})`))) {
+            clog.warn('Cancelado')
+            return
+          }
+          await purgeLocal(
+            page.id,
+            selected.map(p => p.id)
+          )
+        }
+      },
+      '0': { label: 'Volver' }
+    },
+    ['1', '2', '0']
+  )
 
-  const choice = await ask(rl, '→ ')
-  console.clear()
-
-  if (choice === '0') return
-
-  if (pages.length === 0) {
-    clog.warn('sin archivos locales')
-    return
-  }
-
-  if (choice === '1') {
-    for (const [i, page] of pages.entries()) clog.item(i + 1, page.title)
-    console.log(chalk.yellow('\n1.') + ' Confirmar borrar todos')
-    console.log(chalk.redBright('0.') + ' Cancelar')
-    if ((await ask(rl, '→ ')) !== '1') {
-      clog.warn('Cancelado')
-      return
-    }
-    await purgeLocal(
-      domain,
-      pages.map(p => p.id)
-    )
-    return
-  }
-
-  if (choice === '2') {
-    for (const [i, page] of pages.entries()) clog.item(i + 1, page.title, page.id.slice(0, 8))
-    const picks = await ask(rl, 'índices (ej. 1,3): ')
-    const selected = resolvePicks(pages, picks)
-    if (selected.length === 0) {
-      clog.warn('sin selección')
-      return
-    }
-
-    console.log(chalk.yellow('\n1.') + ` Confirmar (${selected.length})`)
-    console.log(chalk.redBright('0.') + ' Cancelar')
-    if ((await ask(rl, '→ ')) !== '1') {
-      clog.warn('Cancelado')
-      return
-    }
-
-    await purgeLocal(
-      domain,
-      selected.map(p => p.id)
-    )
-    return
-  }
-
-  clog.error('opción inválida')
+  if (choice !== '0' && !ok) clog.error('opción inválida')
 }
 
 main()
