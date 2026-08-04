@@ -4,11 +4,11 @@ import Button from '@common/components/button'
 import Popup from '@common/components/popup'
 import Title from '@common/components/title'
 import { cn } from '@common/core/cn'
-import { ChartNoAxesColumnIcon, CheckIcon, PlusIcon } from 'lucide-react'
-import { AnimatePresence, LayoutGroup, motion } from 'motion/react'
-import { type FC, useState } from 'react'
+import { CheckIcon, PlusIcon } from 'lucide-react'
+import { AnimatePresence, motion } from 'motion/react'
+import { type FC, type ReactNode, useState } from 'react'
 
-import CardProjects from './CardProjects'
+import ProjectCard from './ProjectCard'
 
 export type ProjectItem = {
   id: string
@@ -20,6 +20,7 @@ export type ProjectItem = {
   bannerHeight: number
   website?: string
   github?: string
+  status?: string
   images: string[]
 }
 
@@ -43,151 +44,153 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
 
   const principal = rankedTags.slice(0, TAG_LIMIT)
   const remaining = rankedTags.slice(TAG_LIMIT)
-
   const filtered =
     tag === ALL ? projects : projects.filter(p => p.tags.some(t => t.toLowerCase() === tag.toLowerCase()))
 
-  const pill = (active: boolean) =>
-    cn(
-      'shrink-0 rounded-full border px-3 py-1.5 font-mono text-xs tracking-wide transition-[background-color,border-color,color] duration-200 outline-none',
-      'focus-visible:ring-fn2/40 focus-visible:ring-offset-bg1 focus-visible:ring-2 focus-visible:ring-offset-2',
-      active && 'border-fn1 bg-fn1 text-bg1',
-      !active && 'border-bg3/80 text-fn2 hover:border-fn2/35 hover:text-fn1 hover:bg-bg2/40'
-    )
-
   return (
-    <section id='projects' className='max-region:px-5 flex w-full scroll-mt-28 flex-col gap-12 md:gap-16'>
-      <div className='region mx-auto grid w-full gap-10 lg:grid-cols-[minmax(280px,0.88fr)_minmax(0,1.2fr)] lg:items-start lg:gap-12 xl:gap-16'>
-        <motion.aside
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, ease }}
-          className='lg:sticky lg:top-28 lg:self-start'
+    <section id='projects' className='max-region:px-5 flex w-full scroll-mt-28 flex-col items-center gap-14 md:gap-20'>
+      <motion.header
+        initial={{ opacity: 0, y: 14 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.55, ease }}
+        className='region max-region:items-center max-region:text-center flex flex-col gap-4'
+      >
+        <p className='text-fn2 font-mono text-xs tracking-[0.2em] uppercase'>Trabajo seleccionado</p>
+        <Title>
+          Mis <span className='text-gradient'>Proyectos</span>
+        </Title>
+        <p className='text-fn2 max-w-[36rem] text-sm leading-relaxed text-pretty md:text-base'>
+          Productos y sistemas construidos de extremo a extremo — diseño, interfaz y arquitectura en una sola pieza.
+        </p>
+      </motion.header>
+
+      <div className='region mx-auto flex w-full flex-col gap-8 md:gap-10'>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.45, ease }}
+          className='border-bg3/50 flex flex-wrap items-center gap-x-1 gap-y-2 border-b pb-4'
         >
-          <div className='flex flex-col gap-8 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto lg:pr-1'>
-            <header className='flex flex-col gap-4'>
-              <p className='text-fn2 font-mono text-xs tracking-[0.18em] uppercase'>
-                Son los pasos que dieron forma a mi camino
-              </p>
-              <Title>
-                <span aria-hidden className='font-emoji text-semantic-success mb-1 block text-3xl leading-none'>
-                  🌱
-                </span>
-                Mis Proyectos
-              </Title>
-              <p className='text-fn2 max-w-[28rem] font-mono text-sm leading-relaxed text-pretty md:text-base'>
-                En cada uno de estos proyectos he aplicado todo lo que he aprendido. En cada versión que he construido, he
-                buscado siempre mejorar y refinar mi enfoque. Cada proyecto representa una parte de mí: un fragmento de mis
-                saberes y una experiencia que comparto con quienes lo visitan.
-              </p>
-            </header>
+          <FilterPill active={tag === ALL} onClick={() => setTag(ALL)}>
+            {ALL}
+          </FilterPill>
 
-            <div className='flex flex-col gap-3'>
-              <div className='flex items-baseline justify-between gap-3'>
-                <h3 className='text-fn1 text-sm font-semibold tracking-tight md:text-base'>Enfocar</h3>
-                <span className='text-fn2 font-mono text-[11px] tracking-wide'>
-                  {filtered.length}/{projects.length}
-                </span>
-              </div>
+          {principal.map(name => (
+            <FilterPill key={name} active={tag === name} onClick={() => setTag(name)}>
+              {name}
+            </FilterPill>
+          ))}
 
-              <div className='flex flex-wrap gap-2'>
-                <button type='button' onClick={() => setTag(ALL)} aria-pressed={tag === ALL} className={pill(tag === ALL)}>
-                  <span className='inline-flex items-center gap-1.5'>
-                    <ChartNoAxesColumnIcon className='size-3.5' aria-hidden />
-                    {ALL}
-                  </span>
+          {remaining.length > 0 && (
+            <Popup>
+              <Popup.Trigger asChild>
+                <button
+                  type='button'
+                  aria-label='Más etiquetas'
+                  className={cn(
+                    'text-fn2 hover:text-fn1 inline-flex h-9 items-center gap-1 px-2.5 font-mono text-xs tracking-wide transition-colors duration-300 outline-none',
+                    'focus-visible:ring-fn2/40 focus-visible:ring-offset-bg1 rounded-md focus-visible:ring-2 focus-visible:ring-offset-2',
+                    remaining.includes(tag) && 'text-fn1'
+                  )}
+                >
+                  <PlusIcon className='size-3' aria-hidden />
+                  Más
                 </button>
-
-                {principal.map(name => (
-                  <button
-                    key={name}
-                    type='button'
-                    onClick={() => setTag(name)}
-                    aria-pressed={tag === name}
-                    className={pill(tag === name)}
-                  >
-                    {name}
-                  </button>
-                ))}
-
-                {remaining.length > 0 && (
-                  <Popup>
-                    <Popup.Trigger asChild>
-                      <button type='button' className={pill(remaining.includes(tag))}>
-                        <span className='inline-flex items-center gap-1'>
-                          <PlusIcon className='size-3' aria-hidden />
-                          {remaining.length}
-                        </span>
-                      </button>
-                    </Popup.Trigger>
-                    <Popup.Content align='start' className='w-56'>
-                      <Popup.Header>
-                        <Popup.Title>Más etiquetas</Popup.Title>
-                        <Popup.Close />
-                      </Popup.Header>
-                      <div className='no-scrollbar flex max-h-56 flex-col gap-0.5 overflow-y-auto p-1.5'>
-                        {remaining.map(name => (
-                          <Button
-                            key={name}
-                            variant='ghost'
-                            size='sm'
-                            onClick={() => setTag(name)}
-                            className={cn(
-                              'h-8 w-full justify-between rounded-lg px-2.5 font-mono text-[11px]',
-                              tag === name && 'bg-bg2 text-fn1',
-                              tag !== name && 'text-fn2'
-                            )}
-                          >
-                            <span>{name}</span>
-                            {tag === name && <CheckIcon className='size-3.5' aria-hidden />}
-                          </Button>
-                        ))}
-                      </div>
-                    </Popup.Content>
-                  </Popup>
-                )}
-              </div>
-            </div>
-          </div>
-        </motion.aside>
-
-        <div className='min-w-0'>
-          <LayoutGroup>
-            <AnimatePresence mode='popLayout'>
-              {filtered.length > 0 && (
-                <motion.ul
-                  key={tag}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className='flex flex-col gap-5 md:gap-6'
-                >
-                  {filtered.map((project, i) => (
-                    <li key={project.id} className='list-none'>
-                      <CardProjects project={project} index={i} />
-                    </li>
+              </Popup.Trigger>
+              <Popup.Content align='start' className='w-52'>
+                <Popup.Header>
+                  <Popup.Title>Etiquetas</Popup.Title>
+                  <Popup.Close />
+                </Popup.Header>
+                <div className='no-scrollbar flex max-h-52 flex-col gap-0.5 overflow-y-auto p-1.5'>
+                  {remaining.map(name => (
+                    <Button
+                      key={name}
+                      variant='ghost'
+                      size='sm'
+                      onClick={() => setTag(name)}
+                      className={cn(
+                        'h-8 w-full justify-between rounded-lg px-2.5 font-mono text-[11px]',
+                        tag === name && 'bg-bg2 text-fn1',
+                        tag !== name && 'text-fn2'
+                      )}
+                    >
+                      <span>{name}</span>
+                      {tag === name && <CheckIcon className='size-3.5' aria-hidden />}
+                    </Button>
                   ))}
-                </motion.ul>
-              )}
+                </div>
+              </Popup.Content>
+            </Popup>
+          )}
 
-              {filtered.length === 0 && (
-                <motion.div
-                  key='empty'
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className='border-bg3/70 bg-bg2/20 text-fn2 flex min-h-[280px] items-center justify-center rounded-2xl border border-dashed font-mono text-sm'
-                >
-                  Sin proyectos para este filtro
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </LayoutGroup>
-        </div>
+          <span className='text-fn2/60 ml-auto font-mono text-[11px] tracking-wide tabular-nums'>
+            {filtered.length} proyectos
+          </span>
+        </motion.div>
+
+        <AnimatePresence mode='wait' initial={false}>
+          {filtered.length > 0 && (
+            <motion.ul
+              key={tag}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.22, ease }}
+              className='flex flex-col gap-8 md:gap-10'
+            >
+              {filtered.map((project, i) => (
+                <li key={project.id} className='list-none'>
+                  <ProjectCard project={project} index={i} />
+                </li>
+              ))}
+            </motion.ul>
+          )}
+
+          {filtered.length === 0 && (
+            <motion.p
+              key='empty'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className='text-fn2 py-20 text-center font-mono text-sm'
+            >
+              Sin proyectos para este filtro
+            </motion.p>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   )
 }
+
+const FilterPill: FC<{ active: boolean; onClick: () => void; children: ReactNode }> = ({
+  active,
+  onClick,
+  children
+}) => (
+  <button
+    type='button'
+    onClick={onClick}
+    aria-pressed={active}
+    className={cn(
+      'relative h-9 shrink-0 px-2.5 font-mono text-xs tracking-wide transition-colors duration-300 outline-none',
+      'focus-visible:ring-fn2/40 focus-visible:ring-offset-bg1 rounded-md focus-visible:ring-2 focus-visible:ring-offset-2',
+      active && 'text-fn1',
+      !active && 'text-fn2 hover:text-fn1'
+    )}
+  >
+    {children}
+    {active && (
+      <motion.span
+        layoutId='project-filter-line'
+        className='bg-fn1 absolute inset-x-2.5 -bottom-4 h-px'
+        transition={{ duration: 0.35, ease }}
+      />
+    )}
+  </button>
+)
 
 export default ProjectsView
