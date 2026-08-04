@@ -82,7 +82,7 @@ const ProjectsDocument = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: 'string',
-      resolve: post => `/projects/${post._raw.flattenedPath}`
+      resolve: post => `/project/${post.id}`
     }
   }
 }))
