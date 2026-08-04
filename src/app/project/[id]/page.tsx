@@ -39,9 +39,7 @@ const ProjectPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   if (!project) notFound()
 
-  const sectionImages = (project.allImagesBySections ?? [])
-    .map(img => img.banner)
-    .filter((src): src is string => Boolean(src))
+  const sectionImages = (project.allImagesBySections ?? []).map(img => img.banner).filter((src): src is string => Boolean(src))
 
   const gallery = [project.banner, ...sectionImages].filter((src, i, arr) => Boolean(src) && arr.indexOf(src) === i)
 
@@ -61,7 +59,7 @@ const ProjectPage = async ({ params }: { params: Promise<{ id: string }> }) => {
         github: project.github,
         figma: project.figma,
         images: gallery,
-        mdxCode: project.body.code
+        mdxRaw: project.body.raw
       }}
     />
   )

@@ -12,5 +12,5 @@ export type ProjectDetail = {
   github?: string
   figma?: string
   images: string[]
-  mdxCode: string
+  mdxRaw: string
 }

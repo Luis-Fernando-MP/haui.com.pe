@@ -14,7 +14,7 @@ const ProjectView = ({ project }: { project: ProjectDetail }) => {
       <ProjectHero project={project} />
       <div className='max-region:px-5 mx-auto flex w-full flex-col items-center gap-16 md:gap-20'>
         {project.images.length > 0 && <ProjectGallery id={project.id} title={project.title} images={project.images} />}
-        {project.mdxCode.length > 0 && <ProjectMdx code={project.mdxCode} />}
+        {project.mdxRaw.length > 0 && <ProjectMdx raw={project.mdxRaw} />}
       </div>
     </main>
   )

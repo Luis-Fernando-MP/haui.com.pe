@@ -1,15 +1,17 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { useMDXComponent } from 'next-contentlayer2/hooks'
 import type { FC } from 'react'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
-const ProjectMdx: FC<{ code: string }> = ({ code }) => {
-  const MDXContent = useMDXComponent(code)
+const toHtml = (raw: string) =>
+  raw
+    .replace(/\bclassName=/g, 'class=')
+    .replace(/\bhtmlFor=/g, 'for=')
 
-  if (code.length === 0) return null
+const ProjectMdx: FC<{ raw: string }> = ({ raw }) => {
+  if (raw.trim().length === 0) return null
 
   return (
     <motion.section
@@ -19,9 +21,10 @@ const ProjectMdx: FC<{ code: string }> = ({ code }) => {
       transition={{ duration: 0.5, ease }}
       className='region w-full'
     >
-      <article className='project-mdx mx-auto max-w-2xl'>
-        <MDXContent />
-      </article>
+      <article
+        className='project-mdx mx-auto max-w-2xl'
+        dangerouslySetInnerHTML={{ __html: toHtml(raw) }}
+      />
     </motion.section>
   )
 }
