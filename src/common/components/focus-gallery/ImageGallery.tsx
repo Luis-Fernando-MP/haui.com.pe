@@ -54,6 +54,7 @@ const ImageGallery: FC<Props> = ({
   ref,
   alt,
   onKeyDown,
+  background = 'var(--bg1)',
   ...imgProps
 }) => {
   const fallbackGroupId = useId()
@@ -79,7 +80,7 @@ const ImageGallery: FC<Props> = ({
       data-gallery-action={action}
       data-gallery-action-text={actionText}
       itemProp='image'
-      background='/fallback.webp'
+      background={background}
       className={cn(
         'focus-visible:ring-fn2/50 focus-visible:ring-offset-bg1 cursor-zoom-in transition-opacity duration-200 outline-none hover:opacity-85 focus-visible:ring-2 focus-visible:ring-offset-2 motion-reduce:transition-none',
         className

@@ -52,12 +52,12 @@ export const commonLayerConfigFields: FieldDefs = {
   },
   image_hash: {
     type: 'string',
-    default: 'L1QTDn-;-;-;_NjajtfQ=}fQD%f6',
+    default: '',
     required: false
   },
   image_blur: {
     type: 'string',
-    default: 'radial-gradient(at 0 0, #fff, #ccc 50%)',
+    default: '',
     required: false
   },
 

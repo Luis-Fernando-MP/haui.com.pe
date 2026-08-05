@@ -21,8 +21,7 @@ const resolveTechs = (tags: string[]) => {
     .flatMap(tag => {
       const key = normalize(tag)
       const match =
-        byKey.get(key) ??
-        [...byKey.entries()].find(([techKey]) => techKey.includes(key) || key.includes(techKey))?.[1]
+        byKey.get(key) ?? [...byKey.entries()].find(([techKey]) => techKey.includes(key) || key.includes(techKey))?.[1]
 
       if (match) return [{ label: match.name, icon: match.icon }]
       return [{ label: tag, icon: null as string | null }]
@@ -30,7 +29,11 @@ const resolveTechs = (tags: string[]) => {
     .slice(0, 5)
 }
 
-const ProjectHero: FC<{ project: ProjectDetail }> = ({ project }) => {
+interface Props {
+  project: ProjectDetail
+}
+
+const ProjectHero: FC<Props> = ({ project }) => {
   const { title, summary, logo, banner, bannerWidth, bannerHeight, tags, website, github, figma } = project
   const techs = resolveTechs(tags)
   const webHref = website?.trim()
@@ -47,7 +50,10 @@ const ProjectHero: FC<{ project: ProjectDetail }> = ({ project }) => {
           width={bannerWidth || 1500}
           height={bannerHeight || 1125}
           priority
-          className='absolute inset-0 size-full object-cover opacity-40 brightness-[0.55] saturate-[0.85]'
+          layout='fullWidth'
+          unstyled
+          objectFit='cover'
+          className='absolute inset-0 size-full object-cover object-[center_30%] opacity-40 brightness-[0.55] saturate-[0.85]'
         />
         <div className='from-bg1 via-bg1/90 absolute inset-0 bg-gradient-to-t to-transparent' />
         <div className='from-bg1/50 absolute inset-0 bg-gradient-to-b via-transparent to-transparent' />
@@ -60,9 +66,7 @@ const ProjectHero: FC<{ project: ProjectDetail }> = ({ project }) => {
         className='region max-region:px-5 relative z-[1] mx-auto flex w-full flex-col items-center gap-5 text-center md:gap-6'
       >
         <div className='bg-bg1/80 border-bg3/50 flex size-20 items-center justify-center overflow-hidden rounded-2xl border md:size-24'>
-          {logo && (
-            <Image src={logo} alt={`Logo de ${title}`} width={96} height={96} className='size-full object-contain p-3' />
-          )}
+          {logo && <Image src={logo} alt={`Logo de ${title}`} width={96} height={96} className='size-full object-contain p-3' />}
           {!logo && <span className='font-flowers text-fn1 text-4xl leading-none md:text-5xl'>{monogram}</span>}
         </div>
 
@@ -72,9 +76,7 @@ const ProjectHero: FC<{ project: ProjectDetail }> = ({ project }) => {
           <ul className='flex flex-wrap items-center justify-center gap-x-5 gap-y-2'>
             {techs.map(tech => (
               <li key={tech.label} className='text-fn2 flex list-none items-center gap-2'>
-                {tech.icon && (
-                  <Image src={tech.icon} alt='' width={18} height={18} className='size-[18px] object-contain' />
-                )}
+                {tech.icon && <Image src={tech.icon} alt='' width={18} height={18} className='size-[18px] object-contain' />}
                 <span className='text-sm tracking-wide'>{tech.label}</span>
               </li>
             ))}
@@ -86,7 +88,7 @@ const ProjectHero: FC<{ project: ProjectDetail }> = ({ project }) => {
         )}
 
         <div className='flex flex-wrap items-center justify-center gap-2 pt-1'>
-          <Button href='/#projects' variant='outline' size='sm' className='rounded-full gap-1.5'>
+          <Button href='/#projects' variant='outline' size='sm' className='gap-1.5 rounded-full'>
             <ArrowLeftIcon className='size-3.5' aria-hidden />
             Regresar
           </Button>
@@ -104,7 +106,7 @@ const ProjectHero: FC<{ project: ProjectDetail }> = ({ project }) => {
               rel='noopener noreferrer'
               variant='ghost'
               size='sm'
-              className='rounded-full gap-1.5'
+              className='gap-1.5 rounded-full'
             >
               <GithubIcon className='size-3.5' aria-hidden />
               Código

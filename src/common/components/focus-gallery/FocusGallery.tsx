@@ -245,7 +245,6 @@ const FocusGalleryComponent = () => {
                         alt=''
                         loading='lazy'
                         fetchPriority='low'
-                        background='/fallback.webp'
                         className='size-full object-cover'
                       />
                     </span>

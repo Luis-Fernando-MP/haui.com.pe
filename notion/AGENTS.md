@@ -131,7 +131,8 @@ Rules:
 - Frontmatter keys must match Contentlayer `fields` **1:1**
 
 Common keys (from [commonLayerConfigFields.ts](databases/commonLayerConfigFields.ts)):  
-`id`, `title`, `created_time`, `last_edited_time`, `reading_time`, `words`, banner/thumb hash fields.
+`id`, `title`, `created_time`, `last_edited_time`, `reading_time`, `words`, banner/thumb fields,  
+`image_hash` (data URI blur for Unpic `background`), `image_blur` (CSS gradient placeholder).
 
 Domain-specific keys stay only here (e.g. projects: `github`, series: `profesor`).
 
