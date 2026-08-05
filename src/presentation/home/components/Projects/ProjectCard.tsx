@@ -29,7 +29,7 @@ const ProjectCard: FC<{ project: ProjectItem; index: number }> = ({ project, ind
   const extraTags = project.tags.length - tags.length
   const bannerW = project.bannerWidth || 1500
   const bannerH = project.bannerHeight || 1125
-  const blurBackground = project.imageHash?.startsWith('data:') ? project.imageHash : undefined
+  const bannerBackground = project.imageBlur || (project.imageHash?.startsWith('data:') ? project.imageHash : undefined)
   const readingMins =
     project.readingTime != null && project.readingTime > 0 ? Math.max(1, Math.round(project.readingTime)) : undefined
 
@@ -55,7 +55,7 @@ const ProjectCard: FC<{ project: ProjectItem; index: number }> = ({ project, ind
           layout='fullWidth'
           unstyled
           objectFit='cover'
-          background={blurBackground}
+          background={bannerBackground}
           groupId={groupId}
           index={0}
           caption={`<p>${project.title}</p>`}
@@ -83,20 +83,12 @@ const ProjectCard: FC<{ project: ProjectItem; index: number }> = ({ project, ind
         <div className='text-fn2 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] tracking-wide'>
           {readingMins != null && (
             <span className='inline-flex items-center gap-1'>
-              <ClockIcon className='size-3 opacity-70' aria-hidden />
+              <ClockIcon className='size-3' aria-hidden />
               {readingMins} min
             </span>
           )}
-          {project.lastEditedTime && (
-            <DateFormat
-              date={project.lastEditedTime}
-              mode='relative'
-              locale='es'
-              className='text-fn2/80'
-              prefix='Act. '
-            />
-          )}
-          {project.status && <span className='text-fn2/60 truncate'>{project.status}</span>}
+
+          {project.lastEditedTime && <DateFormat date={project.lastEditedTime} mode='relative' />}
         </div>
 
         <div className='flex items-start justify-between gap-3'>
@@ -104,7 +96,7 @@ const ProjectCard: FC<{ project: ProjectItem; index: number }> = ({ project, ind
             href={detailHref}
             className='group/title focus-visible:ring-fn2/40 focus-visible:ring-offset-bg1 w-fit max-w-full rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-offset-2'
           >
-            <h3 className='text-fn1 text-xl leading-snug font-semibold tracking-tight transition-opacity duration-300 group-hover/title:opacity-75 md:text-2xl'>
+            <h3 className='text-fn1 group-hover/title:text-fn2 text-xl leading-snug font-semibold tracking-tight transition-colors duration-300 md:text-2xl'>
               {project.title}
             </h3>
           </Link>
@@ -140,12 +132,9 @@ const ProjectCard: FC<{ project: ProjectItem; index: number }> = ({ project, ind
                     layout='fullWidth'
                     unstyled
                     objectFit='cover'
-                    background={blurBackground}
                     groupId={groupId}
                     index={i + 1}
-                    action={detailHref}
-                    actionText='Ver proyecto'
-                    className='h-12 w-16 shrink-0 rounded-xl object-cover opacity-90 transition-[opacity,transform] duration-300 hover:scale-[1.03] hover:opacity-100 motion-reduce:transition-none motion-reduce:hover:scale-100'
+                    className='h-12 w-16 shrink-0 rounded-xl object-cover transition-transform duration-300 hover:scale-[1.03] motion-reduce:transition-none motion-reduce:hover:scale-100'
                   />
                 </li>
               ))}
@@ -155,12 +144,6 @@ const ProjectCard: FC<{ project: ProjectItem; index: number }> = ({ project, ind
           {thumbs.length === 0 && <span />}
 
           <div className='flex flex-wrap items-center gap-1.5'>
-            {webHref && (
-              <Button href={webHref} target='_blank' rel='noopener noreferrer' size='sm' showIconLink>
-                Probar aplicación
-              </Button>
-            )}
-
             {gitHref && (
               <Button
                 href={gitHref}
@@ -197,6 +180,12 @@ const ProjectCard: FC<{ project: ProjectItem; index: number }> = ({ project, ind
                 aria-label={`Notion de ${project.title}`}
               >
                 <NotionIcon className='size-4' />
+              </Button>
+            )}
+
+            {webHref && (
+              <Button href={webHref} target='_blank' rel='noopener noreferrer' size='sm' showIconLink>
+                Probar aplicación
               </Button>
             )}
           </div>

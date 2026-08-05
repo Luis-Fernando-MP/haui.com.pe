@@ -18,6 +18,7 @@ const projects: ProjectItem[] = [...allProjects]
       bannerWidth: p.banner_width ?? 0,
       bannerHeight: p.banner_height ?? 0,
       imageHash: p.image_hash,
+      imageBlur: p.image_blur,
       readingTime: p.reading_time,
       lastEditedTime: p.last_edited_time,
       website: p.website,

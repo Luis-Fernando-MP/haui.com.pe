@@ -19,6 +19,7 @@ export type ProjectItem = {
   bannerWidth: number
   bannerHeight: number
   imageHash?: string
+  imageBlur?: string
   readingTime?: number
   lastEditedTime?: string
   website?: string
