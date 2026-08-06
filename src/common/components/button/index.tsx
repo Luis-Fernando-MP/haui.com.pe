@@ -29,14 +29,7 @@ const buttonVariants = cva(
         soft: 'border-transparent bg-bg2/50 text-fn1 hover:bg-bg2'
       },
       status: {
-        default: '',
-        danger:
-          'border border-semantic-danger/35 bg-semantic-danger/12 text-semantic-text-danger hover:border-semantic-danger/50 hover:bg-semantic-danger/20',
-        warning:
-          'border border-semantic-warning/35 bg-semantic-warning/12 text-semantic-text-warning hover:border-semantic-warning/50 hover:bg-semantic-warning/20',
-        info: 'border border-semantic-info/35 bg-semantic-info/12 text-semantic-text-info hover:border-semantic-info/50 hover:bg-semantic-info/20',
-        success:
-          'border border-semantic-success/35 bg-semantic-success/12 text-semantic-text-success hover:border-semantic-success/50 hover:bg-semantic-success/20'
+        default: ''
       }
     },
     defaultVariants: {
@@ -109,9 +102,26 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
 ) {
   const hasStatus = Boolean(status) && status !== 'default'
   const resolvedVariant = hasStatus && (variant == null || variant === 'default') ? 'ghost' : variant
+  const isGhostOrLink = resolvedVariant === 'ghost' || resolvedVariant === 'link'
+
+  const statusClasses = {
+    danger: isGhostOrLink
+      ? 'text-semantic-text-danger hover:bg-semantic-danger/10'
+      : 'border border-semantic-danger/35 bg-semantic-danger/12 text-semantic-text-danger hover:border-semantic-danger/50 hover:bg-semantic-danger/20',
+    warning: isGhostOrLink
+      ? 'text-semantic-text-warning hover:bg-semantic-warning/10'
+      : 'border border-semantic-warning/35 bg-semantic-warning/12 text-semantic-text-warning hover:border-semantic-warning/50 hover:bg-semantic-warning/20',
+    info: isGhostOrLink
+      ? 'text-semantic-text-info hover:bg-semantic-info/10'
+      : 'border border-semantic-info/35 bg-semantic-info/12 text-semantic-text-info hover:border-semantic-info/50 hover:bg-semantic-info/20',
+    success: isGhostOrLink
+      ? 'text-semantic-text-success hover:bg-semantic-success/10'
+      : 'border border-semantic-success/35 bg-semantic-success/12 text-semantic-text-success hover:border-semantic-success/50 hover:bg-semantic-success/20'
+  }
 
   const merged = cn(
-    buttonVariants({ variant: resolvedVariant, size, styles, status }),
+    buttonVariants({ variant: resolvedVariant, size, styles }),
+    hasStatus && status && status in statusClasses && statusClasses[status as keyof typeof statusClasses],
     center && 'flex items-center justify-center',
     noHover && 'hover:bg-transparent hover:border-bg3 hover:opacity-100 hover:no-underline',
     Boolean(href) && showIconLink && 'group',
@@ -120,7 +130,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
 
   const content = (
     <>
-      {typeof children === 'string' ? <p>{children}</p> : children}
+      {typeof children === 'string' ? <p className='text-md'>{children}</p> : children}
       {Boolean(href) && showIconLink && (
         <ArrowUpRightIcon
           className='size-3.5 shrink-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:scale-110 group-hover:opacity-100 motion-reduce:transition-none'
