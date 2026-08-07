@@ -1,7 +1,6 @@
 import clog from '@notion/utils/cli/log'
 
-const markerOpen = (name: string) =>
-  new RegExp(`<p[^>]*>\\s*(?:<span[^>]*>)?\\s*${name}\\s*(?:</span>)?\\s*</p>`, 'i')
+const markerOpen = (name: string) => new RegExp(`<p[^>]*>\\s*(?:<span[^>]*>)?\\s*${name}\\s*(?:</span>)?\\s*</p>`, 'i')
 
 const sectionBetween = (from: string, to: string) =>
   new RegExp(
@@ -33,11 +32,7 @@ const imageMarkup = (asset: InjectImage) => {
   const image = `<Image layout="constrained" width={1500} height={1125} src="${asset.src}" alt="${alt}" />`
   if (caption.length === 0) return image
 
-  const safeCaption = caption
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
+  const safeCaption = caption.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
   return `<figure>\n${image}\n<figcaption>${safeCaption}</figcaption>\n</figure>`
 }

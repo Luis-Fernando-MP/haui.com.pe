@@ -31,12 +31,7 @@ export async function confirm(rl: Interface, label = 'Confirmar') {
 
 type MenuItem = { label: string; run?: () => Promise<void> | void }
 
-export async function runMenu(
-  rl: Interface,
-  title: string,
-  menu: Record<string, MenuItem>,
-  order: string[]
-) {
+export async function runMenu(rl: Interface, title: string, menu: Record<string, MenuItem>, order: string[]) {
   const choice = await choose(
     rl,
     title,

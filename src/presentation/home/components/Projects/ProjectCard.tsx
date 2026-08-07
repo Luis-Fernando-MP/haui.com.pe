@@ -16,8 +16,22 @@ import type { ProjectItem } from './ProjectsView'
 const ease = [0.22, 1, 0.36, 1] as const
 
 const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean }> = ({ project, index, featured = false }) => {
-  const { website, github, figma, notion, readingTime, tags, banner, bannerWidth, bannerHeight, imageBlur, imageHash, title, summary, id } =
-    project
+  const {
+    website,
+    github,
+    figma,
+    notion,
+    readingTime,
+    tags,
+    banner,
+    bannerWidth,
+    bannerHeight,
+    imageBlur,
+    imageHash,
+    title,
+    summary,
+    id
+  } = project
   const readingMins = readingTime != null && readingTime > 0 ? Math.max(1, Math.round(readingTime)) : undefined
 
   const detailHref = `/project/${id}`
@@ -50,7 +64,10 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
         className='absolute inset-0 size-full object-cover transition-transform duration-500 ease-out group-hover/card:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover/card:scale-100'
       />
 
-      <div aria-hidden className='from-bg1 via-bg1/50 pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t to-transparent' />
+      <div
+        aria-hidden
+        className='from-bg1 via-bg1/50 pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t to-transparent'
+      />
 
       <div className='absolute top-4 right-4 left-4 flex items-center justify-between'>
         <div className='flex items-center gap-2'>

@@ -1,8 +1,9 @@
 'use client'
 
-import type { ProjectAuthor } from '../project.types'
 import { motion } from 'motion/react'
 import type { FC } from 'react'
+
+import type { ProjectAuthor } from '../project.types'
 
 const ease = [0.22, 1, 0.36, 1] as const
 

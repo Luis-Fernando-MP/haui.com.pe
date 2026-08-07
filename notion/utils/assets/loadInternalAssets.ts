@@ -1,6 +1,6 @@
+import type { InternalDbConfig, NotionRichText } from '@notion/lib/types'
 import clog from '@notion/utils/cli/log'
 import { getAllBlocks, getAllMarksDB } from '@notion/utils/query/fetch'
-import type { InternalDbConfig, NotionRichText } from '@notion/lib/types'
 
 type ChildDatabaseBlock = {
   type?: string

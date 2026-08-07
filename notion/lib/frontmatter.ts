@@ -1,7 +1,6 @@
-import { blurhashToDataUri } from '@unpic/placeholder'
-
 import { DUAL_IMAGE_VARIANTS } from '@notion/utils/image/downloadImage'
 import { yamlQuote } from '@notion/utils/shared/yamlQuote'
+import { blurhashToDataUri } from '@unpic/placeholder'
 
 import type { MdxImageContentProps } from './types'
 

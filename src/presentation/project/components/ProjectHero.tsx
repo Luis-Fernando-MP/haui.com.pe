@@ -2,8 +2,8 @@
 
 import Button from '@common/components/button'
 import Image from '@common/components/image'
-import GithubIcon from '@common/icons/github'
 import { technologies } from '@common/core/data/technologies'
+import GithubIcon from '@common/icons/github'
 import { ArrowLeftIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import type { FC } from 'react'

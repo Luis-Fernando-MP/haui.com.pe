@@ -43,70 +43,88 @@ authors:
     role: ''
 ---
 
+<h1 className='notion-heading_1 notion-color-default'>🎯 Sobre el proyecto</h1>
 
+<p>
+  <b className='notion-text-bold'>CORAL</b> es un blog enfocado en CSS. Este proyecto fue desarrollado como parte del curso
+  Universitario de CSS, con el objetivo de compartir conocimientos y experiencias del curso para la comunidad web.
+</p>
 
- <h1 className="notion-heading_1 notion-color-default">🎯 Sobre el proyecto</h1>
+<h2 className='notion-heading_2 notion-color-default'>👥 Devs</h2>
 
-<p><b className="notion-text-bold">CORAL</b> es un blog enfocado en CSS. Este proyecto fue desarrollado como parte del curso Universitario de CSS, con el objetivo de compartir conocimientos y experiencias del curso para la comunidad web.</p>
-
- <h2 className="notion-heading_2 notion-color-default">👥 Devs</h2>
-
-<ul className="notion-bulleted_list">
- <li className="notion-bulleted_list_item notion-color-default"><b className="notion-text-bold">Melgar Pizarro Luis</b> - <MDXLink href="https://github.com/Luis-Fernando-MP" className="notion-text-href">@haui</MDXLink></li>
-<li className="notion-bulleted_list_item notion-color-default"><b className="notion-text-bold">Jhosef Condori Chauca</b></li>
-<li className="notion-bulleted_list_item notion-color-default"><b className="notion-text-bold">Joel Alva Reynoso</b></li>
- </ul>
+<ul className='notion-bulleted_list'>
+  <li className='notion-bulleted_list_item notion-color-default'>
+    <b className='notion-text-bold'>Melgar Pizarro Luis</b> -{' '}
+    <MDXLink href='https://github.com/Luis-Fernando-MP' className='notion-text-href'>
+      @haui
+    </MDXLink>
+  </li>
+  <li className='notion-bulleted_list_item notion-color-default'>
+    <b className='notion-text-bold'>Jhosef Condori Chauca</b>
+  </li>
+  <li className='notion-bulleted_list_item notion-color-default'>
+    <b className='notion-text-bold'>Joel Alva Reynoso</b>
+  </li>
+</ul>
 
 <figure>
-<Image layout="constrained" width={1500} height={1125} src="/content/projects/2c4ebabb-843a-81fb-af4f-d22c55448604/img-1.webp" alt="Descripcion ejemplo" />
-<figcaption>Descripcion ejemplo</figcaption>
+  <Image
+    layout='constrained'
+    width={1500}
+    height={1125}
+    src='/content/projects/2c4ebabb-843a-81fb-af4f-d22c55448604/img-1.webp'
+    alt='Descripcion ejemplo'
+  />
+  <figcaption>Descripcion ejemplo</figcaption>
 </figure>
 
 <p>Arriba imagen</p>
 
- <hr className="notion-divider" />
+<hr className='notion-divider' />
 
- <h1 className="notion-heading_1 notion-color-default">🚀 Guía de Instalación y Ejecución</h1>
+<h1 className='notion-heading_1 notion-color-default'>🚀 Guía de Instalación y Ejecución</h1>
 
 <p>Pasos para instalar y ejecutar el proyecto en tu máquina local:</p>
- <ul className="notion-bulleted_list">
- <li className="notion-bulleted_list_item notion-color-default">Clona el repositorio:</li>
- </ul>
+<ul className='notion-bulleted_list'>
+  <li className='notion-bulleted_list_item notion-color-default'>Clona el repositorio:</li>
+</ul>
 
-<hr className="notion-divider" />
+<hr className='notion-divider' />
 
 ```bash
 git clone https://github.com/Luis-Fernando-MP/coral.git
 cd coral
 ```
 
- <ul className="notion-bulleted_list">
- <li className="notion-bulleted_list_item notion-color-default">Instala las dependencias:</li>
- </ul>
+<ul className='notion-bulleted_list'>
+  <li className='notion-bulleted_list_item notion-color-default'>Instala las dependencias:</li>
+</ul>
 
-<hr className="notion-divider" />
+<hr className='notion-divider' />
 
 ```bash
 pnpm install
 ```
 
- <ul className="notion-bulleted_list">
- <li className="notion-bulleted_list_item notion-color-default">Inicia el servidor de desarrollo:</li>
- </ul>
+<ul className='notion-bulleted_list'>
+  <li className='notion-bulleted_list_item notion-color-default'>Inicia el servidor de desarrollo:</li>
+</ul>
 
-<hr className="notion-divider" />
+<hr className='notion-divider' />
 
 ```bash
 pnpm dev
 ```
 
- <ul className="notion-bulleted_list">
- <li className="notion-bulleted_list_item notion-color-default">Accede al proyecto en tu navegador en <code className="notion-text-code">http://localhost:4321</code>.</li>
- </ul>
+<ul className='notion-bulleted_list'>
+  <li className='notion-bulleted_list_item notion-color-default'>
+    Accede al proyecto en tu navegador en <code className='notion-text-code'>http://localhost:4321</code>.
+  </li>
+</ul>
 
-<hr className="notion-divider" />
+<hr className='notion-divider' />
 
- <h2 className="notion-heading_2 notion-color-default">📁 Estructura del Proyecto</h2>
+<h2 className='notion-heading_2 notion-color-default'>📁 Estructura del Proyecto</h2>
 
 ```plain
 ├── public/
@@ -126,18 +144,53 @@ pnpm dev
 └── tsconfig.json
 ```
 
- <ul className="notion-bulleted_list">
- <li className="notion-bulleted_list_item notion-color-default"><code className="notion-text-code"><b className="notion-text-bold">public/</b></code>: Archivos estáticos</li>
-<li className="notion-bulleted_list_item notion-color-default"><code className="notion-text-code"><b className="notion-text-bold">content/</b></code>: Posts del blog</li>
-<li className="notion-bulleted_list_item notion-color-default"><code className="notion-text-code"><b className="notion-text-bold">src/components/</b></code>: Componentes reutilizables.</li>
-<li className="notion-bulleted_list_item notion-color-default"><code className="notion-text-code"><b className="notion-text-bold">src/layouts/</b></code>: Plantillas de diseño</li>
-<li className="notion-bulleted_list_item notion-color-default"><code className="notion-text-code"><b className="notion-text-bold">src/lib/</b></code>: Funciones y utilidades</li>
-<li className="notion-bulleted_list_item notion-color-default"><code className="notion-text-code"><b className="notion-text-bold">src/pages/</b></code>: Páginas del sitio</li>
-<li className="notion-bulleted_list_item notion-color-default"><code className="notion-text-code"><b className="notion-text-bold">src/sass/</b></code>: Estilos de la aplicación</li>
- </ul>
+<ul className='notion-bulleted_list'>
+  <li className='notion-bulleted_list_item notion-color-default'>
+    <code className='notion-text-code'>
+      <b className='notion-text-bold'>public/</b>
+    </code>
+    : Archivos estáticos
+  </li>
+  <li className='notion-bulleted_list_item notion-color-default'>
+    <code className='notion-text-code'>
+      <b className='notion-text-bold'>content/</b>
+    </code>
+    : Posts del blog
+  </li>
+  <li className='notion-bulleted_list_item notion-color-default'>
+    <code className='notion-text-code'>
+      <b className='notion-text-bold'>src/components/</b>
+    </code>
+    : Componentes reutilizables.
+  </li>
+  <li className='notion-bulleted_list_item notion-color-default'>
+    <code className='notion-text-code'>
+      <b className='notion-text-bold'>src/layouts/</b>
+    </code>
+    : Plantillas de diseño
+  </li>
+  <li className='notion-bulleted_list_item notion-color-default'>
+    <code className='notion-text-code'>
+      <b className='notion-text-bold'>src/lib/</b>
+    </code>
+    : Funciones y utilidades
+  </li>
+  <li className='notion-bulleted_list_item notion-color-default'>
+    <code className='notion-text-code'>
+      <b className='notion-text-bold'>src/pages/</b>
+    </code>
+    : Páginas del sitio
+  </li>
+  <li className='notion-bulleted_list_item notion-color-default'>
+    <code className='notion-text-code'>
+      <b className='notion-text-bold'>src/sass/</b>
+    </code>
+    : Estilos de la aplicación
+  </li>
+</ul>
 
-<hr className="notion-divider" />
+<hr className='notion-divider' />
 
- <blockquote className="notion-callout notion-color-brown_background"><div className="content">
- ¡Gracias por tu interés en ! 💖
- </div></blockquote>
+<blockquote className='notion-callout notion-color-brown_background'>
+  <div className='content'>¡Gracias por tu interés en ! 💖</div>
+</blockquote>

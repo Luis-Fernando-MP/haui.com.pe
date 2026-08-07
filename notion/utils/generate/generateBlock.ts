@@ -1,23 +1,18 @@
 import { NotionRenderer, createBlockRenderer } from '@notion-render/client'
-import path from 'path'
-import readingTime from 'reading-time'
-import { stripHtml } from 'string-strip-html'
-
 import notion from '@notion/lib/api'
 import type { InternalDbConfig, MdxContentProps, MdxImageContentProps } from '@notion/lib/types'
 import { loadInternalAssets } from '@notion/utils/assets/loadInternalAssets'
-import {
-  handleImageProcessing,
-  processKeyedImages,
-  processLogoImage
-} from '@notion/utils/image/handleImageProcessing'
-import { writeFile } from '@notion/utils/local/fs'
 import clog from '@notion/utils/cli/log'
+import { handleImageProcessing, processKeyedImages, processLogoImage } from '@notion/utils/image/handleImageProcessing'
+import { writeFile } from '@notion/utils/local/fs'
 import { applyDeleteDecorators, injectImagePlaceholders } from '@notion/utils/mdx/decorators'
 import { escapeHTML } from '@notion/utils/mdx/escapeHTML'
 import { listExtensions } from '@notion/utils/mdx/listExtensions'
 import { selfCloseCustomTags } from '@notion/utils/mdx/mdxHtmlTagMap'
 import { getAllBlocks } from '@notion/utils/query/fetch'
+import path from 'path'
+import readingTime from 'reading-time'
+import { stripHtml } from 'string-strip-html'
 
 export type { MdxContentProps, MdxImageContentProps }
 
@@ -142,18 +137,14 @@ export async function generateBlock(props: Props) {
         authors = assets.authors
       }
 
-      const blocks = rawBlocks.filter(
-        (block: { type?: string }) => block.type && !SKIP_BLOCK_TYPES.has(block.type)
-      )
+      const blocks = rawBlocks.filter((block: { type?: string }) => block.type && !SKIP_BLOCK_TYPES.has(block.type))
 
       const html = await renderer.render(...blocks)
       let { result } = escapeHTML(html)
 
       result = applyDeleteDecorators(result)
 
-      const byId = Object.fromEntries(
-        images.map(img => [img.id, { src: img.banner, caption: img.caption }])
-      )
+      const byId = Object.fromEntries(images.map(img => [img.id, { src: img.banner, caption: img.caption }]))
       body = selfCloseCustomTags(injectImagePlaceholders(result, byId))
 
       const plainText = stripHtml(html).result

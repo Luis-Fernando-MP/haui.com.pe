@@ -28,6 +28,7 @@ notion/
 // notion/index.ts
 import { DOMAINS } from './databases/registry'
 import { run } from './lib/cli'
+
 void run(DOMAINS, process.argv.slice(2))
 ```
 
@@ -35,12 +36,12 @@ CLI (menús, delete, flags `--all`/`--smart`) vive en `lib/cli.ts`. No código d
 
 ## Estándar por dominio (4 archivos)
 
-| Archivo | Rol |
-| --- | --- |
-| `index.ts` | `DomainConfig`: id, label, option, kind, query, content, `internalDB` |
-| `type.ts` | Un tipo de fila Notion |
-| `content.ts` | `(row, cover, props) => frontmatter` |
-| `layer.ts` | `defineDocumentType` + fields domain + `...commonLayerFields` |
+| Archivo      | Rol                                                                   |
+| ------------ | --------------------------------------------------------------------- |
+| `index.ts`   | `DomainConfig`: id, label, option, kind, query, content, `internalDB` |
+| `type.ts`    | Un tipo de fila Notion                                                |
+| `content.ts` | `(row, cover, props) => frontmatter`                                  |
+| `layer.ts`   | `defineDocumentType` + fields domain + `...commonLayerFields`         |
 
 ### `internalDB` (opcional)
 
@@ -70,12 +71,12 @@ Motor: si `internalDB` está set, `utils/assets/loadInternalAssets` lee Tipo/ID/
 
 ## Commands
 
-| Command | What |
-| --- | --- |
-| `pnpm notion:generate` | CLI interactivo |
+| Command                        | What                  |
+| ------------------------------ | --------------------- |
+| `pnpm notion:generate`         | CLI interactivo       |
 | `pnpm notion:generate --smart` | Domain default, smart |
-| `pnpm notion:generate --all` | Domain default, full |
-| `pnpm build:content` | Contentlayer |
+| `pnpm notion:generate --all`   | Domain default, full  |
+| `pnpm build:content`           | Contentlayer          |
 
 ## Motor (`utils/`)
 

@@ -1,6 +1,5 @@
-import { FieldDefs, defineDocumentType } from 'contentlayer2/source-files'
-
 import { commonLayerFields } from '@notion/lib/layerFields'
+import { FieldDefs, defineDocumentType } from 'contentlayer2/source-files'
 
 const seriesFields: FieldDefs = {
   folder: { type: 'string', required: true },

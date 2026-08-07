@@ -1,8 +1,7 @@
-import fs from 'fs'
-import path from 'path'
-
 import clog from '@notion/utils/cli/log'
 import { readTrace, tracePath, writeTrace } from '@notion/utils/local/traceYaml'
+import fs from 'fs'
+import path from 'path'
 
 type LocalPage = { id: string; title: string; path: string }
 
@@ -54,10 +53,7 @@ export async function purgeLocal(domain: string, ids: string[]) {
     })
   )
 
-  const pages: Record<
-    string,
-    { title: string; last_downloaded: string; last_edited_notion: string; path: string }
-  > = {}
+  const pages: Record<string, { title: string; last_downloaded: string; last_edited_notion: string; path: string }> = {}
 
   for (const [id, entry] of Object.entries(trace.pages)) {
     if (entry?.title && entry.last_downloaded && entry.last_edited_notion && entry.path) {

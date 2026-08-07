@@ -9,19 +9,13 @@ export async function readTrace(filePath: string) {
     const raw = await fs.promises.readFile(filePath, 'utf8')
     const data = parse(raw) as {
       updated_at?: string
-      pages?: Record<
-        string,
-        { title?: string; last_downloaded?: string; last_edited_notion?: string; path?: string }
-      >
+      pages?: Record<string, { title?: string; last_downloaded?: string; last_edited_notion?: string; path?: string }>
     }
     return { updated_at: data?.updated_at ?? '', pages: data?.pages ?? {} }
   } catch {
     return {
       updated_at: '',
-      pages: {} as Record<
-        string,
-        { title?: string; last_downloaded?: string; last_edited_notion?: string; path?: string }
-      >
+      pages: {} as Record<string, { title?: string; last_downloaded?: string; last_edited_notion?: string; path?: string }>
     }
   }
 }
@@ -30,10 +24,7 @@ export async function writeTrace(
   filePath: string,
   data: {
     updated_at: string
-    pages: Record<
-      string,
-      { title: string; last_downloaded: string; last_edited_notion: string; path: string }
-    >
+    pages: Record<string, { title: string; last_downloaded: string; last_edited_notion: string; path: string }>
   }
 ) {
   await fs.promises.mkdir(path.dirname(filePath), { recursive: true })
@@ -42,10 +33,7 @@ export async function writeTrace(
 
 export async function pagesToSync(
   remote: { id: string; title: string; last_edited: string }[],
-  stored: Record<
-    string,
-    { title?: string; last_downloaded?: string; last_edited_notion?: string; path?: string }
-  >
+  stored: Record<string, { title?: string; last_downloaded?: string; last_edited_notion?: string; path?: string }>
 ) {
   const checks = await Promise.all(
     remote.map(async page => {
@@ -86,9 +74,7 @@ export function resolvePicks<T extends { id: string; title: string }>(items: T[]
       continue
     }
 
-    const match = items.find(
-      p => p.id === token || p.id.startsWith(token) || p.title.toLowerCase().includes(token.toLowerCase())
-    )
+    const match = items.find(p => p.id === token || p.id.startsWith(token) || p.title.toLowerCase().includes(token.toLowerCase()))
     if (match) selected.add(match)
   }
 

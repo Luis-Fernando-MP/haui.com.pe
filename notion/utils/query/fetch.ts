@@ -3,7 +3,10 @@ import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-end
 
 async function paginate<T>(
   quantity: number,
-  fetchPage: (pageSize: number, startCursor?: string) => Promise<{
+  fetchPage: (
+    pageSize: number,
+    startCursor?: string
+  ) => Promise<{
     results: T[]
     has_more: boolean
     next_cursor: string | null
@@ -26,13 +29,7 @@ async function paginate<T>(
 }
 
 /** Bloques hijos de una página/block. */
-export async function getAllBlocks<T = any>({
-  quantity = -1,
-  blockID
-}: {
-  blockID: string
-  quantity?: number
-}): Promise<T[]> {
+export async function getAllBlocks<T = any>({ quantity = -1, blockID }: { blockID: string; quantity?: number }): Promise<T[]> {
   return paginate<T>(quantity, async (page_size, start_cursor) => {
     const response = await notion.blocks.children.list({
       block_id: blockID,

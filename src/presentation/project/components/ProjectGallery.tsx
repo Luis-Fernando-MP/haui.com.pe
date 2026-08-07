@@ -47,7 +47,7 @@ const ProjectGallery: FC<{
               className={cn(
                 'border-bg3/40 bg-bg2 aspect-[16/10] w-full rounded-xl border object-cover',
                 'opacity-95 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]',
-                'hover:opacity-100 hover:scale-[1.015] motion-reduce:transition-none motion-reduce:hover:scale-100'
+                'hover:scale-[1.015] hover:opacity-100 motion-reduce:transition-none motion-reduce:hover:scale-100'
               )}
             />
           </li>

@@ -3,6 +3,7 @@ import { allProjects } from 'contentlayer/generated'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import type { FC } from 'react'
+
 export const generateStaticParams = () => allProjects.map(p => ({ id: p.id }))
 
 export const generateMetadata = async ({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> => {

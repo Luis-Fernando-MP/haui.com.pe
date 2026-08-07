@@ -1,12 +1,11 @@
-import { createInterface, type Interface } from 'readline/promises'
-
 import { ask, confirm, runMenu } from '@notion/utils/cli'
 import loadAction from '@notion/utils/cli/loadAction'
 import clog from '@notion/utils/cli/log'
 import { listTracedPages, purgeLocal } from '@notion/utils/local/purgeLocal'
 import { resolvePicks } from '@notion/utils/local/traceYaml'
+import { type Interface, createInterface } from 'readline/promises'
 
-import { defaultDomain, generate, listDomains, type Domain } from './registry'
+import { type Domain, defaultDomain, generate, listDomains } from './registry'
 
 export async function run(domains: Domain[], argv: string[] = process.argv.slice(2)) {
   const flagAll = argv.includes('--all')

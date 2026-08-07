@@ -124,9 +124,7 @@ function transformImages(root: HTMLElement, imageBlocks: string[]) {
     const classAttr = className.length > 0 ? ` className="${className}"` : ''
 
     const index = imageBlocks.length
-    imageBlocks.push(
-      `<img src="${src}" alt="${alt}"${sizeAttrs ? ` ${sizeAttrs}` : ''}${classAttr} loading="lazy" />`
-    )
+    imageBlocks.push(`<img src="${src}" alt="${alt}"${sizeAttrs ? ` ${sizeAttrs}` : ''}${classAttr} loading="lazy" />`)
     img.replaceWith(parse(imagePhTag(index)))
   }
 }

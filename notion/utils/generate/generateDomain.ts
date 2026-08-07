@@ -1,5 +1,5 @@
-import clog from '@notion/utils/cli/log'
 import type { DomainConfig, GenerateOpts, NotionRowLike } from '@notion/lib/types'
+import clog from '@notion/utils/cli/log'
 import { generateBlock } from '@notion/utils/generate/generateBlock'
 import cleanObsoleteFiles from '@notion/utils/local/cleanObsoleteFiles'
 import { createDirectories } from '@notion/utils/local/fs'
@@ -75,10 +75,7 @@ async function writeBlocks<T extends NotionRowLike>(
   })
 }
 
-export async function generateDomain<T extends NotionRowLike>(
-  config: DomainConfig<T>,
-  opts: GenerateOpts = {}
-) {
+export async function generateDomain<T extends NotionRowLike>(config: DomainConfig<T>, opts: GenerateOpts = {}) {
   const { mode = 'smart', picks = '', skipConfirm = false, confirm, requestPicks } = opts
 
   try {
@@ -90,18 +87,12 @@ export async function generateDomain<T extends NotionRowLike>(
     clog.success(`${rows.length} remotos`)
 
     const remote = rows.map(toRemote)
-    const [mdxFolderPath, mdxImagesPath] = await createDirectories(
-      `content/${config.id}`,
-      `public/content/${config.id}`
-    )
+    const [mdxFolderPath, mdxImagesPath] = await createDirectories(`content/${config.id}`, `public/content/${config.id}`)
 
     if (config.kind === 'basic') {
       await writeBlocks(config, remote, mdxFolderPath, mdxImagesPath)
       const remoteIds = remote.map(p => p.id)
-      await Promise.all([
-        cleanObsoleteFiles(remoteIds, mdxFolderPath, '.mdx'),
-        cleanObsoleteFiles(remoteIds, mdxImagesPath)
-      ])
+      await Promise.all([cleanObsoleteFiles(remoteIds, mdxFolderPath, '.mdx'), cleanObsoleteFiles(remoteIds, mdxImagesPath)])
       clog.timer('total', Date.now() - started)
       return
     }
@@ -159,10 +150,7 @@ export async function generateDomain<T extends NotionRowLike>(
     const pruned = Object.fromEntries(Object.entries(pages).filter(([id]) => keep.has(id)))
 
     await writeTrace(file, { updated_at: new Date().toISOString(), pages: pruned })
-    await Promise.all([
-      cleanObsoleteFiles(remoteIds, mdxFolderPath, '.mdx'),
-      cleanObsoleteFiles(remoteIds, mdxImagesPath)
-    ])
+    await Promise.all([cleanObsoleteFiles(remoteIds, mdxFolderPath, '.mdx'), cleanObsoleteFiles(remoteIds, mdxImagesPath)])
     clog.timer('total', Date.now() - started)
   } catch (e: any) {
     clog.error(config.id)

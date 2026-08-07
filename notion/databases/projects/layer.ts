@@ -1,6 +1,5 @@
-import { FieldDefs, defineDocumentType, defineNestedType } from 'contentlayer2/source-files'
-
 import { commonLayerFields } from '@notion/lib/layerFields'
+import { FieldDefs, defineDocumentType, defineNestedType } from 'contentlayer2/source-files'
 
 const ProjectImage = defineNestedType(() => ({
   name: 'ProjectImage',
