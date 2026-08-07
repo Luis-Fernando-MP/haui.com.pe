@@ -71,12 +71,14 @@ Motor: si `internalDB` está set, `utils/assets/loadInternalAssets` lee Tipo/ID/
 
 ## Commands
 
-| Command                        | What                  |
-| ------------------------------ | --------------------- |
-| `pnpm notion:generate`         | CLI interactivo       |
-| `pnpm notion:generate --smart` | Domain default, smart |
-| `pnpm notion:generate --all`   | Domain default, full  |
-| `pnpm build:content`           | Contentlayer          |
+| Command                        | What                                          |
+| ------------------------------ | --------------------------------------------- |
+| `pnpm notion:generate`         | CLI interactivo                               |
+| `pnpm notion:sync`             | Domain default, smart (`--smart`, sin menú)   |
+| `pnpm notion:generate --smart` | Igual que `notion:sync`                       |
+| `pnpm notion:generate --all`   | Domain default, full                          |
+| `pnpm build:content`           | Contentlayer                                  |
+| `prebuild`                     | `notion:sync` → `build:content` (Vercel/CI) |
 
 ## Motor (`utils/`)
 

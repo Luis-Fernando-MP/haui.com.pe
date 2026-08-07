@@ -5,13 +5,14 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "prebuild": "pnpm build:content",
+    "prebuild": "pnpm notion:sync && pnpm build:content",
     "start": "next start",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
     "format": "prettier --check .",
     "format:fix": "prettier --write --list-different .",
     "notion:generate": "ts-node --project ./notion.tsconfig.json -r tsconfig-paths/register ./notion/index.ts",
+    "notion:sync": "pnpm notion:generate -- --smart",
     "build:content": "contentlayer2 build"
   },
   "dependencies": {
