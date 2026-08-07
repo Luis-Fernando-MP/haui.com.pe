@@ -1,42 +1,13 @@
-import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
-
-import cleanObsoleteFiles from '@notion/utils/cleanObsoleteFiles'
-import { createDirectories } from '@notion/utils/fs'
-import { generateBlock, type MdxContentProps } from '@notion/utils/generateBlock'
-import { getAllMarksDB } from '@notion/utils/getAllMarks'
-import clog from '@notion/utils/log'
-import { mapPool } from '@notion/utils/mapPool'
-import { pagesToSync, readTrace, resolvePicks, tracePath, writeTrace } from '@notion/utils/traceYaml'
+import clog from '@notion/utils/cli/log'
+import type { DomainConfig, GenerateOpts, NotionRowLike } from '@notion/lib/types'
+import { generateBlock } from '@notion/utils/generate/generateBlock'
+import cleanObsoleteFiles from '@notion/utils/local/cleanObsoleteFiles'
+import { createDirectories } from '@notion/utils/local/fs'
+import { pagesToSync, readTrace, resolvePicks, tracePath, writeTrace } from '@notion/utils/local/traceYaml'
+import { getAllMarksDB } from '@notion/utils/query/fetch'
+import { mapPool } from '@notion/utils/shared/mapPool'
 
 const CONCURRENCY = 3
-
-type NotionRowLike = {
-  id: string
-  cover?: { external: { url: string } }
-  properties: {
-    Name: { title: { plain_text: string }[] }
-    'Última edición': { last_edited_time: string }
-  }
-}
-
-export type DomainConfig<T extends NotionRowLike = NotionRowLike> = {
-  id: string
-  label: string
-  option: number
-  default?: boolean
-  kind: 'smart' | 'basic'
-  query: Omit<QueryDatabaseParameters, 'start_cursor' | 'page_size'>
-  generateContent?: boolean
-  content: (row: T, coverUrl: string | undefined, props: MdxContentProps) => string
-}
-
-export type GenerateOpts = {
-  mode?: 'smart' | 'all' | 'selected'
-  picks?: string
-  skipConfirm?: boolean
-  confirm?: () => Promise<boolean>
-  requestPicks?: () => Promise<string>
-}
 
 type RemoteItem<T> = {
   id: string
@@ -97,7 +68,7 @@ async function writeBlocks<T extends NotionRowLike>(
       mdxImagesPath,
       title: item.title,
       generateContent: config.generateContent,
-      loadProjectAssets: config.id === 'projects',
+      internalDB: config.internalDB ?? null,
       mdxContent: props => config.content(item.row, item.coverUrl, props)
     })
     if (ok) onOk?.(item)

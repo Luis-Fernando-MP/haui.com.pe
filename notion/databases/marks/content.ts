@@ -1,10 +1,9 @@
-import type { MdxContentProps } from '@notion/utils/generateBlock'
-import { yamlQuote } from '@notion/utils/yamlQuote'
+import { imageContentStr, yamlQuote } from '@notion/lib/frontmatter'
+import type { MdxContentProps } from '@notion/lib/types'
 
-import { imageContentStr } from '../imageContentStr'
-import { NotionMarksDB } from './marks.type'
+import type { MarksDB } from './type'
 
-export const markContent = (mark: NotionMarksDB, coverUrl: string | undefined, contentProps: MdxContentProps) => {
+export const markContent = (mark: MarksDB, coverUrl: string | undefined, contentProps: MdxContentProps) => {
   const { id, properties, created_time } = mark
   const title = properties.Name.title[0].plain_text
   const lastEditedTime = properties['Última edición'].last_edited_time

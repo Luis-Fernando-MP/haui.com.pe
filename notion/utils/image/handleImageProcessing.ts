@@ -1,10 +1,10 @@
 import path from 'path'
 
-import blurHashAndGradient from '../utils/blurHashAndGradient'
-import downloadImage, { DUAL_IMAGE_VARIANTS } from '../utils/downloadImage'
-import { deleteFileIfExists } from '../utils/fs'
-import clog from '../utils/log'
-import { MdxImageContentProps } from './generateBlock'
+import type { MdxImageContentProps } from '@notion/lib/types'
+import clog from '@notion/utils/cli/log'
+import { deleteFileIfExists } from '@notion/utils/local/fs'
+import blurHashAndGradient from '@notion/utils/image/blurHashAndGradient'
+import downloadImage, { DUAL_IMAGE_VARIANTS } from '@notion/utils/image/downloadImage'
 
 const PRIMARY_NAME = 'banner.webp'
 const THUMB_NAME = 'thumb.webp'

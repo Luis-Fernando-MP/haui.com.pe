@@ -10,6 +10,7 @@
     "alwaysStrict": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "ignoreDeprecations": "6.0",
 
     "target": "ES2021",
     "lib": ["ES2021", "DOM"],

@@ -1,4 +1,4 @@
-import clog from './log'
+import clog from '@notion/utils/cli/log'
 
 const markerOpen = (name: string) =>
   new RegExp(`<p[^>]*>\\s*(?:<span[^>]*>)?\\s*${name}\\s*(?:</span>)?\\s*</p>`, 'i')

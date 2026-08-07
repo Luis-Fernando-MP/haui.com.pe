@@ -1,10 +1,9 @@
-import type { MdxContentProps } from '@notion/utils/generateBlock'
-import { yamlQuote } from '@notion/utils/yamlQuote'
+import { imageContentStr, yamlQuote } from '@notion/lib/frontmatter'
+import type { MdxContentProps } from '@notion/lib/types'
 
-import { imageContentStr } from '../imageContentStr'
-import { NotionSeriesDB } from './series.type'
+import type { SeriesDB } from './type'
 
-export const serieContent = (book: NotionSeriesDB, coverUrl: string | undefined, contentProps: MdxContentProps) => {
+export const serieContent = (book: SeriesDB, coverUrl: string | undefined, contentProps: MdxContentProps) => {
   const { id, properties, created_time } = book
   const title = properties.Name.title[0].plain_text
   const lastEditedTime = properties['Última edición'].last_edited_time

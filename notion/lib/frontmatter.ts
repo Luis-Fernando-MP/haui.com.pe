@@ -1,7 +1,11 @@
-import type { MdxImageContentProps } from '@notion/utils/generateBlock'
-import { DUAL_IMAGE_VARIANTS } from '@notion/utils/downloadImage'
-import { yamlQuote } from '@notion/utils/yamlQuote'
 import { blurhashToDataUri } from '@unpic/placeholder'
+
+import { DUAL_IMAGE_VARIANTS } from '@notion/utils/image/downloadImage'
+import { yamlQuote } from '@notion/utils/shared/yamlQuote'
+
+import type { MdxImageContentProps } from './types'
+
+export { yamlQuote }
 
 export const imageContentStr = (imageProps: MdxImageContentProps, folder: string, id?: string) => {
   const { aspectRatio, bannerHeight, bannerWidth, blurhash, placeholder, thumbHeight, thumbWidth } = imageProps

@@ -2,7 +2,7 @@ import { blurhashToCssGradientString } from '@unpic/placeholder'
 import { encode } from 'blurhash'
 import sharp from 'sharp'
 
-import clog from '@notion/utils/log'
+import clog from '@notion/utils/cli/log'
 
 export default async function blurHashAndGradient(imagePath: string) {
   try {

@@ -1,8 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 
-import clog from '@notion/utils/log'
-import { readTrace, tracePath, writeTrace } from '@notion/utils/traceYaml'
+import clog from '@notion/utils/cli/log'
+import { readTrace, tracePath, writeTrace } from '@notion/utils/local/traceYaml'
 
 type LocalPage = { id: string; title: string; path: string }
 

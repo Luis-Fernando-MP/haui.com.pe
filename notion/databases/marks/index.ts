@@ -1,25 +1,23 @@
-import { env } from '@notion/constants'
-import type { NotionGroupVisibility } from '@notion/types/notion.type'
-import type { DomainConfig } from '@notion/utils/generateDomain'
+import { env } from '@notion/lib/env'
+import type { DomainConfig } from '@notion/lib/types'
 
-import { NotionMarkStatus, NotionMarksDB } from './marks.type'
-import { markContent } from './str.content'
+import { markContent } from './content'
+import type { MarksDB } from './type'
 
-export const marksPage = {
+export const marks = {
   id: 'marks',
   label: 'Marks',
   option: 3,
   kind: 'basic',
+  internalDB: null,
   query: {
     database_id: env.MARKS_ID,
     filter: {
       and: [
-        {
-          or: [{ property: 'Estado', status: { equals: 'Completado' as NotionMarkStatus } }]
-        },
-        { property: 'Visibilidad', status: { equals: 'Portafolio' as NotionGroupVisibility } }
+        { or: [{ property: 'Estado', status: { equals: 'Completado' } }] },
+        { property: 'Visibilidad', status: { equals: 'Portafolio' } }
       ]
     }
   },
   content: markContent
-} as const satisfies DomainConfig<NotionMarksDB>
+} as const satisfies DomainConfig<MarksDB>

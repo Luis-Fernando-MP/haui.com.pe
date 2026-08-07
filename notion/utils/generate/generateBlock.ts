@@ -3,55 +3,23 @@ import path from 'path'
 import readingTime from 'reading-time'
 import { stripHtml } from 'string-strip-html'
 
-import { loadInternalAssets } from '../databases/projects/internalAssets'
-import notion from '../api'
-import { escapeHTML } from './escapeHTML'
-import { writeFile } from './fs'
-import { getAllBlocks } from './getAllBlocks'
+import notion from '@notion/lib/api'
+import type { InternalDbConfig, MdxContentProps, MdxImageContentProps } from '@notion/lib/types'
+import { loadInternalAssets } from '@notion/utils/assets/loadInternalAssets'
 import {
   handleImageProcessing,
   processKeyedImages,
   processLogoImage
-} from './handleImageProcessing'
-import clog from './log'
-import { listExtensions } from './listExtensions'
-import {
-  applyDeleteDecorators,
-  injectImagePlaceholders
-} from './notionBuilderDecorators'
-import { selfCloseCustomTags } from './mdxHtmlTagMap'
+} from '@notion/utils/image/handleImageProcessing'
+import { writeFile } from '@notion/utils/local/fs'
+import clog from '@notion/utils/cli/log'
+import { applyDeleteDecorators, injectImagePlaceholders } from '@notion/utils/mdx/decorators'
+import { escapeHTML } from '@notion/utils/mdx/escapeHTML'
+import { listExtensions } from '@notion/utils/mdx/listExtensions'
+import { selfCloseCustomTags } from '@notion/utils/mdx/mdxHtmlTagMap'
+import { getAllBlocks } from '@notion/utils/query/fetch'
 
-export interface MdxImageContentProps {
-  blurhash: string
-  placeholder: string
-  bannerWidth: number
-  bannerHeight: number
-  thumbWidth: number
-  thumbHeight: number
-  aspectRatio: number
-}
-
-export type ProjectBodyImage = {
-  id: string
-  banner: string
-  thumb: string
-  caption: string
-}
-
-export type ProjectAuthor = {
-  name: string
-  social: string
-  role: string
-}
-
-export interface MdxContentProps {
-  words?: number
-  readingTime?: number
-  imageProps: MdxImageContentProps
-  logoPath?: string
-  authors?: ProjectAuthor[]
-  images?: ProjectBodyImage[]
-}
+export type { MdxContentProps, MdxImageContentProps }
 
 interface Props {
   blockId: string
@@ -62,7 +30,7 @@ interface Props {
   title: string
   mdxContent: (_: MdxContentProps) => string
   generateContent?: boolean
-  loadProjectAssets?: boolean
+  internalDB?: InternalDbConfig | null
 }
 
 const SKIP_BLOCK_TYPES = new Set([
@@ -109,7 +77,7 @@ export async function generateBlock(props: Props) {
     title,
     coverImage,
     generateContent = true,
-    loadProjectAssets = false
+    internalDB = null
   } = props
 
   const mdxFilePath = path.join(mdxFolderPath, `${blockId}.mdx`)
@@ -124,8 +92,8 @@ export async function generateBlock(props: Props) {
     let words = 0
     let minutes = 0
     let logoPath = ''
-    let authors: ProjectAuthor[] = []
-    let images: ProjectBodyImage[] = []
+    let authors: NonNullable<MdxContentProps['authors']> = []
+    let images: NonNullable<MdxContentProps['images']> = []
 
     if (coverImage) {
       const processed = await handleImageProcessing({
@@ -141,8 +109,8 @@ export async function generateBlock(props: Props) {
     if (generateContent) {
       const rawBlocks = await getAllBlocks({ blockID: blockId })
 
-      if (loadProjectAssets) {
-        const assets = await loadInternalAssets(rawBlocks)
+      if (internalDB) {
+        const assets = await loadInternalAssets(rawBlocks, internalDB)
 
         if (assets.logoUrl) {
           const localLogo = await processLogoImage({

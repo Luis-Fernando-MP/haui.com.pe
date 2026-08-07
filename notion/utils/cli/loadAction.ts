@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import clog from './log'
+import clog from '@notion/utils/cli/log'
 
 const frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
 

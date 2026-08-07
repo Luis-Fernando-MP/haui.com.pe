@@ -1,15 +1,19 @@
-import { env } from '@notion/constants'
-import type { DomainConfig } from '@notion/utils/generateDomain'
+import { env } from '@notion/lib/env'
+import type { DomainConfig } from '@notion/lib/types'
 
-import { NotionProjectsDB } from './projects.type'
-import { projectContent } from './str.content'
+import { projectContent } from './content'
+import type { ProjectsDB } from './type'
 
-export const projectsPage = {
+export const projects = {
   id: 'projects',
   label: 'Proyectos',
   option: 1,
   default: true,
   kind: 'smart',
+  internalDB: {
+    name: 'metadata',
+    fields: { tipo: 'Tipo', id: 'ID', leyenda: 'Leyenda' }
+  },
   query: {
     database_id: env.PROJECTS_ID,
     filter: {
@@ -21,4 +25,4 @@ export const projectsPage = {
     }
   },
   content: projectContent
-} as const satisfies DomainConfig<NotionProjectsDB>
+} as const satisfies DomainConfig<ProjectsDB>

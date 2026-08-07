@@ -1,12 +1,10 @@
-import type { MdxContentProps, ProjectAuthor, ProjectBodyImage } from '@notion/utils/generateBlock'
-import { yamlQuote } from '@notion/utils/yamlQuote'
+import { imageContentStr, yamlQuote } from '@notion/lib/frontmatter'
+import type { MdxContentProps } from '@notion/lib/types'
 
-import { imageContentStr } from '../imageContentStr'
-import { NotionProjectsDB } from './projects.type'
+import type { ProjectsDB } from './type'
 
-const imagesStr = (images: ProjectBodyImage[]) => {
+const imagesStr = (images: NonNullable<MdxContentProps['images']>) => {
   if (images.length === 0) return 'images: []'
-
   return `images:
 ${images
   .map(
@@ -16,9 +14,8 @@ ${images
   .join('\n')}`
 }
 
-const authorsStr = (authors: ProjectAuthor[]) => {
+const authorsStr = (authors: NonNullable<MdxContentProps['authors']>) => {
   if (authors.length === 0) return 'authors: []'
-
   return `authors:
 ${authors
   .map(
@@ -28,14 +25,16 @@ ${authors
   .join('\n')}`
 }
 
-export const projectContent = (project: NotionProjectsDB, coverUrl: string | undefined, contentProps: MdxContentProps) => {
+export const projectContent = (
+  project: ProjectsDB,
+  coverUrl: string | undefined,
+  contentProps: MdxContentProps
+) => {
   const { id, properties, created_time } = project
   const title = properties.Name?.title?.[0]?.plain_text ?? ''
-
   const { Prioridad, Equipo, Progreso, Tags, Estado, Github, Notion, Website, Figma, Relevancia, Resumen } =
     properties
   const lastEditedTime = properties['Última edición']?.last_edited_time ?? created_time
-
   const { imageProps, readingTime, words, logoPath = '', authors = [], images = [] } = contentProps
   const imagePropsStr = imageContentStr(imageProps, 'projects', coverUrl ? id : undefined)
   const tags = Tags?.multi_select ?? []
