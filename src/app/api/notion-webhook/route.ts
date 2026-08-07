@@ -35,6 +35,7 @@ export async function POST(request: Request) {
     if (!text.includes('DEPLOY')) return NextResponse.json({ ok: true })
 
     const res = await fetch(deployHook, { method: 'POST' })
+    console.log('response deploy', res)
     if (!res.ok) return NextResponse.json({ error: 'deploy failed' }, { status: 502 })
 
     await notion.comments.create({
