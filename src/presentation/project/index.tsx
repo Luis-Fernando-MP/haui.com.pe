@@ -6,7 +6,6 @@ import ProjectAuthors from './components/ProjectAuthors'
 import ProjectGallery from './components/ProjectGallery'
 import ProjectHero from './components/ProjectHero'
 import ProjectMdx from './components/ProjectMdx'
-import './project-mdx.css'
 import type { ProjectDetail } from './project.types'
 
 interface Props {

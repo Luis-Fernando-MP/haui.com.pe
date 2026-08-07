@@ -1,17 +1,14 @@
 'use client'
 
-import Image from '@common/components/image'
+import { cn } from '@common/core/cn'
 import type { MDXComponents } from 'mdx/types'
 import { useMDXComponent } from 'next-contentlayer2/hooks'
-import type { ComponentProps, FC } from 'react'
+import type { FC } from 'react'
 
-const MdxImage = (props: ComponentProps<typeof Image>) => (
-  <Image width={1500} height={1125} layout='constrained' alt='' {...props} />
-)
+import { mdxComponents } from './mdx-components'
+import './mdx.css'
 
-export const mdxComponents: MDXComponents = {
-  Image: MdxImage
-}
+export { mdxComponents } from './mdx-components'
 
 interface Props {
   code: string
@@ -20,15 +17,16 @@ interface Props {
 }
 
 /**
- * Renderiza `body.code` de Contentlayer con el mapa base de componentes React.
- * Pasa `components` para extender u overridear el estándar.
+ * Renderiza `body.code` de Contentlayer con tipografía/estilos haui y componentes React.
+ * Pasa `components` para extender u overridear el mapa base.
  *
- * @param props.code - Código MDX compilado (`post.body.code`)
+ * @param props.code - Código MDX compilado (`doc.body.code`)
  * @param props.components - Overrides / tags extra mergeados sobre `mdxComponents`
- * @param props.className - Clase del wrapper
+ * @param props.className - Clases extra del wrapper (la base `.mdx` ya va incluida)
  * @example
  * ```tsx
  * <Mdx code={doc.body.code} />
+ * <Mdx code={doc.body.code} className="mx-auto max-w-2xl" />
  * <Mdx code={doc.body.code} components={{ a: props => <Link {...props} /> }} />
  * ```
  */
@@ -37,10 +35,11 @@ const Mdx: FC<Props> = ({ code, components, className }) => {
 
   if (code.trim().length === 0) return null
 
-  const content = <MDXContent components={{ ...mdxComponents, ...components }} />
-  if (!className) return content
-
-  return <div className={className}>{content}</div>
+  return (
+    <article className={cn('mdx', className)}>
+      <MDXContent components={{ ...mdxComponents, ...components }} />
+    </article>
+  )
 }
 
 export default Mdx

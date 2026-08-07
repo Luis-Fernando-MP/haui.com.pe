@@ -1,19 +1,19 @@
-.project-mdx {
+.mdx {
   color: var(--fn2);
   font-size: 0.95rem;
   line-height: 1.75;
 }
 
-.project-mdx > * + * {
+.mdx > * + * {
   margin-top: 1.15rem;
 }
 
-.project-mdx h1,
-.project-mdx h2,
-.project-mdx h3,
-.project-mdx .notion-heading_1,
-.project-mdx .notion-heading_2,
-.project-mdx .notion-heading_3 {
+.mdx h1,
+.mdx h2,
+.mdx h3,
+.mdx .notion-heading_1,
+.mdx .notion-heading_2,
+.mdx .notion-heading_3 {
   color: var(--fn1);
   font-family: var(--font-flowers), cursive;
   font-weight: 400;
@@ -21,37 +21,37 @@
   line-height: 1.2;
 }
 
-.project-mdx h1,
-.project-mdx .notion-heading_1 {
+.mdx h1,
+.mdx .notion-heading_1 {
   font-size: clamp(1.75rem, 4vw, 2.25rem);
   margin-top: 2.5rem;
 }
 
-.project-mdx h2,
-.project-mdx .notion-heading_2 {
+.mdx h2,
+.mdx .notion-heading_2 {
   font-size: clamp(1.4rem, 3vw, 1.75rem);
   margin-top: 2rem;
 }
 
-.project-mdx h3,
-.project-mdx .notion-heading_3 {
+.mdx h3,
+.mdx .notion-heading_3 {
   font-size: 1.25rem;
   margin-top: 1.5rem;
 }
 
-.project-mdx p {
+.mdx p {
   text-wrap: pretty;
 }
 
-.project-mdx strong,
-.project-mdx b,
-.project-mdx .notion-text-bold {
+.mdx strong,
+.mdx b,
+.mdx .notion-text-bold {
   color: var(--fn1);
   font-weight: 600;
 }
 
-.project-mdx a,
-.project-mdx .notion-text-href {
+.mdx a,
+.mdx .notion-text-href {
   color: var(--fn1);
   text-decoration: underline;
   text-decoration-color: color-mix(in oklab, var(--fn2) 35%, transparent);
@@ -59,13 +59,13 @@
   transition: text-decoration-color 0.25s ease;
 }
 
-.project-mdx a:hover,
-.project-mdx .notion-text-href:hover {
+.mdx a:hover,
+.mdx .notion-text-href:hover {
   text-decoration-color: var(--fn1);
 }
 
-.project-mdx ul,
-.project-mdx .notion-bulleted_list {
+.mdx ul,
+.mdx .notion-bulleted_list {
   list-style: none;
   padding-left: 0;
   display: flex;
@@ -73,8 +73,8 @@
   gap: 0.5rem;
 }
 
-.project-mdx ol,
-.project-mdx .notion-numbered_list {
+.mdx ol,
+.mdx .notion-numbered_list {
   list-style: decimal;
   padding-left: 1.25rem;
   display: flex;
@@ -82,21 +82,21 @@
   gap: 0.5rem;
 }
 
-.project-mdx li,
-.project-mdx .notion-bulleted_list_item,
-.project-mdx .notion-numbered_list_item {
+.mdx li,
+.mdx .notion-bulleted_list_item,
+.mdx .notion-numbered_list_item {
   color: var(--fn2);
   padding-left: 0.15rem;
 }
 
-.project-mdx ul > li,
-.project-mdx .notion-bulleted_list > .notion-bulleted_list_item {
+.mdx ul > li,
+.mdx .notion-bulleted_list > .notion-bulleted_list_item {
   position: relative;
   padding-left: 1.15rem;
 }
 
-.project-mdx ul > li::before,
-.project-mdx .notion-bulleted_list > .notion-bulleted_list_item::before {
+.mdx ul > li::before,
+.mdx .notion-bulleted_list > .notion-bulleted_list_item::before {
   content: '';
   position: absolute;
   left: 0;
@@ -107,9 +107,9 @@
   background: color-mix(in oklab, var(--fn2) 55%, transparent);
 }
 
-.project-mdx code,
-.project-mdx .notion-text-code,
-.project-mdx .notion-code {
+.mdx code,
+.mdx .notion-text-code,
+.mdx .notion-code {
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.85em;
   color: var(--fn1);
@@ -119,7 +119,7 @@
   padding: 0.1em 0.35em;
 }
 
-.project-mdx pre {
+.mdx pre {
   overflow-x: auto;
   border-radius: 0.85rem;
   border: 1px solid color-mix(in oklab, var(--bg3) 70%, transparent);
@@ -129,15 +129,15 @@
   line-height: 1.6;
 }
 
-.project-mdx pre code {
+.mdx pre code {
   border: none;
   background: transparent;
   padding: 0;
 }
 
-.project-mdx blockquote,
-.project-mdx .notion-callout,
-.project-mdx .notion-quote {
+.mdx blockquote,
+.mdx .notion-callout,
+.mdx .notion-quote {
   margin: 1.5rem 0 0;
   border: 1px solid color-mix(in oklab, var(--bg3) 75%, transparent);
   border-left: 3px solid color-mix(in oklab, var(--fn2) 40%, transparent);
@@ -147,36 +147,36 @@
   color: var(--fn2);
 }
 
-.project-mdx blockquote .content,
-.project-mdx .notion-callout .content {
+.mdx blockquote .content,
+.mdx .notion-callout .content {
   margin: 0;
 }
 
-.project-mdx hr {
+.mdx hr {
   border: none;
   border-top: 1px solid color-mix(in oklab, var(--bg3) 70%, transparent);
   margin: 2rem 0;
 }
 
-.project-mdx img {
+.mdx img {
   border-radius: 0.85rem;
   border: 1px solid color-mix(in oklab, var(--bg3) 50%, transparent);
   max-width: 100%;
   height: auto;
 }
 
-.project-mdx figure {
+.mdx figure {
   margin: 1.5rem 0;
   width: 100%;
 }
 
-.project-mdx figure img {
+.mdx figure img {
   display: block;
   width: 100%;
   height: auto;
 }
 
-.project-mdx figcaption {
+.mdx figcaption {
   color: var(--fn2);
   font-size: 0.875rem;
   line-height: 1.5;
@@ -186,8 +186,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-mdx a,
-  .project-mdx .notion-text-href {
+  .mdx a,
+  .mdx .notion-text-href {
     transition: none;
   }
 }

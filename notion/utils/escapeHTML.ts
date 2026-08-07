@@ -1,5 +1,7 @@
 import { HTMLElement, TextNode, parse } from 'node-html-parser'
 
+import { applyReplaceHtmlTag, selfCloseCustomTags } from './mdxHtmlTagMap'
+
 const codePhTag = (i: number) => `<haui-code data-i="${i}"></haui-code>`
 const codePhRe = /<haui-code data-i="(\d+)"[^>]*(?:\/>|><\/haui-code>)/g
 const imagePhTag = (i: number) => `<haui-image data-i="${i}"></haui-image>`
@@ -44,16 +46,10 @@ export function escapeHTML(html: string) {
 
   result = result.replace(codePhRe, (_, i) => `\n\n${codeBlocks[Number(i)] ?? ''}\n\n`)
   result = result.replace(imagePhRe, (_, i) => imageBlocks[Number(i)] ?? '')
-  result = selfCloseImageTags(result)
+  result = selfCloseCustomTags(result)
+  result = applyReplaceHtmlTag(result)
   result = formatMdxBody(result)
   return { result }
-}
-
-export function selfCloseImageTags(html: string) {
-  return html.replace(/<Image\b([^>]*?)\s*(?:\/>|>\s*<\/Image>)/gi, (_m, attrs: string) => {
-    const a = attrs.replace(/\/\s*$/, '').trim()
-    return a.length > 0 ? `<Image ${a} />` : '<Image />'
-  })
 }
 
 function stripNoise(html: string) {

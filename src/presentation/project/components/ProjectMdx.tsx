@@ -14,9 +14,7 @@ const ProjectMdx: FC<{ code: string }> = ({ code }) => (
     transition={{ duration: 0.5, ease }}
     className='region w-full'
   >
-    <article className='project-mdx mx-auto max-w-2xl'>
-      <Mdx code={code} />
-    </article>
+    <Mdx code={code} className='mx-auto max-w-2xl' />
   </motion.section>
 )
 

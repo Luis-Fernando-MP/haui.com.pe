@@ -5,7 +5,7 @@ import { stripHtml } from 'string-strip-html'
 
 import { loadInternalAssets } from '../databases/projects/internalAssets'
 import notion from '../api'
-import { escapeHTML, selfCloseImageTags } from './escapeHTML'
+import { escapeHTML } from './escapeHTML'
 import { writeFile } from './fs'
 import { getAllBlocks } from './getAllBlocks'
 import {
@@ -19,6 +19,7 @@ import {
   applyDeleteDecorators,
   injectImagePlaceholders
 } from './notionBuilderDecorators'
+import { selfCloseCustomTags } from './mdxHtmlTagMap'
 
 export interface MdxImageContentProps {
   blurhash: string
@@ -185,7 +186,7 @@ export async function generateBlock(props: Props) {
       const byId = Object.fromEntries(
         images.map(img => [img.id, { src: img.banner, caption: img.caption }])
       )
-      body = selfCloseImageTags(injectImagePlaceholders(result, byId))
+      body = selfCloseCustomTags(injectImagePlaceholders(result, byId))
 
       const plainText = stripHtml(html).result
       const stats = readingTime(plainText)
