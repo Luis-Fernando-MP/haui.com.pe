@@ -3,12 +3,22 @@ import path from 'path'
 import readingTime from 'reading-time'
 import { stripHtml } from 'string-strip-html'
 
+import { loadInternalAssets } from '../databases/projects/internalAssets'
 import notion from '../api'
-import { escapeHTML } from './escapeHTML'
+import { escapeHTML, selfCloseImageTags } from './escapeHTML'
 import { writeFile } from './fs'
 import { getAllBlocks } from './getAllBlocks'
-import { SimpleAdditionalImages, handleImageProcessing, processMultipleImages } from './handleImageProcessing'
+import {
+  handleImageProcessing,
+  processKeyedImages,
+  processLogoImage
+} from './handleImageProcessing'
 import clog from './log'
+import { listExtensions } from './listExtensions'
+import {
+  applyDeleteDecorators,
+  injectImagePlaceholders
+} from './notionBuilderDecorators'
 
 export interface MdxImageContentProps {
   blurhash: string
@@ -20,11 +30,26 @@ export interface MdxImageContentProps {
   aspectRatio: number
 }
 
+export type ProjectBodyImage = {
+  id: string
+  banner: string
+  thumb: string
+  caption: string
+}
+
+export type ProjectAuthor = {
+  name: string
+  social: string
+  role: string
+}
+
 export interface MdxContentProps {
   words?: number
   readingTime?: number
   imageProps: MdxImageContentProps
-  additionalImages?: SimpleAdditionalImages[]
+  logoPath?: string
+  authors?: ProjectAuthor[]
+  images?: ProjectBodyImage[]
 }
 
 interface Props {
@@ -36,6 +61,7 @@ interface Props {
   title: string
   mdxContent: (_: MdxContentProps) => string
   generateContent?: boolean
+  loadProjectAssets?: boolean
 }
 
 const SKIP_BLOCK_TYPES = new Set([
@@ -70,6 +96,7 @@ const renderer = new NotionRenderer({
   client: notion,
   renderers: [...SKIP_BLOCK_TYPES].map(emptyRenderer)
 })
+;(renderer as unknown as { extensions: typeof listExtensions }).extensions = listExtensions
 
 export async function generateBlock(props: Props) {
   const {
@@ -80,7 +107,8 @@ export async function generateBlock(props: Props) {
     lastEditedTime,
     title,
     coverImage,
-    generateContent = true
+    generateContent = true,
+    loadProjectAssets = false
   } = props
 
   const mdxFilePath = path.join(mdxFolderPath, `${blockId}.mdx`)
@@ -91,10 +119,12 @@ export async function generateBlock(props: Props) {
     clog.info(cutTitle)
 
     let imageProps = EMPTY_IMAGE_PROPS
-    let additionalImages: SimpleAdditionalImages[] = []
     let body = ''
     let words = 0
     let minutes = 0
+    let logoPath = ''
+    let authors: ProjectAuthor[] = []
+    let images: ProjectBodyImage[] = []
 
     if (coverImage) {
       const processed = await handleImageProcessing({
@@ -108,35 +138,68 @@ export async function generateBlock(props: Props) {
     }
 
     if (generateContent) {
-      const blocks = (await getAllBlocks({ blockID: blockId })).filter(
+      const rawBlocks = await getAllBlocks({ blockID: blockId })
+
+      if (loadProjectAssets) {
+        const assets = await loadInternalAssets(rawBlocks)
+
+        if (assets.logoUrl) {
+          const localLogo = await processLogoImage({
+            blockId,
+            mdxImagesPath,
+            imageUrl: assets.logoUrl,
+            lastEditedTimeMs,
+            cutTitle
+          })
+          if (localLogo) logoPath = localLogo
+        }
+
+        if (assets.images.length > 0) {
+          const keyed = await processKeyedImages({
+            blockId,
+            mdxImagesPath,
+            lastEditedTimeMs,
+            cutTitle,
+            images: assets.images
+          })
+          images = keyed.map(img => ({
+            id: img.id,
+            banner: img.bannerImagePath,
+            thumb: img.thumbImagePath,
+            caption: img.caption
+          }))
+        }
+
+        authors = assets.authors
+      }
+
+      const blocks = rawBlocks.filter(
         (block: { type?: string }) => block.type && !SKIP_BLOCK_TYPES.has(block.type)
       )
 
       const html = await renderer.render(...blocks)
-      const { result, allImages } = escapeHTML(html)
-      body = result
+      let { result } = escapeHTML(html)
+
+      result = applyDeleteDecorators(result)
+
+      const byId = Object.fromEntries(
+        images.map(img => [img.id, { src: img.banner, caption: img.caption }])
+      )
+      body = selfCloseImageTags(injectImagePlaceholders(result, byId))
 
       const plainText = stripHtml(html).result
       const stats = readingTime(plainText)
       words = stats.words
       minutes = Math.max(1, Math.ceil(stats.minutes))
-
-      if (allImages.length > 0) {
-        additionalImages = await processMultipleImages({
-          blockId,
-          mdxImagesPath,
-          lastEditedTimeMs,
-          cutTitle,
-          imageUrls: allImages
-        })
-      }
     }
 
     const frontmatter = mdxContent({
       readingTime: minutes || undefined,
       words: words || undefined,
       imageProps,
-      additionalImages
+      logoPath,
+      authors,
+      images
     }).trimEnd()
 
     await writeFile(mdxFilePath, body ? `${frontmatter}\n\n${body}\n` : `${frontmatter}\n`)

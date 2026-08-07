@@ -1,3 +1,9 @@
+export type ProjectAuthor = {
+  name: string
+  social?: string
+  role?: string
+}
+
 export type ProjectDetail = {
   id: string
   title: string
@@ -11,6 +17,7 @@ export type ProjectDetail = {
   website?: string
   github?: string
   figma?: string
-  images: string[]
-  mdxRaw: string
+  images: { src: string; caption?: string }[]
+  authors: ProjectAuthor[]
+  mdxCode: string
 }

@@ -29,7 +29,11 @@ const buttonVariants = cva(
         soft: 'border-transparent bg-bg2/50 text-fn1 hover:bg-bg2'
       },
       status: {
-        default: ''
+        default: '',
+        danger: '',
+        warning: '',
+        info: '',
+        success: ''
       }
     },
     defaultVariants: {

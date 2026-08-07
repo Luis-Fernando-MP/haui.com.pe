@@ -2,16 +2,14 @@ import { HTMLElement, TextNode, parse } from 'node-html-parser'
 
 const codePhTag = (i: number) => `<haui-code data-i="${i}"></haui-code>`
 const codePhRe = /<haui-code data-i="(\d+)"[^>]*(?:\/>|><\/haui-code>)/g
+const imagePhTag = (i: number) => `<haui-image data-i="${i}"></haui-image>`
+const imagePhRe = /<haui-image data-i="(\d+)"[^>]*(?:\/>|><\/haui-image>)/g
 
 /**
  * Limpia el HTML de Notion y lo deja listo para MDX (JSX + HTML).
  */
 export function escapeHTML(html: string) {
   html = stripNoise(html)
-  html = removeAllDeleteSections(html)
-
-  const { allImages, newStr } = getImagesFromCustomSection(html)
-  html = newStr
 
   const root = parse(html, {
     blockTextElements: {
@@ -26,8 +24,9 @@ export function escapeHTML(html: string) {
   })
 
   const codeBlocks: string[] = []
+  const imageBlocks: string[] = []
   extractCodeBlocks(root, codeBlocks)
-  transformImages(root)
+  transformImages(root, imageBlocks)
   cleanCallouts(root)
   stripEmptyNodes(root)
   normalizeTextNodes(root)
@@ -44,8 +43,17 @@ export function escapeHTML(html: string) {
     .trim()
 
   result = result.replace(codePhRe, (_, i) => `\n\n${codeBlocks[Number(i)] ?? ''}\n\n`)
+  result = result.replace(imagePhRe, (_, i) => imageBlocks[Number(i)] ?? '')
+  result = selfCloseImageTags(result)
   result = formatMdxBody(result)
-  return { result, allImages }
+  return { result }
+}
+
+export function selfCloseImageTags(html: string) {
+  return html.replace(/<Image\b([^>]*?)\s*(?:\/>|>\s*<\/Image>)/gi, (_m, attrs: string) => {
+    const a = attrs.replace(/\/\s*$/, '').trim()
+    return a.length > 0 ? `<Image ${a} />` : '<Image />'
+  })
 }
 
 function stripNoise(html: string) {
@@ -109,15 +117,21 @@ function extractCodeBlocks(root: HTMLElement, codeBlocks: string[]) {
   }
 }
 
-function transformImages(root: HTMLElement) {
+function transformImages(root: HTMLElement, imageBlocks: string[]) {
   for (const img of root.querySelectorAll('img')) {
     const src = img.getAttribute('src') ?? '/fallback.webp'
     const alt = (img.getAttribute('alt') ?? 'Imagen del proyecto').replace(/"/g, '&quot;')
     const width = img.getAttribute('width')
     const height = img.getAttribute('height')
+    const className = (img.getAttribute('class') ?? '').replace(/"/g, '&quot;')
     const sizeAttrs = [width ? `width="${width}"` : '', height ? `height="${height}"` : ''].filter(Boolean).join(' ')
+    const classAttr = className.length > 0 ? ` className="${className}"` : ''
 
-    img.replaceWith(parse(`<Image layout="fullWidth" src="${src}" alt="${alt}"${sizeAttrs ? ` ${sizeAttrs}` : ''} />`))
+    const index = imageBlocks.length
+    imageBlocks.push(
+      `<img src="${src}" alt="${alt}"${sizeAttrs ? ` ${sizeAttrs}` : ''}${classAttr} loading="lazy" />`
+    )
+    img.replaceWith(parse(imagePhTag(index)))
   }
 }
 
@@ -130,8 +144,8 @@ function cleanCallouts(root: HTMLElement) {
 
 function stripEmptyNodes(root: HTMLElement) {
   for (const el of root.querySelectorAll('p, span, div')) {
-    if (el.querySelector('haui-code')) continue
-    const hasMedia = el.querySelectorAll('img, image, br, a, code, b, strong, i, em').length > 0
+    if (el.querySelector('haui-code') || el.querySelector('haui-image')) continue
+    const hasMedia = el.querySelectorAll('img, image, br, a, code, b, strong, i, em, haui-image').length > 0
     const text = el.text.trim()
     if (!text && !hasMedia) el.remove()
   }
@@ -144,7 +158,6 @@ function normalizeTextNodes(node: HTMLElement) {
       continue
     }
     if (!(child instanceof TextNode)) continue
-    // Colapsa espacios redundantes de indentación de Notion, preserva un espacio.
     child.rawText = child.rawText.replace(/[ \t]{2,}/g, ' ').replace(/\n{3,}/g, '\n\n')
   }
 }
@@ -185,28 +198,4 @@ function formatMdxBody(html: string) {
     .replace(/\n[ \t]+\n/g, '\n\n')
     .replace(/\n{3,}/g, '\n\n')
     .trim()
-}
-
-function getImagesFromCustomSection(html: string) {
-  const imageBlockRegex =
-    /<p[^>]*>\s*(<span[^>]*>)?#image-from(<\/span>)?\s*<\/p>[\s\S]*?<p[^>]*>\s*(<span[^>]*>)?#image-to(<\/span>)?\s*<\/p>/g
-
-  const allImages: string[] = []
-  let match: RegExpExecArray | null
-
-  while ((match = imageBlockRegex.exec(html))) {
-    const parsedBlock = parse(match[0])
-    for (const img of parsedBlock.querySelectorAll('img')) {
-      const src = img.getAttribute('src')
-      if (src) allImages.push(src)
-    }
-    html = html.replace(match[0], '')
-    imageBlockRegex.lastIndex = 0
-  }
-
-  return { allImages, newStr: html }
-}
-
-function removeAllDeleteSections(html: string) {
-  return html.replace(/<p[^>]*>\s*(<span[^>]*>)?#delete-from(<\/span>)?[\s\S]*?(<span[^>]*>)?#delete-to(<\/span>)?\s*<\/p>/g, '')
 }

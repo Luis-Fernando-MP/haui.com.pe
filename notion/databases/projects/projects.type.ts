@@ -12,7 +12,6 @@ interface Properties {
   Website: { id: string; type: 'url'; url?: string } | null
   Figma: { id: string; type: 'url'; url?: string } | null
   Notion: { id: string; type: 'url'; url?: string } | null
-  Logo: { id: string; type: 'url'; url?: string } | null
 
   Resumen?: {
     type: 'rich_text'

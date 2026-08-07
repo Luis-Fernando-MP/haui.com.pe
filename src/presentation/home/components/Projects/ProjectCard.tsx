@@ -16,12 +16,14 @@ import type { ProjectItem } from './ProjectsView'
 const ease = [0.22, 1, 0.36, 1] as const
 
 const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean }> = ({ project, index, featured = false }) => {
-  const { website, github, figma, notion, readingTime, tags, banner, bannerWidth, bannerHeight, imageBlur, imageHash, title, summary, id } = project
+  const { website, github, figma, notion, readingTime, tags, banner, bannerWidth, bannerHeight, imageBlur, imageHash, title, summary, id } =
+    project
   const readingMins = readingTime != null && readingTime > 0 ? Math.max(1, Math.round(readingTime)) : undefined
 
   const detailHref = `/project/${id}`
   const bannerBg = imageBlur || (imageHash?.startsWith('data:') ? imageHash : undefined)
   const visibleTags = tags.slice(0, featured ? 5 : 3)
+  const hasSummary = featured && summary.trim().length > 0
 
   return (
     <motion.article
@@ -48,7 +50,7 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
         className='absolute inset-0 size-full object-cover transition-transform duration-500 ease-out group-hover/card:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover/card:scale-100'
       />
 
-      <div aria-hidden className='pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-bg1 via-bg1/50 to-transparent' />
+      <div aria-hidden className='from-bg1 via-bg1/50 pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t to-transparent' />
 
       <div className='absolute top-4 right-4 left-4 flex items-center justify-between'>
         <div className='flex items-center gap-2'>
@@ -58,7 +60,7 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
               Demo
             </Button>
           )}
-          {readingMins && (
+          {readingMins != null && (
             <span className='bg-bg2 text-fn1 flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-medium'>
               <ClockIcon className='size-3' aria-hidden />
               {readingMins} min
@@ -105,7 +107,7 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
             {title}
           </h3>
         </Link>
-        {featured && summary.length > 0 && <p className='text-fn2 line-clamp-2 max-w-xl text-sm leading-relaxed'>{summary}</p>}
+        {hasSummary && <p className='text-fn2 line-clamp-2 max-w-xl text-sm leading-relaxed'>{summary}</p>}
       </div>
     </motion.article>
   )

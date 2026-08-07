@@ -2,7 +2,7 @@ import ProjectView from '@presentation/project'
 import { allProjects } from 'contentlayer/generated'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-
+import type { FC } from 'react'
 export const generateStaticParams = () => allProjects.map(p => ({ id: p.id }))
 
 export const generateMetadata = async ({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> => {
@@ -33,33 +33,73 @@ export const generateMetadata = async ({ params }: { params: Promise<{ id: strin
   }
 }
 
-const ProjectPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+interface Props {
+  params: Promise<{ id: string }>
+}
+
+const ProjectPage: FC<Props> = async ({ params }) => {
   const { id } = await params
   const project = allProjects.find(p => p.id === id)
 
   if (!project) notFound()
 
-  const sectionImages = (project.allImagesBySections ?? []).map(img => img.banner).filter((src): src is string => Boolean(src))
+  console.log('project', project)
 
-  const gallery = [project.banner, ...sectionImages].filter((src, i, arr) => Boolean(src) && arr.indexOf(src) === i)
+  const {
+    relevance,
+    priority,
+    team,
+    progress,
+    status,
+    github = '',
+    website = '',
+    figma = '',
+    notion = '',
+    logo = '',
+    summary = '',
+    images = [],
+    authors = [],
+    tags = [],
+    id: pageId,
+    title,
+    created_time,
+    last_edited_time,
+    reading_time,
+    banner,
+    banner_width,
+    banner_height,
+    image_hash,
+    body
+  } = project
+
+  const pageImages = (images ?? [])
+    .map(img => {
+      return {
+        src: img.banner,
+        thumb: img.thumb,
+        caption: img.caption ?? ''
+      }
+    })
+    .filter(img => !img.src)
 
   return (
     <ProjectView
       project={{
-        id: project.id,
-        title: project.title,
-        summary: project.summary ?? '',
-        logo: project.logo,
-        banner: project.banner,
-        bannerWidth: project.banner_width ?? 0,
-        bannerHeight: project.banner_height ?? 0,
-        tags: project.tags ?? [],
-        status: project.status,
-        website: project.website,
-        github: project.github,
-        figma: project.figma,
-        images: gallery,
-        mdxRaw: project.body.raw
+        id: pageId,
+        title,
+        summary,
+        logo,
+        banner,
+        bannerWidth: banner_width,
+        bannerHeight: banner_height,
+        tags,
+        status,
+        website,
+        github,
+        figma,
+        images: [],
+        authors,
+        mdxCode: body.code
       }}
     />
   )

@@ -68,62 +68,84 @@ async function processSingleGalleryImage(
   props: ProcessingImgProps & { imageKey: string }
 ): Promise<SimpleAdditionalImages | null> {
   const { blockId, mdxImagesPath, imageUrl, cutTitle, imageKey } = props
+  const safeKey = imageKey.replace(/[^a-zA-Z0-9_-]/g, '_')
   const folder = path.join(mdxImagesPath, blockId)
-  const bannerFull = path.join(folder, DUAL_IMAGE_VARIANTS ? `${imageKey}-banner.webp` : `${imageKey}.webp`)
-  const thumbFull = path.join(folder, `${imageKey}-thumb.webp`)
+  const bannerFull = path.join(folder, `${safeKey}.webp`)
+  const thumbFull = path.join(folder, `${safeKey}-thumb.webp`)
 
   await deleteFileIfExists(bannerFull)
   await deleteFileIfExists(thumbFull)
-  if (!DUAL_IMAGE_VARIANTS) {
-    await deleteFileIfExists(path.join(folder, `${imageKey}-banner.webp`))
-  }
+  await deleteFileIfExists(path.join(folder, `${safeKey}-banner.webp`))
 
   try {
     await downloadImage({
       folderPath: folder,
       imagePath: bannerFull,
-      thumbImagePath: DUAL_IMAGE_VARIANTS ? thumbFull : undefined,
+      thumbImagePath: thumbFull,
       url: imageUrl,
       title: cutTitle
     })
 
-    const publicPrimary = toPublicRelativePath(bannerFull)
     return {
-      bannerImagePath: publicPrimary,
-      thumbImagePath: DUAL_IMAGE_VARIANTS ? toPublicRelativePath(thumbFull) : publicPrimary
+      bannerImagePath: toPublicRelativePath(bannerFull),
+      thumbImagePath: toPublicRelativePath(thumbFull)
     }
   } catch {
-    clog.error(`img ${imageKey} ${cutTitle}`)
+    clog.error(`img ${safeKey} ${cutTitle}`)
     return null
   }
 }
 
-export async function processMultipleImages({
+export async function processKeyedImages({
   blockId,
   mdxImagesPath,
   lastEditedTimeMs,
   cutTitle,
-  imageUrls
+  images
 }: {
   blockId: string
   mdxImagesPath: string
   lastEditedTimeMs: number
   cutTitle: string
-  imageUrls: string[]
+  images: { id: string; url: string; caption: string }[]
 }) {
-  const results: SimpleAdditionalImages[] = []
+  const results: (SimpleAdditionalImages & { id: string; caption: string })[] = []
 
-  for (let i = 0; i < imageUrls.length; i++) {
+  for (const img of images) {
     const single = await processSingleGalleryImage({
       blockId,
       mdxImagesPath,
-      imageUrl: imageUrls[i],
+      imageUrl: img.url,
       lastEditedTimeMs,
       cutTitle,
-      imageKey: `img${i + 1}`
+      imageKey: img.id
     })
-    if (single) results.push(single)
+    if (single) results.push({ ...single, id: img.id, caption: img.caption })
   }
 
   return results
+}
+
+export async function processLogoImage({
+  blockId,
+  mdxImagesPath,
+  cutTitle,
+  imageUrl
+}: ProcessingImgProps): Promise<string | undefined> {
+  const folder = path.join(mdxImagesPath, blockId)
+  const logoFull = path.join(folder, 'logo.webp')
+  await deleteFileIfExists(logoFull)
+
+  try {
+    await downloadImage({
+      folderPath: folder,
+      imagePath: logoFull,
+      url: imageUrl,
+      title: cutTitle
+    })
+    return toPublicRelativePath(logoFull)
+  } catch {
+    clog.error(`logo ${cutTitle}`)
+    return undefined
+  }
 }

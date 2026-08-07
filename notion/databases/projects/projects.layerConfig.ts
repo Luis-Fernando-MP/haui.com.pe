@@ -2,15 +2,26 @@ import { FieldDefs, defineDocumentType, defineNestedType } from 'contentlayer2/s
 
 import { commonLayerConfigFields } from '../commonLayerConfigFields'
 
-export const ImageSection = defineNestedType(() => ({
-  name: 'ImageSection',
+export const ProjectImage = defineNestedType(() => ({
+  name: 'ProjectImage',
   fields: {
+    id: { type: 'string', required: true },
     banner: { type: 'string', required: false },
-    thumb: { type: 'string', required: false }
+    thumb: { type: 'string', required: false },
+    caption: { type: 'string', required: false, default: '' }
   }
 }))
 
-const marksFields: FieldDefs = {
+export const ProjectAuthor = defineNestedType(() => ({
+  name: 'ProjectAuthor',
+  fields: {
+    name: { type: 'string', required: true },
+    social: { type: 'string', required: false, default: '' },
+    role: { type: 'string', required: false, default: '' }
+  }
+}))
+
+const projectsFields: FieldDefs = {
   relevance: {
     type: 'number',
     required: true,
@@ -58,9 +69,14 @@ const marksFields: FieldDefs = {
     required: false,
     default: ''
   },
-  allImagesBySections: {
+  images: {
     type: 'list',
-    of: ImageSection,
+    of: ProjectImage,
+    required: false
+  },
+  authors: {
+    type: 'list',
+    of: ProjectAuthor,
     required: false
   },
 
@@ -78,7 +94,7 @@ const ProjectsDocument = defineDocumentType(() => ({
   name: 'Projects',
   filePathPattern: `projects/**/*.mdx`,
   contentType: 'mdx',
-  fields: marksFields,
+  fields: projectsFields,
   computedFields: {
     url: {
       type: 'string',

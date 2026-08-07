@@ -97,6 +97,7 @@ async function writeBlocks<T extends NotionRowLike>(
       mdxImagesPath,
       title: item.title,
       generateContent: config.generateContent,
+      loadProjectAssets: config.id === 'projects',
       mdxContent: props => config.content(item.row, item.coverUrl, props)
     })
     if (ok) onOk?.(item)

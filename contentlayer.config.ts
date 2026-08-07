@@ -11,8 +11,6 @@ export default makeSource({
   contentDirExclude: ['projects/trace.yaml', 'series/trace.yaml', 'marks/trace.yaml'],
   documentTypes: [ProjectsDocument, SeriesDocument, MarksDocument],
   mdx: {
-    mdxOptions: () => ({
-      rehypePlugins: [rehypeCodeTitles, [rehypePrism, { showLineNumbers: true }]]
-    })
+    rehypePlugins: [rehypeCodeTitles, [rehypePrism, { showLineNumbers: true }]]
   }
 })

@@ -165,6 +165,26 @@
   height: auto;
 }
 
+.project-mdx figure {
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.project-mdx figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-mdx figcaption {
+  color: var(--fn2);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+  text-align: center;
+  text-wrap: pretty;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .project-mdx a,
   .project-mdx .notion-text-href {

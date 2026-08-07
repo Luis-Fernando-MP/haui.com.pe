@@ -39,6 +39,7 @@ const ProjectHero: FC<Props> = ({ project }) => {
   const webHref = website?.trim()
   const gitHref = github?.trim()
   const figmaHref = figma?.trim()
+  const logoSrc = logo?.trim()
   const monogram = title.trim().slice(0, 1).toUpperCase()
 
   return (
@@ -66,8 +67,10 @@ const ProjectHero: FC<Props> = ({ project }) => {
         className='region max-region:px-5 relative z-[1] mx-auto flex w-full flex-col items-center gap-5 text-center md:gap-6'
       >
         <div className='bg-bg1/80 border-bg3/50 flex size-20 items-center justify-center overflow-hidden rounded-2xl border md:size-24'>
-          {logo && <Image src={logo} alt={`Logo de ${title}`} width={96} height={96} className='size-full object-contain p-3' />}
-          {!logo && <span className='font-flowers text-fn1 text-4xl leading-none md:text-5xl'>{monogram}</span>}
+          {logoSrc && (
+            <Image src={logoSrc} alt={`Logo de ${title}`} width={96} height={96} className='size-full object-contain p-3' />
+          )}
+          {!logoSrc && <span className='font-flowers text-fn1 text-4xl leading-none md:text-5xl'>{monogram}</span>}
         </div>
 
         <h1 className='font-flowers text-fn1 text-5xl leading-none tracking-tight md:text-6xl lg:text-7xl'>{title}</h1>

@@ -33,7 +33,7 @@ export default async function downloadImage({ folderPath, url, imagePath, thumbI
   const buffer = Buffer.from(response.data)
   await fs.promises.mkdir(folderPath, { recursive: true })
 
-  if (!DUAL_IMAGE_VARIANTS) {
+  if (!thumbImagePath) {
     const image = await sharp(buffer)
       .rotate()
       .resize({ width: BANNER_WIDTH, withoutEnlargement: true })
@@ -42,8 +42,6 @@ export default async function downloadImage({ folderPath, url, imagePath, thumbI
 
     return { image, thumbImage: image }
   }
-
-  if (!thumbImagePath) throw new Error('thumbImagePath required when DUAL_IMAGE_VARIANTS=true')
 
   const [image, thumbImage] = await Promise.all([
     sharp(buffer)

@@ -22,11 +22,14 @@ notion/
   utils/
     generateDomain.ts   # shared generate engine
     generateBlock.ts    # one page → MDX + images
+    notionBuilderDecorators.ts  # @delete / (id) inject
     traceYaml.ts        # content/{domain}/trace.yaml
     purgeLocal.ts       # delete local mdx/images/trace
     cli.ts              # ask / choose / confirm / runMenu
+  databases/projects/
+    internalAssets.ts   # optional child_database Tipo/ID/Leyenda
 content/{domain}/*.mdx  # generated (incl. trace.yaml for smart)
-public/content/{domain}/{id}/   # banner.webp (una imagen; ver DUAL_IMAGE_VARIANTS)
+public/content/{domain}/{id}/   # banner.webp (+ logo.webp / {id}.webp)
 ```
 
 ## Pipeline
@@ -127,7 +130,7 @@ Rules:
 
 - Use `yamlQuote()` for strings
 - Images via `imageContentStr(imageProps, '{domain}', coverUrl ? id : undefined)`
-- Extra body images only if the content needs them: `additionalImagesStr`
+- Projects: body images / logo / authors from optional **child_database** (see below), not `#image-from`
 - Frontmatter keys must match Contentlayer `fields` **1:1**
 
 Common keys (from [commonLayerConfigFields.ts](databases/commonLayerConfigFields.ts)):  
@@ -135,6 +138,31 @@ Common keys (from [commonLayerConfigFields.ts](databases/commonLayerConfigFields
 `image_hash` (data URI blur for Unpic `background`), `image_blur` (CSS gradient placeholder).
 
 Domain-specific keys stay only here (e.g. projects: `github`, series: `profesor`).
+
+### Projects: child DB `metadata` + decorators
+
+Optional inline DB titled **`metadata`** on each project page ([internalAssets.ts](databases/projects/internalAssets.ts)). Missing DB / wrong title / query error → empty assets, no throw.
+
+| Property | Use |
+| -------- | --- |
+| `Tipo` | `Logo` \| `Imagen` \| `Autores` |
+| `ID` | Placeholder id for `Imagen` (e.g. `img-1`) |
+| `Leyenda` | Caption / alt for `Imagen` (often empty) |
+
+Row body: Logo/Imagen → first image block; Autores → table `Nombre \| Social \| Rol`.
+
+Sheet properties still include `Resumen` (plain string → frontmatter `summary`). `Logo` comes from the metadata DB, not the sheet.
+
+Body markers ([notionBuilderDecorators.ts](utils/notionBuilderDecorators.ts)):
+
+| Marker | Effect |
+| ------ | ------ |
+| `@delete-from` … `@delete-to` | Discard from MDX |
+| `(img-1)` | Inject unpic `Image` (+ figcaption if Leyenda) |
+
+Deprecated: `#image-from` / `#image-to`, sheet property `Logo`.
+
+Frontmatter: `logo`, `summary`, `images[{id,banner,thumb,caption}]`, `authors[{name,social,role}]`.
 
 ### 3. `index.ts` (DomainConfig)
 
@@ -235,4 +263,4 @@ Purge (CLI Eliminar) removes mdx + image folder + updates/deletes trace.
 | ---- | ---- |
 | Minimal basic domain | [series/](databases/series/) (`generateContent: false`) |
 | Full body MDX basic | [marks/](databases/marks/) |
-| Smart + rich frontmatter | [projects/](databases/projects/) |
+| Smart + rich frontmatter | [projects/](databases/projects/) (+ [internalAssets.ts](databases/projects/internalAssets.ts)) |
