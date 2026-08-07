@@ -1,6 +1,6 @@
 import Button from '@common/components/button'
+import Image from '@common/components/image'
 import { Technology } from '@common/core/queries/techQuery/tech.type'
-import { Image } from '@unpic/react/nextjs'
 import type { FC } from 'react'
 
 interface Props extends Technology {

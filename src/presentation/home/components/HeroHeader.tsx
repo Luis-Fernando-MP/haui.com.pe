@@ -2,7 +2,7 @@
 
 import Button from '@common/components/button'
 import Image from '@common/components/image'
-import { INFO, SOCIAL } from '@common/core/constants'
+import { INFO, SOCIAL } from '@common/core/data/info'
 import GithubIcon from '@common/icons/github'
 import { BriefcaseBusinessIcon } from 'lucide-react'
 import { motion } from 'motion/react'
@@ -85,7 +85,7 @@ const HeroHeader: FC = () => {
                 height={16}
                 className='size-4 shrink-0 rounded-md object-contain'
               />
-              Creando ideas con: {INFO.working.enterprise}
+              <p className='text-sm text-nowrap'>Creando ideas con: {INFO.working.enterprise}</p>
             </Button>
           )}
           {!INFO.working.state && INFO.working.enterprise.length === 0 && (

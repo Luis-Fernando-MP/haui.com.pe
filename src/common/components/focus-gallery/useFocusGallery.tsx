@@ -1,4 +1,4 @@
-import { JourneysImage } from '@common/core/constants/personalJourneys'
+import { JourneysImage } from '@common/core/data/personalJourneys'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 

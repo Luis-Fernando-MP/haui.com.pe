@@ -2,7 +2,7 @@
 
 import Button from '@common/components/button'
 import Image from '@common/components/image'
-import { Testimony } from '@common/core/constants/testimonies'
+import { Testimony } from '@common/core/data/testimonies'
 import GithubIcon from '@common/icons/github'
 import LinkedInIcon from '@common/icons/linkedin'
 import { Globe, GraduationCapIcon, Mail } from 'lucide-react'

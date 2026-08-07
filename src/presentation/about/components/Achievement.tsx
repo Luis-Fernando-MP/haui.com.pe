@@ -1,9 +1,9 @@
 'use client'
 
 import { useFocusGalleryStore } from '@common/components/focus-gallery/store'
+import Image from '@common/components/image'
 import { cn } from '@common/core/cn'
 import { Achievements, achievementIcons, devContributionColor } from '@common/core/queries/achievementsQuery/achievement.type'
-import { Image } from '@unpic/react/nextjs'
 import { ArrowUpRightIcon } from 'lucide-react'
 import { type FC, memo } from 'react'
 

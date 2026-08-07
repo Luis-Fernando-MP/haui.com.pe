@@ -1,4 +1,4 @@
-import { technologies } from '@common/core/constants/technologies'
+import { technologies } from '@common/core/data/technologies'
 
 import { sortComparators } from './tech.sortComparators'
 import { FiltersTechnologies, Technology, stackAliases } from './tech.type'

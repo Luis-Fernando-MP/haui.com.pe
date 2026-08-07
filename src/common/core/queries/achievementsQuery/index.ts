@@ -1,4 +1,4 @@
-import { achievements } from '@common/core/constants/achievements'
+import { achievements } from '@common/core/data/achievements'
 import dayjs from 'dayjs'
 
 import { Achievements, FIELD_DEFAULT_DIR, FiltersAchievements, OrderDirection, defaultPriorityOrder } from './achievement.type'

@@ -3,8 +3,8 @@
 import Button from '@common/components/button'
 import Popup from '@common/components/popup'
 import { cn } from '@common/core/cn'
-import { achievementCategories } from '@common/core/constants/achievements'
-import type { TechName } from '@common/core/constants/technologies'
+import { achievementCategories } from '@common/core/data/achievements'
+import type { TechName } from '@common/core/data/technologies'
 import { CheckIcon, PlusIcon } from 'lucide-react'
 import type { FC } from 'react'
 

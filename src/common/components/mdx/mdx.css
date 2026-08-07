@@ -1,0 +1,193 @@
+.mdx {
+  color: var(--fn2);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.mdx > * + * {
+  margin-top: 1.15rem;
+}
+
+.mdx h1,
+.mdx h2,
+.mdx h3,
+.mdx .notion-heading_1,
+.mdx .notion-heading_2,
+.mdx .notion-heading_3 {
+  color: var(--fn1);
+  font-family: var(--font-flowers), cursive;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.mdx h1,
+.mdx .notion-heading_1 {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  margin-top: 2.5rem;
+}
+
+.mdx h2,
+.mdx .notion-heading_2 {
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+  margin-top: 2rem;
+}
+
+.mdx h3,
+.mdx .notion-heading_3 {
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.mdx p {
+  text-wrap: pretty;
+}
+
+.mdx strong,
+.mdx b,
+.mdx .notion-text-bold {
+  color: var(--fn1);
+  font-weight: 600;
+}
+
+.mdx a,
+.mdx .notion-text-href {
+  color: var(--fn1);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--fn2) 35%, transparent);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 0.25s ease;
+}
+
+.mdx a:hover,
+.mdx .notion-text-href:hover {
+  text-decoration-color: var(--fn1);
+}
+
+.mdx ul,
+.mdx .notion-bulleted_list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mdx ol,
+.mdx .notion-numbered_list {
+  list-style: decimal;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mdx li,
+.mdx .notion-bulleted_list_item,
+.mdx .notion-numbered_list_item {
+  color: var(--fn2);
+  padding-left: 0.15rem;
+}
+
+.mdx ul > li,
+.mdx .notion-bulleted_list > .notion-bulleted_list_item {
+  position: relative;
+  padding-left: 1.15rem;
+}
+
+.mdx ul > li::before,
+.mdx .notion-bulleted_list > .notion-bulleted_list_item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--fn2) 55%, transparent);
+}
+
+.mdx code,
+.mdx .notion-text-code,
+.mdx .notion-code {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.85em;
+  color: var(--fn1);
+  background: color-mix(in oklab, var(--bg2) 90%, transparent);
+  border: 1px solid color-mix(in oklab, var(--bg3) 80%, transparent);
+  border-radius: 0.35rem;
+  padding: 0.1em 0.35em;
+}
+
+.mdx pre {
+  overflow-x: auto;
+  border-radius: 0.85rem;
+  border: 1px solid color-mix(in oklab, var(--bg3) 70%, transparent);
+  background: var(--bg2);
+  padding: 1rem 1.1rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.mdx pre code {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.mdx blockquote,
+.mdx .notion-callout,
+.mdx .notion-quote {
+  margin: 1.5rem 0 0;
+  border: 1px solid color-mix(in oklab, var(--bg3) 75%, transparent);
+  border-left: 3px solid color-mix(in oklab, var(--fn2) 40%, transparent);
+  border-radius: 0.85rem;
+  background: color-mix(in oklab, var(--bg2) 70%, transparent);
+  padding: 1rem 1.15rem;
+  color: var(--fn2);
+}
+
+.mdx blockquote .content,
+.mdx .notion-callout .content {
+  margin: 0;
+}
+
+.mdx hr {
+  border: none;
+  border-top: 1px solid color-mix(in oklab, var(--bg3) 70%, transparent);
+  margin: 2rem 0;
+}
+
+.mdx img {
+  border-radius: 0.85rem;
+  border: 1px solid color-mix(in oklab, var(--bg3) 50%, transparent);
+  max-width: 100%;
+  height: auto;
+}
+
+.mdx figure {
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.mdx figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mdx figcaption {
+  color: var(--fn2);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mdx a,
+  .mdx .notion-text-href {
+    transition: none;
+  }
+}

@@ -2,7 +2,7 @@
 
 import Button from '@common/components/button'
 import { cn } from '@common/core/cn'
-import { NAV_ROUTES } from '@common/core/constants/routes'
+import { NAV_ROUTES } from '@common/core/data/routes'
 import { motion } from 'motion/react'
 import { usePathname } from 'next/navigation'
 import { type FC, useEffect, useState } from 'react'

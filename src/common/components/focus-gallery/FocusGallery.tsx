@@ -1,8 +1,8 @@
 'use client'
 
 import Button from '@common/components/button'
+import Image from '@common/components/image'
 import { cn } from '@common/core/cn'
-import { Image } from '@unpic/react/nextjs'
 import { ChevronLeftIcon, ChevronRightIcon, XIcon, ZoomInIcon, ZoomOutIcon } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
@@ -245,7 +245,6 @@ const FocusGalleryComponent = () => {
                         alt=''
                         loading='lazy'
                         fetchPriority='low'
-                        background='/fallback.webp'
                         className='size-full object-cover'
                       />
                     </span>

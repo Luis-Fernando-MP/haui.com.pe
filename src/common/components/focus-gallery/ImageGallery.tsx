@@ -1,8 +1,8 @@
 'use client'
 
+import Image from '@common/components/image'
 import { cn } from '@common/core/cn'
-import { Image, type ImageProps } from '@unpic/react/nextjs'
-import { type FC, Ref, useId } from 'react'
+import { type ComponentProps, type FC, type Ref, useId } from 'react'
 
 interface GalleryImageData {
   groupId?: string
@@ -13,7 +13,7 @@ interface GalleryImageData {
   index?: number
 }
 
-interface Props extends ImageProps, GalleryImageData {
+interface Props extends ComponentProps<typeof Image>, GalleryImageData {
   ref?: Ref<HTMLImageElement>
 }
 
@@ -54,6 +54,7 @@ const ImageGallery: FC<Props> = ({
   ref,
   alt,
   onKeyDown,
+  background = 'var(--bg1)',
   ...imgProps
 }) => {
   const fallbackGroupId = useId()
@@ -79,7 +80,7 @@ const ImageGallery: FC<Props> = ({
       data-gallery-action={action}
       data-gallery-action-text={actionText}
       itemProp='image'
-      background='/fallback.webp'
+      background={background}
       className={cn(
         'focus-visible:ring-fn2/50 focus-visible:ring-offset-bg1 cursor-zoom-in transition-opacity duration-200 outline-none hover:opacity-85 focus-visible:ring-2 focus-visible:ring-offset-2 motion-reduce:transition-none',
         className

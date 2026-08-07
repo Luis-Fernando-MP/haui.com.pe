@@ -1,4 +1,4 @@
-import type { JourneysImage } from '@common/core/constants/personalJourneys'
+import type { JourneysImage } from '@common/core/data/personalJourneys'
 import { create } from 'zustand'
 
 export const useFocusGalleryStore = create<{

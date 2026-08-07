@@ -8,6 +8,7 @@ import Themes from '@common/style/themes'
 import '@common/style/themes/themes.css'
 import NextTopLoader from 'nextjs-toploader'
 import type { FC, ReactNode } from 'react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import './globals.css'
 
@@ -27,6 +28,7 @@ const Bootstrap: FC<Props> = ({ children }) => {
           <Footer />
           <FocusGallery />
         </Themes>
+        <SpeedInsights />
       </body>
     </html>
   )

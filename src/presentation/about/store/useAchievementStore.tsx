@@ -1,4 +1,4 @@
-import { achievements as achievementsData } from '@common/core/constants/achievements'
+import { achievements as achievementsData } from '@common/core/data/achievements'
 import { achievementsQuery } from '@common/core/queries/achievementsQuery'
 import { Achievements, FiltersAchievements } from '@common/core/queries/achievementsQuery/achievement.type'
 import { StateCreator, create } from 'zustand'

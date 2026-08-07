@@ -1,4 +1,4 @@
-import { technologies } from '@common/core/constants/technologies'
+import { technologies } from '@common/core/data/technologies'
 import { techQuery } from '@common/core/queries/techQuery'
 import { FiltersTechnologies, Technology } from '@common/core/queries/techQuery/tech.type'
 import { StateCreator, create } from 'zustand'

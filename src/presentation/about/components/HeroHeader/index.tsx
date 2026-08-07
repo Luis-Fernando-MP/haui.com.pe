@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@common/core/cn'
-import { personalJourneys } from '@common/core/constants/personalJourneys'
+import { personalJourneys } from '@common/core/data/personalJourneys'
 import { AnimatePresence, motion } from 'motion/react'
 import { type FC, useState } from 'react'
 

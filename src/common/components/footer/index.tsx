@@ -1,7 +1,7 @@
 import Button from '@common/components/button'
 import Image from '@common/components/image'
-import { INFO, SOCIAL } from '@common/core/constants'
-import { FEATURE_ROUTES, NAV_ROUTES } from '@common/core/constants/routes'
+import { INFO, SOCIAL } from '@common/core/data/info'
+import { FEATURE_ROUTES, NAV_ROUTES } from '@common/core/data/routes'
 import Link from 'next/link'
 import type { FC } from 'react'
 

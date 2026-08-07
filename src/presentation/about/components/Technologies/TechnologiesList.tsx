@@ -1,8 +1,8 @@
 'use client'
 
+import Image from '@common/components/image'
 import { cn } from '@common/core/cn'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { Image } from '@unpic/react/nextjs'
 import type { FC } from 'react'
 
 import useTechStore from '../../store/useTechStore'

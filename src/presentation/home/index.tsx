@@ -1,10 +1,10 @@
 'use client'
-
 import dynamic from 'next/dynamic'
 import type { FC } from 'react'
 
 import Contact from './components/Contact'
 import HeroHeader from './components/HeroHeader'
+import Projects from './components/Projects'
 import Testimonials from './components/Testimonials'
 import WorkExperience from './components/WorkExperience'
 
@@ -18,6 +18,7 @@ const Home: FC = () => {
       <HeroGrainGradient />
       <HeroHeader />
       <WorkExperience />
+      <Projects />
       <Contact />
       <Testimonials />
     </main>

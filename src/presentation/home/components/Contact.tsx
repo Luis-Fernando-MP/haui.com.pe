@@ -2,7 +2,7 @@
 
 import Button from '@common/components/button'
 import Title from '@common/components/title'
-import { SOCIAL } from '@common/core/constants'
+import { SOCIAL } from '@common/core/data/info'
 import { ArrowRightIcon, MailIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import type { FC } from 'react'
