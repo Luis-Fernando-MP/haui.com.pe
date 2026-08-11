@@ -49,15 +49,18 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
   const isActive = (name: string) => selectedLower.has(name.toLowerCase())
 
   return (
-    <section id='projects' className='max-region:px-5 flex w-full scroll-mt-28 flex-col items-center gap-10 md:gap-14'>
+    <section
+      id='projects'
+      className='max-region:px-5 flex w-full min-w-0 scroll-mt-24 flex-col items-center gap-8 sm:scroll-mt-28 sm:gap-10 md:gap-14'
+    >
       <motion.header
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 0.55, ease }}
-        className='region max-region:items-center max-region:text-center flex flex-col gap-3'
+        className='region max-region:items-center max-region:text-center flex w-full min-w-0 flex-col gap-3'
       >
-        <p className='text-fn2 font-mono text-xs tracking-[0.2em] uppercase'>Trabajo seleccionado</p>
+        <p className='text-fn2 font-mono text-[11px] tracking-[0.2em] uppercase sm:text-xs'>Trabajo seleccionado</p>
         <Title>
           Mis <span className='text-gradient'>Proyectos</span>
         </Title>
@@ -66,7 +69,7 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
         </p>
       </motion.header>
 
-      <div className='region mx-auto flex w-full gap-8 lg:gap-10'>
+      <div className='region mx-auto flex w-full flex-col gap-6 lg:flex-row lg:gap-10'>
         <motion.aside
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -75,7 +78,7 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
           className='hidden w-48 shrink-0 lg:block'
         >
           <div className='sticky top-28'>
-            <div className='mb-4 flex items-center justify-between'>
+            <div className='mb-4 flex items-center justify-between gap-2'>
               <span className='text-fn1 flex items-center gap-2 text-sm font-medium'>
                 <FilterIcon className='size-4' aria-hidden />
                 Filtros
@@ -101,32 +104,32 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
           </div>
         </motion.aside>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.4, ease }}
-          className='mb-2 flex flex-wrap items-center gap-2 lg:hidden'
-          role='group'
-          aria-label='Filtros'
-        >
-          <Chip active={!hasFilters} onClick={() => setSelected([])}>
-            Todos
-          </Chip>
-          {tags.slice(0, 6).map(name => (
-            <Chip key={name} active={isActive(name)} onClick={() => toggle(name)}>
-              {isActive(name) && <CheckIcon className='size-3' strokeWidth={2.5} aria-hidden />}
-              {name}
+        <div className='flex min-w-0 w-full flex-1 flex-col gap-4'>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.4, ease }}
+            className='flex w-full flex-wrap items-center gap-2 lg:hidden'
+            role='group'
+            aria-label='Filtros'
+          >
+            <Chip active={!hasFilters} onClick={() => setSelected([])}>
+              Todos
             </Chip>
-          ))}
-          {hasFilters && (
-            <Button size='sm' status='danger' onClick={() => setSelected([])} className='ml-auto'>
-              <XIcon className='size-3.5' aria-hidden />
-            </Button>
-          )}
-        </motion.div>
+            {tags.slice(0, 6).map(name => (
+              <Chip key={name} active={isActive(name)} onClick={() => toggle(name)}>
+                {isActive(name) && <CheckIcon className='size-3 shrink-0' strokeWidth={2.5} aria-hidden />}
+                <span className='max-w-[10rem] truncate'>{name}</span>
+              </Chip>
+            ))}
+            {hasFilters && (
+              <Button size='sm' status='danger' onClick={() => setSelected([])} className='shrink-0' aria-label='Limpiar filtros'>
+                <XIcon className='size-3.5' aria-hidden />
+              </Button>
+            )}
+          </motion.div>
 
-        <div className='min-w-0 flex-1'>
           <AnimatePresence mode='wait' initial={false}>
             {filtered.length > 0 && (
               <motion.div
@@ -135,10 +138,10 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25, ease }}
-                className='grid auto-rows-fr grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-6'
+                className='grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-6'
               >
                 {filtered.map((project, i) => (
-                  <div key={project.id} className={cn(i === 0 ? 'sm:col-span-2 xl:col-span-4 xl:row-span-2' : 'xl:col-span-2')}>
+                  <div key={project.id} className={cn('min-w-0', i === 0 ? 'sm:col-span-2 xl:col-span-4 xl:row-span-2' : 'xl:col-span-2')}>
                     <ProjectCard project={project} index={i} featured={i === 0} />
                   </div>
                 ))}
@@ -151,9 +154,9 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className='border-bg3/50 flex flex-col items-center justify-center rounded-2xl border border-dashed py-20'
+                className='border-bg3/50 flex flex-col items-center justify-center rounded-2xl border border-dashed px-4 py-16 sm:py-20'
               >
-                <p className='text-fn2 font-mono text-sm'>Sin proyectos para estos filtros</p>
+                <p className='text-fn2 text-center font-mono text-sm'>Sin proyectos para estos filtros</p>
                 <Button size='sm' variant='ghost' onClick={() => setSelected([])} className='mt-3'>
                   Ver todos
                 </Button>
@@ -184,7 +187,7 @@ const Chip: FC<{ active: boolean; onClick: () => void; children: ReactNode }> = 
     type='button'
     onClick={onClick}
     className={cn(
-      'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors',
+      'inline-flex max-w-full shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors',
       active ? 'bg-fn1 text-bg1' : 'bg-bg2 text-fn2 hover:text-fn1'
     )}
   >

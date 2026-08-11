@@ -24,14 +24,14 @@ const ProjectGallery: FC<{
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, ease }}
       aria-label={`Galería de ${title}`}
-      className='region w-full'
+      className='region w-full min-w-0'
     >
       <ul
         className={cn(
-          'mx-auto grid w-full gap-3 md:gap-4',
+          'mx-auto grid w-full min-w-0 gap-2.5 sm:gap-3 md:gap-4',
           shots.length === 1 && 'max-w-2xl grid-cols-1',
-          shots.length === 2 && 'max-w-3xl grid-cols-2',
-          shots.length >= 3 && 'grid-cols-2 md:max-w-4xl md:grid-cols-3'
+          shots.length === 2 && 'max-w-3xl grid-cols-1 sm:grid-cols-2',
+          shots.length >= 3 && 'grid-cols-1 sm:grid-cols-2 md:max-w-4xl md:grid-cols-3'
         )}
       >
         {shots.map((img, i) => (

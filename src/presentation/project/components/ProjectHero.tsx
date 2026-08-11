@@ -64,22 +64,24 @@ const ProjectHero: FC<Props> = ({ project }) => {
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease }}
-        className='region max-region:px-5 relative z-[1] mx-auto flex w-full flex-col items-center gap-5 text-center md:gap-6'
+        className='region max-region:px-5 relative z-[1] mx-auto flex w-full min-w-0 flex-col items-center gap-5 text-center md:gap-6'
       >
-        <div className='bg-bg1/80 border-bg3/50 flex size-20 items-center justify-center overflow-hidden rounded-2xl border md:size-24'>
+        <div className='bg-bg1/80 border-bg3/50 flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border sm:size-20 md:size-24'>
           {logoSrc && (
-            <Image src={logoSrc} alt={`Logo de ${title}`} width={96} height={96} className='size-full object-contain p-3' />
+            <Image src={logoSrc} alt={`Logo de ${title}`} width={96} height={96} className='size-full object-contain p-2.5 sm:p-3' />
           )}
-          {!logoSrc && <span className='font-flowers text-fn1 text-4xl leading-none md:text-5xl'>{monogram}</span>}
+          {!logoSrc && <span className='font-flowers text-fn1 text-3xl leading-none sm:text-4xl md:text-5xl'>{monogram}</span>}
         </div>
 
-        <h1 className='font-flowers text-fn1 text-5xl leading-none tracking-tight md:text-6xl lg:text-7xl'>{title}</h1>
+        <h1 className='font-flowers text-fn1 w-full max-w-full text-balance break-words text-4xl leading-[0.95] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl'>
+          {title}
+        </h1>
 
         {techs.length > 0 && (
-          <ul className='flex flex-wrap items-center justify-center gap-x-5 gap-y-2'>
+          <ul className='flex max-w-full flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-x-5'>
             {techs.map(tech => (
               <li key={tech.label} className='text-fn2 flex list-none items-center gap-2'>
-                {tech.icon && <Image src={tech.icon} alt='' width={18} height={18} className='size-[18px] object-contain' />}
+                {tech.icon && <Image src={tech.icon} alt='' width={18} height={18} className='size-[18px] shrink-0 object-contain' />}
                 <span className='text-sm tracking-wide'>{tech.label}</span>
               </li>
             ))}
@@ -87,10 +89,10 @@ const ProjectHero: FC<Props> = ({ project }) => {
         )}
 
         {summary.length > 0 && (
-          <p className='text-fn2 max-w-[36rem] text-sm leading-relaxed text-pretty md:text-base'>{summary}</p>
+          <p className='text-fn2 max-w-[36rem] px-1 text-sm leading-relaxed text-pretty md:text-base'>{summary}</p>
         )}
 
-        <div className='flex flex-wrap items-center justify-center gap-2 pt-1'>
+        <div className='flex w-full max-w-md flex-wrap items-center justify-center gap-2 pt-1 sm:max-w-none'>
           <Button href='/#projects' variant='outline' size='sm' className='gap-1.5 rounded-full'>
             <ArrowLeftIcon className='size-3.5' aria-hidden />
             Regresar

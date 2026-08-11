@@ -12,9 +12,9 @@ const ProjectMdx: FC<{ code: string }> = ({ code }) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, amount: 0.08 }}
     transition={{ duration: 0.5, ease }}
-    className='region w-full'
+    className='region w-full min-w-0'
   >
-    <Mdx code={code} className='mx-auto max-w-2xl' />
+    <Mdx code={code} className='mx-auto w-full max-w-2xl min-w-0 overflow-x-auto' />
   </motion.section>
 )
 

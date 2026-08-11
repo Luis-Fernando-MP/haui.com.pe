@@ -14,7 +14,7 @@ const HeroGrainGradient = dynamic(() => import('./components/HeroGrainGradient')
 
 const Home: FC = () => {
   return (
-    <main className='relative flex w-full flex-col gap-24 pb-24 md:gap-32 md:pb-32'>
+    <main className='relative flex w-full min-w-0 flex-col gap-16 overflow-x-hidden pb-16 sm:gap-20 sm:pb-20 md:gap-32 md:pb-32'>
       <HeroGrainGradient />
       <HeroHeader />
       <WorkExperience />
