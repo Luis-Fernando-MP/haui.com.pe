@@ -1,7 +1,7 @@
 # haui.com.pe — project constraints (Impeccable)
 
 Load this on **every** Impeccable command for this repo (with `DESIGN.md` / `AGENTS.md` / **coding-preferences**).  
-These override generic craft defaults that fight the portfolio’s established system.
+These override generic craft defaults that fight the portfolio's established system.
 
 When code style conflicts with other guides (incl. some Vercel examples that prefer ternary conditionals), **coding-preferences + this file win**.
 
@@ -13,13 +13,13 @@ Impeccable edits ship production UI code. Design craft does **not** excuse messy
 
 ### Clean, lean source
 
-| Rule | Do | Don’t |
+| Rule | Do | Don't |
 |------|----|--------|
-| **No noise comments** | Self-explanatory names, early returns | Narrative comments, “// fix layout”, TODO piles, commented-out dead code |
+| **No noise comments** | Self-explanatory names, early returns | Narrative comments, "// fix layout", TODO piles, commented-out dead code |
 | **No duplication** | Extract only when **reused for real**; prefer compose of standard components | Copy-paste card shells, repeated class stacks, twin helpers that only differ by label |
-| **Standard components** | Import `src/common/components/*` | Parallel Button, ad-hoc dialog, raw styled div as fake button |
+| **Standard components** | Import from the **mandatory library** below | Parallel Button / Chip / dialog / date util / raw `<img>` / `<a>` styled as control |
 | **Type roles** | `.type-*` / `text-display`… + correct **font weights** for the role | `text-[13px]`, random `font-bold` on every node |
-| **Semantic HTML** | Real `h1`→`h2`→`h3` order, `section`/`article`/`nav`/`header`/`main`, one primary h1 per view | Div soup, random bold spans as “headings”, skipping levels for style |
+| **Semantic HTML** | Real `h1`→`h2`→`h3` order, `section`/`article`/`nav`/`header`/`main`, one primary h1 per view | Div soup, random bold spans as "headings", skipping levels for style |
 | **Performance** | Lazy images via `Image`, no permanent `will-change`, sensible lists, light client islands | Full-res dumps, duplicate listeners, heavy anonymous components inside parents |
 
 - No one-line util files, no micro-types for single props (per coding-preferences).
@@ -62,34 +62,61 @@ Do not fake hierarchy with size alone on a `div`. Weight class must match the ro
 
 - Images: only `@common/components/image` (unpic → optimizer).
 - Avoid new permanent GPU traps (`will-change` on lists, unbounded blur).
-- Keep client components small; don’t lift `"use client"` up the tree without need.
+- Keep client components small; don't lift `"use client"` up the tree without need.
 - Co-located store/selectors fine-grained; no prop-drill of store data.
-- Align with vercel-react-best-practices **only** where it doesn’t fight coding-preferences (`&&`, no comment spam).
+- Align with vercel-react-best-practices **only** where it doesn't fight coding-preferences (`&&`, no comment spam).
 
 ---
 
-## Reuse first — never reinvent
+## Standard library — **mandatory reuse** (never reinvent)
 
-Standard UI lives in **`src/common/components/`**. Prefer import + compose over new one-offs.
+**Gate before any Impeccable edit** (audit fixes, polish, layout, typeset, new UI, hard/fix passes): if a need maps to a component below, **import and compose it**. Do **not** ship local `FilterBtn`, `IconBtn`, parallel dialogs, `toLocaleDateString` wrappers, ad-hoc chips, or clone markup that only reimplements a primitive.
 
-| Domain | Path | Role |
-|--------|------|------|
-| Button | `button/` | CTA, outline, ghost, link, status tints, `href`→Link |
-| Title | `title/` | Section/page display titles (`.type-display`) |
-| Section | `section/` | Region + optional title/subtitle shell |
-| Card / CardTabs | `card/`, `card-tabs/` | Interactive cards only |
-| Popup | `popup/` | Floating chrome (Header/Content/Footer) |
-| Dialog / Popover | `dialog/`, `popover/` | Modal / popover primitives |
-| Navbar | `navbar/` | Floating dock chrome |
-| Footer | `footer/`, `footer-gradient/` | Site chrome |
-| Image | `image/` | unpic/nextjs — **only** image component |
-| Focus gallery | `focus-gallery/` | Full-screen media viewer |
-| Chip | `chip/` | Tags / filters |
-| Input / Select | `input/`, `select/` | Form controls |
-| Theme | `theme-changer/`, `theme-transition/` | Theme switch only via these |
-| MDX | `mdx/` | Content rendering |
+Standard UI lives in **`src/common/components/`**. Import alias: `@common/components/...`.
 
-**Ban:** new base buttons, ad-hoc modal menus (Headless UI), raw `<img>` when `Image` fits, hex colors for theme surfaces, second parallel design system.
+### Canonical inventory (must use)
+
+| Component | Path | Import (typical) | Use when |
+|-----------|------|------------------|----------|
+| **Button** | `button/` | `@common/components/button` | Any control, CTA, outline/ghost/link, `status`, `size="icon"`, `href` → Next `Link` |
+| **Card** | `card/` | `@common/components/card` | Interactive card surfaces only |
+| **CardTabs** | `card-tabs/` | `@common/components/card-tabs` | Tabbed card chrome |
+| **Chip** | `chip/` | `@common/components/chip` | Tags, filters, toggles (`active` + `onClick`) |
+| **DateFormat** | `DateFormat/` | `@common/components/DateFormat` | **All** dates / times / periods — locales, precision, relative; **no** raw `dayjs` display or `toLocaleDateString` in views |
+| **Dialog** | `dialog/` | `@common/components/dialog` | Modals |
+| **FocusGallery** | `focus-gallery/` | `@common/components/focus-gallery` | Full-screen media / lightbox (`ImageGallery`, store) |
+| **Footer** | `footer/` (+ `footer-gradient/`) | `@common/components/footer` | Site footer chrome |
+| **Image** | `image/` | `@common/components/image` | **Only** media path (unpic → optimizer); ban raw `<img>` when this fits |
+| **Input** | `input/` | `@common/components/input` | Text fields |
+| **MDX** | `mdx/` | `@common/components/mdx` | MDX / content rendering |
+| **Navbar** | `navbar/` | `@common/components/navbar` | Floating dock chrome |
+| **Popover** | `popover/` | `@common/components/popover` | Anchored popovers |
+| **Popup** | `popup/` | `@common/components/popup` | Floating compound UI (`Popup.Header` / `Content` / `Footer`) — **not** Headless menus |
+| **Select** | `select/` | `@common/components/select` | Selects / dropdowns |
+| **Title** | `title/` | `@common/components/title` | Display section / page titles (`.type-display`) |
+
+Also prefer when the shell fits (still first-class shared UI):
+
+| Component | Path | Use |
+|-----------|------|-----|
+| **Section** | `section/` | Region + optional title/subtitle shell |
+| **ThemeChanger** / **ThemeTransition** | `theme-changer/`, `theme-transition/` | Theme only via these |
+
+### Hard bans (integrity defect if shipped)
+
+| Instead of… | Do… |
+|-------------|-----|
+| Local `<button className="…">` filters / icon controls / CTAs | `<Button variant/size/status/…>` |
+| Hand-rolled chip pills for filters | `<Chip active onClick>` |
+| Headless UI menus / ad-hoc modal kits | `Popup` / `Dialog` / `Popover` |
+| Raw `<img>` | `Image` |
+| `toLocaleDateString` / ad-hoc date strings | `DateFormat` |
+| Parallel title stacks (`text-3xl font-bold` faking section titles) | `Title` + type roles |
+| Second design kit or unstyled div-as-button | Extend / compose existing primitives |
+
+**Compose with `className`** to fit layout density — do not fork a second Button/Chip just to change gap or radius. If a real API gap exists (missing size/variant), **extend the shared component in place**, never invent a presentation-only twin.
+
+**Audit / polish checklist item:** any new interactive surface without a standard component above = **Implementation Integrity** regression until replaced.
 
 ## Tokens (already defined)
 
@@ -123,13 +150,13 @@ Roles are **purpose-named**. Implement via tokens + utilities — not magic `tex
 
 **Sizes & leading** live in `globals.css` `@theme` (`--text-display`, …). Prefer classes over re-declaring clamp/px.
 
-Portfolio **mono labels** (`.type-label`) are part of the brand — craft-floor “no eyebrow” does **not** delete intentional `.type-label` markers on sections.
+Portfolio **mono labels** (`.type-label`) are part of the brand — craft-floor "no eyebrow" does **not** delete intentional `.type-label` markers on sections.
 
 ## When typesetting / polishing / any Impeccable edit
 
 1. Apply **Code quality** above on every touch of TSX (especially `&&`, no comments, no dupes).
 2. Map hard-coded `text-sm` / `text-[11px]` / random weights to a role when editing that block.
-3. Prefer `<Title>`, `<Button>`, `<Section>`, `<Chip>`, `<Image>` over cloned markup.
+3. **Gate:** map the interaction to the **Standard library** table first (`Button`, `Chip`, `DateFormat`, `Title`, `Image`, …). Never ship a local twin.
 4. Colors: only haui tokens; gradient text only with `.text-gradient` + flourish, sparingly.
 5. Chrome: solid `bg-bg1`; gradient on **borders** (`.gradient` + `p-px`).
 6. Stay inside PRODUCT/DESIGN — Experience mode, multi-theme.

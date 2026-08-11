@@ -1,6 +1,6 @@
 Typography carries information, hierarchy, and voice. Improve it inside the established visual world; do not replace the identity unless the user asked to.
 
-**haui.com.pe:** Read [haui.md](haui.md) first. Authoritative scale is `@theme` + `.type-*` in `src/app/globals.css` (roles: display, title, heading, body, label, caption, button, link). Prefer `src/common/components/title`, `button`, `section`, `chip` over one-off type stacks. Map arbitrary `text-[Npx]` to the nearest role when editing.
+**haui.com.pe:** Read [haui.md](haui.md) first. Authoritative scale is `@theme` + `.type-*` in `src/app/globals.css` (roles: display, title, heading, body, label, caption, button, link). Prefer standard components (`Title`, `Button`, `Section`, `Chip`, `DateFormat` for dated meta) over one-off type stacks. Map arbitrary `text-[Npx]` to the nearest role when editing.
 
 ---
 

@@ -1,6 +1,6 @@
 > **Additional context needed**: quality bar and shipping constraints.
 
-**haui.com.pe:** Read [haui.md](haui.md) first. Reuse `src/common/components`; map ad-hoc type to `.type-*` / `DESIGN.md` roles; colors only from `themes.css`. Ship **clean** TSX: no comments, no duplication, semantic headings, correct weights, boolean `&&` only for conditional UI, optimize images/client cost.
+**haui.com.pe:** Read [haui.md](haui.md) first. **Gate:** replace ad-hoc controls/dates/media with the standard library (`Button`, `Chip`, `DateFormat`, `Image`, `Title`, … — full table in haui.md). Map ad-hoc type to `.type-*` / `DESIGN.md` roles; colors only from `themes.css`. Ship **clean** TSX: no comments, no duplication, semantic headings, correct weights, boolean `&&` only for conditional UI, optimize images/client cost.
 
 Polish is refinement, never concealed redesign. Preserve the incumbent visual world, content, behavior, and everything outside scope. If the concept itself is wrong, say so and recommend redesign or `bolder` instead of smuggling in a replacement.
 

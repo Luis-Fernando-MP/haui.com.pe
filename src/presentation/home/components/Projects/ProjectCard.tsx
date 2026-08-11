@@ -9,7 +9,7 @@ import NotionIcon from '@common/icons/notion'
 import { ClockIcon, ExternalLinkIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
-import type { FC, MouseEvent, ReactNode } from 'react'
+import type { FC, MouseEvent } from 'react'
 
 import type { ProjectItem } from './ProjectsView'
 
@@ -45,7 +45,12 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: Math.min(index * 0.06, 0.24), ease }}
-      className='group/card border-bg3 bg-bg2 hover:border-bg3 hover:bg-bg2 relative h-full min-h-[260px] w-full overflow-hidden rounded-xl border-[1.5px] transition-colors duration-500 sm:min-h-[280px]'
+      className={cn(
+        'group/card border-bg3 bg-bg2 hover:border-bg3 hover:bg-bg2 relative h-full w-full overflow-hidden rounded-xl border-[1.5px] transition-colors duration-500',
+        featured
+          ? 'min-h-[22rem] sm:min-h-[26rem] xl:min-h-[36.5rem]'
+          : 'min-h-[16.5rem] sm:min-h-[17.5rem]'
+      )}
     >
       <ImageGallery
         src={banner}
@@ -86,19 +91,46 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
         </div>
         <div className='flex shrink-0 gap-1'>
           {github && (
-            <IconBtn href={github} label='GitHub'>
+            <Button
+              href={github}
+              target='_blank'
+              rel='noopener noreferrer'
+              size='icon'
+              variant='secondary'
+              aria-label='GitHub'
+              onClick={stop}
+              className='size-11 rounded-full'
+            >
               <GithubIcon className='size-4' />
-            </IconBtn>
+            </Button>
           )}
           {figma && (
-            <IconBtn href={figma} label='Figma'>
+            <Button
+              href={figma}
+              target='_blank'
+              rel='noopener noreferrer'
+              size='icon'
+              variant='secondary'
+              aria-label='Figma'
+              onClick={stop}
+              className='size-11 rounded-full'
+            >
               <FigmaIcon className='size-4' />
-            </IconBtn>
+            </Button>
           )}
           {notion && (
-            <IconBtn href={notion} label='Notion'>
+            <Button
+              href={notion}
+              target='_blank'
+              rel='noopener noreferrer'
+              size='icon'
+              variant='secondary'
+              aria-label='Notion'
+              onClick={stop}
+              className='size-11 rounded-full'
+            >
               <NotionIcon className='size-4' />
-            </IconBtn>
+            </Button>
           )}
         </div>
       </div>
@@ -131,18 +163,5 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
 }
 
 const stop = (e: MouseEvent) => e.stopPropagation()
-
-const IconBtn: FC<{ href: string; label: string; children: ReactNode }> = ({ href, label, children }) => (
-  <a
-    href={href}
-    target='_blank'
-    rel='noopener noreferrer'
-    aria-label={label}
-    onClick={stop}
-    className='bg-bg2 text-fn1 hover:bg-bg3 focus-visible:ring-fn2/40 focus-visible:ring-offset-bg1 flex size-11 items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2'
-  >
-    {children}
-  </a>
-)
 
 export default ProjectCard

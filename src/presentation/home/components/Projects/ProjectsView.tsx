@@ -6,7 +6,7 @@ import Title from '@common/components/title'
 import { cn } from '@common/core/cn'
 import { CheckIcon, FilterIcon, XIcon } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
-import { type FC, type ReactNode, useState } from 'react'
+import { type FC, useState } from 'react'
 
 import ProjectCard from './ProjectCard'
 
@@ -92,15 +92,37 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
             </div>
 
             <nav className='flex flex-col gap-1' role='group' aria-label='Filtros de proyectos'>
-              <FilterBtn active={!hasFilters} onClick={() => setSelected([])}>
+              <Button
+                variant={!hasFilters ? 'default' : 'ghost'}
+                aria-pressed={!hasFilters}
+                onClick={() => setSelected([])}
+                center={false}
+                className={cn(
+                  'min-h-11 w-full justify-start gap-2 rounded-lg px-3',
+                  hasFilters && 'text-fn2 hover:text-fn1'
+                )}
+              >
                 Todos
-              </FilterBtn>
-              {tags.map(name => (
-                <FilterBtn key={name} active={isActive(name)} onClick={() => toggle(name)}>
-                  {isActive(name) && <CheckIcon className='size-3.5 shrink-0' strokeWidth={2.5} aria-hidden />}
-                  <span className='truncate'>{name}</span>
-                </FilterBtn>
-              ))}
+              </Button>
+              {tags.map(name => {
+                const active = isActive(name)
+                return (
+                  <Button
+                    key={name}
+                    variant={active ? 'default' : 'ghost'}
+                    aria-pressed={active}
+                    onClick={() => toggle(name)}
+                    center={false}
+                    className={cn(
+                      'min-h-11 w-full justify-start gap-2 rounded-lg px-3',
+                      !active && 'text-fn2 hover:text-fn1'
+                    )}
+                  >
+                    {active && <CheckIcon className='size-3.5 shrink-0' strokeWidth={2.5} aria-hidden />}
+                    <span className='truncate'>{name}</span>
+                  </Button>
+                )
+              })}
             </nav>
           </div>
         </motion.aside>
@@ -139,10 +161,16 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25, ease }}
-                className='grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-6'
+                className='grid w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-6 xl:auto-rows-[minmax(17.5rem,auto)]'
               >
                 {filtered.map((project, i) => (
-                  <div key={project.id} className={cn('min-w-0', i === 0 ? 'sm:col-span-2 xl:col-span-4 xl:row-span-2' : 'xl:col-span-2')}>
+                  <div
+                    key={project.id}
+                    className={cn(
+                      'flex h-full min-h-0 min-w-0',
+                      i === 0 ? 'sm:col-span-2 xl:col-span-4 xl:row-span-2' : 'xl:col-span-2'
+                    )}
+                  >
                     <ProjectCard project={project} index={i} featured={i === 0} />
                   </div>
                 ))}
@@ -169,20 +197,5 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
     </section>
   )
 }
-
-const FilterBtn: FC<{ active: boolean; onClick: () => void; children: ReactNode }> = ({ active, onClick, children }) => (
-  <button
-    type='button'
-    onClick={onClick}
-    aria-pressed={active}
-    className={cn(
-      'type-body-sm flex min-h-11 w-full items-center gap-2 rounded-lg px-3 py-2 text-left transition-colors',
-      'focus-visible:ring-fn2/40 focus-visible:ring-offset-bg1 outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-      active ? 'bg-fn1 text-bg1 font-medium' : 'text-fn2 hover:bg-bg2 hover:text-fn1'
-    )}
-  >
-    {children}
-  </button>
-)
 
 export default ProjectsView

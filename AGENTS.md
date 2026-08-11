@@ -58,22 +58,23 @@ Agents (Impeccable, fix/hard) **must invent nothing parallel**. Import from here
 
 | Component | Path | Use |
 |-----------|------|-----|
-| `Button` | `button/` | CTAs, outline/ghost/link, `status`, `href`→Link |
-| `Title` | `title/` | Display titles (`.type-display`) |
-| `Section` | `section/` | Region shell + title/subtitle |
-| `Card` / `CardTabs` | `card/`, `card-tabs/` | Interactive cards |
-| `Popup` | `popup/` | Floating compound UI (not Headless) |
+| `Button` | `button/` | CTAs, outline/ghost/link, `status`, `size="icon"`, `href`→Link |
+| `Card` / `CardTabs` | `card/`, `card-tabs/` | Interactive cards / tabbed cards |
+| `Chip` | `chip/` | Tags / filters (`active` + `onClick`) |
+| `DateFormat` | `DateFormat/` | **All** visible dates/times (no raw `toLocaleDateString` / ad-hoc dayjs in views) |
 | `Dialog` / `Popover` | `dialog/`, `popover/` | Modal / popover |
-| `Navbar` | `navbar/` | Floating dock chrome |
+| `FocusGallery` | `focus-gallery/` | Full-screen gallery / lightbox |
 | `Footer` / `FooterGradient` | `footer/`, `footer-gradient/` | Chrome |
 | `Image` | `image/` | Only media path (unpic → `/_next/image`) |
-| `FocusGallery` | `focus-gallery/` | Full-screen gallery |
-| `Chip` | `chip/` | Tags / filters |
 | `Input` / `Select` | `input/`, `select/` | Forms |
-| `ThemeChanger` / `ThemeTransition` | `theme-changer/`, `theme-transition/` | Theme only via these |
 | `MDX` | `mdx/` | Content |
+| `Navbar` | `navbar/` | Floating dock chrome |
+| `Popup` | `popup/` | Floating compound UI (not Headless) |
+| `Title` | `title/` | Display titles (`.type-display`) |
+| `Section` | `section/` | Region shell + title/subtitle |
+| `ThemeChanger` / `ThemeTransition` | `theme-changer/`, `theme-transition/` | Theme only via these |
 
-Ban: new primitive button/dialogkits, raw `<img>` when Image applies, Headless menus, ad-hoc hex theme surfaces.
+Ban: parallel local Button/Chip/dialog kits, raw `<img>` when Image applies, ad-hoc date formatting, Headless menus, hex theme surfaces. Impeccable pin: `.agents/skills/impeccable/reference/haui.md`.
 
 ## Typography (tokens + Tailwind)
 

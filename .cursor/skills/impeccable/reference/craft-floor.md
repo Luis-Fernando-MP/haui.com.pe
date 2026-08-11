@@ -2,7 +2,7 @@
 
 Load this after the direction is settled, and build without announcing the checklist. A pinned brief or the committed visual world overrides anything here; your own habit does not. When the design hook is active it already enforces the mechanical checks below as you edit: act on its findings instead of re-auditing each rule.
 
-**haui.com.pe:** [haui.md](haui.md) + `DESIGN.md` pin the multi-theme portfolio world. Reuse `src/common/components`. Intentional mono section labels (`.type-label`) are brand, not banned kickers. Prefer type roles over arbitrary sizes. Code: no noise comments, no dupes, semantic HTML + weight roles, boolean `&&` renders (never ternary show/hide), lean/performant TSX.
+**haui.com.pe:** [haui.md](haui.md) + `DESIGN.md` pin the multi-theme portfolio world. **Mandatory:** compose the standard library (`Button`, `Card`, `CardTabs`, `Chip`, `DateFormat`, `Dialog`, `FocusGallery`, `Footer`, `Image`, `Input`, `MDX`, `Navbar`, `Popover`, `Popup`, `Select`, `Title`) — no local twins. Intentional mono section labels (`.type-label`) are brand, not banned kickers. Prefer type roles over arbitrary sizes. Code: no noise comments, no dupes, semantic HTML + weight roles, boolean `&&` renders (never ternary show/hide), lean/performant TSX.
 
 ## Verify
 
