@@ -27,13 +27,13 @@ const Testimonials: FC = () => {
           transition={{ duration: 0.5, ease }}
           className='max-region:items-center max-region:text-center flex w-full max-w-[560px] min-w-0 flex-col gap-3 sm:gap-4'
         >
-          <p className='text-fn2 font-mono text-[11px] tracking-[0.18em] uppercase sm:text-xs'>Testimonios</p>
+          <p className='type-label text-fn2'>Testimonios</p>
           <Title>
             Algunas
             <br />
             <span className='text-gradient'>Bonitas Palabras</span>
           </Title>
-          <p className='text-fn2 text-sm leading-relaxed text-pretty sm:font-mono sm:text-base'>
+          <p className='type-lead text-fn2 text-pretty'>
             Fragmentos de gratitud de personas con quienes he construido productos y equipos.
           </p>
         </motion.header>
@@ -59,7 +59,7 @@ const Testimonials: FC = () => {
                       aria-pressed={selected}
                       aria-label={`Ver testimonio de ${item.autor}`}
                       className={cn(
-                        'group flex items-center gap-2.5 rounded-xl text-left transition-colors outline-none',
+                        'group flex min-h-11 items-center gap-2.5 rounded-xl text-left transition-colors outline-none',
                         'hover:bg-bg2/50 focus-visible:ring-fn2/40 focus-visible:ring-offset-bg1 focus-visible:ring-2 focus-visible:ring-offset-2',
                         'w-[min(16.5rem,78vw)] shrink-0 border px-3 py-2.5 sm:w-full sm:gap-3.5 sm:border-transparent sm:px-3 sm:py-3',
                         selected ? 'border-via/40 bg-bg2/60 sm:border-transparent' : 'border-bg3/60 bg-bg1/40 sm:bg-transparent'
@@ -84,8 +84,8 @@ const Testimonials: FC = () => {
                       </span>
 
                       <span className='flex min-w-0 flex-col gap-0.5'>
-                        <span className='text-fn1 truncate text-sm font-semibold tracking-tight'>{item.autor}</span>
-                        <span className='text-fn2 truncate font-mono text-[10px] sm:text-[11px]'>{item.role}</span>
+                        <span className='type-body-sm text-fn1 truncate font-semibold tracking-tight'>{item.autor}</span>
+                        <span className='type-caption text-fn2 truncate font-mono'>{item.role}</span>
                       </span>
 
                       {selected && <span className='bg-via ml-auto hidden size-1.5 shrink-0 rounded-full sm:block' aria-hidden />}
@@ -96,10 +96,8 @@ const Testimonials: FC = () => {
             </ul>
 
             <div className='max-region:items-center max-region:text-center flex flex-col gap-2.5 sm:gap-3 lg:items-start lg:text-left'>
-              <h3 className='text-fn1 text-base font-semibold tracking-tight'>¿Quieres dejar tu huella?</h3>
-              <p className='text-fn2 text-sm leading-relaxed sm:font-mono'>
-                Cada palabrita suma a esta colección de recuerdos compartidos.
-              </p>
+              <h3 className='type-heading text-fn1 tracking-tight'>¿Quieres dejar tu huella?</h3>
+              <p className='type-lead text-fn2'>Cada palabrita suma a esta colección de recuerdos compartidos.</p>
               <Button
                 href={INFO.testimonios_discussions}
                 target='_blank'

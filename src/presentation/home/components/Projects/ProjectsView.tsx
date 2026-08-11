@@ -1,6 +1,7 @@
 'use client'
 
 import Button from '@common/components/button'
+import Chip from '@common/components/chip'
 import Title from '@common/components/title'
 import { cn } from '@common/core/cn'
 import { CheckIcon, FilterIcon, XIcon } from 'lucide-react'
@@ -60,11 +61,11 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
         transition={{ duration: 0.55, ease }}
         className='region max-region:items-center max-region:text-center flex w-full min-w-0 flex-col gap-3'
       >
-        <p className='text-fn2 font-mono text-[11px] tracking-[0.2em] uppercase sm:text-xs'>Trabajo seleccionado</p>
+        <p className='type-label text-fn2'>Trabajo seleccionado</p>
         <Title>
           Mis <span className='text-gradient'>Proyectos</span>
         </Title>
-        <p className='text-fn2 max-w-[36rem] text-sm leading-relaxed text-pretty md:text-base'>
+        <p className='type-lead text-fn2 max-w-[36rem] text-pretty'>
           Productos y sistemas construidos de extremo a extremo — diseño, interfaz y arquitectura en una sola pieza.
         </p>
       </motion.header>
@@ -79,7 +80,7 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
         >
           <div className='sticky top-28'>
             <div className='mb-4 flex items-center justify-between gap-2'>
-              <span className='text-fn1 flex items-center gap-2 text-sm font-medium'>
+              <span className='type-body-sm text-fn1 flex items-center gap-2 font-medium'>
                 <FilterIcon className='size-4' aria-hidden />
                 Filtros
               </span>
@@ -90,7 +91,7 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
               )}
             </div>
 
-            <nav className='flex flex-col gap-1' role='group' aria-label='Filtros'>
+            <nav className='flex flex-col gap-1' role='group' aria-label='Filtros de proyectos'>
               <FilterBtn active={!hasFilters} onClick={() => setSelected([])}>
                 Todos
               </FilterBtn>
@@ -112,19 +113,19 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
             transition={{ duration: 0.4, ease }}
             className='flex w-full flex-wrap items-center gap-2 lg:hidden'
             role='group'
-            aria-label='Filtros'
+            aria-label='Filtros de proyectos'
           >
             <Chip active={!hasFilters} onClick={() => setSelected([])}>
               Todos
             </Chip>
-            {tags.slice(0, 6).map(name => (
+            {tags.map(name => (
               <Chip key={name} active={isActive(name)} onClick={() => toggle(name)}>
                 {isActive(name) && <CheckIcon className='size-3 shrink-0' strokeWidth={2.5} aria-hidden />}
                 <span className='max-w-[10rem] truncate'>{name}</span>
               </Chip>
             ))}
             {hasFilters && (
-              <Button size='sm' status='danger' onClick={() => setSelected([])} className='shrink-0' aria-label='Limpiar filtros'>
+              <Button size='sm' status='danger' onClick={() => setSelected([])} className='min-h-11 shrink-0' aria-label='Limpiar filtros'>
                 <XIcon className='size-3.5' aria-hidden />
               </Button>
             )}
@@ -156,8 +157,8 @@ const ProjectsView: FC<{ projects: ProjectItem[] }> = ({ projects }) => {
                 exit={{ opacity: 0 }}
                 className='border-bg3/50 flex flex-col items-center justify-center rounded-2xl border border-dashed px-4 py-16 sm:py-20'
               >
-                <p className='text-fn2 text-center font-mono text-sm'>Sin proyectos para estos filtros</p>
-                <Button size='sm' variant='ghost' onClick={() => setSelected([])} className='mt-3'>
+                <p className='type-body-sm text-fn2 text-center font-mono'>Sin proyectos para estos filtros</p>
+                <Button size='sm' variant='ghost' onClick={() => setSelected([])} className='mt-3 min-h-11'>
                   Ver todos
                 </Button>
               </motion.div>
@@ -173,22 +174,11 @@ const FilterBtn: FC<{ active: boolean; onClick: () => void; children: ReactNode 
   <button
     type='button'
     onClick={onClick}
+    aria-pressed={active}
     className={cn(
-      'flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors',
+      'type-body-sm flex min-h-11 w-full items-center gap-2 rounded-lg px-3 py-2 text-left transition-colors',
+      'focus-visible:ring-fn2/40 focus-visible:ring-offset-bg1 outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
       active ? 'bg-fn1 text-bg1 font-medium' : 'text-fn2 hover:bg-bg2 hover:text-fn1'
-    )}
-  >
-    {children}
-  </button>
-)
-
-const Chip: FC<{ active: boolean; onClick: () => void; children: ReactNode }> = ({ active, onClick, children }) => (
-  <button
-    type='button'
-    onClick={onClick}
-    className={cn(
-      'inline-flex max-w-full shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors',
-      active ? 'bg-fn1 text-bg1' : 'bg-bg2 text-fn2 hover:text-fn1'
     )}
   >
     {children}

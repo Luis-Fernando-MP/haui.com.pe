@@ -72,13 +72,13 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
       <div className='absolute top-3 right-3 left-3 flex flex-wrap items-start justify-between gap-2 sm:top-4 sm:right-4 sm:left-4'>
         <div className='flex min-w-0 flex-wrap items-center gap-1.5 sm:gap-2'>
           {website && (
-            <Button href={website} target='_blank' rel='noopener noreferrer' size='sm' variant='secondary' onClick={stop}>
+            <Button href={website} target='_blank' rel='noopener noreferrer' size='sm' variant='secondary' onClick={stop} className='min-h-11'>
               <ExternalLinkIcon className='size-3.5' aria-hidden />
               Demo
             </Button>
           )}
           {readingMins != null && (
-            <span className='bg-bg2 text-fn1 flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-medium'>
+            <span className='type-caption bg-bg2 text-fn1 flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1.5 font-medium'>
               <ClockIcon className='size-3' aria-hidden />
               {readingMins} min
             </span>
@@ -107,7 +107,7 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
         {visibleTags.length > 0 && (
           <div className='flex flex-wrap gap-1.5'>
             {visibleTags.map(t => (
-              <span key={t} className='bg-bg2 text-fn1 max-w-full truncate rounded-full px-2.5 py-1 text-[10px] font-medium'>
+              <span key={t} className='type-caption bg-bg2 text-fn1 max-w-full truncate rounded-full px-2.5 py-1 font-medium'>
                 {t}
               </span>
             ))}
@@ -117,14 +117,14 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
         <Link href={detailHref} className='focus-visible:ring-fnA/50 w-fit max-w-full rounded-sm outline-none focus-visible:ring-2'>
           <h3
             className={cn(
-              'text-fn1 hover:text-fnA text-balance break-words leading-tight font-semibold tracking-tight transition-colors duration-300',
-              featured ? 'text-xl sm:text-3xl lg:text-4xl' : 'text-base sm:text-xl'
+              'text-fn1 hover:text-fnA text-balance break-words tracking-tight transition-colors duration-300',
+              featured ? 'type-display-sm' : 'type-heading'
             )}
           >
             {title}
           </h3>
         </Link>
-        {hasSummary && <p className='text-fn2 line-clamp-2 max-w-xl text-sm leading-relaxed text-pretty'>{summary}</p>}
+        {hasSummary && <p className='type-lead text-fn2 line-clamp-2 max-w-xl text-pretty'>{summary}</p>}
       </div>
     </motion.article>
   )
@@ -139,7 +139,7 @@ const IconBtn: FC<{ href: string; label: string; children: ReactNode }> = ({ hre
     rel='noopener noreferrer'
     aria-label={label}
     onClick={stop}
-    className='bg-bg2 text-fn1 hover:bg-bg3 flex size-8 items-center justify-center rounded-full transition-colors'
+    className='bg-bg2 text-fn1 hover:bg-bg3 focus-visible:ring-fn2/40 focus-visible:ring-offset-bg1 flex size-11 items-center justify-center rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2'
   >
     {children}
   </a>

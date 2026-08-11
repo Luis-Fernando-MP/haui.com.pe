@@ -22,13 +22,13 @@ const WorkExperience: FC = () => {
         transition={{ duration: 0.5, ease }}
         className='region max-region:items-center max-region:text-center flex w-full min-w-0 flex-col gap-3 sm:gap-4'
       >
-        <p className='text-fn2 font-mono text-[11px] tracking-[0.18em] uppercase sm:text-xs'>Trayectoria Profesional</p>
+        <p className='type-label text-fn2'>Trayectoria Profesional</p>
         <Title>
           Mi Experiencia
           <br />
           <span className='text-gradient'>Laboral</span>
         </Title>
-        <p className='text-fn2 max-w-[520px] text-sm leading-relaxed text-pretty sm:font-mono sm:text-base'>
+        <p className='type-lead text-fn2 max-w-[520px] text-pretty'>
           Diseño y desarrollo de sistemas robustos, escalables y centrados en el usuario para startups y empresas consolidadas.
         </p>
       </motion.header>

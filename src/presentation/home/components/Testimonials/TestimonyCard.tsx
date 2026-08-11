@@ -34,16 +34,16 @@ const TestimonyCard: FC<Props> = ({ testimony }) => {
         </div>
 
         <div className='flex min-w-0 flex-col gap-1'>
-          <h3 className='font-flowers text-fn1 text-xl leading-tight text-pretty sm:text-2xl md:text-3xl'>{autor}</h3>
-          <p className='text-fn1/90 text-sm font-medium text-pretty'>{role}</p>
-          <p className='text-fn2 flex items-start gap-1.5 font-mono text-xs'>
+          <h3 className='type-title type-flourish text-fn1 text-pretty'>{autor}</h3>
+          <p className='type-body-sm text-fn1/90 font-medium text-pretty'>{role}</p>
+          <p className='type-caption text-fn2 flex items-start gap-1.5 font-mono'>
             <GraduationCapIcon className='mt-0.5 size-3.5 shrink-0' aria-hidden />
             <span className='text-pretty break-words'>{degree}</span>
           </p>
         </div>
       </header>
 
-      <blockquote className='border-bg3 text-fn2 border-l-2 pl-4 text-sm leading-relaxed text-pretty sm:pl-5 sm:text-base md:text-lg'>
+      <blockquote className='type-body border-bg3 text-fn2 border-l-2 pl-4 text-pretty sm:pl-5 sm:text-base md:text-lg'>
         “{testimonial}”
       </blockquote>
 
@@ -56,10 +56,10 @@ const TestimonyCard: FC<Props> = ({ testimony }) => {
               rel='noopener noreferrer'
               variant='outline'
               size='sm'
-              className='gap-1.5 rounded-lg px-3'
+              className='min-h-11 gap-1.5 rounded-lg px-3'
               aria-label={`GitHub de ${autor}`}
             >
-              <GithubIcon className='size-3.5' />
+              <GithubIcon className='size-3.5' aria-hidden />
               GitHub
             </Button>
           )}
@@ -70,10 +70,10 @@ const TestimonyCard: FC<Props> = ({ testimony }) => {
               rel='noopener noreferrer'
               variant='outline'
               size='sm'
-              className='gap-1.5 rounded-lg px-3'
+              className='min-h-11 gap-1.5 rounded-lg px-3'
               aria-label={`LinkedIn de ${autor}`}
             >
-              <LinkedInIcon className='size-3.5' />
+              <LinkedInIcon className='size-3.5' aria-hidden />
               LinkedIn
             </Button>
           )}
@@ -84,16 +84,16 @@ const TestimonyCard: FC<Props> = ({ testimony }) => {
               rel='noopener noreferrer'
               variant='outline'
               size='sm'
-              className='gap-1.5 rounded-lg px-3'
+              className='min-h-11 gap-1.5 rounded-lg px-3'
               aria-label={`Sitio web de ${autor}`}
             >
-              <Globe className='size-3.5' />
+              <Globe className='size-3.5' aria-hidden />
               Website
             </Button>
           )}
           {Boolean(mailTo?.length) && (
-            <Button href={mailTo} variant='outline' size='sm' className='gap-1.5 rounded-lg px-3' aria-label={`Email de ${autor}`}>
-              <Mail className='size-3.5' />
+            <Button href={mailTo} variant='outline' size='sm' className='min-h-11 gap-1.5 rounded-lg px-3' aria-label={`Email de ${autor}`}>
+              <Mail className='size-3.5' aria-hidden />
               Email
             </Button>
           )}

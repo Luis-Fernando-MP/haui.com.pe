@@ -45,13 +45,6 @@
   --font-emoji: var(--font-emoji), 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emojis', sans-serif;
   --font-rubik: var(--font-rubik-lines), sans-serif;
 
-  /*
-   * Type scale (roles). Root ≈ 14px (html). Prefer utilities:
-   * text-display | text-display-sm | text-title | text-heading |
-   * text-subheading | text-body | text-body-sm | text-label |
-   * text-caption | text-button | text-button-sm | text-link
-   * Compound roles: .type-* (size + weight + leading + tracking).
-   */
   --text-display: clamp(2rem, 5.5vw, 3.5rem);
   --text-display--line-height: 0.98;
   --text-display--letter-spacing: -0.02em;
@@ -274,57 +267,45 @@
   object-fit: contain !important;
 }
 
-/* html {
-  filter: invert(2);
-  img {
-    filter: invert(1);
-  }
-} */
-
-/*
- * Role utilities — prefer these over ad-hoc text-[Npx].
- * Size tokens already carry line-height via text-* utilities;
- * compounds lock weight / tracking / family for repeated jobs.
- */
 @layer components {
   .type-display {
-    @apply text-display font-bold tracking-tight text-pretty text-fn1;
+    @apply text-display text-fn1 font-bold tracking-tight text-pretty;
   }
 
   .type-display-sm {
-    @apply text-display-sm font-bold tracking-tight text-pretty text-fn1;
+    @apply text-display-sm text-fn1 font-bold tracking-tight text-pretty;
   }
 
   .type-title {
-    @apply text-title font-bold tracking-tight text-pretty text-fn1;
+    @apply text-title text-fn1 font-bold tracking-tight text-pretty;
   }
 
   .type-heading {
-    @apply text-heading font-semibold tracking-tight text-fn1;
+    @apply text-heading text-fn1 font-semibold tracking-tight;
   }
 
   .type-subheading {
-    @apply text-subheading font-semibold text-fn1;
+    @apply text-subheading text-fn1 font-semibold;
   }
 
   .type-body {
-    @apply text-body font-normal text-fn1 text-pretty;
+    @apply text-body text-fn1 font-normal text-pretty;
   }
 
   .type-body-sm {
-    @apply text-body-sm font-normal text-fn2 text-pretty;
+    @apply text-body-sm text-fn2 font-normal text-pretty;
   }
 
   .type-lead {
-    @apply text-body-sm leading-relaxed font-normal text-fn2 text-pretty;
+    @apply text-body-sm text-fn2 leading-relaxed font-normal text-pretty;
   }
 
   .type-label {
-    @apply font-mono text-label font-medium tracking-[0.14em] text-fn2 uppercase;
+    @apply text-label text-fn2 font-mono font-medium tracking-[0.14em] uppercase;
   }
 
   .type-caption {
-    @apply text-caption font-medium text-fn2;
+    @apply text-caption text-fn2 font-medium;
   }
 
   .type-button {
@@ -336,7 +317,7 @@
   }
 
   .type-link {
-    @apply text-link font-medium text-fn1 underline-offset-4 hover:underline;
+    @apply text-link text-fn1 font-medium underline-offset-4 hover:underline;
   }
 
   .type-flourish {

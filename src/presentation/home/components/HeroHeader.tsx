@@ -38,7 +38,7 @@ const HeroHeader: FC = () => {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease, delay: 0.12 }}
-          className='border-bg3 bg-bg1 text-fn1 inline-flex max-w-full w-fit items-center gap-2 rounded-full border px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] uppercase sm:gap-2.5 sm:px-3.5 sm:text-[11px] sm:tracking-[0.18em]'
+          className='type-label border-bg3 bg-bg1 text-fn1 inline-flex max-w-full w-fit items-center gap-2 rounded-full border px-3 py-1.5 sm:gap-2.5 sm:px-3.5'
         >
           {!INFO.working.state && (
             <span className='relative flex size-1.5 shrink-0'>
@@ -56,7 +56,7 @@ const HeroHeader: FC = () => {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease, delay: 0.18 }}
-          className='w-full text-[clamp(2.65rem,11.5vw,3.75rem)] leading-[0.92] font-extrabold tracking-tight text-pretty sm:text-7xl md:text-8xl lg:text-[6rem]'
+          className='type-display w-full text-pretty sm:text-[clamp(2.75rem,8vw,4.5rem)] md:text-[clamp(3rem,7vw,5.5rem)] lg:text-[clamp(3.25rem,6vw,6rem)]'
         >
           <span className='text-gradient font-[inherit] text-[length:inherit] leading-[inherit]'>LUIS</span>
           <br />
@@ -69,8 +69,8 @@ const HeroHeader: FC = () => {
           transition={{ duration: 0.6, ease, delay: 0.28 }}
           className='flex w-full flex-col gap-2 max-lg:items-center sm:gap-2.5'
         >
-          <p className='text-fn1 text-base font-semibold tracking-tight text-balance sm:text-lg md:text-xl'>{INFO.resumeAbout}</p>
-          <p className='text-fn2 max-w-[460px] text-sm leading-relaxed text-pretty sm:text-base md:text-lg'>
+          <p className='type-subheading text-fn1 text-balance'>{INFO.resumeAbout}</p>
+          <p className='type-lead text-fn2 max-w-[460px] text-pretty'>
             Diseño y construyo productos web claros, interactivos y centrados en la experiencia real del usuario.
           </p>
         </motion.div>
@@ -119,6 +119,7 @@ const HeroHeader: FC = () => {
             variant='outline'
             size='icon'
             aria-label='GitHub'
+            className='size-11'
           >
             <GithubIcon className='size-4' />
           </Button>
@@ -129,6 +130,7 @@ const HeroHeader: FC = () => {
             variant='outline'
             size='icon'
             aria-label='LinkedIn'
+            className='size-11'
           >
             <BriefcaseBusinessIcon className='size-4' />
           </Button>

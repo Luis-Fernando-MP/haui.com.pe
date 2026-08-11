@@ -29,13 +29,13 @@ const Contact: FC = () => {
 
         <header className='flex w-full min-w-0 flex-col items-center gap-3 sm:gap-4'>
           <div className='flex flex-col gap-2.5 sm:gap-3'>
-            <p className='text-fn2 font-mono text-[11px] tracking-[0.2em] uppercase sm:text-xs'>¿Tienes un proyecto en mente?</p>
+            <p className='type-label text-fn2'>¿Tienes un proyecto en mente?</p>
             <Title>
               Hablemos y <span className='text-gradient'>Construyamos</span>
             </Title>
           </div>
 
-          <p className='text-fn2 max-w-[500px] text-sm leading-relaxed text-pretty sm:text-base md:text-lg'>
+          <p className='type-lead text-fn2 max-w-[500px] text-pretty'>
             Estoy abierto a nuevas oportunidades, colaboraciones o simplemente a una charla sobre tecnología y diseño.
           </p>
         </header>
@@ -46,17 +46,17 @@ const Contact: FC = () => {
             target='_blank'
             rel='noopener noreferrer'
             variant='default'
-            className='group h-11 w-full max-w-xs rounded-xl px-6 text-sm font-bold transition-transform hover:scale-[1.02] active:scale-[0.98] sm:h-12 sm:w-auto sm:max-w-none sm:px-8 sm:text-base'
+            className='group h-11 w-full max-w-xs rounded-xl px-6 transition-transform hover:scale-[1.02] active:scale-[0.98] motion-reduce:transform-none sm:h-12 sm:w-auto sm:max-w-none sm:px-8'
           >
-            <MailIcon className='mr-2 size-4 shrink-0' />
+            <MailIcon className='mr-2 size-4 shrink-0' aria-hidden />
             Enviar un correo
-            <ArrowRightIcon className='ml-2 size-3.5 shrink-0 transition-transform group-hover:translate-x-1' />
+            <ArrowRightIcon className='ml-2 size-3.5 shrink-0 transition-transform group-hover:translate-x-1 motion-reduce:transform-none' aria-hidden />
           </Button>
 
           <div className='flex w-full min-w-0 flex-col gap-5 sm:gap-6'>
             <div className='flex items-center gap-3 sm:gap-4'>
               <div className='bg-bg3/40 h-px min-w-0 flex-1' />
-              <span className='text-fn2 shrink-0 font-mono text-[10px] tracking-widest uppercase'>En mis redes</span>
+              <span className='type-label text-fn2 shrink-0'>En mis redes</span>
               <div className='bg-bg3/40 h-px min-w-0 flex-1' />
             </div>
 
@@ -75,10 +75,10 @@ const Contact: FC = () => {
                       target='_blank'
                       rel='noopener noreferrer'
                       variant='outline'
-                      className='bg-bg2/40 hover:border-fn2/30 hover:bg-bg2 flex h-full w-full min-w-0 flex-col items-center gap-1 rounded-xl px-2 py-3 whitespace-normal transition-all sm:gap-1.5 sm:py-3.5'
+                      className='bg-bg2/40 hover:border-fn2/30 hover:bg-bg2 flex h-full min-h-14 w-full min-w-0 flex-col items-center gap-1 rounded-xl px-2 py-3 whitespace-normal transition-all sm:gap-1.5 sm:py-3.5'
                     >
-                      <span className='text-fn1 text-xs font-bold sm:text-sm'>{key}</span>
-                      <span className='text-fn2/70 w-full truncate text-[10px] font-medium tracking-tight'>{value.display}</span>
+                      <span className='type-button-sm text-fn1 font-semibold'>{key}</span>
+                      <span className='type-caption text-fn2/70 w-full truncate tracking-tight'>{value.display}</span>
                     </Button>
                   </motion.div>
                 </li>
