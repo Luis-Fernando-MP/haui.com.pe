@@ -18,10 +18,10 @@ const ProjectView: FC<Props> = ({ project }) => {
   const hasMdx = (project.mdxCode ?? '').trim().length > 0
 
   return (
-    <main className='relative w-full pb-24 md:pb-32'>
+    <main className='relative w-full overflow-x-hidden pb-24 md:pb-32'>
       <ProjectHero project={project} />
 
-      <div className='max-region:px-5 mx-auto flex w-full flex-col items-center gap-16 md:gap-20'>
+      <div className='max-region:px-5 mx-auto flex w-full min-w-0 flex-col items-center gap-12 md:gap-20'>
         {authors.length > 0 && <ProjectAuthors authors={authors} />}
         {images.length > 0 && <ProjectGallery id={project.id} title={project.title} images={images} />}
 

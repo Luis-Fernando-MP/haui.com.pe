@@ -45,7 +45,7 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: Math.min(index * 0.06, 0.24), ease }}
-      className='group/card border-bg3 bg-bg2 hover:border-bg3 hover:bg-bg2 relative h-full min-h-[280px] w-full overflow-hidden rounded-xl border-[1.5px] transition-colors duration-500'
+      className='group/card border-bg3 bg-bg2 hover:border-bg3 hover:bg-bg2 relative h-full min-h-[260px] w-full overflow-hidden rounded-xl border-[1.5px] transition-colors duration-500 sm:min-h-[280px]'
     >
       <ImageGallery
         src={banner}
@@ -69,8 +69,8 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
         className='from-bg1 via-bg1/50 pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t to-transparent'
       />
 
-      <div className='absolute top-4 right-4 left-4 flex items-center justify-between'>
-        <div className='flex items-center gap-2'>
+      <div className='absolute top-3 right-3 left-3 flex flex-wrap items-start justify-between gap-2 sm:top-4 sm:right-4 sm:left-4'>
+        <div className='flex min-w-0 flex-wrap items-center gap-1.5 sm:gap-2'>
           {website && (
             <Button href={website} target='_blank' rel='noopener noreferrer' size='sm' variant='secondary' onClick={stop}>
               <ExternalLinkIcon className='size-3.5' aria-hidden />
@@ -78,13 +78,13 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
             </Button>
           )}
           {readingMins != null && (
-            <span className='bg-bg2 text-fn1 flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-medium'>
+            <span className='bg-bg2 text-fn1 flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-medium'>
               <ClockIcon className='size-3' aria-hidden />
               {readingMins} min
             </span>
           )}
         </div>
-        <div className='flex gap-1'>
+        <div className='flex shrink-0 gap-1'>
           {github && (
             <IconBtn href={github} label='GitHub'>
               <GithubIcon className='size-4' />
@@ -103,28 +103,28 @@ const ProjectCard: FC<{ project: ProjectItem; index: number; featured?: boolean 
         </div>
       </div>
 
-      <div className='absolute inset-x-0 bottom-0 flex flex-col gap-2 p-5 sm:p-6'>
+      <div className='absolute inset-x-0 bottom-0 flex flex-col gap-2 p-4 sm:p-5 md:p-6'>
         {visibleTags.length > 0 && (
           <div className='flex flex-wrap gap-1.5'>
             {visibleTags.map(t => (
-              <span key={t} className='bg-bg2 text-fn1 rounded-full px-2.5 py-1 text-[10px] font-medium'>
+              <span key={t} className='bg-bg2 text-fn1 max-w-full truncate rounded-full px-2.5 py-1 text-[10px] font-medium'>
                 {t}
               </span>
             ))}
           </div>
         )}
 
-        <Link href={detailHref} className='focus-visible:ring-fnA/50 w-fit rounded-sm outline-none focus-visible:ring-2'>
+        <Link href={detailHref} className='focus-visible:ring-fnA/50 w-fit max-w-full rounded-sm outline-none focus-visible:ring-2'>
           <h3
             className={cn(
-              'text-fn1 hover:text-fnA leading-tight font-semibold tracking-tight transition-colors duration-300',
-              featured ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-lg sm:text-xl'
+              'text-fn1 hover:text-fnA text-balance break-words leading-tight font-semibold tracking-tight transition-colors duration-300',
+              featured ? 'text-xl sm:text-3xl lg:text-4xl' : 'text-base sm:text-xl'
             )}
           >
             {title}
           </h3>
         </Link>
-        {hasSummary && <p className='text-fn2 line-clamp-2 max-w-xl text-sm leading-relaxed'>{summary}</p>}
+        {hasSummary && <p className='text-fn2 line-clamp-2 max-w-xl text-sm leading-relaxed text-pretty'>{summary}</p>}
       </div>
     </motion.article>
   )

@@ -134,7 +134,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
 
   const content = (
     <>
-      {typeof children === 'string' ? <p className='text-md'>{children}</p> : children}
+      {typeof children === 'string' ? <span>{children}</span> : children}
       {Boolean(href) && showIconLink && (
         <ArrowUpRightIcon
           className='size-3.5 shrink-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:scale-110 group-hover:opacity-100 motion-reduce:transition-none'

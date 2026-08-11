@@ -124,12 +124,13 @@ const HeroGrainGradient: FC = () => {
   if (!enabledGradient || reduceMotion || colors.length === 0) return null
 
   const playing = canMountShader && isIntersecting && !paused
+  const maxPixelCount = isMobile ? 960 * 540 : MAX_PIXEL_COUNT
 
   return (
     <div
       ref={ref}
       aria-hidden
-      className={`pointer-events-none absolute top-0 left-0 -z-10 block h-[130vh] w-full overflow-hidden transition-opacity duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+      className={`pointer-events-none absolute top-0 left-0 -z-10 block h-[min(120dvh,900px)] w-full overflow-hidden transition-opacity duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:h-[130vh] ${
         visible ? 'opacity-100' : 'opacity-0'
       }`}
     >
@@ -157,33 +158,23 @@ const HeroGrainGradient: FC = () => {
             colors={colors}
             colorBack='#00000000'
             colorBloom='#00000000'
-            // bloom={1}
-            // intensity={0.5}
-            // density={0.02}
-            // spotty={1}
-            // midSize={0.1}
-            // midIntensity={1}
-            // speed={playing ? 1 : 0}
-            // offsetY={-0.42}
-            // minPixelRatio={1}
-
             bloom={1}
-            intensity={0.05}
-            density={3}
+            intensity={isMobile ? 0.04 : 0.05}
+            density={isMobile ? 2.4 : 3}
             spotty={1}
-            midSize={0.2}
+            midSize={isMobile ? 0.16 : 0.2}
             midIntensity={0.95}
-            speed={playing ? 1.3 : 0}
-            offsetY={-0.56}
-            scale={1.05}
-            minPixelRatio={20}
-            maxPixelCount={MAX_PIXEL_COUNT}
+            speed={playing ? (isMobile ? 1 : 1.3) : 0}
+            offsetY={isMobile ? -0.5 : -0.56}
+            scale={isMobile ? 1 : 1.05}
+            minPixelRatio={isMobile ? 1 : 20}
+            maxPixelCount={maxPixelCount}
             webGlContextAttributes={WEBGL_CONTEXT}
           />
         </div>
       )}
 
-      <div className='from-bg1 via-bg1/50 pointer-events-none absolute inset-x-0 bottom-0 h-[28%] bg-gradient-to-t from-25% to-transparent select-none' />
+      <div className='from-bg1 via-bg1/50 pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-25% to-transparent select-none sm:h-[28%]' />
     </div>
   )
 }
