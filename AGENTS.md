@@ -97,15 +97,20 @@ Keep the modern floating chrome established in `common/components/navbar`:
 
 ## Repo skills
 
-- `coding-preferences` — style and architecture
-- `shadcn-ui` + `web-design-guidelines` — primitives
-- `vercel-react-best-practices` — performance
-- `vercel-composition-patterns` — component APIs
-- `tailwind-design-system` — v4 tokens
-- `impeccable` — design craft commands (`audit`, `polish`, `layout`, …). Requires `PRODUCT.md` + `DESIGN.md`
-- `haui-fix-ui` — audit → layout/typeset/polish (+ targeted fixes) → re-audit delta for a given surface
+Canonical set under [`.agents/skills/`](.agents/skills/) (see [README — Agent skills](README.md#agent-skills)):
 
-Update Impeccable skills: `npx impeccable update` (or `pnpm impeccable:update`). Detector: `pnpm impeccable:detect`.
+| Skill | Role |
+|-------|------|
+| `coding-preferences` | Architecture & code style (authoritative) |
+| `impeccable` | Design craft commands (`audit`, `polish`, `layout`, …) |
+| `haui-fix-ui` | Daily: **audit → extras → polish → extras → audit**; light extras; no re-cycle |
+| `haui-hard-ui` | Ship: same spine + full extras/vercel; max 1 re-cycle if After weak |
+| `vercel-react-best-practices` | React/Next performance (hard extras post) |
+| `vercel-composition-patterns` | Component composition APIs (hard extras) |
+
+Update Impeccable: `pnpm impeccable:update` · Detector: `pnpm impeccable:detect`
+
+Removed as redundant with Impeccable / design system: `web-design-guidelines`, `tailwind-design-system`, `shadcn-ui`, `find-skills`.
 
 ## How to add
 
