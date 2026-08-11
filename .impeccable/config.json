@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [],
+    "designSystem": {
+      "enabled": true
+    }
+  },
+  "hook": {
+    "consent": "accepted"
+  },
+  "updateCheck": true
+}

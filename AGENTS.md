@@ -102,6 +102,10 @@ Keep the modern floating chrome established in `common/components/navbar`:
 - `vercel-react-best-practices` — performance
 - `vercel-composition-patterns` — component APIs
 - `tailwind-design-system` — v4 tokens
+- `impeccable` — design craft commands (`audit`, `polish`, `layout`, …). Requires `PRODUCT.md` + `DESIGN.md`
+- `haui-fix-ui` — audit → layout/typeset/polish (+ targeted fixes) → re-audit delta for a given surface
+
+Update Impeccable skills: `npx impeccable update` (or `pnpm impeccable:update`). Detector: `pnpm impeccable:detect`.
 
 ## How to add
 

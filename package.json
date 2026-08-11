@@ -13,7 +13,10 @@
     "format:fix": "prettier --write --list-different .",
     "notion:generate": "ts-node --project ./notion.tsconfig.json -r tsconfig-paths/register ./notion/index.ts",
     "notion:sync": "pnpm notion:generate -- --smart",
-    "build:content": "contentlayer2 build"
+    "build:content": "contentlayer2 build",
+    "impeccable:detect": "npx --yes impeccable detect src",
+    "impeccable:check": "npx --yes impeccable check",
+    "impeccable:update": "npx --yes impeccable update"
   },
   "dependencies": {
     "@formkit/auto-animate": "0.10.0",

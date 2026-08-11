@@ -44,3 +44,6 @@ next-env.d.ts
 
 # Contentlayer
 .contentlayer
+
+# Impeccable local overrides
+.impeccable/config.local.json
