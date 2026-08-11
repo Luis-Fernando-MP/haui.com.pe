@@ -1,5 +1,7 @@
 Layout turns product priority into reading order, grouping, rhythm, and usable space. Diagnose the structural problem before moving boxes.
 
+**haui.com.pe:** Prefer `Section`, region utilities, and shared chrome from `src/common/components` ([haui.md](haui.md)). Do not invent new section scaffolds when `Title` + `Section` fit.
+
 ---
 
 ## Visitor mode

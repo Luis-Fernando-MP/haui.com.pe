@@ -28,7 +28,7 @@ const Section: FC<Props> = ({ children, title, subtitle, as = 'section', classNa
       {(title || subtitle) && (
         <header className='flex flex-col gap-2.5'>
           {title && <div>{title}</div>}
-          {subtitle && <p className='text-fn2 font-mono'>{subtitle}</p>}
+          {subtitle && <p className='type-lead max-w-prose'>{subtitle}</p>}
         </header>
       )}
       {children}

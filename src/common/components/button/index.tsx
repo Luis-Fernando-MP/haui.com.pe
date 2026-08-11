@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { type ButtonHTMLAttributes, type MouseEventHandler, type ReactNode, forwardRef } from 'react'
 
 const buttonVariants = cva(
-  'rounded-xl text-sm font-medium whitespace-nowrap outline-none transition-[background-color,border-color,opacity,color,text-decoration-color] duration-200 focus-visible:ring-2 focus-visible:ring-fn2/50 focus-visible:ring-offset-2 focus-visible:ring-offset-bg1 disabled:pointer-events-none disabled:opacity-50',
+  'type-button rounded-xl whitespace-nowrap outline-none transition-[background-color,border-color,opacity,color,text-decoration-color] duration-200 focus-visible:ring-2 focus-visible:ring-fn2/50 focus-visible:ring-offset-2 focus-visible:ring-offset-bg1 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
@@ -14,12 +14,12 @@ const buttonVariants = cva(
         destructive: 'bg-semantic-danger text-bg1 hover:bg-semantic-danger/90',
         outline: 'border-bg3 bg-bg1 text-fn1 border hover:border-fn2/45 hover:bg-bg2',
         ghost: 'text-fn1 hover:bg-bg2',
-        link: 'text-fn1 min-h-0 h-auto w-fit rounded-none px-0 underline-offset-4 hover:underline'
+        link: 'type-link min-h-0 h-auto w-fit rounded-none px-0'
       },
       size: {
-        sm: 'min-h-7 h-7 w-fit px-2.5 text-xs gap-1',
-        md: 'min-h-8 h-8 w-fit px-3 text-sm gap-1.5',
-        lg: 'min-h-9 h-9 w-fit px-4 text-sm gap-1.5',
+        sm: 'type-button-sm min-h-7 h-7 w-fit px-2.5 gap-1',
+        md: 'min-h-8 h-8 w-fit px-3 gap-1.5',
+        lg: 'min-h-9 h-9 w-fit px-4 gap-1.5',
         icon: 'size-8 shrink-0 p-0'
       },
       styles: {

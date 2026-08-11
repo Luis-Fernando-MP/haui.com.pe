@@ -1,5 +1,7 @@
 > **Additional context needed**: quality bar and shipping constraints.
 
+**haui.com.pe:** Read [haui.md](haui.md) first. Reuse `src/common/components`; map ad-hoc type to `.type-*` / `DESIGN.md` roles; colors only from `themes.css`. Ship **clean** TSX: no comments, no duplication, semantic headings, correct weights, boolean `&&` only for conditional UI, optimize images/client cost.
+
 Polish is refinement, never concealed redesign. Preserve the incumbent visual world, content, behavior, and everything outside scope. If the concept itself is wrong, say so and recommend redesign or `bolder` instead of smuggling in a replacement.
 
 A detector result is defect evidence, not proof of quality. Inspect the rendered experience and real interaction path.
@@ -29,7 +31,7 @@ Use the feature yourself at representative desktop and mobile sizes. Determine:
 If a prior critique exists, use it as one input:
 
 ```bash
-node .cursor/skills/impeccable/scripts/critique-storage.mjs latest "<resolved target>"
+node .agents/skills/impeccable/scripts/critique-storage.mjs latest "<resolved target>"
 ```
 
 Exit 0 returns the latest snapshot; incorporate relevant P0/P1 findings and name the snapshot read. Exit 2 means none exists. Perform an independent pass either way.

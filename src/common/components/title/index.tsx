@@ -22,7 +22,7 @@ const Title: FC<Props> = ({ className, children, as = 'h2', ...props }) => {
 
   return (
     <Tag
-      className={cn('text-5xl leading-[1.1] font-bold tracking-tight text-pretty max-sm:text-4xl md:text-6xl', className)}
+      className={cn('type-display', className)}
       {...props}
     >
       {children}

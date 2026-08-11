@@ -2,6 +2,8 @@
 
 Load this after the direction is settled, and build without announcing the checklist. A pinned brief or the committed visual world overrides anything here; your own habit does not. When the design hook is active it already enforces the mechanical checks below as you edit: act on its findings instead of re-auditing each rule.
 
+**haui.com.pe:** [haui.md](haui.md) + `DESIGN.md` pin the multi-theme portfolio world. Reuse `src/common/components`. Intentional mono section labels (`.type-label`) are brand, not banned kickers. Prefer type roles over arbitrary sizes. Code: no noise comments, no dupes, semantic HTML + weight roles, boolean `&&` renders (never ternary show/hide), lean/performant TSX.
+
 ## Verify
 
 Each of these is a check on the built result, not an intention. Run them together in the batched inspection rounds, not as separate screenshot trips; the checks share one render.
@@ -38,5 +40,11 @@ Surface habits:
 - A system display face (Impact, Arial Black, the platform sans) as the display voice of an own-world page. Source and self-host a face whose character matches the approved lettering; the closest installed font is a failure, not a fallback.
 - Unicode glyphs or emoji standing in for an icon system. Icons are drawn, from a real library or authored SVG, in one consistent stroke and weight.
 - Light or dark picked by category. Pick it from the use scene: who, where, under what ambient light.
+
+- Tracking stops at -0.04em. -0.02 to -0.03em usually reads better.
+- Declare elevation once, border or shadow. A 1px border under a wide soft shadow is the ghost card. Card radii stay at 12–16px; pills are for small controls.
+- Real illustration or none. Sketch-style SVG scenes, `loose-sketch` / `doodle` class names, and `feTurbulence` grain read as amateur. This bans SVG imitating pictures, never SVG doing geometry: crisp vector shapes, diagrams, animated linework, and shader-driven effects remain first-class media. A shaded, perspectived, or figure-bearing illustration is a picture even in line-art style; geometry means shapes a session can specify exactly.
+- Backgrounds are surfaces, textured only from the subject's world. `repeating-linear-gradient` stripes and two-axis grid overlays need an actual canvas, map, blueprint, or measuring tool under them.
+- Claims and configuration come from supplied truth; label illustrative values honestly. Naming a concept and then ironizing it is not a claim.
 
 The floor holds the mechanics; it never picks the direction. With every check green, spend the page on the committed world, and when torn between refined and committed, commit.

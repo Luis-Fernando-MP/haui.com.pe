@@ -1,5 +1,7 @@
 Typography carries information, hierarchy, and voice. Improve it inside the established visual world; do not replace the identity unless the user asked to.
 
+**haui.com.pe:** Read [haui.md](haui.md) first. Authoritative scale is `@theme` + `.type-*` in `src/app/globals.css` (roles: display, title, heading, body, label, caption, button, link). Prefer `src/common/components/title`, `button`, `section`, `chip` over one-off type stacks. Map arbitrary `text-[Npx]` to the nearest role when editing.
+
 ---
 
 ## Visitor mode
@@ -24,7 +26,7 @@ When a sub-agent tool is available and permitted, run these independently; other
 2. **Mechanical scan:** run:
 
 ```bash
-node .cursor/skills/impeccable/scripts/detect.mjs --json --scope type [target files or dirs]
+node .agents/skills/impeccable/scripts/detect.mjs --json --scope type [target files or dirs]
 ```
 
 Also inspect dynamic or arbitrary font values the detector cannot interpret. Synthesize both assessments before editing, noting what each caught alone. A clean scan is a floor, not proof of good typography.
@@ -67,7 +69,7 @@ Do not make type decorative at the expense of comprehension, or introduce a seco
 
 Answer each item with rendered or source evidence, then rerun the scan. Do not substitute a bare “yes” for verification.
 
-When the hierarchy holds, hand off to `/impeccable polish`.
+When the hierarchy holds, hand off to `$impeccable polish`.
 
 ## Live-mode signature params
 

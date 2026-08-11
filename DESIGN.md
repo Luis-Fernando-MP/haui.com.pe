@@ -21,25 +21,66 @@ colors:
   light-gr-via: "#f1a208"
   light-gr-to: "#457b9d"
 typography:
-  display:
-    fontFamily: "var(--font-flowers), cursive"
-    fontWeight: 400
-    lineHeight: 0.95
-    letterSpacing: "tight"
-  heading:
-    fontFamily: "var(--font-geist), system-ui, sans-serif"
-    fontWeight: 700
-    lineHeight: 0.98
-    letterSpacing: "tight"
-  body:
-    fontFamily: "var(--font-geist), system-ui, sans-serif"
-    fontSize: "0.875rem–1rem"
-    fontWeight: 400
-    lineHeight: 1.6
-  mono:
-    fontFamily: "var(--font-mono), ui-monospace, monospace"
-    fontSize: "0.625rem–0.75rem"
-    letterSpacing: "0.12em–0.18em"
+  root: "14px html base"
+  families:
+    ui: "font-geist (Geist)"
+    displayFlourish: "font-flowers (Send Flowers) — brand accents only"
+    meta: "font-mono (Geist Mono)"
+  roles:
+    display:
+      class: "type-display / text-display"
+      size: "clamp(2rem, 5.5vw, 3.5rem)"
+      weight: 700
+      lineHeight: 0.98
+      letterSpacing: "-0.02em"
+    display-sm:
+      class: "type-display-sm / text-display-sm"
+      size: "clamp(1.75rem, 4vw, 2.75rem)"
+      weight: 700
+    title:
+      class: "type-title / text-title"
+      size: "clamp(1.5rem, 3vw, 2.25rem)"
+      weight: 700
+    heading:
+      class: "type-heading / text-heading"
+      size: "1.25rem"
+      weight: 600
+    subheading:
+      class: "type-subheading / text-subheading"
+      size: "1.125rem"
+      weight: 600
+    body:
+      class: "type-body / text-body"
+      size: "1rem"
+      weight: 400
+      lineHeight: 1.6
+    body-sm:
+      class: "type-body-sm / type-lead"
+      size: "0.875rem"
+      weight: 400
+      color: "fn2 for support/lead"
+    label:
+      class: "type-label"
+      size: "0.6875rem"
+      weight: 500
+      family: mono
+      tracking: "0.14em uppercase"
+    caption:
+      class: "type-caption"
+      size: "0.625rem"
+      weight: 500
+    button:
+      class: "type-button"
+      size: "0.875rem"
+      weight: 500
+    button-sm:
+      class: "type-button-sm"
+      size: "0.75rem"
+      weight: 500
+    link:
+      class: "type-link / text-link"
+      size: "0.875rem"
+      weight: 500
 rounded:
   md: "0.75rem"
   lg: "1rem"
@@ -56,10 +97,11 @@ components:
     backgroundColor: "{colors.fn1}"
     textColor: "{colors.bg1}"
     rounded: "{rounded.full}"
+    type: "type-button"
   button-outline:
     backgroundColor: "transparent"
     textColor: "{colors.fn1}"
-    rounded: "{rounded.full}"
+    type: "type-button"
   card-surface:
     backgroundColor: "{colors.bg1}"
     textColor: "{colors.fn1}"
@@ -69,6 +111,8 @@ components:
     textColor: "{colors.fn1}"
     rounded: "{rounded.2xl}"
     height: "3.5rem"
+  title-display:
+    class: "type-display via Title component"
 ---
 
 # Design System — haui
@@ -78,6 +122,17 @@ components:
 Craft-first portfolio UI in a **multi-theme token system**. Surfaces are solid theme greys (`bg1`/`bg2`/`bg3`), readable text (`fn1`/`fn2`), and restrained brand energy via the **gradient triad** (`gr-from` / `gr-via` / `gr-to`)—usually as borders or `.gradient` accents, not large neon fills. Experience mode: portfolio artifacts lead; chrome stays quiet.
 
 Themes: `light`, `juli`, `rebecca`, `dark`, `sam`, `andrea`, `shei`. All share the same token names; values differ per theme. Never replace the system with Inter/zinc SaaS purple or cream+serif+terracotta AI defaults.
+
+**Sources of truth**
+
+| Concern | Path |
+|---------|------|
+| Theme color values | `src/common/style/themes/themes.css` |
+| Tailwind theme + type scale | `src/app/globals.css` (`@theme`, `.type-*`) |
+| PostCSS | `postcss.config.mjs` |
+| Reusable UI | `src/common/components/*` |
+| Agent rules | `AGENTS.md` |
+| Impeccable pin | `.agents/skills/impeccable/reference/haui.md` |
 
 ## Colors
 
@@ -97,16 +152,41 @@ Prefer tokens over hex. Ad-hoc hex is a defect unless it’s asset-intrinsic.
 
 ## Typography
 
-- **Body / UI**: Geist (`font-geist`)
-- **Display flourish**: Send Flowers (`font-flowers`) for brand moments only
-- **Meta / labels**: Geist Mono, small uppercase tracking
-- Scale: clamp headlines; body `text-sm`–`text-base`; mono labels `text-[10px]`–`text-[11px]`
-- Avoid stacking multiple competing display fonts
+### Families
+
+| Family | Tailwind | Use |
+|--------|----------|-----|
+| Geist | `font-geist` | UI, body, headings |
+| Geist Mono | `font-mono` | Labels, metadata, chrome meta |
+| Send Flowers | `font-flowers` / `.type-flourish` | Brand flourish word only |
+
+### Roles (size + weight)
+
+Implement with **role utilities** (`text-*` tokens and `.type-*`). Do not invent `text-[13px]` when a role exists.
+
+| Role | Token size | Weight | Leading | Tracking | Class |
+|------|------------|--------|---------|----------|-------|
+| **Display** | `clamp(2rem, 5.5vw, 3.5rem)` | 700 | 0.98 | -0.02em | `.type-display` |
+| **Display sm** | `clamp(1.75rem, 4vw, 2.75rem)` | 700 | 1.0 | -0.02em | `.type-display-sm` |
+| **Title** | `clamp(1.5rem, 3vw, 2.25rem)` | 700 | 1.05 | -0.015em | `.type-title` |
+| **Heading** | 1.25rem | 600 | 1.2 | -0.01em | `.type-heading` |
+| **Subheading** | 1.125rem | 600 | 1.3 | -0.005em | `.type-subheading` |
+| **Body** | 1rem | 400 | 1.6 | 0 | `.type-body` |
+| **Body sm / lead** | 0.875rem | 400 | 1.55–relaxed | 0 | `.type-body-sm` / `.type-lead` |
+| **Label** | 0.6875rem mono | 500 | 1.25 | 0.14em + uppercase | `.type-label` |
+| **Caption** | 0.625rem | 500 | 1.3 | 0.02em | `.type-caption` |
+| **Button** | 0.875rem | 500 | 1 | 0 | `.type-button` |
+| **Button sm** | 0.75rem | 500 | 1 | 0 | `.type-button-sm` |
+| **Link** | 0.875rem | 500 | 1.5 | 0 | `.type-link` |
+
+HTML defaults (`h1`…`p`, `a`) map to the same scale in `@layer base`.
+
+**Intentional labels:** mono uppercase `.type-label` on section chrome is brand, not decorative noise.
 
 ## Layout
 
 - Content width: `.region` + `max-region:px-5` on viewports
-- Sections: one job, one headline, short supporting line
+- Sections: one job, one headline, short supporting line (`Section` + `Title` + `.type-lead`)
 - Grid: 1 → 2 → 3 cols at sm/lg; gap usually `gap-3`
 - Cards: only for interaction containers; hero never a collage of cards
 - Floating chrome: solid `bg-bg1`, no backdrop-blur on nav shell
@@ -120,26 +200,39 @@ Depth from border (`border-bg3/…`) and soft color steps, not multi-layer glows
 - Rest chrome: `rounded-2xl`
 - Docked / pill UI: `rounded-full`
 - Media: `rounded-xl` / `rounded-2xl`
-- Optical density over oversized radii stacks
+- Buttons: `rounded-xl` (pill OK for chips/nav)
 
-## Components
+## Standard components (reuse)
 
-- **Button** (`common/components/button`): variants outline / filled; `status` pairs semantic fill + text tokens; can be `href` → Link
-- **Popup**: compound Header / Content / Footer (not Headless UI menus)
-- **Navbar**: scroll-dock to measured fit width; active link `layoutId` highlight; mono labels
-- **Image**: `@common/components/image` → unpic/nextjs optimizer; use `layout`, `objectFit`, `sizes` correctly
-- **Theme switch**: `ThemeTransition` black box; consumers only `setTheme`
+| Component | Import | Notes |
+|-----------|--------|-------|
+| Button | `@common/components/button` | variants + size + status + `href` |
+| Title | `@common/components/title` | display titles |
+| Section | `@common/components/section` | region shell |
+| Card / CardTabs | `card`, `card-tabs` | interactive only |
+| Popup | `popup` | compound floating UI |
+| Dialog / Popover | `dialog`, `popover` | |
+| Navbar | `navbar` | dock chrome |
+| Footer | `footer` | |
+| Image | `image` | unpic/nextjs only path for optimized media |
+| FocusGallery | `focus-gallery` | full-screen media |
+| Chip | `chip` | tags |
+| Input / Select | `input`, `select` | |
+| ThemeChanger / ThemeTransition | `theme-changer`, `theme-transition` | setTheme only |
+| MDX | `mdx` | content |
 
 ## Do's and Don'ts
 
 **Do**
 - Use haui tokens and multi-theme contrast in every polished change
+- Reuse components above; extend in-place when needed
+- Apply type **roles** (`.type-*` / `text-display`…) consistently
 - Keep solid chrome; gradient on border accents
 - Respect `prefers-reduced-motion` / `motion-reduce:`
-- Co-locate presentation under `src/presentation/{route}`
 
 **Don't**
-- Introduce Inter / purple-indigo SaaS kits / cream terracotta blog skins as a new “default”
-- Reintroduce `next-view-transitions`, Headless UI floats after migration, or glassmorphism as the default surface
-- Prop-drill store data that children can select
-- Ship emoji decoration clusters or stat-strip hero clutter
+- Parallel kits (new Button, raw hex themes, Inter/zinc defaults)
+- Ad-hoc font sizes when a role exists
+- Reintroduce `next-view-transitions`, Headless UI floats, glassmorphism shell
+- Prop-drill store data children can select
+- Emoji decoration clusters or stat-strip hero clutter

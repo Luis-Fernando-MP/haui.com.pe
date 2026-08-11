@@ -4,7 +4,9 @@ Personal portfolio (Next.js 16 App Router, React 19, Tailwind v4). Two real rout
 
 ## Coding style
 
-Always apply [`.agents/skills/coding-preferences/SKILL.md`](.agents/skills/coding-preferences/SKILL.md) (author: **jujufer**). That skill wins over others on style/architecture conflicts: Zustand local-first, Context micro-only, co-location, native browser APIs, early returns with no `else`, no micro-types/trivial utils, boolean `&&` rendering, proper JSDoc (`@param`, `@default`, `@example`) only on reusable components — never pseudo fields like `descripcion:` / `propiedades:`.
+Always apply [`.agents/skills/coding-preferences/SKILL.md`](.agents/skills/coding-preferences/SKILL.md) (author: **jujufer**). That skill wins over others on style/architecture conflicts: Zustand local-first, Context micro-only, co-location, native browser APIs, early returns with no `else`, no micro-types/trivial utils, **boolean `&&` rendering (never ternary for show/hide)**, no narrative comments (JSDoc only on true reusables), proper JSDoc (`@param`, `@default`, `@example`) only on reusable components — never pseudo fields like `descripcion:` / `propiedades:`.
+
+Impeccable / fix / hard must also follow [`.agents/skills/impeccable/reference/haui.md`](.agents/skills/impeccable/reference/haui.md): standard components, type roles + weights, semantic HTML, no dead-code comments, no duplicated markup, performance-aware media and client boundaries.
 
 ## Stack
 
@@ -49,6 +51,52 @@ Children that can read the store do so with fine-grained selectors; no prop-dril
 - Extend in-place only when it adds value (e.g. Button `href` → `Link`)
 - Images via `@common/components/image` (`@unpic`)
 - Co-location: `components/`, `hooks/`, `store/` only when needed
+
+### Standard library (`src/common/components`) — reuse first
+
+Agents (Impeccable, fix/hard) **must invent nothing parallel**. Import from here:
+
+| Component | Path | Use |
+|-----------|------|-----|
+| `Button` | `button/` | CTAs, outline/ghost/link, `status`, `href`→Link |
+| `Title` | `title/` | Display titles (`.type-display`) |
+| `Section` | `section/` | Region shell + title/subtitle |
+| `Card` / `CardTabs` | `card/`, `card-tabs/` | Interactive cards |
+| `Popup` | `popup/` | Floating compound UI (not Headless) |
+| `Dialog` / `Popover` | `dialog/`, `popover/` | Modal / popover |
+| `Navbar` | `navbar/` | Floating dock chrome |
+| `Footer` / `FooterGradient` | `footer/`, `footer-gradient/` | Chrome |
+| `Image` | `image/` | Only media path (unpic → `/_next/image`) |
+| `FocusGallery` | `focus-gallery/` | Full-screen gallery |
+| `Chip` | `chip/` | Tags / filters |
+| `Input` / `Select` | `input/`, `select/` | Forms |
+| `ThemeChanger` / `ThemeTransition` | `theme-changer/`, `theme-transition/` | Theme only via these |
+| `MDX` | `mdx/` | Content |
+
+Ban: new primitive button/dialogkits, raw `<img>` when Image applies, Headless menus, ad-hoc hex theme surfaces.
+
+## Typography (tokens + Tailwind)
+
+**Defined in** `src/app/globals.css` (`@theme` size tokens + `.type-*` role classes).  
+**Colors/themes** remain in `src/common/style/themes/themes.css`. PostCSS: `postcss.config.mjs`.
+
+| Role | Class / utility | Size | Weight | Job |
+|------|-----------------|------|--------|-----|
+| Display | `.type-display` / `text-display` | `clamp(2rem, 5.5vw, 3.5rem)` | 700 | Heroes / `<Title>` |
+| Display sm | `.type-display-sm` | `clamp(1.75rem, 4vw, 2.75rem)` | 700 | Featured cards |
+| Title | `.type-title` | `clamp(1.5rem, 3vw, 2.25rem)` | 700 | Mid titles |
+| Heading | `.type-heading` | `1.25rem` | 600 | h3 / card titles |
+| Subheading | `.type-subheading` | `1.125rem` | 600 | h4 |
+| Body | `.type-body` / `text-body` | `1rem` | 400 | Paragraphs |
+| Lead / body sm | `.type-lead` / `.type-body-sm` | `0.875rem` | 400 | Support (`fn2`) |
+| Label | `.type-label` | `0.6875rem` mono | 500 | Uppercase meta |
+| Caption | `.type-caption` | `0.625rem` | 500 | Chips / dense meta |
+| Button | `.type-button` (`sm` → `.type-button-sm`) | `0.875` / `0.75rem` | 500 | Controls |
+| Link | `.type-link` | `0.875rem` | 500 | Links |
+
+- Prefer roles over magic `text-[11px]` / `text-5xl` one-offs when touching type.
+- Families: `font-geist` (UI), `font-mono` (labels), `font-flowers` / `.type-flourish` (brand word only).
+- Full detail: `DESIGN.md` + `.agents/skills/impeccable/reference/haui.md`
 
 ## Themes and shadcn
 

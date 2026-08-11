@@ -22,7 +22,7 @@ interface Props {
  */
 const Chip: FC<Props> = ({ children, className, active = false, onClick }) => {
   const styles = cn(
-    'inline-flex w-fit items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium tracking-wide',
+    'type-caption inline-flex w-fit items-center gap-1.5 rounded-full border px-3 py-1.5 tracking-wide',
     'transition-[background-color,border-color,color,box-shadow,transform] duration-200',
     active && 'border-fn1 bg-fn1 text-bg1 shadow-[0_1px_0_rgb(0_0_0_/_.06)]',
     !active && 'border-bg3/70 bg-bg1/60 text-fn2',
