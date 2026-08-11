@@ -108,7 +108,17 @@ const MyDevStack: FC = () => {
                         className='bg-bg2 border-bg3 flex size-8 shrink-0 items-center justify-center rounded-lg border transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none'
                         style={{ boxShadow: `inset 0 0 0 1px ${tech.color}33` }}
                       >
-                        <Image className='contain' src={tech.icon} width={20} height={20} alt='' background='/fallback.webp' />
+                        <Image
+                          className='size-5 object-contain'
+                          src={tech.icon}
+                          width={20}
+                          height={20}
+                          layout='fixed'
+                          unstyled
+                          objectFit='contain'
+                          alt=''
+                          background='/fallback.webp'
+                        />
                       </div>
 
                       <div className='flex min-w-0 flex-col'>

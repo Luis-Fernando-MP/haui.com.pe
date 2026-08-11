@@ -41,6 +41,9 @@ const JourneyComponent: FC<Props> = ({ journey }) => {
                 className='border-bg3/50 size-16 rounded-xl border object-cover transition-[transform,opacity] duration-300 hover:scale-[1.03] hover:opacity-90'
                 width={64}
                 height={64}
+                layout='fixed'
+                unstyled
+                objectFit='cover'
                 alt={image.caption ?? `${title} — imagen ${i + 1}`}
                 groupId={`journey-${title}`}
                 index={i}

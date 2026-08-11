@@ -4,7 +4,7 @@ import Link from 'next/link'
 import type { ComponentProps } from 'react'
 
 const MdxImage = (props: ComponentProps<typeof Image>) => (
-  <Image width={1500} height={1125} layout='constrained' alt='' {...props} />
+  <Image width={1500} height={1125} layout='constrained' sizes='(max-width: 1200px) 100vw, 1100px' alt='' {...props} />
 )
 
 const MdxAnchor = ({ href, children, ...props }: ComponentProps<'a'>) => {

@@ -16,16 +16,18 @@ const Achievement: FC<Achievements> = props => {
   const visibleTechs = technologies.filter(t => t !== '*').slice(0, 3)
 
   const handleOpen = () => {
-    const images = [
-      {
-        src: path,
-        caption: `<p>${name}</p>`,
-        action: actionLink,
-        actionText: 'Consultar información'
-      },
-      ...(AdditionalImages?.map(src => ({ src })) ?? [])
-    ]
-    open(images, 0)
+    open(
+      [
+        {
+          src: path,
+          caption: `<p>${name}</p>`,
+          action: actionLink,
+          actionText: 'Consultar información'
+        },
+        ...(AdditionalImages?.map(src => ({ src })) ?? [])
+      ],
+      0
+    )
   }
 
   return (
@@ -34,7 +36,7 @@ const Achievement: FC<Achievements> = props => {
       onClick={handleOpen}
       className={cn(
         'group border-bg3/70 bg-bg1 relative flex h-full w-full flex-col overflow-hidden rounded-2xl border text-left',
-        'transition-[border-color,background-color] duration-300 outline-none motion-reduce:transition-none',
+        'transition-[border-color,background-color] duration-200 outline-none motion-reduce:transition-none',
         'hover:border-fn2/30 hover:bg-bg2/30',
         'focus-visible:ring-fn2/40 focus-visible:ring-offset-bg1 focus-visible:ring-2 focus-visible:ring-offset-2'
       )}
@@ -45,17 +47,22 @@ const Achievement: FC<Achievements> = props => {
         style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
       />
 
-      <div className='relative aspect-[16/10] w-full overflow-hidden'>
+      <div className='relative aspect-[16/10] w-full overflow-hidden contain-paint'>
         <Image
           className={cn(
             'absolute inset-0 size-full object-cover',
-            'origin-center transform-gpu transition-transform duration-500 ease-out will-change-transform',
-            'group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100'
+            'transition-transform duration-300 ease-out motion-reduce:transition-none',
+            'group-hover:scale-[1.03] motion-reduce:group-hover:scale-100'
           )}
           src={path}
           width={480}
           height={300}
+          sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+          layout='constrained'
+          unstyled
           alt=''
+          loading='lazy'
+          decoding='async'
           background='/fallback.webp'
         />
 
@@ -64,12 +71,12 @@ const Achievement: FC<Achievements> = props => {
           className='pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-1/3 bg-gradient-to-t from-black/25 to-transparent'
         />
 
-        <span className='bg-bg1/90 border-bg3 text-fn2 absolute top-3 left-3 z-[2] inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] tracking-wide backdrop-blur-sm'>
+        <span className='bg-bg1/95 border-bg3 text-fn2 absolute top-3 left-3 z-[2] inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] tracking-wide'>
           <TypeIcon className='size-3' aria-hidden />
           {achievementType}
         </span>
 
-        <span className='bg-bg1/90 border-bg3 text-fn1 absolute top-3 right-3 z-[2] inline-flex size-7 items-center justify-center rounded-full border opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100'>
+        <span className='bg-bg1/95 border-bg3 text-fn1 absolute top-3 right-3 z-[2] inline-flex size-7 items-center justify-center rounded-full border opacity-0 transition-opacity duration-200 group-hover:opacity-100 motion-reduce:transition-none'>
           <ArrowUpRightIcon className='size-3.5' aria-hidden />
         </span>
       </div>

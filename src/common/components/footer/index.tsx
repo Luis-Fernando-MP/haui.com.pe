@@ -18,7 +18,16 @@ const Footer: FC = () => {
           <div className='max-region:items-center flex flex-col gap-4'>
             <Link href='/' className='inline-flex w-fit items-center gap-2.5' aria-label={`${INFO.devShortName} — Inicio`}>
               <div className='bg-logo-bg flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-lg p-1'>
-                <Image src='/logo.webp' alt='' width={24} height={24} className='size-full object-contain' />
+                <Image
+                  src='/logo.webp'
+                  alt=''
+                  width={24}
+                  height={24}
+                  layout='fixed'
+                  unstyled
+                  objectFit='contain'
+                  className='size-full object-contain'
+                />
               </div>
               <h4 className='text-gradient text-2xl font-bold tracking-tight'>{INFO.devShortName}</h4>
             </Link>

@@ -5,12 +5,19 @@ import Image from '@common/components/image'
 import { cn } from '@common/core/cn'
 import { ChevronLeftIcon, ChevronRightIcon, XIcon, ZoomInIcon, ZoomOutIcon } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
-import { useEffect, useState } from 'react'
+import { useEffect, useEffectEvent, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import { useFocusGallery } from './useFocusGallery'
 
 const ease = [0.22, 1, 0.36, 1] as const
+const VIEW_W = 1600
+const VIEW_H = 1200
+const OPT_W = 1920
+const OPT_Q = 75
+
+const optimizedUrl = (src: string, width = OPT_W) =>
+  `/_next/image?url=${encodeURIComponent(src)}&w=${width}&q=${OPT_Q}`
 
 const FocusGalleryComponent = () => {
   const {
@@ -40,17 +47,57 @@ const FocusGalleryComponent = () => {
     btnCloseRef
   } = useFocusGallery()
 
-  const [isLoaded, setIsLoaded] = useState(false)
+  const readySrcs = useRef(new Set<string>())
+  const [, bumpReady] = useState(0)
+  const [warmSiblings, setWarmSiblings] = useState(false)
+
+  const markReady = useEffectEvent((src: string) => {
+    if (readySrcs.current.has(src)) return
+    readySrcs.current.add(src)
+    bumpReady(n => n + 1)
+    if (imageGallery.length > 1) setWarmSiblings(true)
+  })
 
   useEffect(() => {
-    setIsLoaded(false)
-  }, [activeImage?.src])
+    if (!isModalOpen) {
+      setWarmSiblings(false)
+      return
+    }
+
+    const node = mainImageRef.current
+    if (activeImage && node?.complete && node.naturalWidth > 0) {
+      markReady(activeImage.src)
+    }
+  }, [isModalOpen, activeImage?.src, currentImageIndex, mainImageRef])
+
+  useEffect(() => {
+    if (!isModalOpen || !warmSiblings || imageGallery.length < 2) return
+
+    for (let i = 0; i < imageGallery.length; i++) {
+      if (i === currentImageIndex) continue
+      const src = imageGallery[i]?.src
+      if (!src || readySrcs.current.has(src)) continue
+
+      const img = new window.Image()
+      img.decoding = 'async'
+      img.fetchPriority = 'low'
+      img.onload = () => {
+        if (!readySrcs.current.has(src)) {
+          readySrcs.current.add(src)
+          bumpReady(n => n + 1)
+        }
+      }
+      img.src = optimizedUrl(src)
+    }
+  }, [isModalOpen, warmSiblings, imageGallery, currentImageIndex])
 
   if (typeof document === 'undefined') return null
 
   const caption = activeImage?.caption?.trim() ?? ''
   const action = activeImage?.action?.trim() ?? ''
   const showCaption = caption.length + action.length > 0 && !isImageZoomed
+  const altText = caption.replace(/<[^>]+>/g, '').trim() || 'Imagen de la galería'
+  const activeReady = Boolean(activeImage && readySrcs.current.has(activeImage.src))
 
   return createPortal(
     <AnimatePresence>
@@ -65,7 +112,7 @@ const FocusGalleryComponent = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2, ease }}
+          transition={{ duration: 0.22, ease }}
           className='bg-bg1/10 fixed inset-0 z-100 flex flex-col overflow-hidden backdrop-blur-sm'
         >
           {hasMultipleImages && (
@@ -73,7 +120,7 @@ const FocusGalleryComponent = () => {
               <motion.div
                 initial={false}
                 animate={{ width: `${((currentImageIndex + 1) / imageGallery.length) * 100}%` }}
-                transition={{ duration: 0.4, ease }}
+                transition={{ duration: 0.35, ease }}
                 className='gradient h-full'
               />
             </div>
@@ -123,68 +170,93 @@ const FocusGalleryComponent = () => {
               onMouseUp={handleMouseUp}
               className='relative flex min-h-0 flex-1 items-center justify-center'
             >
-              {!isLoaded && (
+              {!activeReady && (
                 <span
                   aria-hidden
                   className='border-bg3 border-t-fn1 pointer-events-none absolute size-8 animate-spin rounded-full border-2'
                 />
               )}
 
-              <div className={cn('relative flex max-h-full max-w-full items-center justify-center', !isLoaded && 'opacity-0')}>
-                <img
-                  ref={mainImageRef}
-                  src={activeImage.src}
-                  alt={caption.replace(/<[^>]+>/g, '').trim() || 'Imagen de la galería'}
-                  draggable={false}
-                  fetchPriority='high'
-                  onLoad={() => setIsLoaded(true)}
-                  onClick={e => {
-                    e.stopPropagation()
-                    handleImageClick()
-                  }}
-                  style={{
-                    transform: isImageZoomed ? `scale(${zoomScale}) translate(${panPosition.x}px, ${panPosition.y}px)` : undefined
-                  }}
-                  className={cn(
-                    'max-h-[calc(100vh-220px)] max-w-full rounded-2xl object-contain shadow-[0_24px_60px_-24px_rgba(0,0,0,0.45)] transition-[transform,opacity] duration-300 motion-reduce:transition-none',
-                    isImageZoomed && 'cursor-grab active:cursor-grabbing',
-                    !isImageZoomed && 'cursor-zoom-in',
-                    isDraggingImage && 'transition-none'
-                  )}
-                />
+              <div className='relative grid max-h-full max-w-full place-items-center'>
+                {imageGallery.map((galleryImage, imageIndex) => {
+                  const active = imageIndex === currentImageIndex
+                  if (!active && !warmSiblings && imageIndex !== 0) return null
 
-                {showCaption && (
-                  <figcaption
-                    onClick={e => e.stopPropagation()}
-                    className='bg-bg1 border-bg3 absolute bottom-4 left-1/2 z-10 flex w-[min(100%-2rem,400px)] -translate-x-1/2 flex-col gap-3 overflow-hidden rounded-xl border p-4 shadow-[0_16px_40px_-18px_rgba(0,0,0,0.4)]'
-                  >
-                    <div className='flex items-center gap-1.5' aria-hidden>
-                      <span className='bg-semantic-danger size-2.5 rounded-full' />
-                      <span className='bg-semantic-warning size-2.5 rounded-full' />
-                      <span className='bg-semantic-success size-2.5 rounded-full' />
-                    </div>
-
-                    {caption.length > 0 && (
-                      <div
-                        className='text-fn1 [&_p]:text-fn1 min-w-0 text-sm leading-relaxed [&_p]:text-sm'
-                        dangerouslySetInnerHTML={{ __html: caption }}
-                      />
-                    )}
-
-                    {action.length > 0 && (
-                      <Button
-                        href={action}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        showIconLink
-                        className='h-9 w-fit shrink-0 rounded-full px-4'
-                      >
-                        {activeImage.actionText}
-                      </Button>
-                    )}
-                  </figcaption>
-                )}
+                  return (
+                    <Image
+                      key={`${galleryImage.src}-${imageIndex}`}
+                      ref={active ? mainImageRef : undefined}
+                      src={galleryImage.src}
+                      width={VIEW_W}
+                      height={VIEW_H}
+                      layout='constrained'
+                      unstyled
+                      objectFit='contain'
+                      sizes='100vw'
+                      alt={active ? altText : ''}
+                      aria-hidden={!active}
+                      draggable={false}
+                      loading={active || warmSiblings ? 'eager' : 'lazy'}
+                      decoding='async'
+                      fetchPriority={active ? 'high' : 'low'}
+                      onLoad={() => markReady(galleryImage.src)}
+                      onClick={e => {
+                        if (!active) return
+                        e.stopPropagation()
+                        handleImageClick()
+                      }}
+                      style={{
+                        transform:
+                          active && isImageZoomed
+                            ? `scale(${zoomScale}) translate(${panPosition.x}px, ${panPosition.y}px)`
+                            : undefined
+                      }}
+                      className={cn(
+                        'col-start-1 row-start-1 max-h-[calc(100vh-220px)] max-w-full rounded-2xl object-contain shadow-[0_24px_60px_-24px_rgba(0,0,0,0.45)]',
+                        'transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none',
+                        active && 'z-[1]',
+                        active && activeReady ? 'opacity-100' : 'opacity-0',
+                        !active && 'pointer-events-none',
+                        active && isImageZoomed && 'cursor-grab active:cursor-grabbing',
+                        active && !isImageZoomed && 'cursor-zoom-in',
+                        isDraggingImage && active && 'transition-none'
+                      )}
+                    />
+                  )
+                })}
               </div>
+
+              {showCaption && (
+                <figcaption
+                  onClick={e => e.stopPropagation()}
+                  className='bg-bg1 border-bg3 absolute bottom-4 left-1/2 z-10 flex w-[min(100%-2rem,400px)] -translate-x-1/2 flex-col gap-3 overflow-hidden rounded-xl border p-4 shadow-[0_16px_40px_-18px_rgba(0,0,0,0.4)]'
+                >
+                  <div className='flex items-center gap-1.5' aria-hidden>
+                    <span className='bg-semantic-danger size-2.5 rounded-full' />
+                    <span className='bg-semantic-warning size-2.5 rounded-full' />
+                    <span className='bg-semantic-success size-2.5 rounded-full' />
+                  </div>
+
+                  {caption.length > 0 && (
+                    <div
+                      className='text-fn1 [&_p]:text-fn1 min-w-0 text-sm leading-relaxed [&_p]:text-sm'
+                      dangerouslySetInnerHTML={{ __html: caption }}
+                    />
+                  )}
+
+                  {action.length > 0 && (
+                    <Button
+                      href={action}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      showIconLink
+                      className='h-9 w-fit shrink-0 rounded-full px-4'
+                    >
+                      {activeImage.actionText}
+                    </Button>
+                  )}
+                </figcaption>
+              )}
 
               {hasMultipleImages && !isImageZoomed && (
                 <>
@@ -242,9 +314,13 @@ const FocusGalleryComponent = () => {
                         src={galleryImage.src}
                         width={56}
                         height={56}
+                        layout='fixed'
+                        unstyled
+                        objectFit='cover'
                         alt=''
-                        loading='lazy'
+                        loading={warmSiblings || imageIndex <= currentImageIndex + 1 ? 'eager' : 'lazy'}
                         fetchPriority='low'
+                        decoding='async'
                         className='size-full object-cover'
                       />
                     </span>

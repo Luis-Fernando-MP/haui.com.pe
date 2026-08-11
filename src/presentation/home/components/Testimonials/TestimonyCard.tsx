@@ -21,7 +21,16 @@ const TestimonyCard: FC<Props> = ({ testimony }) => {
     <article className='bg-bg1 border-bg3 flex h-full min-w-0 flex-col gap-6 rounded-2xl border p-4 sm:gap-8 sm:p-6 md:p-8'>
       <header className='flex min-w-0 items-start gap-3 sm:items-center sm:gap-4'>
         <div className='bg-bg2 border-bg3 size-14 shrink-0 overflow-hidden rounded-2xl border sm:size-16 md:size-20'>
-          <Image src={photo} alt={`Foto de ${autor}`} width={80} height={80} className='size-full object-cover' />
+          <Image
+            src={photo}
+            alt={`Foto de ${autor}`}
+            width={80}
+            height={80}
+            layout='fixed'
+            unstyled
+            objectFit='cover'
+            className='size-full object-cover'
+          />
         </div>
 
         <div className='flex min-w-0 flex-col gap-1'>

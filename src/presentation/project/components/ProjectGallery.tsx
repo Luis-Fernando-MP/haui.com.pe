@@ -41,6 +41,10 @@ const ProjectGallery: FC<{
               alt={img.caption?.trim() || `${title} — captura ${i + 1}`}
               width={640}
               height={400}
+              layout='constrained'
+              unstyled
+              objectFit='cover'
+              sizes='(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw'
               groupId={groupId}
               index={i}
               caption={`<p>${img.caption?.trim() || title}</p>`}

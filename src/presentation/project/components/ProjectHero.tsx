@@ -68,7 +68,16 @@ const ProjectHero: FC<Props> = ({ project }) => {
       >
         <div className='bg-bg1/80 border-bg3/50 flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border sm:size-20 md:size-24'>
           {logoSrc && (
-            <Image src={logoSrc} alt={`Logo de ${title}`} width={96} height={96} className='size-full object-contain p-2.5 sm:p-3' />
+            <Image
+              src={logoSrc}
+              alt={`Logo de ${title}`}
+              width={96}
+              height={96}
+              layout='fixed'
+              unstyled
+              objectFit='contain'
+              className='size-full object-contain p-2.5 sm:p-3'
+            />
           )}
           {!logoSrc && <span className='font-flowers text-fn1 text-3xl leading-none sm:text-4xl md:text-5xl'>{monogram}</span>}
         </div>
@@ -81,7 +90,18 @@ const ProjectHero: FC<Props> = ({ project }) => {
           <ul className='flex max-w-full flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-x-5'>
             {techs.map(tech => (
               <li key={tech.label} className='text-fn2 flex list-none items-center gap-2'>
-                {tech.icon && <Image src={tech.icon} alt='' width={18} height={18} className='size-[18px] shrink-0 object-contain' />}
+                {tech.icon && (
+                  <Image
+                    src={tech.icon}
+                    alt=''
+                    width={18}
+                    height={18}
+                    layout='fixed'
+                    unstyled
+                    objectFit='contain'
+                    className='size-[18px] shrink-0 object-contain'
+                  />
+                )}
                 <span className='text-sm tracking-wide'>{tech.label}</span>
               </li>
             ))}
