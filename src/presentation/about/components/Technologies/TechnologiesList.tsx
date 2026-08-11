@@ -40,7 +40,17 @@ const TechnologiesList: FC = () => {
             />
 
             <div className='relative z-[1] flex size-7 items-center justify-center transition-transform duration-200 group-hover:scale-105 motion-reduce:transition-none sm:size-8'>
-              <Image className='contain' src={tech.icon} width={26} height={26} alt='' background='/fallback.webp' />
+              <Image
+                className='size-[26px] object-contain'
+                src={tech.icon}
+                width={26}
+                height={26}
+                layout='fixed'
+                unstyled
+                objectFit='contain'
+                alt=''
+                background='/fallback.webp'
+              />
             </div>
 
             <h3 className='text-fn1 relative z-[1] w-full truncate px-0.5 text-center text-[10px] font-medium tracking-tight sm:text-[11px]'>

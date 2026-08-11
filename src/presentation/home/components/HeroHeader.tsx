@@ -25,6 +25,10 @@ const HeroHeader: FC = () => {
           height={360}
           alt={`Logo de ${INFO.devShortName}`}
           priority
+          layout='constrained'
+          unstyled
+          objectFit='contain'
+          sizes='(max-width: 640px) 140px, (max-width: 768px) 180px, 280px'
           className='pointer-events-none relative h-auto w-[140px] object-contain select-none sm:w-[180px] md:w-[280px]'
         />
       </motion.div>
@@ -84,6 +88,9 @@ const HeroHeader: FC = () => {
                 alt={`Logo de ${INFO.working.enterprise}`}
                 width={16}
                 height={16}
+                layout='fixed'
+                unstyled
+                objectFit='contain'
                 className='size-4 shrink-0 rounded-md object-contain'
               />
               <span className='max-w-[11rem] truncate sm:max-w-none'>

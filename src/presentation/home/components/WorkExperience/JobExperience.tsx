@@ -58,6 +58,8 @@ const JobExperience: FC<Props> = ({ job }) => {
               alt={`Logo de ${name}`}
               width={40}
               height={40}
+              layout='fixed'
+              unstyled
               objectFit='contain'
               className='size-full object-contain'
             />

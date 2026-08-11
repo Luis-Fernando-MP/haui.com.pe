@@ -76,6 +76,9 @@ const Testimonials: FC = () => {
                           alt={`Foto de ${item.autor}`}
                           width={48}
                           height={48}
+                          layout='fixed'
+                          unstyled
+                          objectFit='cover'
                           className='size-full object-cover'
                         />
                       </span>

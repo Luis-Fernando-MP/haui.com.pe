@@ -11,7 +11,16 @@ interface Props extends Technology {
 const TechChip: FC<Props> = ({ name, icon, noLabel, className = '' }) => {
   return (
     <Button variant='outline' className={className} title={name}>
-      <Image className='contain' src={icon} width={25} height={25} alt={name} />
+      <Image
+        className='size-[25px] object-contain'
+        src={icon}
+        width={25}
+        height={25}
+        layout='fixed'
+        unstyled
+        objectFit='contain'
+        alt={name}
+      />
       {!noLabel && <h5 className='text-fn2 font-mono'>{name}</h5>}
     </Button>
   )

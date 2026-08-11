@@ -88,7 +88,16 @@ const NavBar: FC = () => {
             <div ref={rowRef} className='flex h-14 w-full items-center justify-between gap-3 px-3'>
               <Link href='/' className='flex items-center gap-2.5'>
                 <div className='bg-logo-bg flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-lg p-1'>
-                  <Image src='/logo.webp' alt='' width={24} height={24} className='size-full object-contain' />
+                  <Image
+                    src='/logo.webp'
+                    alt=''
+                    width={24}
+                    height={24}
+                    layout='fixed'
+                    unstyled
+                    objectFit='contain'
+                    className='size-full object-contain'
+                  />
                 </div>
 
                 <p className={cn('text-fn1 text-lg font-bold tracking-tight whitespace-nowrap', isHome && 'text-gradient')}>
