@@ -24,7 +24,7 @@ const Achievements: FC = () => {
       <div className='border-bg3/70 relative overflow-hidden rounded-3xl border'>
         <div
           aria-hidden
-          className='from-from/15 via-via/10 to-to/15 pointer-events-none absolute -top-24 left-0 h-56 w-56 rounded-full bg-gradient-to-br blur-3xl'
+          className='from-from/12 via-via/8 to-to/12 pointer-events-none absolute -top-24 left-0 h-56 w-56 rounded-full bg-gradient-to-br blur-2xl'
         />
 
         <div className='relative flex flex-col gap-5 p-5 sm:gap-6 sm:p-6 md:p-7'>

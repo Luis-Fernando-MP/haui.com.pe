@@ -1,23 +1,21 @@
 import { cn } from '@common/core/cn'
-import { Image as UnpicImage } from '@unpic/react/base'
+import { Image as UnpicImage } from '@unpic/react/nextjs'
 import type { ComponentProps, FC } from 'react'
-
-/** Assets del portafolio ya están en public/; no pasamos por `/_next/image`. */
-const passthrough = (src: string | URL) => src.toString()
 
 type UnpicProps = ComponentProps<typeof UnpicImage>
 
-interface Props extends Omit<UnpicProps, 'transformer'> {
+interface Props extends UnpicProps {
   className?: string
   ref?: React.Ref<HTMLImageElement>
 }
 
 /**
- * Wrapper de `@unpic/react` (base): `<img>` responsive, sin Image ni `/_next/image` de Next.
+ * Wrapper de `@unpic/react/nextjs`: `<img>` responsive con srcset/sizes.
+ * Local (`/…`) y paths sin CDN pasan por el Image Optimizer de Next (`/_next/image` + sharp).
  *
  * @param props.src - Ruta o URL de la imagen
  * @param props.alt - Texto alternativo
- * @param props.width - Ancho intrínseco
+ * @param props.width - Ancho intrínseco / tope del layout
  * @param props.height - Alto intrínseco
  * @param props.layout - `"constrained"` | `"fixed"` | `"fullWidth"`
  * @param props.unstyled - Sin estilos de layout de unpic
@@ -28,7 +26,7 @@ interface Props extends Omit<UnpicProps, 'transformer'> {
  * ```
  */
 const Image: FC<Props> = ({ className, alt = '', ref, ...props }) => {
-  return <UnpicImage transformer={passthrough} alt={alt} className={cn(className)} {...(props as any)} ref={ref} />
+  return <UnpicImage alt={alt} className={cn(className)} {...props} ref={ref} />
 }
 
 export default Image
