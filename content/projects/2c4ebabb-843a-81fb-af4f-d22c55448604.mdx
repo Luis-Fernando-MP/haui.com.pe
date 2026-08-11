@@ -1,8 +1,8 @@
 ---
 id: '2c4ebabb-843a-81fb-af4f-d22c55448604'
 title: 'Coral'
-reading_time: 1
-words: 176
+reading_time: 2
+words: 284
 relevance: 3
 priority: 'Regular'
 team: 'Equipo Coral'
@@ -15,7 +15,7 @@ notion: 'https://www.notion.so/Coral-20398397f7fa804c9156dab8cf32b9b4?source=cop
 logo: '/content/projects/2c4ebabb-843a-81fb-af4f-d22c55448604/logo.webp'
 summary: 'CORAL es un blog enfocado en CSS. Este proyecto fue desarrollado como parte del curso Universitario de CSS, con el objetivo de compartir conocimientos y experiencias del curso para la comunidad web.'
 created_time: '2025-12-09T16:14:00.000Z'
-last_edited_time: '2026-08-07T02:44:00.000Z'
+last_edited_time: '2026-08-07T08:01:00.000Z'
 banner: '/content/projects/2c4ebabb-843a-81fb-af4f-d22c55448604/banner.webp'
 banner_width: 1500
 banner_height: 1125
@@ -30,7 +30,7 @@ images:
   - id: 'img-1'
     banner: '/content/projects/2c4ebabb-843a-81fb-af4f-d22c55448604/img-1.webp'
     thumb: '/content/projects/2c4ebabb-843a-81fb-af4f-d22c55448604/img-1-thumb.webp'
-    caption: 'Descripcion ejemplo'
+    caption: 'Esta imagen es de ejemplo para mi web'
 authors:
   - name: 'Melgar Pizarro Luis'
     social: 'https://github.com/Luis-Fernando-MP'
@@ -43,88 +43,32 @@ authors:
     role: ''
 ---
 
-<h1 className='notion-heading_1 notion-color-default'>🎯 Sobre el proyecto</h1>
+<h2 className="notion-heading_2 notion-color-default"><b className="notion-text-bold">🌊 CORAL</b></h2>
 
-<p>
-  <b className='notion-text-bold'>CORAL</b> es un blog enfocado en CSS. Este proyecto fue desarrollado como parte del curso
-  Universitario de CSS, con el objetivo de compartir conocimientos y experiencias del curso para la comunidad web.
-</p>
+<p>Blog especializado en CSS avanzado e intermedio, desarrollado como proyecto final para el curso universitario de Diseño de Páginas Web. El objetivo fue construir un sistema de retroalimentación que permitiera explorar y compartir conceptos avanzados de CSS con la comunidad web, combinando contenido educativo con ejemplos de código interactivos.</p>
 
-<h2 className='notion-heading_2 notion-color-default'>👥 Devs</h2>
+ <h3 className="notion-heading_3 notion-color-default"><b className="notion-text-bold">🎯 Sobre el proyecto</b></h3>
 
-<ul className='notion-bulleted_list'>
-  <li className='notion-bulleted_list_item notion-color-default'>
-    <b className='notion-text-bold'>Melgar Pizarro Luis</b> -{' '}
-    <MDXLink href='https://github.com/Luis-Fernando-MP' className='notion-text-href'>
-      @haui
-    </MDXLink>
-  </li>
-  <li className='notion-bulleted_list_item notion-color-default'>
-    <b className='notion-text-bold'>Jhosef Condori Chauca</b>
-  </li>
-  <li className='notion-bulleted_list_item notion-color-default'>
-    <b className='notion-text-bold'>Joel Alva Reynoso</b>
-  </li>
-</ul>
+<p>CORAL es una aplicación estática construida con <b className="notion-text-bold">AstroJS</b>, pensada como un pequeño portafolio de artículos técnicos sobre CSS. Aunque su alcance es acotado, incorpora tecnologías y patrones modernos:</p>
+ <ul className="notion-bulleted_list">
+ <li className="notion-bulleted_list_item notion-color-default"><b className="notion-text-bold">View Transitions</b> para navegación fluida entre páginas.</li>
+<li className="notion-bulleted_list_item notion-color-default"><b className="notion-text-bold">Previsualizadores de código embebidos (iframes)</b>, que permiten renderizar y visualizar snippets de CSS en tiempo real dentro de cada artículo.</li>
+<li className="notion-bulleted_list_item notion-color-default">Arquitectura basada en contenido (<code className="notion-text-code">content collections</code>), separando la lógica de la aplicación de los posts del blog.</li>
+ </ul>
 
-<figure>
-  <Image
-    layout='constrained'
-    width={1500}
-    height={1125}
-    src='/content/projects/2c4ebabb-843a-81fb-af4f-d22c55448604/img-1.webp'
-    alt='Descripcion ejemplo'
-  />
-  <figcaption>Descripcion ejemplo</figcaption>
-</figure>
+<p>El proyecto no busca ser una single-page application ni un editor de código completo, sino un sitio estático ligero y rápido que prioriza la claridad del contenido y la experiencia de lectura.</p>
 
-<p>Arriba imagen</p>
+ <h3 className="notion-heading_3 notion-color-default">🚀 Instalación y ejecución</h3>
 
-<hr className='notion-divider' />
+<p><b className="notion-text-bold">Requisitos previos:</b> Node.js y <MDXLink href="https://pnpm.io/" className="notion-text-href">pnpm</MDXLink> instalados.</p>
+ <ol className="notion-numbered_list">
+ <li className="notion-numbered_list_item notion-color-default">Clonar el repositorio:</li>
+<li className="notion-numbered_list_item notion-color-default">Instalar las dependencias:</li>
+<li className="notion-numbered_list_item notion-color-default">Iniciar el servidor de desarrollo:</li>
+<li className="notion-numbered_list_item notion-color-default">Abrir el proyecto en el navegador: <MDXLink href="http://localhost:4321/" className="notion-text-href">http://localhost:4321</MDXLink></li>
+ </ol>
 
-<h1 className='notion-heading_1 notion-color-default'>🚀 Guía de Instalación y Ejecución</h1>
-
-<p>Pasos para instalar y ejecutar el proyecto en tu máquina local:</p>
-<ul className='notion-bulleted_list'>
-  <li className='notion-bulleted_list_item notion-color-default'>Clona el repositorio:</li>
-</ul>
-
-<hr className='notion-divider' />
-
-```bash
-git clone https://github.com/Luis-Fernando-MP/coral.git
-cd coral
-```
-
-<ul className='notion-bulleted_list'>
-  <li className='notion-bulleted_list_item notion-color-default'>Instala las dependencias:</li>
-</ul>
-
-<hr className='notion-divider' />
-
-```bash
-pnpm install
-```
-
-<ul className='notion-bulleted_list'>
-  <li className='notion-bulleted_list_item notion-color-default'>Inicia el servidor de desarrollo:</li>
-</ul>
-
-<hr className='notion-divider' />
-
-```bash
-pnpm dev
-```
-
-<ul className='notion-bulleted_list'>
-  <li className='notion-bulleted_list_item notion-color-default'>
-    Accede al proyecto en tu navegador en <code className='notion-text-code'>http://localhost:4321</code>.
-  </li>
-</ul>
-
-<hr className='notion-divider' />
-
-<h2 className='notion-heading_2 notion-color-default'>📁 Estructura del Proyecto</h2>
+<h3 className="notion-heading_3 notion-color-default">📁 Estructura del proyecto</h3>
 
 ```plain
 ├── public/
@@ -139,58 +83,49 @@ pnpm dev
 │   ├── pages/
 │   └── sass/
 ├── astro.config.mjs
-├── README.md
 ├── package.json
 └── tsconfig.json
 ```
 
-<ul className='notion-bulleted_list'>
-  <li className='notion-bulleted_list_item notion-color-default'>
-    <code className='notion-text-code'>
-      <b className='notion-text-bold'>public/</b>
-    </code>
-    : Archivos estáticos
-  </li>
-  <li className='notion-bulleted_list_item notion-color-default'>
-    <code className='notion-text-code'>
-      <b className='notion-text-bold'>content/</b>
-    </code>
-    : Posts del blog
-  </li>
-  <li className='notion-bulleted_list_item notion-color-default'>
-    <code className='notion-text-code'>
-      <b className='notion-text-bold'>src/components/</b>
-    </code>
-    : Componentes reutilizables.
-  </li>
-  <li className='notion-bulleted_list_item notion-color-default'>
-    <code className='notion-text-code'>
-      <b className='notion-text-bold'>src/layouts/</b>
-    </code>
-    : Plantillas de diseño
-  </li>
-  <li className='notion-bulleted_list_item notion-color-default'>
-    <code className='notion-text-code'>
-      <b className='notion-text-bold'>src/lib/</b>
-    </code>
-    : Funciones y utilidades
-  </li>
-  <li className='notion-bulleted_list_item notion-color-default'>
-    <code className='notion-text-code'>
-      <b className='notion-text-bold'>src/pages/</b>
-    </code>
-    : Páginas del sitio
-  </li>
-  <li className='notion-bulleted_list_item notion-color-default'>
-    <code className='notion-text-code'>
-      <b className='notion-text-bold'>src/sass/</b>
-    </code>
-    : Estilos de la aplicación
-  </li>
-</ul>
+ <table className="notion-table">
 
-<hr className='notion-divider' />
+ <tr className="notion-table_row">
+ <td className="notion-table_cell">Carpeta</td><td className="notion-table_cell">Descripción</td>
+ </tr>
 
-<blockquote className='notion-callout notion-color-brown_background'>
-  <div className='content'>¡Gracias por tu interés en ! 💖</div>
-</blockquote>
+ <tr className="notion-table_row">
+ <td className="notion-table_cell"><code className="notion-text-code">public/</code></td><td className="notion-table_cell">Archivos estáticos (imágenes, avatares de autores, assets generales).</td>
+ </tr>
+
+ <tr className="notion-table_row">
+ <td className="notion-table_cell"><code className="notion-text-code">content/blog/</code></td><td className="notion-table_cell">Artículos del blog en formato Markdown/MDX.</td>
+ </tr>
+
+ <tr className="notion-table_row">
+ <td className="notion-table_cell"><code className="notion-text-code">src/components/</code></td><td className="notion-table_cell">Componentes reutilizables de la interfaz.</td>
+ </tr>
+
+ <tr className="notion-table_row">
+ <td className="notion-table_cell"><code className="notion-text-code">src/layouts/</code></td><td className="notion-table_cell">Plantillas de diseño base para las páginas.</td>
+ </tr>
+
+ <tr className="notion-table_row">
+ <td className="notion-table_cell"><code className="notion-text-code">src/lib/</code></td><td className="notion-table_cell">Funciones y utilidades compartidas.</td>
+ </tr>
+
+ <tr className="notion-table_row">
+ <td className="notion-table_cell"><code className="notion-text-code">src/pages/</code></td><td className="notion-table_cell">Rutas y páginas del sitio.</td>
+ </tr>
+
+ <tr className="notion-table_row">
+ <td className="notion-table_cell"><code className="notion-text-code">src/sass/</code></td><td className="notion-table_cell">Estilos globales de la aplicación.</td>
+ </tr>
+
+ </table>
+
+ <blockquote className="notion-callout notion-color-gray_background"><div className="icon">
+ <span className="notion-emoji">💡</span>
+ </div>
+ <div className="content">
+ 💖 Gracias por tu interés en CORAL.
+ </div></blockquote>

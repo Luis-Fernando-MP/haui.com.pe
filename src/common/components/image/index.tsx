@@ -1,12 +1,13 @@
 import { cn } from '@common/core/cn'
 import { Image as UnpicImage } from '@unpic/react/nextjs'
-import type { ComponentProps, FC } from 'react'
+import type { ComponentProps, CSSProperties, FC, Ref } from 'react'
 
 type UnpicProps = ComponentProps<typeof UnpicImage>
 
 interface Props extends UnpicProps {
   className?: string
-  ref?: React.Ref<HTMLImageElement>
+  style?: CSSProperties
+  ref?: Ref<HTMLImageElement>
 }
 
 /**
