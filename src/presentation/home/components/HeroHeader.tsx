@@ -21,24 +21,22 @@ const HeroHeader: FC = () => {
       >
         <Image
           src='/logo-big.webp'
-          width={360}
-          height={360}
+          width={985}
+          height={1000}
           alt={`Logo de ${INFO.devShortName}`}
           priority
-          layout='constrained'
-          unstyled
+          unoptimized
           objectFit='contain'
-          sizes='(max-width: 640px) 140px, (max-width: 768px) 180px, 280px'
-          className='pointer-events-none relative h-auto w-[140px] object-contain select-none sm:w-[180px] md:w-[280px]'
+          className='pointer-events-none relative h-auto w-[180px] object-contain select-none sm:w-[240px] md:w-[360px]'
         />
       </motion.div>
 
-      <div className='relative z-[1] flex w-full min-w-0 max-w-[560px] flex-col gap-4 max-lg:items-center max-lg:text-center sm:gap-5 md:gap-6'>
+      <div className='relative z-[1] flex w-full max-w-[560px] min-w-0 flex-col gap-4 max-lg:items-center max-lg:text-center sm:gap-5 md:gap-6'>
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease, delay: 0.12 }}
-          className='type-label border-bg3 bg-bg1 text-fn1 inline-flex max-w-full w-fit items-center gap-2 rounded-full border px-3 py-1.5 sm:gap-2.5 sm:px-3.5'
+          className='type-label border-bg3 bg-bg1 text-fn1 inline-flex w-fit max-w-full items-center gap-2 rounded-full border px-3 py-1.5 sm:gap-2.5 sm:px-3.5'
         >
           {!INFO.working.state && (
             <span className='relative flex size-1.5 shrink-0'>
@@ -56,11 +54,11 @@ const HeroHeader: FC = () => {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease, delay: 0.18 }}
-          className='type-display w-full text-pretty sm:text-[clamp(2.75rem,8vw,4.5rem)] md:text-[clamp(3rem,7vw,5.5rem)] lg:text-[clamp(3.25rem,6vw,6rem)]'
+          className='type-display w-full font-extrabold text-pretty sm:text-[clamp(2.75rem,8vw,4.5rem)] md:text-[clamp(3rem,7vw,5.5rem)] lg:text-[clamp(3.25rem,6vw,6rem)]'
         >
-          <span className='text-gradient font-[inherit] text-[length:inherit] leading-[inherit]'>LUIS</span>
+          <span className='text-gradient text-[length:inherit] leading-[inherit] font-extrabold'>LUIS</span>
           <br />
-          <span className='text-fn1 font-[inherit] text-[length:inherit] leading-[inherit]'>FERNANDO</span>
+          <span className='text-fn1 text-[length:inherit] leading-[inherit] font-extrabold'>FERNANDO</span>
         </motion.h1>
 
         <motion.div
@@ -139,7 +137,7 @@ const HeroHeader: FC = () => {
 
       <div
         aria-hidden
-        className='font-rubik text-fn2 pointer-events-none absolute top-1/2 left-1/2 -z-0 w-[min(100%,42rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-transparent text-center text-[clamp(4.5rem,18vw,12rem)] leading-[0.85] opacity-[0.22] select-none sm:opacity-[0.3] [font-size-adjust:none]'
+        className='font-rubik text-fn2 pointer-events-none absolute top-1/2 left-1/2 -z-0 w-[min(100%,42rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-transparent text-center text-[clamp(4.5rem,18vw,12rem)] leading-[0.85] opacity-[0.22] select-none [font-size-adjust:none] sm:opacity-[0.3]'
       >
         LUIS
         <br />
